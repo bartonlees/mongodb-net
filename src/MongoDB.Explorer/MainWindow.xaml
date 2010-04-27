@@ -1,0 +1,136 @@
+﻿<Window x:Class="MongoDB.Explorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="http://mongodbnet/explorer"
+        Title="MongoDB Explorer"  Icon="pack://application:,,,/Resources/mongodbnet.ico"
+        Loaded="Window_Loaded" WindowState="Maximized" WindowStartupLocation="CenterOwner" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" d:DesignHeight="290" d:DesignWidth="489" SizeToContent="Manual">
+    <Window.Resources>
+        <ResourceDictionary Source="pack://application:,,,/NodeDataTemplates.xaml"/>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding x:Name="NewBinding" Command="New" CanExecute="New_CanExecute" Executed="New_Executed" />
+        <CommandBinding x:Name="DeleteBinding" Command="Delete" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+        <CommandBinding x:Name="RefreshBinding" Command="Refresh" CanExecute="Refresh_CanExecute" Executed="Refresh_Executed" />
+    </Window.CommandBindings>
+    <DockPanel LastChildFill="True">
+        <ToolBarPanel DockPanel.Dock="Top">
+            <Menu>
+                <MenuItem Header="Application">
+                    <MenuItem Header="New Server Connection" Command="New" CommandParameter="server"/>
+                    <Separator/>
+                    <MenuItem Header="Exit" Command="Close"/>
+                </MenuItem>
+
+                <MenuItem Header="Server" Visibility="{Binding ServerActionVisibility, FallbackValue=Collapsed}">
+                    <MenuItem Header="Remove Server Connection" Icon="pack://application:,,,/Resources/server_delete.png" Command="New" CommandParameter="server"/>
+                    <MenuItem Header="Refresh Server Connection" Icon="pack://application:,,,/Resources/server_go.png" Command="New" CommandParameter="server"/>
+                    <Separator/>
+                    <MenuItem Header="Add New Database" Icon="pack://application:,,,/Resources/database_new.png" Command="New" CommandParameter="database"/>
+                </MenuItem>
+
+                <MenuItem Header="Database" Visibility="{Binding DatabaseActionVisibility, FallbackValue=Collapsed}">
+                    <MenuItem Header="Drop Database" Command="Delete" CommandParameter="database"/>
+                    <MenuItem Header="Refresh Database" Command="Refresh" CommandParameter="database"/>
+                    <Separator/>
+                    <MenuItem Header="Add New Collection" Command="New" CommandParameter="collection"/>
+                </MenuItem>
+                <MenuItem Header="Collection" Visibility="{Binding CollectionActionVisibility, FallbackValue=Collapsed}">
+                    <MenuItem Header="Drop Collection" Command="Delete" CommandParameter="collection"/>
+                    <MenuItem Header="Refresh Collection" Command="Refresh" CommandParameter="collection"/>
+                    <Separator/>
+                    <MenuItem Header="Add New Index" Command="New" CommandParameter="index"/>
+                </MenuItem>
+
+                <MenuItem Header="Index" Visibility="{Binding IndexActionVisibility, FallbackValue=Collapsed}">
+                    <MenuItem Header="Remove Index" Command="Delete" CommandParameter="index"/>
+                    <MenuItem Header="Refresh Index" Command="New" CommandParameter="index"/>
+                </MenuItem>
+            </Menu>
+        </ToolBarPanel>
+        <ToolBarPanel DockPanel.Dock="Top">
+            <StackPanel Orientation="Horizontal">
+                <ToolBar>
+                    <Button ToolTip="Add Server" Command="New" HorizontalAlignment="Left">
+                        <Image Source="pack://application:,,,/Resources/server_add.png"/>
+                    </Button>
+                </ToolBar>
+                <ToolBar Visibility="{Binding ServerActionVisibility, FallbackValue=Collapsed}">
+                    <Button ToolTip="Remove Server Connection" Command="Delete" CommandParameter="server">
+                        <Image Source="pack://application:,,,/Resources/server_delete.png"></Image>
+                    </Button>
+                    <Button ToolTip="Refresh Server Connection" Command="Refresh" CommandParameter="server">
+                        <Image Source="pack://application:,,,/Resources/server_go.png"></Image>
+                    </Button>
+                    <Separator/>
+                    <Button ToolTip="Add Database" Command="New" CommandParameter="database">
+                        <Image Source="pack://application:,,,/Resources/database_add.png"/>
+                    </Button>
+                </ToolBar>
+                <ToolBar Visibility="{Binding DatabaseActionVisibility, FallbackValue=Collapsed}">
+                    <Button ToolTip="Drop Database" Command="Delete" CommandParameter="database">
+                        <Image Source="pack://application:,,,/Resources/database_delete.png"></Image>
+                    </Button>
+                    <Button ToolTip="Refresh Database" Command="Refresh" CommandParameter="database">
+                        <Image Source="pack://application:,,,/Resources/database_go.png"></Image>
+                    </Button>
+                    <Separator/>
+                    <Button ToolTip="Add Collection" Command="New" CommandParameter="collection">
+                        <Image Source="pack://application:,,,/Resources/table_add.png"/>
+                    </Button>
+                </ToolBar>
+                <ToolBar Visibility="{Binding CollectionActionVisibility, FallbackValue=Collapsed}">
+                    <Button ToolTip="Drop Collection" Command="Delete" CommandParameter="collection">
+                        <Image Source="pack://application:,,,/Resources/table_delete.png"></Image>
+                    </Button>
+                    <Button ToolTip="Refresh Collection" Command="Refresh" CommandParameter="collection">
+                        <Image Source="pack://application:,,,/Resources/table_go.png"></Image>
+                    </Button>
+                    <Separator/>
+                    <Button ToolTip="Add Index" Command="New" CommandParameter="index">
+                        <Image Source="pack://application:,,,/Resources/page_add.png"/>
+                    </Button>
+                </ToolBar>
+                <ToolBar Visibility="{Binding IndexActionVisibility, FallbackValue=Collapsed}">
+                    <Button ToolTip="Remove Index" Command="Delete" CommandParameter="index">
+                        <Image Source="pack://application:,,,/Resources/page_delete.png"></Image>
+                    </Button>
+                    <Button ToolTip="Refresh Index" Command="Refresh" CommandParameter="index">
+                        <Image Source="pack://application:,,,/Resources/page_go.png"></Image>
+                    </Button>
+                </ToolBar>
+            </StackPanel>
+        </ToolBarPanel>
+        <ToolBarTray DockPanel.Dock="Bottom">
+            <ToolBar>
+                <Button></Button>
+            </ToolBar>
+        </ToolBarTray>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="3"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" Grid.Row="0" Height="Auto" Width="Auto" HorizontalAlignment="Stretch"
+VerticalAlignment="Stretch" />
+            <TreeView Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Name="treeView" ItemsSource="{Binding ServerNodes}" ItemTemplate="{StaticResource ServerNodeTemplate}" SelectedItemChanged="treeView_SelectedItemChanged" >
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TreeView.ItemContainerStyle>
+            </TreeView>
+            <ContentControl Grid.Column="2" Name="contentControl"  Content="{Binding SelectedNode}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        </Grid>
+    </DockPanel>
+</Window>

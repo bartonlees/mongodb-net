@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E60A3DED-0834-42FB-B72E-D580D4835E79}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MongoDB.Explorer</RootNamespace>
+    <AssemblyName>MongoDB.Explorer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Dialog\NewServerBindingDialog.xaml.cs">
+      <DependentUpon>NewServerBindingDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.vs.cs" />
+    <Compile Include="ViewModel\IndexNode.cs" />
+    <Compile Include="ViewModel\CollectionNode.cs" />
+    <Compile Include="ViewModel\DatabaseNode.cs" />
+    <Compile Include="ViewModel\Main.cs" />
+    <Compile Include="ViewModel\Node.cs" />
+    <Compile Include="ViewModel\ServerBindingInfo.cs" />
+    <Compile Include="ViewModel\ServerNode.cs" />
+    <Compile Include="View\CollectionDetails.xaml.cs">
+      <DependentUpon>CollectionDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExceptionDetails.xaml.cs">
+      <DependentUpon>ExceptionDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DatabaseDetails.xaml.cs">
+      <DependentUpon>DatabaseDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\IndexDetails.xaml.cs">
+      <DependentUpon>IndexDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ServerDetails.xaml.cs">
+      <DependentUpon>ServerDetails.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Dialog\NewServerBindingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CollectionDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExceptionDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DatabaseDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\IndexDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ServerDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Resource Include="NodeDataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\mongodbnet.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\accept.png" />
+    <Resource Include="Resources\add.png" />
+    <Resource Include="Resources\application_xp_terminal.png" />
+    <Resource Include="Resources\bullet_toggle_minus.png" />
+    <Resource Include="Resources\bullet_toggle_plus.png" />
+    <Resource Include="Resources\cancel.png" />
+    <Resource Include="Resources\cross.png" />
+    <Resource Include="Resources\database.png" />
+    <Resource Include="Resources\database_add.png" />
+    <Resource Include="Resources\database_connect.png" />
+    <Resource Include="Resources\database_delete.png" />
+    <Resource Include="Resources\database_edit.png" />
+    <Resource Include="Resources\database_error.png" />
+    <Resource Include="Resources\database_gear.png" />
+    <Resource Include="Resources\database_go.png" />
+    <Resource Include="Resources\database_key.png" />
+    <Resource Include="Resources\database_lightning.png" />
+    <Resource Include="Resources\database_link.png" />
+    <Resource Include="Resources\database_refresh.png" />
+    <Resource Include="Resources\database_save.png" />
+    <Resource Include="Resources\database_table.png" />
+    <Resource Include="Resources\disconnect.png" />
+    <Resource Include="Resources\error.png" />
+    <Resource Include="Resources\error_add.png" />
+    <Resource Include="Resources\error_delete.png" />
+    <Resource Include="Resources\error_go.png" />
+    <Resource Include="Resources\exclamation.png" />
+    <Resource Include="Resources\information.png" />
+    <Resource Include="Resources\server.png" />
+    <Resource Include="Resources\server_add.png" />
+    <Resource Include="Resources\server_chart.png" />
+    <Resource Include="Resources\server_compressed.png" />
+    <Resource Include="Resources\server_connect.png" />
+    <Resource Include="Resources\server_database.png" />
+    <Resource Include="Resources\server_delete.png" />
+    <Resource Include="Resources\server_edit.png" />
+    <Resource Include="Resources\server_error.png" />
+    <Resource Include="Resources\server_go.png" />
+    <Resource Include="Resources\server_key.png" />
+    <Resource Include="Resources\server_lightning.png" />
+    <Resource Include="Resources\server_link.png" />
+    <Resource Include="Resources\server_uncompressed.png" />
+    <Resource Include="Resources\stop.png" />
+    <Resource Include="Resources\tick.png" />
+    <Resource Include="Resources\user.png" />
+    <Resource Include="Resources\user_add.png" />
+    <Resource Include="Resources\user_comment.png" />
+    <Resource Include="Resources\user_delete.png" />
+    <Resource Include="Resources\user_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MongoDB.Driver\MongoDB.Driver.csproj">
+      <Project>{663A2D97-2688-495B-B296-86FD2151717B}</Project>
+      <Name>MongoDB.Driver</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\page.png" />
+    <Resource Include="Resources\page_add.png" />
+    <Resource Include="Resources\page_delete.png" />
+    <Resource Include="Resources\page_error.png" />
+    <Resource Include="Resources\page_go.png" />
+    <Resource Include="Resources\page_link.png" />
+    <Resource Include="Resources\page_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\arrow_refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\table.png" />
+    <Resource Include="Resources\table_add.png" />
+    <Resource Include="Resources\table_delete.png" />
+    <Resource Include="Resources\table_edit.png" />
+    <Resource Include="Resources\table_error.png" />
+    <Resource Include="Resources\table_gear.png" />
+    <Resource Include="Resources\table_go.png" />
+    <Resource Include="Resources\table_key.png" />
+    <Resource Include="Resources\table_lightning.png" />
+    <Resource Include="Resources\table_link.png" />
+    <Resource Include="Resources\table_multiple.png" />
+    <Resource Include="Resources\table_refresh.png" />
+    <Resource Include="Resources\table_relationship.png" />
+    <Resource Include="Resources\table_row_delete.png" />
+    <Resource Include="Resources\table_row_insert.png" />
+    <Resource Include="Resources\table_save.png" />
+    <Resource Include="Resources\table_sort.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\application_xp.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

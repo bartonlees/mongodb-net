@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <ComponentGroup Id="Product.Generated">
+      <ComponentGroupRef Id="MongoDB.Driver.Binaries" />
+      <ComponentGroupRef Id="MongoDB.Driver.Content" />
+      <ComponentGroupRef Id="MongoDB.Driver.Satellites" />
+      <ComponentGroupRef Id="MongoDB.Explorer.Binaries" />
+      <ComponentGroupRef Id="MongoDB.Explorer.Content" />
+      <ComponentGroupRef Id="MongoDB.Explorer.Satellites" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

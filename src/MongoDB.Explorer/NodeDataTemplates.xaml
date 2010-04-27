@@ -1,0 +1,67 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="http://mongodbnet/explorer">
+
+    <DataTemplate x:Key="IndexNodeTemplate">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Resources/page.png"/>
+            <Label Content="{Binding Path=Name}"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="ExceptionNodeTemplate" DataType="{x:Type local:ExceptionNode}">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Resources/error.png"/>
+            <Label Content="{Binding Path=Name}"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <HierarchicalDataTemplate x:Key="CollectionNodeTemplate"
+    ItemsSource="{Binding Children}"
+    ItemTemplate="{StaticResource IndexNodeTemplate}">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Resources/table.png"/>
+            <Label Content="{Binding Path=Name}"/>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+
+    <HierarchicalDataTemplate x:Key="DatabaseNodeTemplate"
+    ItemsSource="{Binding Children}"
+    ItemTemplate="{StaticResource CollectionNodeTemplate}">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Resources/database.png"/>
+            <Label Content="{Binding Path=Name}"/>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+
+    <HierarchicalDataTemplate x:Key="ServerNodeTemplate"
+    ItemsSource="{Binding Children}"
+    ItemTemplate="{StaticResource DatabaseNodeTemplate}">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="pack://application:,,,/Resources/server.png"/>
+            <Label Content="{Binding Path=Name}"/>
+        </StackPanel>
+    </HierarchicalDataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ServerNode}">
+        <local:ServerDetails />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:CollectionNode}">
+        <local:CollectionDetails />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:IndexNode}">
+        <local:IndexDetails />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:DatabaseNode}">
+        <local:DatabaseDetails />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:ExceptionNode}">
+        <local:ExceptionDetails />
+    </DataTemplate>
+
+
+</ResourceDictionary>

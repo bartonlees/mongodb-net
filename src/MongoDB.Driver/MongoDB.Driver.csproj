@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{663A2D97-2688-495B-B296-86FD2151717B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MongoDB.Driver</RootNamespace>
+    <AssemblyName>MongoDB.Driver</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command\Admin\LogRotate.cs" />
+    <Compile Include="Command\Admin\DiagLogging.cs" />
+    <Compile Include="Command\Admin\Unlock.cs" />
+    <Compile Include="Command\AssertInfo.cs" />
+    <Compile Include="Command\Authenticate.cs" />
+    <Compile Include="Command\Admin\BuildInfo.cs" />
+    <Compile Include="Command\Clone.cs" />
+    <Compile Include="Command\CollStats.cs" />
+    <Compile Include="Command\Admin\CloseAllDatabases.cs" />
+    <Compile Include="Command\Admin\CopyDBGetNonce.cs" />
+    <Compile Include="Command\Admin\ReplacePeer.cs" />
+    <Compile Include="Command\Admin\CopyDB.cs" />
+    <Compile Include="Command\DriverOidTest.cs" />
+    <Compile Include="Command\IsMaster.cs" />
+    <Compile Include="Command\Group.cs" />
+    <Compile Include="Command\Create.cs" />
+    <Compile Include="Command\DeleteIndexes.cs" />
+    <Compile Include="Command\Distinct.cs" />
+    <Compile Include="Command\Drop.cs" />
+    <Compile Include="Command\DropDatabase.cs" />
+    <Compile Include="Command\Eval.cs" />
+    <Compile Include="Command\FileMD5.cs" />
+    <Compile Include="Command\ForceError.cs" />
+    <Compile Include="Command\Admin\FSync.cs" />
+    <Compile Include="Command\GetLastError.cs" />
+    <Compile Include="Command\GetOpTime.cs" />
+    <Compile Include="Command\GetPrevError.cs" />
+    <Compile Include="Command\Admin\ListDatabases.cs" />
+    <Compile Include="Command\Nonce.cs" />
+    <Compile Include="Command\Admin\OpLogging.cs" />
+    <Compile Include="Command\Profile.cs" />
+    <Compile Include="Command\Admin\QueryTraceLevel.cs" />
+    <Compile Include="Command\RenameCollection.cs" />
+    <Compile Include="Command\RepairDatabase.cs" />
+    <Compile Include="Command\ResetError.cs" />
+    <Compile Include="Command\ServerStatus.cs" />
+    <Compile Include="Command\Admin\ShutDown.cs" />
+    <Compile Include="IDBIndexExtensions.cs" />
+    <Compile Include="DBModifier.cs" />
+    <Compile Include="DocumentFactory.cs" />
+    <Compile Include="IDBCursorBatch.cs" />
+    <Compile Include="DBCode.cs" />
+    <Compile Include="DBCursorEnumerator.cs" />
+    <Compile Include="DBCursorOptions.cs" />
+    <Compile Include="DBQueryParameter.cs" />
+    <Compile Include="IDBCursor.cs" />
+    <Compile Include="IServerExtensions.cs" />
+    <Compile Include="IDatabaseExtensions.cs" />
+    <Compile Include="IDBCollectionExtensions.cs" />
+    <Compile Include="DBIndex.cs" />
+    <Compile Include="Document.cs" />
+    <Compile Include="IDBIndex.cs" />
+    <Compile Include="IDocument.cs" />
+    <Compile Include="Lambda.cs" />
+    <Compile Include="Properties\AssemblyInfo.vs.cs" />
+    <Compile Include="ServerPairBinding.cs" />
+    <Compile Include="IServerBinding.cs" />
+    <Compile Include="ServerBinding.cs" />
+    <Compile Include="IDBConnection.cs" />
+    <Compile Include="DBPairBinding.cs" />
+    <Compile Include="IDBBinding.cs" />
+    <Compile Include="DBCollection.cs" />
+    <Compile Include="DBError.cs" />
+    <Compile Include="DBObjectArray.cs" />
+    <Compile Include="DBObject.cs" />
+    <Compile Include="DBObjectWrapper.cs" />
+    <Compile Include="IServer.cs" />
+    <Compile Include="Message\Delete.cs" />
+    <Compile Include="Message\GetMore.cs" />
+    <Compile Include="Message\Header.cs" />
+    <Compile Include="Message\Insert.cs" />
+    <Compile Include="Message\KillCursors.cs" />
+    <Compile Include="Message\Msg.cs" />
+    <Compile Include="Message\Query.cs" />
+    <Compile Include="Message\Reply.cs" />
+    <Compile Include="Message\Update.cs" />
+    <Compile Include="MongoUriParser.cs" />
+    <Compile Include="Platform\Conditions\CollectionHelpers.cs" />
+    <Compile Include="Platform\Conditions\Condition.cs" />
+    <Compile Include="Platform\Conditions\ConditionValidator.cs" />
+    <Compile Include="Platform\Conditions\ConstraintViolationType.enum.cs" />
+    <Compile Include="Platform\Conditions\DefaultComparer.cs" />
+    <Compile Include="Platform\Conditions\EnsuresValidator.cs" />
+    <Compile Include="Platform\Conditions\PostconditionException.cs" />
+    <Compile Include="Platform\Conditions\RequiresValidator.cs" />
+    <Compile Include="Platform\Conditions\SR.cs" />
+    <Compile Include="Platform\Conditions\StringificationExtensions.cs" />
+    <Compile Include="Platform\Conditions\Throw.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Collection.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Boolean.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Byte.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.DateTime.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Decimal.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Double.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.IComparable.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Int16.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Int32.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Int64.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Single.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Evaluation.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Null.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.String.cs" />
+    <Compile Include="Platform\Conditions\ValidatorExtensions.Type.cs" />
+    <Compile Include="Platform\Util\Pool.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="UriExtensions.cs" />
+    <Compile Include="WireProtocolReader.cs" />
+    <Compile Include="WireProtocolWriter.cs" />
+    <Compile Include="WireProtocol.cs" />
+    <Compile Include="IDatabase.cs" />
+    <Compile Include="DBBinding.cs" />
+    <Compile Include="Database.cs" />
+    <Compile Include="DBBinary.cs" />
+    <Compile Include="IDBCollection.cs" />
+    <Compile Include="DBCursor.cs" />
+    <Compile Include="IDBMessage.cs" />
+    <Compile Include="IDBObject.cs" />
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="DBRef.cs" />
+    <Compile Include="DBRegex.cs" />
+    <Compile Include="DBSymbol.cs" />
+    <Compile Include="DBTimestamp.cs" />
+    <Compile Include="DBUndefined.cs" />
+    <None Include="GridFS\GridFS.cs" />
+    <None Include="GridFS\GridFSDBFile.cs" />
+    <None Include="GridFS\GridFSFile.cs" />
+    <None Include="GridFS\GridFSInputFile.cs" />
+    <Compile Include="DBFieldSet.cs" />
+    <Compile Include="MapReduceInfo.cs" />
+    <Compile Include="Platform\Conversion\BigEndianBitConverter.cs" />
+    <Compile Include="Platform\Conversion\EndianBitConverter.cs" />
+    <Compile Include="Platform\Conversion\Endianness.cs" />
+    <Compile Include="Platform\Conversion\LittleEndianBitConverter.cs" />
+    <Compile Include="Platform\IO\EndianBinaryReader.cs" />
+    <Compile Include="Platform\IO\EndianBinaryWriter.cs" />
+    <Compile Include="Platform\IO\NonClosingStreamWrapper.cs" />
+    <Compile Include="Platform\IO\ReverseLineReader.cs" />
+    <Compile Include="Mongo.cs" />
+    <Compile Include="MongoException.cs" />
+    <Compile Include="MongoInternalException.cs" />
+    <Compile Include="DBConnectionOptions.cs" />
+    <Compile Include="Oid.cs" />
+    <Compile Include="Platform\IO\LineReader.cs" />
+    <Compile Include="Platform\IO\StreamUtil.cs" />
+    <Compile Include="Platform\Util\Util.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="DBQuery.cs" />
+    <Compile Include="DBObjectRaw.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Platform\Conditions\ExceptionMessages.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="License.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

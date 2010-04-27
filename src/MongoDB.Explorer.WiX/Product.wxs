@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="87d4b09c-0015-4bba-9e18-1d6464544c26" Name="MongoDB.NET Explorer" Language="1033" Version="1.0.0.0" Manufacturer="MongoDB.Explorer.WiX" UpgradeCode="70923619-4724-482a-a89c-2f711e0e786c">
+		<Package InstallerVersion="200" Compressed="yes" />
+
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLLOCATION" Name="MongoDB.NET Explorer">
+					<Component Id="MongoDBExplorerComponent" Guid="dfc203de-accb-47cf-a654-3c051ad4f6b6">
+            <File Id="MongoDB.Explorer.exe" Source="../MongoDB.Explorer/bin/release/MongoDB.Explorer.exe" KeyPath="yes">
+              <Shortcut Id="MongoDBExplorerShortcut"
+                      Directory="ProgramMenuDir"
+                      Advertise="yes"
+                      Name="MongoDB.NET Explorer"
+                      WorkingDirectory="INSTALLLOCATION"
+                      Icon="mongodbnet.ico">
+
+                <Icon Id="mongodbnet.ico" SourceFile="../MongoDB.Explorer/bin/release/MongoDB.Explorer.exe" />
+              </Shortcut>
+            </File>
+            <File Id="MongoDB.Driver.dll" Source="../MongoDB.Explorer/bin/release/MongoDB.Driver.dll"></File>
+            <RemoveFolder Id="DeleteShortcutFolder"
+                Directory="ProgramMenuDir"
+                On="uninstall" />
+					</Component>
+				</Directory>
+			</Directory>
+
+      <Directory Id="ProgramMenuFolder" Name="PMenu">
+        <Directory Id="ProgramMenuDir" Name="MongoDB.NET"/>
+      </Directory>
+
+    </Directory>
+
+		<Feature Id="ProductFeature" Title="MongoDB.NET Explorer" Level="1">
+			 <ComponentRef Id="MongoDBExplorerComponent" /> 
+			  <!--<ComponentGroupRef Id="Product.Generated" />-->
+		</Feature>
+
+    <Icon Id="installer.ico" SourceFile="../mongodb.explorer/resources/mongodbnet.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="installer.ico" />
+    <Property Id="ARPHELPLINK" Value="http://mongodb-net.googlecode.com/" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" ></Property>
+    <WixVariable Id="WixUIDialogBmp" Value="dialog.bmp" />
+    <WixVariable Id="WixUIBannerBmp" Value="banner.bmp" />
+    <WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
+    <UIRef Id="WixUI_InstallDir"/>
+	</Product>
+</Wix>

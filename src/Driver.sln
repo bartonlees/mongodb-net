@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB.Driver", "MongoDB.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB.Driver.Test", "MongoDB.Driver.Test\MongoDB.Driver.Test.csproj", "{EF148901-44C3-4BAE-85DF-0780D05D3FE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB.Newtonsoft.Json", "MongoDB.Newtonsoft.Json\MongoDB.Newtonsoft.Json.csproj", "{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{EF148901-44C3-4BAE-85DF-0780D05D3FE9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EF148901-44C3-4BAE-85DF-0780D05D3FE9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EF148901-44C3-4BAE-85DF-0780D05D3FE9}.Release|x86.ActiveCfg = Release|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6AAEAE23-3705-4EF4-9CAB-7413D9610DDD}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

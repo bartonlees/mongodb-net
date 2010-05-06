@@ -101,18 +101,6 @@ namespace MongoDB.Newtonsoft.Json
             }
         }
 
-        public Oid ID
-        {
-            get
-            {
-                return (Oid)this["_id"];
-            }
-            set
-            {
-                this["_id"] = value;
-            }
-        }
-
         public void Add(string key, object value)
         {
             if (ContainsKey(key))

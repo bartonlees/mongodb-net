@@ -69,7 +69,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ContractDocument`1 Constructor
         ///</summary>
-        public void ContractDocumentConstructorTestHelper<T>()
+        public void ContractDocumentConstructorTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
@@ -87,7 +87,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ContractDocument`1 Constructor
         ///</summary>
-        public void ContractDocumentConstructorTest1Helper<T>()
+        public void ContractDocumentConstructorTest1Helper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
@@ -104,7 +104,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Collection
         ///</summary>
-        public void CollectionTestHelper<T>()
+        public void CollectionTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
@@ -126,7 +126,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ID
         ///</summary>
-        public void IDTestHelper<T>()
+        public void IDTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
@@ -148,7 +148,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Partial
         ///</summary>
-        public void PartialTestHelper<T>()
+        public void PartialTestHelper<T>() where T : new()
         {
             PrivateObject param0 = null; // TODO: Initialize to an appropriate value
             ContractDocument_Accessor<T> target = new ContractDocument_Accessor<T>(param0); // TODO: Initialize to an appropriate value
@@ -170,7 +170,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for State
         ///</summary>
-        public void StateTestHelper<T>()
+        public void StateTestHelper<T>() where T : new()
         {
             PrivateObject param0 = null; // TODO: Initialize to an appropriate value
             ContractDocument_Accessor<T> target = new ContractDocument_Accessor<T>(param0); // TODO: Initialize to an appropriate value

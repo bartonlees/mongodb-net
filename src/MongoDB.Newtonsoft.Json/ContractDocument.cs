@@ -7,8 +7,18 @@ using Newtonsoft.Json;
 
 namespace MongoDB.Newtonsoft.Json
 {
-    public class ContractDocument<T> : ContractDBObject<T>, IDocument
+    public class ContractDocument<T> : ContractDBObject<T>, IDocument where T:new()
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContractDocument&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="instance">An instance of the Contracted Type.</param>
+        public ContractDocument()
+            : this(new T(), DocumentState.Unchanged, new JsonSerializer())
+        {
+        }
+
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ContractDocument&lt;T&gt;"/> class.
         /// </summary>

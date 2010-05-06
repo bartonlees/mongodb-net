@@ -72,7 +72,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ContractDBObject`1 Constructor
         ///</summary>
-        public void ContractDBObjectConstructorTestHelper<T>()
+        public void ContractDBObjectConstructorTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             JsonSerializer serializer = null; // TODO: Initialize to an appropriate value
@@ -89,7 +89,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ContractDBObject`1 Constructor
         ///</summary>
-        public void ContractDBObjectConstructorTest1Helper<T>()
+        public void ContractDBObjectConstructorTest1Helper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance);
@@ -105,7 +105,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Add
         ///</summary>
-        public void AddTestHelper<T>()
+        public void AddTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -124,7 +124,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Add
         ///</summary>
-        public void AddTest1Helper<T>()
+        public void AddTest1Helper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -142,7 +142,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Clear
         ///</summary>
-        public void ClearTestHelper<T>()
+        public void ClearTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -159,7 +159,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Contains
         ///</summary>
-        public void ContainsTestHelper<T>()
+        public void ContainsTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -180,7 +180,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ContainsKey
         ///</summary>
-        public void ContainsKeyTestHelper<T>()
+        public void ContainsKeyTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -201,7 +201,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for CopyTo
         ///</summary>
-        public void CopyToTestHelper<T>()
+        public void CopyToTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -220,7 +220,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for GetEnumerator
         ///</summary>
-        public void GetEnumeratorTestHelper<T>()
+        public void GetEnumeratorTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -240,7 +240,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for PutAll
         ///</summary>
-        public void PutAllTestHelper<T>()
+        public void PutAllTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -258,7 +258,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Read
         ///</summary>
-        public void ReadTestHelper<T>()
+        public void ReadTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -276,7 +276,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Remove
         ///</summary>
-        public void RemoveTestHelper<T>()
+        public void RemoveTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -297,7 +297,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Remove
         ///</summary>
-        public void RemoveTest1Helper<T>()
+        public void RemoveTest1Helper<T>() where T:new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -318,7 +318,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for System.Collections.IEnumerable.GetEnumerator
         ///</summary>
-        public void GetEnumeratorTest1Helper<T>()
+        public void GetEnumeratorTest1Helper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             IEnumerable target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -339,7 +339,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ToString
         ///</summary>
-        public void ToStringTestHelper<T>()
+        public void ToStringTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -359,7 +359,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for TryGetValue
         ///</summary>
-        public void TryGetValueTestHelper<T>()
+        public void TryGetValueTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -383,7 +383,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Write
         ///</summary>
-        public void WriteTestHelper<T>()
+        public void WriteTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -401,7 +401,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Contract
         ///</summary>
-        public void ContractTestHelper<T>()
+        public void ContractTestHelper<T>() where T:new()
         {
             PrivateObject param0 = null; // TODO: Initialize to an appropriate value
             ContractDBObject_Accessor<T> target = new ContractDBObject_Accessor<T>(param0); // TODO: Initialize to an appropriate value
@@ -420,7 +420,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Count
         ///</summary>
-        public void CountTestHelper<T>()
+        public void CountTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -438,7 +438,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for ID
         ///</summary>
-        public void IDTestHelper<T>()
+        public void IDTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -459,7 +459,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for IsReadOnly
         ///</summary>
-        public void IsReadOnlyTestHelper<T>()
+        public void IsReadOnlyTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -477,7 +477,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Item
         ///</summary>
-        public void ItemTestHelper<T>()
+        public void ItemTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -499,7 +499,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Keys
         ///</summary>
-        public void KeysTestHelper<T>()
+        public void KeysTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
@@ -517,7 +517,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Properties
         ///</summary>
-        public void PropertiesTestHelper<T>()
+        public void PropertiesTestHelper<T>() where T : new()
         {
             PrivateObject param0 = null; // TODO: Initialize to an appropriate value
             ContractDBObject_Accessor<T> target = new ContractDBObject_Accessor<T>(param0); // TODO: Initialize to an appropriate value
@@ -536,7 +536,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Values
         ///</summary>
-        public void ValuesTestHelper<T>()
+        public void ValuesTestHelper<T>() where T : new()
         {
             T instance = default(T); // TODO: Initialize to an appropriate value
             ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value

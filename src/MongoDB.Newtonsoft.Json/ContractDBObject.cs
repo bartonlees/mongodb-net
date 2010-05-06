@@ -18,7 +18,7 @@ namespace MongoDB.Newtonsoft.Json
     /// <summary>
     /// A strongly typed IDBObject based off of a JsonContract
     /// </summary>
-    public class ContractDBObject<T> : IDBObjectCustom
+    public class ContractDBObject<T> : IDBObjectCustom where T:new()
     {
         T _Instance;
         JsonSerializer _Serializer;
@@ -57,9 +57,17 @@ namespace MongoDB.Newtonsoft.Json
         /// Initializes a new instance of the <see cref="ContractDBObject&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
+        public ContractDBObject()
+            : this(new T(), new JsonSerializer())
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContractDBObject&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="instance">An instance of the Contracted Type.</param>
         public ContractDBObject(T instance) : this(instance, new JsonSerializer())
         {
-            _Instance = instance;
         }
 
         /// <summary>

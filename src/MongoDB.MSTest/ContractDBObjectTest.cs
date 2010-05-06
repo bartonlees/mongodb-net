@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using System.Collections;
 using Newtonsoft.Json.Serialization;
+using SharpTestsEx;
 
 namespace MongoDB.MSTest
 {
@@ -74,8 +75,8 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContractDBObjectConstructorTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            JsonSerializer serializer = null; // TODO: Initialize to an appropriate value
+            T instance = new T();
+            JsonSerializer serializer = new JsonSerializer();
             ContractDBObject<T> target = new ContractDBObject<T>(instance, serializer);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
@@ -91,7 +92,7 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContractDBObjectConstructorTest1Helper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
+            T instance = new T();
             ContractDBObject<T> target = new ContractDBObject<T>(instance);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
@@ -107,12 +108,10 @@ namespace MongoDB.MSTest
         ///</summary>
         public void AddTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            target.Add(key, value);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            Executing.This(() => target.Add("test", 1)).Should().Throw();
+            target.Add("Data", 123);
+            target["Data"].Should().Be.EqualTo(123);
         }
 
         [TestMethod()]
@@ -433,27 +432,6 @@ namespace MongoDB.MSTest
         public void CountTest()
         {
             CountTestHelper<GenericParameterHelper>();
-        }
-
-        /// <summary>
-        ///A test for ID
-        ///</summary>
-        public void IDTestHelper<T>() where T : new()
-        {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            Oid expected = null; // TODO: Initialize to an appropriate value
-            Oid actual;
-            target.ID = expected;
-            actual = target.ID;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-        public void IDTest()
-        {
-            IDTestHelper<GenericParameterHelper>();
         }
 
         /// <summary>

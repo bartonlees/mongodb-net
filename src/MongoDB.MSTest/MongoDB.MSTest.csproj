@@ -146,7 +146,6 @@
     <Compile Include="ServerBindingTest.cs" />
     <Compile Include="ServerPairBindingTest.cs" />
     <Compile Include="ServerTest.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="UpdateTest.cs" />
     <Compile Include="UriExtensionsTest.cs" />
     <Compile Include="WhereTest.cs" />

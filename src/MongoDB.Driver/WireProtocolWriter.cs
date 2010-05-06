@@ -43,6 +43,13 @@ namespace MongoDB.Driver
         {
             Condition.Requires(obj, "obj").IsNotNull();
 
+            IDBObjectCustom custom = obj as IDBObjectCustom;
+            if (custom != null)
+            {
+                custom.Write(this);
+                return;
+            }
+
             if (_handleSpecialObjects(name, obj))
                 return;
 

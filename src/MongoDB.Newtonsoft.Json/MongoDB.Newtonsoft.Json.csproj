@@ -43,7 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContractDBObject.cs" />
+    <Compile Include="ContractDocument.cs" />
+    <Compile Include="ContractIDBCollectionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MongoDB.Driver\MongoDB.Driver.csproj">
+      <Project>{663A2D97-2688-495B-B296-86FD2151717B}</Project>
+      <Name>MongoDB.Driver</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

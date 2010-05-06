@@ -1,2 +1,4 @@
 relre:.*cache$
 relre:.*\.suo
+relre:.*/bin/.*
+relre:.*/obj/.*

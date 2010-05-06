@@ -41,13 +41,19 @@ namespace MongoDB.Driver
             if (!BaseStream.CanRead)
                 return default(TDoc);
 
-            int len = ReadInt32();
-
             TDoc created = CreateDocument<TDoc>(partial);
-
-            while (ReadNextElement<TDoc>(created, partial))
+            IDBObjectCustom custom = created as IDBObjectCustom;
+            if (custom != null)
             {
-                // intentionally empty
+                custom.Read(this);
+            }
+            else
+            {
+                int len = ReadInt32();
+                while (ReadNextElement<TDoc>(created, partial))
+                {
+                    // intentionally empty
+                }
             }
 
             return created;

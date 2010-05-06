@@ -9,11 +9,20 @@ using System.Linq;
 namespace MongoDB.Driver
 {   
     /// <summary>
-    /// A document that can be saved to the database.
+    /// A unit of savable data
     /// </summary>
     public interface IDBObject : IDictionary<string, object> //IComparable, IComparable<DBObject>, IEquatable<DBObject>
     {
         void PutAll(IDictionary<string, object> m);
+    }
+
+    /// <summary>
+    /// An object that defines its own custom serialization to/from the wire protocol
+    /// </summary>
+    public interface IDBObjectCustom : IDBObject
+    {
+        void Write(WireProtocolWriter writer);
+        void Read(WireProtocolReader reader);
     }
 
     public static class IDBObjectExtensions

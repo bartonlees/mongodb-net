@@ -194,7 +194,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="DBQuery.cs" />
-    <Compile Include="DBObjectRaw.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

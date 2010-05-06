@@ -55,7 +55,7 @@ namespace MongoDB.Driver
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                element_type(Bytes.OBJECT);
+                element_type(TypeByte.OBJECT);
                 element_name(name);
             }
 
@@ -79,7 +79,7 @@ namespace MongoDB.Driver
                 object val = obj[key];
                 element(key, val);
             }
-            Write(Bytes.EOO);
+            Write((byte)TypeByte.EOO);
             //Go back and overwrite the dummy length
             RewindAndWriteSize(sizePos);
         }
@@ -90,7 +90,7 @@ namespace MongoDB.Driver
 
             if (!string.IsNullOrWhiteSpace(name))
             {
-                element_type(Bytes.ARRAY);
+                element_type(TypeByte.ARRAY);
                 element_name(name);
             }
 
@@ -102,7 +102,7 @@ namespace MongoDB.Driver
                 element(i.ToString(), item);
                 i++;
             }
-            Write(Bytes.EOO);
+            Write((byte)TypeByte.EOO);
             //Go back and overwrite the dummy length
             RewindAndWriteSize(sizePos);
         }
@@ -170,7 +170,7 @@ namespace MongoDB.Driver
 
         void element_code(string name, string code)
         {
-            element_type(Bytes.CODE);
+            element_type(TypeByte.CODE);
             WriteNullTerminated(name);
             WriteLengthPrefixedNullTerminated(code);
             return;
@@ -178,7 +178,7 @@ namespace MongoDB.Driver
 
         void element_object(string name, IDictionary dictionary)
         {
-            element_type(Bytes.OBJECT);
+            element_type(TypeByte.OBJECT);
             element_name(name);
             long sizePos = BaseStream.Position;
             Write(0);
@@ -186,7 +186,7 @@ namespace MongoDB.Driver
             {
                 element(Convert.ToString(key), dictionary[key]);
             }
-            Write(Bytes.EOO);
+            Write((byte)TypeByte.EOO);
             RewindAndWriteSize(sizePos);
         }
 
@@ -202,16 +202,16 @@ namespace MongoDB.Driver
                 return true;
             }
 
-            if ((o as IList) == null && o.ContainsKey(Bytes.NO_REF_HACK))
+            if ((o as IList) == null && o.ContainsKey(Constants.NO_REF_HACK))
             {
-                o.Remove(Bytes.NO_REF_HACK);
+                o.Remove(Constants.NO_REF_HACK);
                 return false;
             }
 
             if (!_dontRefContains(o) &&
              name != null &&
                  !(o is IList) &&
-                 Bytes.CameFromDB(o))
+                 o.CameFromDB())
             {
                 element_ref(name, o["_ns"].ToString(), o.GetOid());
                 return true;
@@ -222,19 +222,19 @@ namespace MongoDB.Driver
 
         void element_null(string name)
         {
-            element_type(Bytes.NULL);
+            element_type(TypeByte.NULL);
             element_name(name);
         }
 
         void element_undefined(string name)
         {
-            element_type(Bytes.UNDEFINED);
+            element_type(TypeByte.UNDEFINED);
             element_name(name);
         }
 
         void element_timestamp(string name, DBTimestamp ts)
         {
-            element_type(Bytes.TIMESTAMP);
+            element_type(TypeByte.TIMESTAMP);
             element_name(name);
             Write(ts.Time);
             Write(ts.Inc);
@@ -242,35 +242,35 @@ namespace MongoDB.Driver
 
         void element_boolean(string name, bool b)
         {
-            element_type(Bytes.BOOLEAN);
+            element_type(TypeByte.BOOLEAN);
             element_name(name);
             Write(b ? (byte)0x1 : (byte)0x0);
         }
 
         void element_date(string name, DateTime d)
         {
-            element_type(Bytes.DATE);
+            element_type(TypeByte.DATE);
             element_name(name);
             Write(d.Ticks);
         }
 
         void element_int(string name, int value)
         {
-            element_type(Bytes.NUMBER_INT);
+            element_type(TypeByte.NUMBER_INT);
             element_name(name);
             Write(value);
         }
 
         void element_long(string name, long value)
         {
-            element_type(Bytes.NUMBER_LONG);
+            element_type(TypeByte.NUMBER_LONG);
             element_name(name);
             Write(value);
         }
 
         void element_number(string name, double value)
         {
-            element_type(Bytes.NUMBER);
+            element_type(TypeByte.NUMBER);
             element_name(name);
             Write(value);
         }
@@ -282,7 +282,7 @@ namespace MongoDB.Driver
 
         void element_binary(string name, byte[] data)
         {
-            element_type(Bytes.BINARY);
+            element_type(TypeByte.BINARY);
             element_name(name);
             Write(data.Length);
             base.Write((byte)BinaryType.Binary);
@@ -291,7 +291,7 @@ namespace MongoDB.Driver
 
         void element_binary(string name, DBBinary val)
         {
-            element_type(Bytes.BINARY);
+            element_type(TypeByte.BINARY);
             element_name(name);
             base.Write(val.Buffer.Length);
             base.Write((byte)val.Type);
@@ -300,28 +300,28 @@ namespace MongoDB.Driver
 
         void element_symbol(string name, DBSymbol s)
         {
-            element_type(Bytes.SYMBOL);
+            element_type(TypeByte.SYMBOL);
             element_name(name);
             WriteLengthPrefixedNullTerminated(s.Symbol);  
         }
 
         void element_string(string name, string s)
         {
-            element_type(Bytes.STRING);
+            element_type(TypeByte.STRING);
             element_name(name);
             WriteLengthPrefixedNullTerminated(s);  
         }
 
         void element_oid(string name, Oid oid)
         {
-            element_type(Bytes.OID);
+            element_type(TypeByte.OID);
             element_name(name);
             base.Write(oid.Buffer);
         }
 
         void element_ref(string name, string ns, Oid oid)
         {
-            element_type(Bytes.REF);
+            element_type(TypeByte.REF);
             element_name(name);
             WriteLengthPrefixedNullTerminated(ns);
             base.Write(oid.Buffer);
@@ -329,7 +329,7 @@ namespace MongoDB.Driver
 
         void element_object(string name, DBRef reference)
         {
-            element_type(Bytes.OBJECT);
+            element_type(TypeByte.OBJECT);
             element_name(name);
             long sizePos = BaseStream.Position;
             Write(0);
@@ -337,13 +337,13 @@ namespace MongoDB.Driver
             element_string("$ref", reference.Collection.Name);
             element("$id", reference.ID);
 
-            Write(Bytes.EOO);
+            Write((byte)TypeByte.EOO);
             RewindAndWriteSize(sizePos);
         }
 
         void element_regex(string name, DBRegex regex)
         {
-            element_type(Bytes.REGEX);
+            element_type(TypeByte.REGEX);
             element_name(name);
             WriteNullTerminated(regex.getPattern());
 
@@ -381,9 +381,9 @@ namespace MongoDB.Driver
         /// Writes the element_type of the BSON Grammar
         /// </summary>
         /// <param name="type">The type.</param>
-        void element_type(byte type)
+        void element_type(TypeByte type)
         {
-            Write(type);
+            Write((byte)type);
         }
 
         /// <summary>

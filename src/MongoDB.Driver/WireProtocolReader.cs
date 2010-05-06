@@ -61,9 +61,9 @@ namespace MongoDB.Driver
 
         bool ReadNextElement<TDoc>(IDBObject o, bool partial) where TDoc : class, IDocument
         {
-            byte type = ReadByte();
+            TypeByte type = (TypeByte)ReadByte();
 
-            if (type == Bytes.EOO || !BaseStream.CanRead)
+            if (type == TypeByte.EOO || !BaseStream.CanRead)
                 return false;
 
             string name = cstring();            
@@ -73,31 +73,31 @@ namespace MongoDB.Driver
 
             switch (type)
             {
-                case Bytes.NULL:
+                case TypeByte.NULL:
                     break;
-                case Bytes.UNDEFINED:
+                case TypeByte.UNDEFINED:
                     break;
-                case Bytes.BOOLEAN:
+                case TypeByte.BOOLEAN:
                     created = ReadByte() != 0;
                     break;
-                case Bytes.NUMBER:
+                case TypeByte.NUMBER:
                     created = ReadDouble();
                     break;
-                case Bytes.NUMBER_INT:
+                case TypeByte.NUMBER_INT:
                     created = ReadInt32();
                     break;
-                case Bytes.NUMBER_LONG:
+                case TypeByte.NUMBER_LONG:
                     created = ReadInt64();
                     break;
-                case Bytes.SYMBOL:
-                    goto case Bytes.STRING;
-                case Bytes.STRING:
+                case TypeByte.SYMBOL:
+                    goto case TypeByte.STRING;
+                case TypeByte.STRING:
                     created = data_string();
                     break;
-                case Bytes.OID:
+                case TypeByte.OID:
                     created = new Oid(ReadBytes(12));
                     break;
-                case Bytes.REF:
+                case TypeByte.REF:
                     string ns = data_string();
                     Oid oid = new Oid(ReadBytes(12));
                     //if (oid.Equals(Oid.CollectionRefID))
@@ -105,19 +105,19 @@ namespace MongoDB.Driver
                     //else
                     //    created = new DBPointer(o, name, _Database, ns, oid);
                     break;
-                case Bytes.DATE:
+                case TypeByte.DATE:
                     created = new DateTime(ReadInt64());
                     break;
-                case Bytes.REGEX:
+                case TypeByte.REGEX:
                     created = new Regex(cstring()); //TODO:Parse options, Bytes.patternFlags(readCStr()));
                     break;
-                case Bytes.BINARY:
+                case TypeByte.BINARY:
                     created = data_binary();
                     break;
-                case Bytes.CODE:
+                case TypeByte.CODE:
                     created = new DBCode(data_string());
                     break;
-                case Bytes.ARRAY:
+                case TypeByte.ARRAY:
                     int size = ReadInt32(); //Size of the array document (in bytes)
                     created = createdObject = new DBObjectArray();
 
@@ -127,7 +127,7 @@ namespace MongoDB.Driver
                     }
                     break;
 
-                case Bytes.OBJECT:
+                case TypeByte.OBJECT:
                     ReadInt32();  // total size - we don't care....
 
                     createdObject = o.ContainsKey(name) ? o[name] as IDBObject : null; //Check for an existing object
@@ -149,18 +149,18 @@ namespace MongoDB.Driver
 
                     break;
 
-                case Bytes.TIMESTAMP:
+                case TypeByte.TIMESTAMP:
                     int i = ReadInt32();
                     int time = ReadInt32();
 
                     created = new DBTimestamp(time, i);
                     break;
 
-                case Bytes.MINKEY:
+                case TypeByte.MINKEY:
                     created = "MinKey";
                     break;
 
-                case Bytes.MAXKEY:
+                case TypeByte.MAXKEY:
                     created = "MaxKey";
                     break;
 

@@ -493,7 +493,7 @@ namespace MongoDB.MSTest
         {
             PrivateObject param0 = null; // TODO: Initialize to an appropriate value
             WireProtocolWriter_Accessor target = new WireProtocolWriter_Accessor(param0); // TODO: Initialize to an appropriate value
-            byte type = 0; // TODO: Initialize to an appropriate value
+            TypeByte type = 0; // TODO: Initialize to an appropriate value
             target.element_type(type);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }

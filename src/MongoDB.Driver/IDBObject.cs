@@ -27,6 +27,27 @@ namespace MongoDB.Driver
 
     public static class IDBObjectExtensions
     {
+
+        /** Determines whether the given object was once part of a db collection.
+         * This method is not foolproof, the the object has had its _id or _ns fields since
+         * it was fetched, this will return that <code>o</code> did not come from the db.
+         * @param o the object to check
+         * @return if <code>o</code> contains fields that are automatically added by the database on insertion
+         */
+        public static bool CameFromDB(this IDBObject o)
+        {
+            if (o == null)
+                return false;
+
+            if (!o.ContainsKey("_id"))
+                return false;
+
+            if (!o.ContainsKey("_ns"))
+                return false;
+
+            return true;
+        }
+
         /// <summary>
         /// Determines whether the specified value is a number.
         /// </summary>

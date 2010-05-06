@@ -57,7 +57,6 @@
     <Compile Include="AdminCommandExtensionsTest.cs" />
     <Compile Include="AssertInfoTest.cs" />
     <Compile Include="BuildInfoTest.cs" />
-    <Compile Include="BytesTest.cs" />
     <Compile Include="CommandExtensionsTest.cs" />
     <Compile Include="ContractDBObjectTest.cs" />
     <Compile Include="ContractDocumentTest.cs" />

@@ -78,6 +78,7 @@
     <Compile Include="Command\ResetError.cs" />
     <Compile Include="Command\ServerStatus.cs" />
     <Compile Include="Command\Admin\ShutDown.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="IDBIndexExtensions.cs" />
     <Compile Include="DBModifier.cs" />
     <Compile Include="DocumentFactory.cs" />

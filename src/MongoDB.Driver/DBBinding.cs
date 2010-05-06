@@ -216,7 +216,7 @@ namespace MongoDB.Driver
             }
             catch (SocketException uh)
             {
-                throw new MongoInternalException("shouldn't be possible", uh);
+                throw new MongoException("shouldn't be possible", uh);
             }
         }
 

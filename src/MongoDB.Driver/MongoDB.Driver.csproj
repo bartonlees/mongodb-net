@@ -182,7 +182,6 @@
     <Compile Include="Platform\IO\ReverseLineReader.cs" />
     <Compile Include="Mongo.cs" />
     <Compile Include="MongoException.cs" />
-    <Compile Include="MongoInternalException.cs" />
     <Compile Include="DBConnectionOptions.cs" />
     <Compile Include="Oid.cs" />
     <Compile Include="Platform\IO\LineReader.cs" />

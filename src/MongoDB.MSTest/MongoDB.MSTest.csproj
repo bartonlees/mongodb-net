@@ -108,7 +108,6 @@
     <Compile Include="LastErrorTest.cs" />
     <Compile Include="MapReduceInfoTest.cs" />
     <Compile Include="MongoExceptionTest.cs" />
-    <Compile Include="MongoInternalExceptionTest.cs" />
     <Compile Include="MongoTest.cs" />
     <Compile Include="MongoUriParserTest.cs" />
     <Compile Include="OidTest.cs" />

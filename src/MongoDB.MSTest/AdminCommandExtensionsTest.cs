@@ -71,12 +71,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void buildinfoTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
-            BuildInfo expected = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
+            BuildInfo expected = new BuildInfo(new DBObject());
             BuildInfo actual;
             actual = AdminCommandExtensions.buildinfo(db);
             Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void closeAllDatabasesTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             AdminCommandExtensions.closeAllDatabases(db);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
@@ -96,7 +95,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void copydbTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             IDatabase fromDatabase = null; // TODO: Initialize to an appropriate value
             IDatabase toDatabase = null; // TODO: Initialize to an appropriate value
             AdminCommandExtensions.copydb(db, fromDatabase, toDatabase);
@@ -109,7 +108,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void copydbgetnonceTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             IDatabase fromDatabase = null; // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
@@ -124,7 +123,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void diagLoggingTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             DiagnosticLoggingLevel logLevel = new DiagnosticLoggingLevel(); // TODO: Initialize to an appropriate value
             DiagnosticLoggingLevel logLevelExpected = new DiagnosticLoggingLevel(); // TODO: Initialize to an appropriate value
             AdminCommandExtensions.diagLogging(db, ref logLevel);
@@ -138,7 +137,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void fsyncTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             bool asynchronous = false; // TODO: Initialize to an appropriate value
             bool shouldLock = false; // TODO: Initialize to an appropriate value
             int expected = 0; // TODO: Initialize to an appropriate value
@@ -154,7 +153,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void listDatabasesTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             DatabaseList expected = null; // TODO: Initialize to an appropriate value
             DatabaseList actual;
             actual = AdminCommandExtensions.listDatabases(db);
@@ -168,7 +167,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void logRotateTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             AdminCommandExtensions.logRotate(db);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
@@ -179,7 +178,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void opLoggingTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             bool useOpLogging = false; // TODO: Initialize to an appropriate value
             AdminCommandExtensions.opLogging(db, useOpLogging);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
@@ -191,7 +190,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void queryTraceLevelTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             int traceLevel = 0; // TODO: Initialize to an appropriate value
             AdminCommandExtensions.queryTraceLevel(db, traceLevel);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
@@ -203,7 +202,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void replacepeerTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = AdminCommandExtensions.replacepeer(db);
@@ -217,7 +216,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void shutdownTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            IAdminOperations db = Mongo.DefaultServer.Admin; 
             AdminCommandExtensions.shutdown(db);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }

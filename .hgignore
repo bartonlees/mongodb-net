@@ -3,3 +3,5 @@ relre:.*\.suo
 relre:.*/bin/.*
 relre:.*/obj/.*
 relre:.*\.private$
+relre:.*\.vs$
+relre:.*/TestResults/.*

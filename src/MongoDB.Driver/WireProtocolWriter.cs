@@ -1,5 +1,5 @@
 //COPYRIGHT
-
+#pragma warning disable 0618
 using System.Collections.Generic;
 using MongoDB.Driver.Platform.Util;
 using System.Text;

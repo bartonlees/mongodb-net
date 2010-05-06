@@ -154,32 +154,6 @@ namespace MongoDB.MSTest
         }
 
         /// <summary>
-        ///A test for Limit
-        ///</summary>
-        [TestMethod()]
-        public void LimitTest()
-        {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions target = new DBCursorOptions(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint); // TODO: Initialize to an appropriate value
-            Nullable<int> expected = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> actual;
-            target.Limit = expected;
-            actual = target.Limit;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
         ///A test for NumberToReturn
         ///</summary>
         [TestMethod()]

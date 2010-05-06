@@ -27,9 +27,14 @@ namespace MongoDB.Driver
             : base(response)
         {
         }
-        public string Version { get { return Object.GetAsString("version"); } }
-        public string GitVersion { get { return Object.GetAsString("gitVersion"); } }
-        public string SysInfo { get { return Object.GetAsString("sysInfo"); } }
-        public int Bits { get { return Object.GetAsInt("bits"); } }
+        public string Version { get { return Object.GetAsString("version", string.Empty); } }
+        public string GitVersion { get { return Object.GetAsString("gitVersion", string.Empty); } }
+        public string SysInfo { get { return Object.GetAsString("sysInfo", string.Empty); } }
+        public int Bits { get { return Object.GetAsInt("bits", 0); } }
+
+        public override string ToString()
+        {
+            return string.Format("{{version : {0}, gitVersion : {1}, sysInfo : {2}, bits : {3}}}", Version, GitVersion, SysInfo, Bits);
+        }
     }
 }

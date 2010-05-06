@@ -219,22 +219,6 @@ namespace MongoDB.MSTest
         }
 
         /// <summary>
-        ///A test for MongoDB.Driver.IInternalDBBinding.Initialize
-        ///</summary>
-        [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
-        public void InitializeTest()
-        {
-            IServerBinding serverBinding = null; // TODO: Initialize to an appropriate value
-            Uri databaseUri = null; // TODO: Initialize to an appropriate value
-            bool readOnly = false; // TODO: Initialize to an appropriate value
-            IInternalDBBinding target = new DBBinding(serverBinding, databaseUri, readOnly); // TODO: Initialize to an appropriate value
-            IServer server = null; // TODO: Initialize to an appropriate value
-            target.Initialize(server);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
         ///A test for RequireConnection
         ///</summary>
         [TestMethod()]

@@ -86,19 +86,5 @@ namespace MongoDB.MSTest
             MongoException target = new MongoException(msg);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
-
-        /// <summary>
-        ///A test for _massage
-        ///</summary>
-        [TestMethod()]
-        public void _massageTest()
-        {
-            Exception t = null; // TODO: Initialize to an appropriate value
-            Exception expected = null; // TODO: Initialize to an appropriate value
-            Exception actual;
-            actual = MongoException._massage(t);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
     }
 }

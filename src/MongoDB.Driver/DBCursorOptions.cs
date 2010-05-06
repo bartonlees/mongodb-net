@@ -18,7 +18,7 @@ namespace MongoDB.Driver
 
     public class DBCursorOptions
     {
-        internal DBCursorOptions(IDBCollection collection,
+        public DBCursorOptions(IDBCollection collection,
             DBQuery selector = null,
             DBFieldSet returnFields = null,
             DBFieldSet orderBy = null,

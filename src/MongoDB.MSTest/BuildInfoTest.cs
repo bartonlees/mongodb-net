@@ -13,7 +13,7 @@ namespace MongoDB.MSTest
     [TestClass()]
     public class BuildInfoTest
     {
-
+        BuildInfo _BuildInfo;
 
         private TestContext testContextInstance;
 
@@ -70,9 +70,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void BuildInfoConstructorTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            BuildInfo target = new BuildInfo(response);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            _BuildInfo = Mongo.DefaultServer.Admin.BuildInfo;
+            Console.WriteLine(_BuildInfo);
         }
 
         /// <summary>
@@ -81,11 +80,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void BitsTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            BuildInfo target = new BuildInfo(response); // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.Bits;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreNotEqual(_BuildInfo.Bits, 0, "Shouldn't be default");
         }
 
         /// <summary>
@@ -94,11 +89,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GitVersionTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            BuildInfo target = new BuildInfo(response); // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.GitVersion;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreNotEqual(_BuildInfo.GitVersion, 0, "Shouldn't be default");
         }
 
         /// <summary>
@@ -107,11 +98,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void SysInfoTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            BuildInfo target = new BuildInfo(response); // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.SysInfo;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreNotEqual(_BuildInfo.SysInfo, 0, "Shouldn't be default");
         }
 
         /// <summary>
@@ -120,11 +107,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void VersionTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            BuildInfo target = new BuildInfo(response); // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.Version;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreNotEqual(_BuildInfo.Version, 0, "Shouldn't be default");
         }
     }
 }

@@ -357,11 +357,11 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void GetEnumeratorTest1()
         {
-            IEnumerable<T> target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            IEnumerator<object> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerator<object> actual;
-            actual = target.GetEnumerator();
-            Assert.AreEqual(expected, actual);
+            //IEnumerable<T> target = new DBObjectArray(); // TODO: Initialize to an appropriate value
+            //IEnumerator<object> expected = null; // TODO: Initialize to an appropriate value
+            //IEnumerator<object> actual;
+            //actual = target.GetEnumerator();
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

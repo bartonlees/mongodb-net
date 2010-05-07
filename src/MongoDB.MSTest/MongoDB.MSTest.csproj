@@ -38,7 +38,8 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="SharpTestsEx.MSTest">
+    <Reference Include="SharpTestsEx.MSTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8c60d8070630b1c1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\SharpTestsEx.MSTest.dll</HintPath>
     </Reference>
     <Reference Include="System" />

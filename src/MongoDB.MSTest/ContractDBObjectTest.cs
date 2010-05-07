@@ -7,10 +7,21 @@ using MongoDB.Driver;
 using System.Collections;
 using Newtonsoft.Json.Serialization;
 using SharpTestsEx;
+using System.IO;
 
 namespace MongoDB.MSTest
 {
-    
+    public class TestContractObject
+    {
+        public TestContractObject()
+        {
+            Data = 321;
+            Caption = "Amble";
+        }
+        public int Data { get; set; }
+        public string Caption { get; set; }
+        private float _secret { get; set; }
+    }
     
     /// <summary>
     ///This is a test class for ContractDBObjectTest and is intended
@@ -78,13 +89,13 @@ namespace MongoDB.MSTest
             T instance = new T();
             JsonSerializer serializer = new JsonSerializer();
             ContractDBObject<T> target = new ContractDBObject<T>(instance, serializer);
-            Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         [TestMethod()]
         public void ContractDBObjectConstructorTest()
         {
-            ContractDBObjectConstructorTestHelper<GenericParameterHelper>();
+            ContractDBObjectConstructorTestHelper<TestContractObject>();
+            Executing.This(() => ContractDBObjectConstructorTestHelper<List<int>>()).Should().Throw();
         }
 
         /// <summary>
@@ -94,13 +105,12 @@ namespace MongoDB.MSTest
         {
             T instance = new T();
             ContractDBObject<T> target = new ContractDBObject<T>(instance);
-            Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         [TestMethod()]
         public void ContractDBObjectConstructorTest1()
         {
-            ContractDBObjectConstructorTest1Helper<GenericParameterHelper>();
+            ContractDBObjectConstructorTest1Helper<TestContractObject>();
         }
 
         /// <summary>
@@ -109,15 +119,15 @@ namespace MongoDB.MSTest
         public void AddTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            Executing.This(() => target.Add("test", 1)).Should().Throw();
+            Executing.This(() => target.Add("test", 1)).Should().Throw<KeyNotFoundException>();
             target.Add("Data", 123);
-            target["Data"].Should().Be.EqualTo(123);
+            target["Data"].Should().Be(123);
         }
 
         [TestMethod()]
         public void AddTest()
         {
-            AddTestHelper<GenericParameterHelper>();
+            AddTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -125,17 +135,16 @@ namespace MongoDB.MSTest
         ///</summary>
         public void AddTest1Helper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object> item = new KeyValuePair<string, object>(); // TODO: Initialize to an appropriate value
-            target.Add(item);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            Executing.This(()=> target.Add(new KeyValuePair<string, object>("test",1))).Should().Throw<KeyNotFoundException>();
+            target.Add(new KeyValuePair<string, object>("Data", 123));
+            target["Data"].Should().Be(123);
         }
 
         [TestMethod()]
         public void AddTest1()
         {
-            AddTest1Helper<GenericParameterHelper>();
+            AddTest1Helper<TestContractObject>();
         }
 
         /// <summary>
@@ -143,16 +152,14 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ClearTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            target.Clear();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            Executing.This(()=> target.Clear()).Should().Throw();
         }
 
         [TestMethod()]
         public void ClearTest()
         {
-            ClearTestHelper<GenericParameterHelper>();
+            ClearTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -160,20 +167,15 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContainsTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object> item = new KeyValuePair<string, object>(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Contains(item);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            target.Contains(new KeyValuePair<string, object>("Data",0)).Should().Be(true);
+            target.Contains(new KeyValuePair<string, object>("monkey",0)).Should().Be(false);
         }
 
         [TestMethod()]
         public void ContainsTest()
         {
-            ContainsTestHelper<GenericParameterHelper>();
+            ContainsTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -181,20 +183,15 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContainsKeyTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.ContainsKey(key);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            target.ContainsKey("Data").Should().Be(true);
+            target.ContainsKey("monkey").Should().Be(false);
         }
 
         [TestMethod()]
         public void ContainsKeyTest()
         {
-            ContainsKeyTestHelper<GenericParameterHelper>();
+            ContainsKeyTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -202,18 +199,19 @@ namespace MongoDB.MSTest
         ///</summary>
         public void CopyToTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object>[] array = null; // TODO: Initialize to an appropriate value
-            int arrayIndex = 0; // TODO: Initialize to an appropriate value
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            KeyValuePair<string, object>[] array = new KeyValuePair<string,object>[4];
+            int arrayIndex = 0;
             target.CopyTo(array, arrayIndex);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            array[0].Key.Should().Be("Data");
+            array[1].Key.Should().Be("Caption");
+            array[2].Should().Be.Null();
         }
 
         [TestMethod()]
         public void CopyToTest()
         {
-            CopyToTestHelper<GenericParameterHelper>();
+            CopyToTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -221,19 +219,19 @@ namespace MongoDB.MSTest
         ///</summary>
         public void GetEnumeratorTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            IEnumerator<KeyValuePair<string, object>> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerator<KeyValuePair<string, object>> actual;
-            actual = target.GetEnumerator();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            IEnumerator<KeyValuePair<string, object>> actual = (target as IEnumerable<KeyValuePair<string, object>>).GetEnumerator();
+            actual.MoveNext().Should().Be(true);
+            actual.Current.Key.Should().Be("Data");
+            actual.MoveNext().Should().Be(true);
+            actual.Current.Key.Should().Be("Caption");
+            actual.MoveNext().Should().Be(false);
         }
 
         [TestMethod()]
         public void GetEnumeratorTest()
         {
-            GetEnumeratorTestHelper<GenericParameterHelper>();
+            GetEnumeratorTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -241,17 +239,15 @@ namespace MongoDB.MSTest
         ///</summary>
         public void PutAllTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            IDictionary<string, object> m = null; // TODO: Initialize to an appropriate value
-            target.PutAll(m);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            IDictionary<string, object> m = new Dictionary<string,object>();
+            Executing.This(() => target.PutAll(m)).Should().Throw<NotSupportedException>();
         }
 
         [TestMethod()]
         public void PutAllTest()
         {
-            PutAllTestHelper<GenericParameterHelper>();
+            PutAllTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -259,8 +255,7 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ReadTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
+            ContractDBObject<T> target = new ContractDBObject<T>();
             WireProtocolReader reader = null; // TODO: Initialize to an appropriate value
             target.Read(reader);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
@@ -269,7 +264,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadTest()
         {
-            ReadTestHelper<GenericParameterHelper>();
+            ReadTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -277,20 +272,14 @@ namespace MongoDB.MSTest
         ///</summary>
         public void RemoveTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object> item = new KeyValuePair<string, object>(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Remove(item);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            Executing.This(() => target.Remove(new KeyValuePair<string, object>())).Should().Throw<NotSupportedException>();
         }
 
         [TestMethod()]
         public void RemoveTest()
         {
-            RemoveTestHelper<GenericParameterHelper>();
+            RemoveTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -298,20 +287,14 @@ namespace MongoDB.MSTest
         ///</summary>
         public void RemoveTest1Helper<T>() where T:new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Remove(key);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            Executing.This(() => target.Remove("Data")).Should().Throw<NotSupportedException>();
         }
 
         [TestMethod()]
         public void RemoveTest1()
         {
-            RemoveTest1Helper<GenericParameterHelper>();
+            RemoveTest1Helper<TestContractObject>();
         }
 
         /// <summary>
@@ -319,20 +302,20 @@ namespace MongoDB.MSTest
         ///</summary>
         public void GetEnumeratorTest1Helper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            IEnumerable target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            IEnumerator expected = null; // TODO: Initialize to an appropriate value
-            IEnumerator actual;
-            actual = target.GetEnumerator();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            IEnumerator actual = (target as IEnumerable).GetEnumerator();
+            actual.MoveNext().Should().Be(true);
+            ((KeyValuePair<string, object>)actual.Current).Key.Should().Be("Data");
+            actual.MoveNext().Should().Be(true);
+            ((KeyValuePair<string, object>)actual.Current).Key.Should().Be("Caption");
+            actual.MoveNext().Should().Be(false);
         }
 
         [TestMethod()]
         [DeploymentItem("MongoDB.Newtonsoft.Json.dll")]
         public void GetEnumeratorTest1()
         {
-            GetEnumeratorTest1Helper<GenericParameterHelper>();
+            GetEnumeratorTest1Helper<TestContractObject>();
         }
 
         /// <summary>
@@ -340,19 +323,16 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ToStringTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToString();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            string result = target.ToString();
+            Console.WriteLine(result);
+            result.Should().Be("");
         }
 
         [TestMethod()]
         public void ToStringTest()
         {
-            ToStringTestHelper<GenericParameterHelper>();
+            ToStringTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -360,23 +340,17 @@ namespace MongoDB.MSTest
         ///</summary>
         public void TryGetValueTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            object valueExpected = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.TryGetValue(key, out value);
-            Assert.AreEqual(valueExpected, value);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            object value = null; 
+            target.TryGetValue("Data", out value).Should().Be(true);
+            value.Should().Be(321);
+            target.TryGetValue("goat", out value).Should().Be(false);
         }
 
         [TestMethod()]
         public void TryGetValueTest()
         {
-            TryGetValueTestHelper<GenericParameterHelper>();
+            TryGetValueTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -384,36 +358,23 @@ namespace MongoDB.MSTest
         ///</summary>
         public void WriteTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            WireProtocolWriter writer = null; // TODO: Initialize to an appropriate value
-            target.Write(writer);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            using (MemoryStream stream = new MemoryStream())
+            using (WireProtocolWriter writer = new WireProtocolWriter(stream))
+            {
+                target["Data"] = 111;
+                target["Caption"] = "gaggle";
+                target.Write(writer);
+                string bytes = BitConverter.ToString(stream.GetBuffer(), 0, (int)stream.Length);
+                Console.WriteLine(bytes);
+                bytes.Should().Be("");
+            }
         }
 
         [TestMethod()]
         public void WriteTest()
         {
-            WriteTestHelper<GenericParameterHelper>();
-        }
-
-        /// <summary>
-        ///A test for Contract
-        ///</summary>
-        public void ContractTestHelper<T>() where T:new()
-        {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ContractDBObject_Accessor<T> target = new ContractDBObject_Accessor<T>(param0); // TODO: Initialize to an appropriate value
-            JsonObjectContract actual;
-            actual = target.Contract;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-        [DeploymentItem("MongoDB.Newtonsoft.Json.dll")]
-        public void ContractTest()
-        {
-            ContractTestHelper<GenericParameterHelper>();
+            WriteTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -421,35 +382,14 @@ namespace MongoDB.MSTest
         ///</summary>
         public void CountTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.Count;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            target.Count.Should().Be(2);
         }
 
         [TestMethod()]
         public void CountTest()
         {
-            CountTestHelper<GenericParameterHelper>();
-        }
-
-        /// <summary>
-        ///A test for IsReadOnly
-        ///</summary>
-        public void IsReadOnlyTestHelper<T>() where T : new()
-        {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.IsReadOnly;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-        public void IsReadOnlyTest()
-        {
-            IsReadOnlyTestHelper<GenericParameterHelper>();
+            CountTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -457,21 +397,15 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ItemTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object expected = null; // TODO: Initialize to an appropriate value
-            object actual;
-            target[key] = expected;
-            actual = target[key];
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            target["Data"].Should().Be(123);
+            Executing.This(() => { object obj = target["turnkey"]; }).Should().Throw<KeyNotFoundException>();
         }
 
         [TestMethod()]
         public void ItemTest()
         {
-            ItemTestHelper<GenericParameterHelper>();
+            ItemTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -479,36 +413,14 @@ namespace MongoDB.MSTest
         ///</summary>
         public void KeysTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            ICollection<string> actual;
-            actual = target.Keys;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            target.Keys.Should().Have.SameValuesAs("Data", "Caption");
         }
 
         [TestMethod()]
         public void KeysTest()
         {
-            KeysTestHelper<GenericParameterHelper>();
-        }
-
-        /// <summary>
-        ///A test for Properties
-        ///</summary>
-        public void PropertiesTestHelper<T>() where T : new()
-        {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ContractDBObject_Accessor<T> target = new ContractDBObject_Accessor<T>(param0); // TODO: Initialize to an appropriate value
-            JsonPropertyCollection actual;
-            actual = target.Properties;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-        [DeploymentItem("MongoDB.Newtonsoft.Json.dll")]
-        public void PropertiesTest()
-        {
-            PropertiesTestHelper<GenericParameterHelper>();
+            KeysTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -516,17 +428,14 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ValuesTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            ContractDBObject<T> target = new ContractDBObject<T>(instance); // TODO: Initialize to an appropriate value
-            ICollection<object> actual;
-            actual = target.Values;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ContractDBObject<T> target = new ContractDBObject<T>();
+            target.Values.Should().Have.SameValuesAs(321, "Amble");
         }
 
         [TestMethod()]
         public void ValuesTest()
         {
-            ValuesTestHelper<GenericParameterHelper>();
+            ValuesTestHelper<TestContractObject>();
         }
     }
 }

@@ -13,6 +13,7 @@ using MongoDB.Driver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using Newtonsoft.Json.Serialization;
+using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Newtonsoft.Json
 {
     /// <summary>
@@ -23,35 +24,6 @@ namespace MongoDB.Newtonsoft.Json
         T _Instance;
         JsonSerializer _Serializer;
         JsonObjectContract _Contract;
-        JsonPropertyCollection _Properties;
-
-        //Lazy loaded contract
-        JsonObjectContract Contract
-        {
-            get 
-            {
-                if (_Contract == null)
-                {
-                    _Contract = _Serializer.ContractResolver.ResolveContract(typeof(T)) as JsonObjectContract;
-                    if (_Contract == null)
-                        throw new InvalidDataException("Expected the ContractResolver to generate a JsonObjectContract derived object");
-                }
-                return _Contract;
-            }
-        }
-
-        //Lazy loaded properties
-        JsonPropertyCollection Properties
-        {
-            get
-            {
-                if (_Properties == null)
-                {
-                    _Properties = new JsonPropertyCollection(Contract);
-                }
-                return Properties;
-            }
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContractDBObject&lt;T&gt;"/> class.
@@ -77,6 +49,31 @@ namespace MongoDB.Newtonsoft.Json
         /// <param name="serializer">The serializer to use.</param>
         public ContractDBObject(T instance, JsonSerializer serializer)
         {
+            Condition.Requires(serializer, "serializer")
+                .IsNotNull();
+            Condition.Requires(instance, "instance")
+                .Evaluate(!instance.Equals(default(T)),"The instance requires a value");
+
+            _Contract = serializer.ContractResolver.ResolveContract(typeof(T)) as JsonObjectContract;
+
+            if (_Contract == null)
+                throw new NotSupportedException("Only a serializer that resolves a JsonContract of type JsonObjectContract is supported");
+            
+            _Instance = instance;
+            _Serializer = serializer;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContractDBObject&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="instance">An instance of the Contracted Type.</param>
+        /// <param name="serializer">The serializer to use.</param>
+        public ContractDBObject(T instance, JsonSerializer serializer, JsonObjectContract contract)
+        {
+            Condition.Requires(serializer, "serializer").IsNotNull();
+            Condition.Requires(instance, "instance").Evaluate(!instance.Equals(default(T)), "The instance requires a value");
+            Condition.Requires(contract, "contract").IsNotNull();
+            _Contract = contract;            
             _Instance = instance;
             _Serializer = serializer;
             
@@ -103,22 +100,19 @@ namespace MongoDB.Newtonsoft.Json
 
         public void Add(string key, object value)
         {
-            if (ContainsKey(key))
-                this[key] = value;
-            else
-                throw new NotSupportedException();
+            this[key] = value;
         }
 
         public bool ContainsKey(string key)
         {
-            return Properties.GetClosestMatchProperty(key) != null;
+            return _Contract.Properties.GetClosestMatchProperty(key) != null;
         }
 
         
 
         public ICollection<string> Keys
         {
-            get { return Properties.Select(prop => prop.PropertyName).ToList(); }
+            get { return _Contract.Properties.Select(prop => prop.PropertyName).ToList(); }
         }
 
         public bool Remove(string key)
@@ -129,7 +123,7 @@ namespace MongoDB.Newtonsoft.Json
         public bool TryGetValue(string key, out object value)
         {
             value = null;
-            JsonProperty prop = Properties.GetClosestMatchProperty(key);
+            JsonProperty prop = _Contract.Properties.GetClosestMatchProperty(key);
             if (prop == null)
                 return false;
             value = prop.ValueProvider.GetValue(_Instance);
@@ -140,7 +134,7 @@ namespace MongoDB.Newtonsoft.Json
         {
             get
             {
-                return Properties.Select(prop => prop.ValueProvider.GetValue(_Instance)).ToList();
+                return _Contract.Properties.Select(prop => prop.ValueProvider.GetValue(_Instance)).ToList();
             }
         }
 
@@ -148,14 +142,14 @@ namespace MongoDB.Newtonsoft.Json
         {
             get 
             {
-                JsonProperty prop = Properties.GetClosestMatchProperty(key);
+                JsonProperty prop = _Contract.Properties.GetClosestMatchProperty(key);
                 if (prop == null)
                     throw new KeyNotFoundException(string.Format("Cannot find a suitable match for: {0}", key));
                 return prop.ValueProvider.GetValue(_Instance);
             }
             set
             {
-                JsonProperty prop = Properties.GetClosestMatchProperty(key);
+                JsonProperty prop = _Contract.Properties.GetClosestMatchProperty(key);
                 if (prop == null)
                     throw new KeyNotFoundException(string.Format("Cannot find a suitable match for: {0}", key));
                 prop.ValueProvider.SetValue(_Instance, value);
@@ -188,14 +182,14 @@ namespace MongoDB.Newtonsoft.Json
         public int Count
         {
             get 
-            {  
-                return Properties.Count;
+            {
+                return _Contract.Properties.Count;
             }
         }
 
-        public bool IsReadOnly
+        bool ICollection<System.Collections.Generic.KeyValuePair<string, object>>.IsReadOnly
         {
-            get { return false; }
+            get { return true; }
         }
 
         public bool Remove(KeyValuePair<string, object> item)

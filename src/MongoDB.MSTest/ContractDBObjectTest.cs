@@ -205,7 +205,7 @@ namespace MongoDB.MSTest
             target.CopyTo(array, arrayIndex);
             array[0].Key.Should().Be("Data");
             array[1].Key.Should().Be("Caption");
-            array[2].Should().Be.Null();
+            array[2].Key.Should().Be.NullOrEmpty();
         }
 
         [TestMethod()]
@@ -240,8 +240,10 @@ namespace MongoDB.MSTest
         public void PutAllTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            IDictionary<string, object> m = new Dictionary<string,object>();
-            Executing.This(() => target.PutAll(m)).Should().Throw<NotSupportedException>();
+            target.PutAll(new Dictionary<string, object>() {{"Caption","Perambulator"},{"Data",222} });
+            target["Caption"].Should().Be("Perambulator");
+            target["Data"].Should().Be(222);
+            Executing.This(() => target.PutAll(new Dictionary<string, object>() { { "Putin", "Powell" }})).Should().Throw<KeyNotFoundException>();
         }
 
         [TestMethod()]
@@ -256,9 +258,13 @@ namespace MongoDB.MSTest
         public void ReadTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            WireProtocolReader reader = null; // TODO: Initialize to an appropriate value
-            target.Read(reader);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            using (MemoryStream stream = new MemoryStream("23-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-00".ToBytes()))
+            using (WireProtocolReader reader = new WireProtocolReader(stream))
+            {
+                target.Read(reader);
+            }
+            target["Data"].Should().Be(111);
+            target["Caption"].Should().Be("gaggle");
         }
 
         [TestMethod()]
@@ -324,9 +330,9 @@ namespace MongoDB.MSTest
         public void ToStringTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            string result = target.ToString();
+            string result = target.ToString().RemoveWhitespace();
             Console.WriteLine(result);
-            result.Should().Be("");
+            result.Should().Be("{\"Data\":321,\"Caption\":\"Amble\"}");
         }
 
         [TestMethod()]
@@ -367,7 +373,7 @@ namespace MongoDB.MSTest
                 target.Write(writer);
                 string bytes = BitConverter.ToString(stream.GetBuffer(), 0, (int)stream.Length);
                 Console.WriteLine(bytes);
-                bytes.Should().Be("");
+                bytes.Should().Be("23-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-00");
             }
         }
 
@@ -398,7 +404,7 @@ namespace MongoDB.MSTest
         public void ItemTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target["Data"].Should().Be(123);
+            target["Data"].Should().Be(321);
             Executing.This(() => { object obj = target["turnkey"]; }).Should().Throw<KeyNotFoundException>();
         }
 

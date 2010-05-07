@@ -51,8 +51,9 @@ namespace MongoDB.Newtonsoft.Json
         {
             Condition.Requires(serializer, "serializer")
                 .IsNotNull();
-            Condition.Requires(instance, "instance")
-                .Evaluate(!instance.Equals(default(T)),"The instance requires a value");
+
+            object boxedInstance = instance;
+            Condition.Requires(boxedInstance, "instance").IsNotNull();
 
             _Contract = serializer.ContractResolver.ResolveContract(typeof(T)) as JsonObjectContract;
 
@@ -71,12 +72,12 @@ namespace MongoDB.Newtonsoft.Json
         public ContractDBObject(T instance, JsonSerializer serializer, JsonObjectContract contract)
         {
             Condition.Requires(serializer, "serializer").IsNotNull();
-            Condition.Requires(instance, "instance").Evaluate(!instance.Equals(default(T)), "The instance requires a value");
+            object boxedInstance = instance;
+            Condition.Requires(boxedInstance, "instance").IsNotNull();
             Condition.Requires(contract, "contract").IsNotNull();
             _Contract = contract;            
             _Instance = instance;
             _Serializer = serializer;
-            
         }
 
         public void PutAll(IDictionary<string, object> m)

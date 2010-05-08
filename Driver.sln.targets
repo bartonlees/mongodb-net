@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="MongoDB.private"/>
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="AssemblyInfo" />
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="Version" />
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="UploadToGoogleCode"/>
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="HgTag"/>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+  </PropertyGroup>
+  <ItemGroup>
+    <ZipFiles Include="src\MongoDB.Driver\bin\Release\*.*"/>
+  </ItemGroup>
+
+  <Target Name="BuildVs">
+    <Version VersionFile="MongoDB.vs" Major="0" Minor="1" BuildType="Automatic" RevisionType="BuildIncrement" StartDate="6/17/2009">
+      <Output TaskParameter="Major" PropertyName="Major" />
+      <Output TaskParameter="Minor" PropertyName="Minor" />
+      <Output TaskParameter="Build" PropertyName="Build" />
+      <Output TaskParameter="Revision" PropertyName="Revision" />
+    </Version>
+    <PropertyGroup>
+      <BuildVersion>$(Major).$(Minor).$(Build).$(Revision)</BuildVersion>
+      <BuildTag>mongodb-net-$(Major).$(Minor).$(Build).$(Revision)</BuildTag>
+    </PropertyGroup>
+    <AssemblyInfo CodeLanguage="CS"
+      OutputFile="src/MongoDB.Driver/Properties/AssemblyInfo.vs.cs"
+      AssemblyVersion="$(BuildVersion)"
+      AssemblyFileVersion="$(BuildVersion)"
+      AssemblyCopyright="Copyright © 2010" />
+  </Target>
+
+  <Target Name="Build" DependsOnTargets="BuildVs" Outputs="@(MongoDBExplorerInstaller)">
+    <MSBuild Projects="src/Driver.sln" Properties="Configuration=$(Configuration)" />
+    <Zip Files="@(ZipFiles)" Flatten="true" ZipFileName="$(BuildTag).zip" />
+  </Target>
+
+  <Target Name="Clean">
+    <MSBuild Projects="src/Driver.sln" Targets="Clean" Properties="Configuration=$(Configuration)" />
+  </Target>
+  <Target Name="Publish"
+          DependsOnTargets="Clean;Build"
+          Inputs="$(explorer_msi);$(BuildTag).zip"
+          Outputs="$(BuildTag).receipt">
+    <SvnCopy SourcePath="https://mongodb-net.googlecode.com/svn/trunk"
+                      DestinationPath="https://mongodb-net.googlecode.com/svn/tags/$(BuildTag)"
+                      Message="$(BuildTag) (Published)" />
+    <Publish
+      UserName="$(GcuUsername)"
+      Password="$(GcuPassword)"
+      ProjectName="mongodb-net"
+      LocalFile="$(BuildTag).zip"
+      TargetFileName="$(BuildTag).zip"
+      Summary="pre-alpha mongodb-net driver binaries"
+      />
+    <Touch Files="$(BuildTag).receipt" AlwaysCreate="True"/>
+  </Target>
+</Project>

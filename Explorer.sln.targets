@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="MongoDB.private"/>
-  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets"/>
-  <UsingTask AssemblyFile="$(MSBuildExtensionsPath)\BladeWard.Build.dll" TaskName="UploadToGoogleCode"/>
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="AssemblyInfo" />
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="Version" />
+  <UsingTask AssemblyFile=".\lib\Ghost.Tasks.dll" TaskName="UploadToGoogleCode"/>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Release</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>

@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MongoDB.Driver;
 using Newtonsoft.Json;
+using SharpTestsEx;
+using System.Collections.Generic;
 
 namespace MongoDB.MSTest
 {
@@ -71,17 +73,19 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContractDocumentConstructorTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
-            JsonSerializer serializer = null; // TODO: Initialize to an appropriate value
-            ContractDocument<T> target = new ContractDocument<T>(instance, state, serializer);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            ContractDocument<T> target = new ContractDocument<T>(new T(), DocumentState.Unchanged, new MongoDBSerializer());
+            Executing.This(() => { ContractDocument<T> target3 = new ContractDocument<T>(new T(), DocumentState.Unchanged, null); }).Should().Throw();
         }
 
         [TestMethod()]
         public void ContractDocumentConstructorTest()
         {
-            ContractDocumentConstructorTestHelper<GenericParameterHelper>();
+            ContractDocumentConstructorTestHelper<TestContractStruct>();
+            ContractDocumentConstructorTestHelper<TestContractObject>();
+            Executing.This(() => { ContractDocument<TestContractObject> target2 = new ContractDocument<TestContractObject>(null, DocumentState.Unchanged, new MongoDBSerializer()); }).Should().Throw();
+            Executing.This(() => ContractDocumentConstructorTestHelper<List<int>>()).Should().Throw();
+            Executing.This(() => ContractDocumentConstructorTestHelper<TestContractObjectNoID>()).Should().Throw<KeyNotFoundException>();
+            Executing.This(() => ContractDocumentConstructorTestHelper<TestContractStructNoID>()).Should().Throw<KeyNotFoundException>();
         }
 
         /// <summary>
@@ -89,16 +93,18 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContractDocumentConstructorTest1Helper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
-            ContractDocument<T> target = new ContractDocument<T>(instance, state);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            ContractDocument<T> target = new ContractDocument<T>(new T(), DocumentState.Unchanged);
         }
 
         [TestMethod()]
         public void ContractDocumentConstructorTest1()
         {
-            ContractDocumentConstructorTest1Helper<GenericParameterHelper>();
+            ContractDocumentConstructorTest1Helper<TestContractStruct>();
+            ContractDocumentConstructorTest1Helper<TestContractObject>();
+            Executing.This(() => { ContractDocument<TestContractObject> target2 = new ContractDocument<TestContractObject>(null, DocumentState.Unchanged); }).Should().Throw();
+            Executing.This(() => ContractDocumentConstructorTest1Helper<List<int>>()).Should().Throw();
+            Executing.This(() => ContractDocumentConstructorTest1Helper<TestContractObjectNoID>()).Should().Throw<KeyNotFoundException>();
+            Executing.This(() => ContractDocumentConstructorTest1Helper<TestContractStructNoID>()).Should().Throw<KeyNotFoundException>();
         }
 
         /// <summary>
@@ -106,21 +112,18 @@ namespace MongoDB.MSTest
         ///</summary>
         public void CollectionTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
-            ContractDocument<T> target = new ContractDocument<T>(instance, state); // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            ContractDocument<T> target = new ContractDocument<T>();
+            IDBCollection expected = Mongo.DefaultDatabase.CmdCollection; 
             IDBCollection actual;
             target.Collection = expected;
             actual = target.Collection;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Name.Should().Be(actual.Name);
         }
 
         [TestMethod()]
         public void CollectionTest()
         {
-            CollectionTestHelper<GenericParameterHelper>();
+            CollectionTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -128,43 +131,18 @@ namespace MongoDB.MSTest
         ///</summary>
         public void IDTestHelper<T>() where T : new()
         {
-            T instance = default(T); // TODO: Initialize to an appropriate value
-            DocumentState state = new DocumentState(); // TODO: Initialize to an appropriate value
-            ContractDocument<T> target = new ContractDocument<T>(instance, state); // TODO: Initialize to an appropriate value
-            Oid expected = null; // TODO: Initialize to an appropriate value
+            ContractDocument<T> target = new ContractDocument<T>();
+            Oid expected = Oid.NewOid();
             Oid actual;
             target.ID = expected;
             actual = target.ID;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Should().Be(actual);
         }
 
         [TestMethod()]
         public void IDTest()
         {
-            IDTestHelper<GenericParameterHelper>();
-        }
-
-        /// <summary>
-        ///A test for Partial
-        ///</summary>
-        public void PartialTestHelper<T>() where T : new()
-        {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ContractDocument_Accessor<T> target = new ContractDocument_Accessor<T>(param0); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.Partial = expected;
-            actual = target.Partial;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-        [DeploymentItem("MongoDB.Newtonsoft.Json.dll")]
-        public void PartialTest()
-        {
-            PartialTestHelper<GenericParameterHelper>();
+            IDTestHelper<TestContractObject>();
         }
 
         /// <summary>
@@ -172,21 +150,16 @@ namespace MongoDB.MSTest
         ///</summary>
         public void StateTestHelper<T>() where T : new()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ContractDocument_Accessor<T> target = new ContractDocument_Accessor<T>(param0); // TODO: Initialize to an appropriate value
-            DocumentState expected = new DocumentState(); // TODO: Initialize to an appropriate value
-            DocumentState actual;
-            target.State = expected;
-            actual = target.State;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DocumentState actual = DocumentState.Modified;
+            ContractDocument<T> target = new ContractDocument<T>(new T(), actual);
+            target.State.Should().Be(DocumentState.Modified);
         }
 
         [TestMethod()]
         [DeploymentItem("MongoDB.Newtonsoft.Json.dll")]
         public void StateTest()
         {
-            StateTestHelper<GenericParameterHelper>();
+            StateTestHelper<TestContractObject>();
         }
     }
 }

@@ -46,6 +46,9 @@
     <Compile Include="ContractDBObject.cs" />
     <Compile Include="ContractDocument.cs" />
     <Compile Include="ContractIDBCollectionExtensions.cs" />
+    <Compile Include="MongoDBSerializer.cs" />
+    <Compile Include="OidConverter.cs" />
+    <Compile Include="OidExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using MongoDB.Newtonsoft.Json;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Linq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using MongoDB.Driver;
@@ -17,10 +18,40 @@ namespace MongoDB.MSTest
         {
             Data = 321;
             Caption = "Amble";
+            ID = Oid.Empty;
         }
         public int Data { get; set; }
         public string Caption { get; set; }
         private float _secret { get; set; }
+        [JsonProperty(PropertyName="_id")]
+        public Oid ID { get; set; }
+    }
+
+    public class TestContractObjectNoID
+    {
+        public TestContractObjectNoID()
+        {
+            Data = 321;
+            Caption = "Amble";
+        }
+        public int Data { get; set; }
+        public string Caption { get; set; }
+        private float _secret { get; set; }
+    }
+
+    public struct TestContractStruct
+    {
+        public int Data;
+        public string Caption;
+        private float _secret;
+        public global::Newtonsoft.Json.Bson.BsonObjectId _id { get; set; }
+    }
+
+    public struct TestContractStructNoID
+    {
+        public int Data;
+        public string Caption;
+        private float _secret;
     }
     
     /// <summary>
@@ -86,16 +117,20 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContractDBObjectConstructorTestHelper<T>() where T : new()
         {
-            T instance = new T();
-            JsonSerializer serializer = new JsonSerializer();
-            ContractDBObject<T> target = new ContractDBObject<T>(instance, serializer);
+            ContractDBObject<T> target = new ContractDBObject<T>(new T(), new MongoDBSerializer());
+            Executing.This(() => { ContractDBObject<T> target3 = new ContractDBObject<T>(new T(), null); }).Should().Throw();
         }
 
         [TestMethod()]
         public void ContractDBObjectConstructorTest()
         {
+            ContractDBObjectConstructorTestHelper<TestContractStruct>();
             ContractDBObjectConstructorTestHelper<TestContractObject>();
+            Executing.This(() => { ContractDBObject<TestContractObject> target2 = new ContractDBObject<TestContractObject>(null, new MongoDBSerializer()); }).Should().Throw();
             Executing.This(() => ContractDBObjectConstructorTestHelper<List<int>>()).Should().Throw();
+            //Don't force an _id here
+            ContractDBObjectConstructorTestHelper<TestContractObjectNoID>();
+            ContractDBObjectConstructorTestHelper<TestContractStructNoID>();
         }
 
         /// <summary>
@@ -103,14 +138,19 @@ namespace MongoDB.MSTest
         ///</summary>
         public void ContractDBObjectConstructorTest1Helper<T>() where T : new()
         {
-            T instance = new T();
-            ContractDBObject<T> target = new ContractDBObject<T>(instance);
+            ContractDBObject<T> target = new ContractDBObject<T>(new T());
         }
 
         [TestMethod()]
         public void ContractDBObjectConstructorTest1()
         {
+            ContractDBObjectConstructorTest1Helper<TestContractStruct>();
             ContractDBObjectConstructorTest1Helper<TestContractObject>();
+            Executing.This(() => { ContractDBObject<TestContractObject> target2 = new ContractDBObject<TestContractObject>(null); }).Should().Throw();
+            Executing.This(() => ContractDBObjectConstructorTest1Helper<List<int>>()).Should().Throw();
+            //Don't force an _id here
+            ContractDBObjectConstructorTest1Helper<TestContractObjectNoID>();
+            ContractDBObjectConstructorTest1Helper<TestContractStructNoID>();
         }
 
         /// <summary>
@@ -203,9 +243,8 @@ namespace MongoDB.MSTest
             KeyValuePair<string, object>[] array = new KeyValuePair<string,object>[4];
             int arrayIndex = 0;
             target.CopyTo(array, arrayIndex);
-            array[0].Key.Should().Be("Data");
-            array[1].Key.Should().Be("Caption");
-            array[2].Key.Should().Be.NullOrEmpty();
+            array.Select(p => p.Key).Should().Have.SameValuesAs("Caption", "Data", "_id", null);
+            array[3].Key.Should().Be.NullOrEmpty();
         }
 
         [TestMethod()]
@@ -220,12 +259,7 @@ namespace MongoDB.MSTest
         public void GetEnumeratorTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            IEnumerator<KeyValuePair<string, object>> actual = (target as IEnumerable<KeyValuePair<string, object>>).GetEnumerator();
-            actual.MoveNext().Should().Be(true);
-            actual.Current.Key.Should().Be("Data");
-            actual.MoveNext().Should().Be(true);
-            actual.Current.Key.Should().Be("Caption");
-            actual.MoveNext().Should().Be(false);
+            (target as IEnumerable<KeyValuePair<string, object>>).Select(p => p.Key).Should().Have.SameValuesAs("Caption", "Data", "_id");
         }
 
         [TestMethod()]
@@ -258,13 +292,14 @@ namespace MongoDB.MSTest
         public void ReadTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            using (MemoryStream stream = new MemoryStream("23-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-00".ToBytes()))
+            using (MemoryStream stream = new MemoryStream("34-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-07-5F-69-64-00-00-00-00-00-00-00-00-00-00-00-00-00-00".ToBytes()))
             using (WireProtocolReader reader = new WireProtocolReader(stream))
             {
                 target.Read(reader);
             }
             target["Data"].Should().Be(111);
             target["Caption"].Should().Be("gaggle");
+            target["_id"].Should().Be(Oid.Empty);
         }
 
         [TestMethod()]
@@ -314,6 +349,8 @@ namespace MongoDB.MSTest
             ((KeyValuePair<string, object>)actual.Current).Key.Should().Be("Data");
             actual.MoveNext().Should().Be(true);
             ((KeyValuePair<string, object>)actual.Current).Key.Should().Be("Caption");
+            actual.MoveNext().Should().Be(true);
+            ((KeyValuePair<string, object>)actual.Current).Key.Should().Be("_id");
             actual.MoveNext().Should().Be(false);
         }
 
@@ -332,7 +369,8 @@ namespace MongoDB.MSTest
             ContractDBObject<T> target = new ContractDBObject<T>();
             string result = target.ToString().RemoveWhitespace();
             Console.WriteLine(result);
-            result.Should().Be("{\"Data\":321,\"Caption\":\"Amble\"}");
+            string expected = "{\"Data\":321,\"Caption\":\"Amble\",\"_id\":\"AAAAAAAAAAAAAAAA\"}";
+            result.Should().Be(expected);
         }
 
         [TestMethod()]
@@ -373,7 +411,7 @@ namespace MongoDB.MSTest
                 target.Write(writer);
                 string bytes = BitConverter.ToString(stream.GetBuffer(), 0, (int)stream.Length);
                 Console.WriteLine(bytes);
-                bytes.Should().Be("23-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-00");
+                bytes.Should().Be("34-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-07-5F-69-64-00-00-00-00-00-00-00-00-00-00-00-00-00-00");
             }
         }
 
@@ -389,7 +427,7 @@ namespace MongoDB.MSTest
         public void CountTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.Count.Should().Be(2);
+            target.Count.Should().Be(3);
         }
 
         [TestMethod()]
@@ -420,7 +458,7 @@ namespace MongoDB.MSTest
         public void KeysTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.Keys.Should().Have.SameValuesAs("Data", "Caption");
+            target.Keys.Should().Have.SameValuesAs("Data", "Caption", "_id");
         }
 
         [TestMethod()]
@@ -435,7 +473,7 @@ namespace MongoDB.MSTest
         public void ValuesTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.Values.Should().Have.SameValuesAs(321, "Amble");
+            target.Values.Should().Have.SameValuesAs(321, "Amble", Oid.Empty);
         }
 
         [TestMethod()]

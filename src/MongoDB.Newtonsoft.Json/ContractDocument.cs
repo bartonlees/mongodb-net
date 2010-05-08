@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using MongoDB.Driver;
 using Newtonsoft.Json;
+using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Newtonsoft.Json
 {
@@ -14,7 +15,7 @@ namespace MongoDB.Newtonsoft.Json
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
         public ContractDocument()
-            : this(new T(), DocumentState.Unchanged, new JsonSerializer())
+            : this(new T(), DocumentState.Unchanged, new MongoDBSerializer())
         {
         }
 
@@ -23,7 +24,8 @@ namespace MongoDB.Newtonsoft.Json
         /// Initializes a new instance of the <see cref="ContractDocument&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
-        public ContractDocument(T instance, DocumentState state) : this(instance, state, new JsonSerializer())
+        public ContractDocument(T instance, DocumentState state)
+            : this(instance, state, new MongoDBSerializer())
         {
         }
 
@@ -32,9 +34,10 @@ namespace MongoDB.Newtonsoft.Json
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
         /// <param name="serializer">The serializer to use.</param>
-        public ContractDocument(T instance, DocumentState state, JsonSerializer serializer)
+        public ContractDocument(T instance, DocumentState state, MongoDBSerializer serializer)
             : base(instance, serializer)
         {
+            object id = this["_id"];
             State = state;
         }
 

@@ -22,7 +22,7 @@ namespace MongoDB.Newtonsoft.Json
     public class ContractDBObject<T> : IDBObjectCustom where T:new()
     {
         T _Instance;
-        JsonSerializer _Serializer;
+        MongoDBSerializer _Serializer;
         JsonObjectContract _Contract;
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace MongoDB.Newtonsoft.Json
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
         public ContractDBObject()
-            : this(new T(), new JsonSerializer())
+            : this(new T(), new MongoDBSerializer())
         {
         }
 
@@ -38,7 +38,8 @@ namespace MongoDB.Newtonsoft.Json
         /// Initializes a new instance of the <see cref="ContractDBObject&lt;T&gt;"/> class.
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
-        public ContractDBObject(T instance) : this(instance, new JsonSerializer())
+        public ContractDBObject(T instance)
+            : this(instance, new MongoDBSerializer())
         {
         }
 
@@ -47,15 +48,15 @@ namespace MongoDB.Newtonsoft.Json
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
         /// <param name="serializer">The serializer to use.</param>
-        public ContractDBObject(T instance, JsonSerializer serializer)
+        public ContractDBObject(T instance, MongoDBSerializer serializer)
         {
             Condition.Requires(serializer, "serializer")
                 .IsNotNull();
 
             object boxedInstance = instance;
             Condition.Requires(boxedInstance, "instance").IsNotNull();
-
-            _Contract = serializer.ContractResolver.ResolveContract(typeof(T)) as JsonObjectContract;
+            JsonContract contract = serializer.ContractResolver.ResolveContract(typeof(T));
+            _Contract = contract as JsonObjectContract;
 
             if (_Contract == null)
                 throw new NotSupportedException("Only a serializer that resolves a JsonContract of type JsonObjectContract is supported");
@@ -69,7 +70,7 @@ namespace MongoDB.Newtonsoft.Json
         /// </summary>
         /// <param name="instance">An instance of the Contracted Type.</param>
         /// <param name="serializer">The serializer to use.</param>
-        public ContractDBObject(T instance, JsonSerializer serializer, JsonObjectContract contract)
+        public ContractDBObject(T instance, MongoDBSerializer serializer, JsonObjectContract contract)
         {
             Condition.Requires(serializer, "serializer").IsNotNull();
             object boxedInstance = instance;

@@ -345,9 +345,9 @@ namespace MongoDB.Driver
         {
             element_type(TypeByte.REGEX);
             element_name(name);
-            WriteNullTerminated(regex.getPattern());
+            WriteNullTerminated(regex.Pattern);
 
-            string options = regex.getOptions();
+            string options = regex.GetOptions();
 
             Dictionary<char, char> sm = new Dictionary<char, char>();
 

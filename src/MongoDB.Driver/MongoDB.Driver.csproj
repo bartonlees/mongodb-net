@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\MongoDB.Driver.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -79,10 +80,10 @@
     <Compile Include="Command\ServerStatus.cs" />
     <Compile Include="Command\Admin\ShutDown.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="IDBBindingExtensions.cs" />
     <Compile Include="IDBIndexExtensions.cs" />
     <Compile Include="DBModifier.cs" />
     <Compile Include="DocumentFactory.cs" />
-    <Compile Include="IDBCursorBatch.cs" />
     <Compile Include="DBCode.cs" />
     <Compile Include="DBCursorEnumerator.cs" />
     <Compile Include="DBCursorOptions.cs" />

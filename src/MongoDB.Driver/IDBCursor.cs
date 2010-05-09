@@ -6,6 +6,9 @@ using System.Collections;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Represents an unfinished query result from the server
+    /// </summary>
     public interface IDBCursor : IEnumerable<IDocument>, IDisposable
     {
         long? CursorID { get; set; }
@@ -14,6 +17,10 @@ namespace MongoDB.Driver
         IDBCursor Copy();
     }
 
+    /// <summary>
+    /// Represents a strongly typed, unfinished query result from the server
+    /// </summary>
+    /// <typeparam name="TDoc">The type of the doc.</typeparam>
     public interface IDBCursor<TDoc> : IDBCursor where TDoc : class, IDocument
     {
         IEnumerable<TDoc> DocumentsT { get; }

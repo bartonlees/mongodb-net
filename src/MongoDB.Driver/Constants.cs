@@ -7,6 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Constants used in MongoDB.Driver namespace
+    /// </summary>
     public static class Constants
     {
         public const int MAX_OBJECT_SIZE = 1024 * 1024 * 4;

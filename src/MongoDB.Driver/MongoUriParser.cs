@@ -6,6 +6,9 @@ using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Helper class to parse specialized mongo URIs
+    /// </summary>
     public class MongoUriParser : GenericUriParser
     {
        

@@ -1,26 +1,45 @@
 //COPYRIGHT
-namespace MongoDB.Driver {
+using System;
+namespace MongoDB.Driver
+{
 
-/**
- * Use java.util.regex.Pattern for regular expressions.
- * @deprecated
- */
-public class DBRegex {
 
-    private string _pattern;
-    private string _options;
+    /// <summary>
+    /// Use Regex for regular expressions. DEPRECATED
+    /// </summary>
+    [Obsolete]
+    public class DBRegex
+    {
+        public string Pattern { get; private set;}
+        private string _options;
 
-    public DBRegex(string p, string o) {
-        _pattern = p;
-        _options = o;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBRegex"/> class.
+        /// </summary>
+        /// <param name="p">The p.</param>
+        /// <param name="o">The o.</param>
+        public DBRegex(string p, string o)
+        {
+            Pattern = p;
+            _options = o;
+        }
+
+        /// <summary>
+        /// Gets the pattern.
+        /// </summary>
+        /// <returns></returns>
+        public string GetPattern()
+        {
+            return Pattern;
+        }
+
+        /// <summary>
+        /// Gets the options.
+        /// </summary>
+        /// <returns></returns>
+        public string GetOptions()
+        {
+            return _options ?? "";
+        }
     }
-
-    public string getPattern() {
-        return _pattern;
-    }
-
-    public string getOptions() {
-        return _options == null ? "" : _options;
-    }
-}
 }

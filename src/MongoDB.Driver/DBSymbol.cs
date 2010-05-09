@@ -7,6 +7,10 @@ namespace MongoDB.Driver
     /// </summary>
     public class DBSymbol
     {
+        /// <summary>
+        /// Gets or sets the symbol.
+        /// </summary>
+        /// <value>The symbol.</value>
         public string Symbol { get; private set;}
 
         public DBSymbol(string s)

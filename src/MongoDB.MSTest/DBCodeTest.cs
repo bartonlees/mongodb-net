@@ -94,7 +94,6 @@ namespace MongoDB.MSTest
         ///A test for Code
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
         public void CodeTest()
         {
             PrivateObject param0 = null; // TODO: Initialize to an appropriate value

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Extension methods for the IServer interface
+    /// </summary>
     public static class IServerExtensions
     {
         public static IDatabase GetDatabase(this IServer server, string databaseUri)

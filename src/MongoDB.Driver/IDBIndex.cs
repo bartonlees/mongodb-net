@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Represents an index on an collection
+    /// </summary>
     public interface IDBIndex
     {
         IDBCollection Collection { get; }

@@ -6,6 +6,9 @@ using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Extension functions for the Uri type
+    /// </summary>
     public static class UriExtensions
     {
         public const string UriPrefixMongo = "mongo://";

@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using SharpTestsEx;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBBinaryTest and is intended
     ///to contain all DBBinaryTest Unit Tests
@@ -70,44 +71,34 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBBinaryConstructorTest()
         {
-            BinaryType type = new BinaryType(); // TODO: Initialize to an appropriate value
-            byte[] data = null; // TODO: Initialize to an appropriate value
-            DBBinary target = new DBBinary(type, data);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBBinary target;
+            target = new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            target = new DBBinary(BinaryType.Function, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            target = new DBBinary(BinaryType.MD5, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            target = new DBBinary(BinaryType.UserDefined, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            target = new DBBinary(BinaryType.UUID, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
         }
 
         /// <summary>
         ///A test for Buffer
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
         public void BufferTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBBinary_Accessor target = new DBBinary_Accessor(param0); // TODO: Initialize to an appropriate value
-            byte[] expected = null; // TODO: Initialize to an appropriate value
-            byte[] actual;
-            target.Buffer = expected;
-            actual = target.Buffer;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBBinary target;
+            target = new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            target.Buffer.Should().Have.SameSequenceAs( new byte[] {1, 2, 1, 2, 12, 2, 2});
         }
 
         /// <summary>
         ///A test for Type
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
         public void TypeTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBBinary_Accessor target = new DBBinary_Accessor(param0); // TODO: Initialize to an appropriate value
-            BinaryType expected = new BinaryType(); // TODO: Initialize to an appropriate value
-            BinaryType actual;
-            target.Type = expected;
-            actual = target.Type;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBBinary target;
+            target = new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            target.Type.Should().Be(BinaryType.Binary);
         }
     }
 }

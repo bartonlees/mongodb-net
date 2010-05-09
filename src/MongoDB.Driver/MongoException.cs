@@ -4,14 +4,26 @@ using System;
 namespace MongoDB.Driver
 {
 
+    /// <summary>
+    /// An internal MongoDB.Net Exception
+    /// </summary>
     public class MongoException : Exception
     {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoException"/> class.
+        /// </summary>
+        /// <param name="msg">The MSG.</param>
         public MongoException(string msg)
             : base(msg)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoException"/> class.
+        /// </summary>
+        /// <param name="msg">The MSG.</param>
+        /// <param name="t">The t.</param>
         public MongoException(string msg, Exception t)
             : base(msg, _massage(t))
         {

@@ -6,7 +6,7 @@ using System.Text;
 namespace MongoDB.Driver.Command
 {
     /// <summary>
-    /// Returns the last error that occurred since start of database or a call to <see cref="ResetErrpr"/>
+    /// Returns the last error that occurred since start of database or a call to ResetError
     /// Care must be taken to ensure that calls to getPreviousError go to the same connection as that
     /// of the previous operation. See com.mongodb.Mongo.requestStart for more information.
     /// </summary>

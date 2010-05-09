@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using SharpTestsEx;
 
 namespace MongoDB.MSTest
 {
@@ -77,10 +78,14 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void BuildInfoTest()
         {
-            IAdminOperations target = CreateIAdminOperations(); // TODO: Initialize to an appropriate value
+            IAdminOperations target = CreateIAdminOperations();
             BuildInfo actual;
             actual = target.BuildInfo;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Console.WriteLine(actual);
+            actual.Bits.Should().Not.Be(0);
+            actual.GitVersion.Should().Not.Be(string.Empty);
+            actual.SysInfo.Should().Not.Be(string.Empty);
+            actual.Version.Should().Not.Be(string.Empty);
         }
 
         /// <summary>
@@ -89,7 +94,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DiagnosticLoggingLevelTest()
         {
-            IAdminOperations target = CreateIAdminOperations(); // TODO: Initialize to an appropriate value
+            IAdminOperations target = CreateIAdminOperations();
             DiagnosticLoggingLevel expected = new DiagnosticLoggingLevel(); // TODO: Initialize to an appropriate value
             DiagnosticLoggingLevel actual;
             target.DiagnosticLoggingLevel = expected;
@@ -104,7 +109,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void OpLoggingTest()
         {
-            IAdminOperations target = CreateIAdminOperations(); // TODO: Initialize to an appropriate value
+            IAdminOperations target = CreateIAdminOperations();
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             target.OpLogging = expected;
@@ -119,7 +124,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void QueryTraceLevelTest()
         {
-            IAdminOperations target = CreateIAdminOperations(); // TODO: Initialize to an appropriate value
+            IAdminOperations target = CreateIAdminOperations();
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             target.QueryTraceLevel = expected;

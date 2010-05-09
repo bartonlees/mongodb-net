@@ -70,26 +70,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectWrapperConstructorTest()
         {
-            IDBObject obj = null; // TODO: Initialize to an appropriate value
-            DBObjectWrapper target = new DBObjectWrapper(obj);
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
-        /// <summary>
-        ///A test for Object
-        ///</summary>
-        [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
-        public void ObjectTest()
-        {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBObjectWrapper_Accessor target = new DBObjectWrapper_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBObject expected = null; // TODO: Initialize to an appropriate value
-            IDBObject actual;
-            target.Object = expected;
-            actual = target.Object;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObjectWrapper target = new DBObjectWrapper(new DBObject(){{"a",1},{"b",true}});            
         }
     }
 }

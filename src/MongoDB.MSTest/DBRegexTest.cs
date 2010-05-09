@@ -87,7 +87,7 @@ namespace MongoDB.MSTest
             DBRegex target = new DBRegex(p, o); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
-            actual = target.getOptions();
+            actual = target.GetOptions();
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
@@ -103,7 +103,7 @@ namespace MongoDB.MSTest
             DBRegex target = new DBRegex(p, o); // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
-            actual = target.getPattern();
+            actual = target.Pattern;
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }

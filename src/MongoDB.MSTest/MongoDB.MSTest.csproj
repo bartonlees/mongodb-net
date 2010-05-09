@@ -58,11 +58,8 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssertInfoTest.cs" />
-    <Compile Include="BuildInfoTest.cs" />
     <Compile Include="ContractDBObjectTest.cs" />
     <Compile Include="ContractDocumentTest.cs" />
-    <Compile Include="DatabaseListTest.cs" />
     <Compile Include="DBBinaryTest.cs" />
     <Compile Include="DBBindingTest.cs" />
     <Compile Include="DBCodeTest.cs" />
@@ -92,7 +89,6 @@
     <Compile Include="IDBCollectionExtensionsTest.cs" />
     <Compile Include="IDBCollectionTest.cs" />
     <Compile Include="IDBConnectionTest.cs" />
-    <Compile Include="IDBCursorBatchTest.cs" />
     <Compile Include="IDBCursorTest.cs" />
     <Compile Include="IDBIndexExtensionsTest.cs" />
     <Compile Include="IDBIndexTest.cs" />

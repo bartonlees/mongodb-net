@@ -6,35 +6,56 @@ using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Represents the state of an IDocument type
+    /// </summary>
     [Flags]
     public enum DocumentState
     {
+        /// <summary>
+        /// 
+        /// </summary>
         None = 0,
         // Summary:
         //     The row has been created but is not part of any System.Data.DataRowCollection.
         //     A System.Data.DataRow is in this state immediately after it has been created
         //     and before it is added to a collection, or if it has been removed from a
         //     collection.
+        /// <summary>
+        /// 
+        /// </summary>
         Detached = 1,
         //
         // Summary:
         //     The row has not changed since System.Data.DataRow.AcceptChanges() was last
         //     called.
+        /// <summary>
+        /// 
+        /// </summary>
         Unchanged = 2,
         //
         // Summary:
         //     The row has been added to a System.Data.DataRowCollection, and System.Data.DataRow.AcceptChanges()
         //     has not been called.
+        /// <summary>
+        /// 
+        /// </summary>
         Added = 4,
         //
         // Summary:
         //     The row was deleted using the System.Data.DataRow.Delete() method of the
         //     System.Data.DataRow.
+        /// <summary>
+        /// 
+        /// </summary>
         Deleted = 8,
         //
         // Summary:
         //     The row has been modified and System.Data.DataRow.AcceptChanges() has not
         //     been called.
+        /// <summary>
+        /// 
+        /// </summary>
         Modified = 16,
     }
 

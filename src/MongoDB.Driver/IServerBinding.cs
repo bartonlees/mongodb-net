@@ -6,6 +6,9 @@ using System.Net;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Represents connection details for a logical server (could be a pool of servers in reality)
+    /// </summary>
     public interface IServerBinding
     {
         IDBBinding GetDBBinding(Uri name);

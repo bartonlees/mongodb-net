@@ -8,7 +8,12 @@ using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
-    //http://www.smelser.net/blog/post/2010/03/05/When-Activator-is-just-to-slow.aspx
+    
+    /// <summary>
+    /// Creates a new document instance using a dynamically created (and emitted) lambda expression. See:
+    /// http://www.smelser.net/blog/post/2010/03/05/When-Activator-is-just-to-slow.aspx
+    /// </summary>
+    /// <typeparam name="TDoc">The type of the doc.</typeparam>
     public static class DocumentFactory<TDoc> where TDoc : class, IDocument
     {
         static DocumentFactory()
@@ -25,6 +30,12 @@ namespace MongoDB.Driver
 
         static Func<Oid, bool, TDoc> _Ctor = null;
 
+        /// <summary>
+        /// Creates the document.
+        /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="partial">if set to <c>true</c> [partial].</param>
+        /// <returns></returns>
         public static TDoc CreateDocument(Oid id, bool partial)
         {
             return _Ctor(id, partial);

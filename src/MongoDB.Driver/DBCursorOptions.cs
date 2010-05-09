@@ -6,13 +6,27 @@ using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// Bitwise Cursor option flags
+    /// </summary>
     [Flags]
     public enum CursorFlags
     {
+        /// <summary>
+        /// No flags are specified
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// Tailable Cursor
+        /// </summary>
         TailableCursor = 2,
+        /// <summary>
+        /// Whether or not connecting to a Slave is OK
+        /// </summary>
         SlaveOK = 4,
-        //Oplog replay: 8 (internal replication use only - drivers should not implement)
+        /// <summary>
+        /// Oplog replay: 8 (internal replication use only - drivers should not implement)
+        /// </summary>
         NoCursorTimeout = 16
     }
 

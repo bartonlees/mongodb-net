@@ -5,6 +5,9 @@ using System.Text;
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// A standard, dynamically structured data unit that can be stored to and retrieved from MongoDB
+    /// </summary>
     public class Document : DBObject, IDocument
     {
         /// <summary>

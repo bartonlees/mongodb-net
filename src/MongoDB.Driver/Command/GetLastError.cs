@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MongoDB.Driver.Command
 {
@@ -23,6 +20,11 @@ namespace MongoDB.Driver.Command
 
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Getlasterrors the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <returns></returns>
         public static LastError getlasterror(this IDatabase db)
         {
             IDBObject res = db.ExecuteCommand(_getlasterror);
@@ -37,19 +39,35 @@ namespace MongoDB.Driver.Command
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Convenience wrapper for the result of the <see cref="GetLastError"/> command
+    /// Convenience wrapper for the result of the GetLastError command
     /// </summary>
     public class LastError : DBObjectWrapper
     {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LastError"/> class.
+        /// </summary>
+        /// <param name="res">The res.</param>
         public LastError(IDBObject res)
             : base(res)
         {
         }
 
         //{err : error, n : numberOfErrors, ok : 1}
+        /// <summary>
+        /// Gets the number of errors.
+        /// </summary>
+        /// <value>The number of errors.</value>
         public int NumberOfErrors { get { return Object.GetAsInt("n"); } }
+        /// <summary>
+        /// Gets the error message.
+        /// </summary>
+        /// <value>The error message.</value>
         public string ErrorMessage { get { return Object.GetAsString("err"); } }
+        /// <summary>
+        /// Gets the code.
+        /// </summary>
+        /// <value>The code.</value>
         public DBError.Code Code { get { return DBError.ToCode(ErrorMessage); } }
     }
 }

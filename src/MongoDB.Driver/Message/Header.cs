@@ -1,6 +1,3 @@
-using System;
-using System.Text;
-using System.Collections.Generic;
 using System.IO;
 
 namespace MongoDB.Driver.Message
@@ -10,9 +7,16 @@ namespace MongoDB.Driver.Message
     /// </summary>
     internal abstract class Header : IDBMessage
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public const int HEADER_LENGTH = 16;
 
-        public Header(Operation opCode)  
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Header"/> class.
+        /// </summary>
+        /// <param name="opCode">The op code.</param>
+        public Header(Operation opCode)
         {
             this.OpCode = opCode;
             this.MessageLength = HEADER_LENGTH; //The starting size of any message.
@@ -42,6 +46,12 @@ namespace MongoDB.Driver.Message
         /// <value>request type</value>
         public Operation OpCode { get; private set; }
 
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.Format("length:{0} requestId:{1} responseTo:{2} opCode:{3}",
@@ -93,15 +103,32 @@ namespace MongoDB.Driver.Message
     /// </summary>
     internal abstract class Request : Header, IDBRequest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static int ID = 1;
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="IDBRequest"/> is partial.
+        /// </summary>
+        /// <value><c>true</c> if partial; otherwise, <c>false</c>.</value>
         public bool Partial { get; private set; }
-        public Request(Operation opCode, bool partial = false) : base(opCode)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Request"/> class.
+        /// </summary>
+        /// <param name="opCode">The op code.</param>
+        /// <param name="partial">if set to <c>true</c> [partial].</param>
+        public Request(Operation opCode, bool partial = false)
+            : base(opCode)
         {
             Partial = partial;
             this.RequestID = ID++;
             this.ResponseTo = 0;
         }
 
+        /// <summary>
+        /// Writes the specified writer.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         public void Write(WireProtocolWriter writer)
         {
             //Write the header
@@ -119,8 +146,17 @@ namespace MongoDB.Driver.Message
             writer.Seek(finish, SeekOrigin.Begin);
         }
 
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected abstract void WriteBody(WireProtocolWriter writer);
 
+        /// <summary>
+        /// Writes the DB object.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
+        /// <param name="dbo">The dbo.</param>
         protected virtual void WriteDBObject(WireProtocolWriter writer, IDBObject dbo)
         {
             writer.Write(dbo);

@@ -1,13 +1,8 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
-using System.Net;
 using System;
-using System.Net.Sockets;
-using System.Diagnostics.Contracts;
-using MongoDB.Driver.Platform.Util;
+using System.Net;
 using MongoDB.Driver.Platform.Conditions;
-using System.Linq;
 namespace MongoDB.Driver
 {
     /// <summary>
@@ -22,12 +17,13 @@ namespace MongoDB.Driver
     /// ServerBinding withport = new ServerBinding("localhost", 1910);
     /// //Equivalent to "mongo://localhost:1910"
     /// </code>
-    /// </summary>
     public class ServerBinding : IServerBinding
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerBinding"/> class from a valid, absolute mongo URI string:
         /// </summary>
+        /// <param name="address">The URL format.</param>
+        /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         /// <code>
         /// ServerBinding loopback = new ServerBinding("mongo://localhost");
         /// ServerBinding ipv4loopback = new ServerBinding("mongo://127.0.0.1");
@@ -36,9 +32,8 @@ namespace MongoDB.Driver
         /// ServerBinding ipv4loopbackport = new ServerBinding("mongo://127.0.0.1:1910");
         /// ServerBinding ipv6loopbackport = new ServerBinding("mongo://[::1]:1910");
         /// </code>
-        /// <param name="address">The URL format.</param>
         public ServerBinding(string address, bool readOnly = false)
-            : this(new Uri(address, UriKind.Absolute),readOnly)
+            : this(new Uri(address, UriKind.Absolute), readOnly)
         {
         }
 
@@ -46,6 +41,7 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="ServerBinding"/> class.
         /// </summary>
         /// <param name="uri">The URI with a format of <code>"mongo://host:port"</code>.</param>
+        /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         public ServerBinding(Uri uri, bool readOnly = false)
         {
             Condition.Requires(uri, "uri")
@@ -59,7 +55,7 @@ namespace MongoDB.Driver
                 IPAddress address = IPAddress.Parse(_Uri.Host);
                 if (IPAddress.IsLoopback(address))
                 {
-                    _Addresses = new IPAddress[] {IPAddress.Loopback};
+                    _Addresses = new IPAddress[] { IPAddress.Loopback };
                 }
             }
             else if (_Uri.Host.Equals("localhost", StringComparison.CurrentCultureIgnoreCase))
@@ -73,18 +69,19 @@ namespace MongoDB.Driver
                 _Addresses = Dns.GetHostAddresses(_Uri.DnsSafeHost);
             }
         }
-     
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerBinding"/> class with the specified host and port
         /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="port">The port.</param>
+        /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         /// <code>
         /// ServerBinding b = new ServerBinding("localhost", 1910);
         /// //Result would be: "mongo://localhost:1910/db"
-        /// </code>        
-        /// <param name="host">The host.</param>
-        /// <param name="port">The port.</param>
+        /// </code>
         public ServerBinding(string host, int port, bool readOnly = false)
-            : this(port == ServerBinding.DefaultPort ? string.Format("mongo://{0}", host.Trim()) 
+            : this(port == ServerBinding.DefaultPort ? string.Format("mongo://{0}", host.Trim())
                 : string.Format("mongo://{0}:{1}", host.Trim(), port), readOnly)
         {
         }
@@ -93,7 +90,7 @@ namespace MongoDB.Driver
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
@@ -201,12 +198,21 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the DB binding.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public IDBBinding GetDBBinding(Uri name)
         {
             return new DBBinding(this, name, ReadOnly);
         }
 
 
+        /// <summary>
+        /// Toes the URI.
+        /// </summary>
+        /// <returns></returns>
         public Uri ToUri()
         {
             return _Uri;

@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿#pragma warning disable 0612
+using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;

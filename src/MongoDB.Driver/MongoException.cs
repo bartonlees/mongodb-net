@@ -36,9 +36,16 @@ namespace MongoDB.Driver
             return t;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class Response : MongoException
         {
-            public IDBResponse ActualResponse { get; private set;}
+            /// <summary>
+            /// Gets or sets the actual response.
+            /// </summary>
+            /// <value>The actual response.</value>
+            public IDBResponse ActualResponse { get; private set; }
             internal Response(string msg, IDBResponse response)
                 : base(msg)
             {
@@ -46,6 +53,9 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class Authentication : MongoException
         {
             internal Authentication(string username)
@@ -55,8 +65,15 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class LastError : MongoException
         {
+            /// <summary>
+            /// Gets or sets the actual last error.
+            /// </summary>
+            /// <value>The actual last error.</value>
             public MongoDB.Driver.LastError ActualLastError { get; private set; }
             internal LastError(MongoDB.Driver.LastError lastError)
                 : base(lastError.ErrorMessage)
@@ -65,6 +82,9 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class Network : MongoException
         {
 
@@ -82,8 +102,15 @@ namespace MongoDB.Driver
             internal System.IO.IOException _ioe;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public sealed class DuplicateKey : MongoException
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="DuplicateKey"/> class.
+            /// </summary>
+            /// <param name="msg">The MSG.</param>
             public DuplicateKey(string msg)
                 : base(msg)
             {

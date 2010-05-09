@@ -25,7 +25,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace MongoDB.Driver.Platform.Util
 {
@@ -33,6 +32,7 @@ namespace MongoDB.Driver.Platform.Util
     /// Represents a fixed-size pool of available items that can be removed
     /// as needed and returned when finished.
     /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Pool<T> : IEnumerable<T> where T : new()
     {
         /// <summary>
@@ -75,6 +75,7 @@ namespace MongoDB.Driver.Platform.Util
         /// <summary>
         /// Gets the number of available items in the Pool.
         /// </summary>
+        /// <value>The available count.</value>
         /// <remarks>
         /// Retrieving this property is an O(1) operation.
         /// </remarks>
@@ -87,6 +88,7 @@ namespace MongoDB.Driver.Platform.Util
         /// <summary>
         /// Gets the number of active items in the Pool.
         /// </summary>
+        /// <value>The active count.</value>
         /// <remarks>
         /// Retrieving this property is an O(1) operation.
         /// </remarks>
@@ -99,6 +101,7 @@ namespace MongoDB.Driver.Platform.Util
         /// <summary>
         /// Gets the total number of items in the Pool.
         /// </summary>
+        /// <value>The capacity.</value>
         /// <remarks>
         /// Retrieving this property is an O(1) operation.
         /// </remarks>
@@ -111,7 +114,7 @@ namespace MongoDB.Driver.Platform.Util
         /// <summary>
         /// Initializes a new instance of the Pool class.
         /// </summary>
-        /// <param name="numItems">Total number of items in the Pool.</param>
+        /// <param name="capacity">The capacity.</param>
         /// <exception cref="ArgumentException">
         /// Number of items is less than 1.
         /// </exception>
@@ -163,7 +166,9 @@ namespace MongoDB.Driver.Platform.Util
         /// <summary>
         /// Removes an available item from the Pool and makes it active.
         /// </summary>
-        /// <returns>The node that is removed from the available Pool.</returns>
+        /// <returns>
+        /// The node that is removed from the available Pool.
+        /// </returns>
         /// <exception cref="InvalidOperationException">
         /// There are no available items in the Pool.
         /// </exception>
@@ -210,7 +215,7 @@ namespace MongoDB.Driver.Platform.Util
 
 
         /// <summary>
-        /// Sets the value of the item in the Pool associated with the 
+        /// Sets the value of the item in the Pool associated with the
         /// given node.
         /// </summary>
         /// <param name="item">The node whose item value is to be set.</param>
@@ -235,19 +240,15 @@ namespace MongoDB.Driver.Platform.Util
 
 
         /// <summary>
-        /// Copies the active items to an existing one-dimensional Array, 
-        /// starting at the specified array index. 
+        /// Copies the active items to an existing one-dimensional Array,
+        /// starting at the specified array index.
         /// </summary>
-        /// <param name="array">
-        /// The one-dimensional array to which active Pool items will be 
-        /// copied.
-        /// </param>
-        /// <param name="arrayIndex">
-        /// The index in array at which copying begins.
-        /// </param>
+        /// <param name="array">The one-dimensional array to which active Pool items will be
+        /// copied.</param>
+        /// <param name="arrayIndex">The index in array at which copying begins.</param>
         /// <returns>The number of items copied.</returns>
         /// <remarks>
-        /// This method is an O(n) operation, where n is the smaller of 
+        /// This method is an O(n) operation, where n is the smaller of
         /// capacity or the array length.
         /// </remarks>
         public int CopyTo(T[] array, int arrayIndex)
@@ -272,13 +273,13 @@ namespace MongoDB.Driver.Platform.Util
 
 
         /// <summary>
-        /// Gets an enumerator that iterates through the active items 
+        /// Gets an enumerator that iterates through the active items
         /// in the Pool.
         /// </summary>
         /// <returns>Enumerator for the active items.</returns>
         /// <remarks>
-        /// This method is an O(n) operation, 
-        /// where n is Capacity divided by ActiveCount. 
+        /// This method is an O(n) operation,
+        /// where n is Capacity divided by ActiveCount.
         /// </remarks>
         public IEnumerator<T> GetEnumerator()
         {
@@ -293,12 +294,13 @@ namespace MongoDB.Driver.Platform.Util
 
 
         /// <summary>
-        /// Gets an enumerator that iterates through the active nodes 
+        /// Gets an enumerator that iterates through the active nodes
         /// in the Pool.
         /// </summary>
+        /// <value>The active nodes.</value>
         /// <remarks>
-        /// This method is an O(n) operation, 
-        /// where n is Capacity divided by ActiveCount. 
+        /// This method is an O(n) operation,
+        /// where n is Capacity divided by ActiveCount.
         /// </remarks>
         public IEnumerable<Node> ActiveNodes
         {
@@ -316,11 +318,12 @@ namespace MongoDB.Driver.Platform.Util
 
 
         /// <summary>
-        /// Gets an enumerator that iterates through all of the nodes 
+        /// Gets an enumerator that iterates through all of the nodes
         /// in the Pool.
         /// </summary>
+        /// <value>All nodes.</value>
         /// <remarks>
-        /// This method is an O(1) operation. 
+        /// This method is an O(1) operation.
         /// </remarks>
         public IEnumerable<Node> AllNodes
         {

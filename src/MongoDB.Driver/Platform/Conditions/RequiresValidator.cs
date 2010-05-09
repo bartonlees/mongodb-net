@@ -34,11 +34,14 @@ namespace MongoDB.Driver.Platform.Conditions
     /// <typeparam name="T">The type of the argument to be validated</typeparam>
     internal sealed class RequiresValidator<T> : ConditionValidator<T>
     {
-        internal RequiresValidator(string argumentName, T value) : base(argumentName, value)
+        internal RequiresValidator(string argumentName, T value)
+            : base(argumentName, value)
         {
         }
 
-        /// <summary>Throws an exception.</summary>
+        /// <summary>
+        /// Throws an exception.
+        /// </summary>
         /// <param name="condition">Describes the condition that doesn't hold, e.g., "Value should not be
         /// null".</param>
         /// <param name="additionalMessage">An additional message that will be appended to the exception

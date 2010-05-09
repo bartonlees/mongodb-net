@@ -1,12 +1,7 @@
 ﻿//DEVFUEL COPYRIGHT
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Linq.Expressions;
-using MongoDB.Driver.Platform.Conditions;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace MongoDB.Driver
 {
@@ -43,6 +38,12 @@ namespace MongoDB.Driver
         }
 
 
+        /// <summary>
+        /// Incs the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier Inc(string fieldName, object value)
         {
             if (!ContainsKey("$inc"))
@@ -53,6 +54,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Sets the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier Set(string fieldName, object value)
         {
             if (!ContainsKey("$set"))
@@ -63,6 +70,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Unsets the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier Unset(string fieldName, object value)
         {
             if (!ContainsKey("$unset"))
@@ -73,6 +86,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Pushes the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier Push(string fieldName, object value)
         {
             if (!ContainsKey("$push"))
@@ -83,6 +102,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Pushes all.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier PushAll(string fieldName, IList value)
         {
             if (!ContainsKey("$pushAll"))
@@ -93,6 +118,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Adds to set.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier AddToSet(string fieldName, object value)
         {
             if (!ContainsKey("$addToSet"))
@@ -103,12 +134,24 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Adds the each to set.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier AddEachToSet(string fieldName, IList value)
         {
             return AddToSet(fieldName, new DBObject("$each", value));
         }
 
-        public DBModifier Pop(string fieldName, bool fromTop = true )
+        /// <summary>
+        /// Pops the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="fromTop">if set to <c>true</c> [from top].</param>
+        /// <returns></returns>
+        public DBModifier Pop(string fieldName, bool fromTop = true)
         {
             if (!ContainsKey("$pop"))
             {
@@ -118,6 +161,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Pulls the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier Pull(string fieldName, object value)
         {
             if (!ContainsKey("$pull"))
@@ -128,6 +177,12 @@ namespace MongoDB.Driver
             return this;
         }
 
+        /// <summary>
+        /// Pulls all.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public DBModifier PullAll(string fieldName, IList value)
         {
             if (!ContainsKey("$pullAll"))
@@ -139,53 +194,116 @@ namespace MongoDB.Driver
         }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Do
     {
+        /// <summary>
+        /// Incs the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier Inc(string fieldName, object value)
         {
             return new DBModifier().Inc(fieldName, value);
         }
 
+        /// <summary>
+        /// Sets the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier Set(string fieldName, object value)
         {
             return new DBModifier().Set(fieldName, value);
         }
 
+        /// <summary>
+        /// Unsets the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier Unset(string fieldName, object value)
         {
             return new DBModifier().Unset(fieldName, value);
         }
 
+        /// <summary>
+        /// Pushes the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier Push(string fieldName, object value)
         {
             return new DBModifier().Push(fieldName, value);
         }
 
+        /// <summary>
+        /// Pushes all.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier PushAll(string fieldName, IList value)
         {
             return new DBModifier().PushAll(fieldName, value);
         }
 
+        /// <summary>
+        /// Adds to set.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier AddToSet(string fieldName, object value)
         {
             return new DBModifier().AddToSet(fieldName, value);
         }
 
+        /// <summary>
+        /// Adds the each to set.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier AddEachToSet(string fieldName, IList value)
         {
             return new DBModifier().AddEachToSet(fieldName, value);
         }
 
+        /// <summary>
+        /// Pops the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="fromTop">if set to <c>true</c> [from top].</param>
+        /// <returns></returns>
         public static DBModifier Pop(string fieldName, bool fromTop = true)
         {
             return new DBModifier().Pop(fieldName, fromTop);
         }
 
+        /// <summary>
+        /// Pulls the specified field name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier Pull(string fieldName, object value)
         {
             return new DBModifier().Pull(fieldName, value);
         }
 
+        /// <summary>
+        /// Pulls all.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         public static DBModifier PullAll(string fieldName, IList value)
         {
             return new DBModifier().PullAll(fieldName, value);

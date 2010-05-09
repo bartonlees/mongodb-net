@@ -1,12 +1,12 @@
 //COPYRIGHT
 
 using System;
-using System.Security.Cryptography;
-using System.Text;
 using System.Collections;
-using System.Security;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Security;
+using System.Security.Cryptography;
+using System.Text;
 namespace MongoDB.Driver.Platform.Util
 {
     /// <summary>
@@ -35,12 +35,21 @@ namespace MongoDB.Driver.Platform.Util
             MD5CryptoServiceProvider x = new MD5CryptoServiceProvider();
             return toHex(x.ComputeHash(data));
         }
+        /// <summary>
+        /// Hexes the M d5.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        /// <returns></returns>
         public static string hexMD5(string data)
         {
             return hexMD5(Encoding.Default.GetBytes(data));
         }
 
 
+        /// <summary>
+        /// Shuffles the specified elements.
+        /// </summary>
+        /// <param name="elements">The elements.</param>
         public static void Shuffle(IList elements)
         {
             Random rng = new Random();
@@ -55,6 +64,12 @@ namespace MongoDB.Driver.Platform.Util
             }
         }
 
+        /// <summary>
+        /// _hashes the specified username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="passwd">The passwd.</param>
+        /// <returns></returns>
         public static string _hash(string username, SecureString passwd)
         {
             //TODO:non-ascii check for secure string?
@@ -67,6 +82,12 @@ namespace MongoDB.Driver.Platform.Util
             return hexMD5(username + ":mongo:" + passwd);
         }
 
+        /// <summary>
+        /// _hashes the specified username.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="passwd">The passwd.</param>
+        /// <returns></returns>
         public static string _hash(string username, IEnumerable<char> passwd)
         {
             SecureString ss = new SecureString();
@@ -77,6 +98,11 @@ namespace MongoDB.Driver.Platform.Util
             return _hash(username, ss);
         }
 
+        /// <summary>
+        /// Appends the specified secure string.
+        /// </summary>
+        /// <param name="secureString">The secure string.</param>
+        /// <param name="value">The value.</param>
         public static void Append(this SecureString secureString, string value)
         {
             foreach (char c in value.ToCharArray())
@@ -85,6 +111,11 @@ namespace MongoDB.Driver.Platform.Util
             }
         }
 
+        /// <summary>
+        /// Appends the specified secure string.
+        /// </summary>
+        /// <param name="secureString">The secure string.</param>
+        /// <param name="value">The value.</param>
         public static void Append(this SecureString secureString, SecureString value)
         {
 
@@ -93,7 +124,7 @@ namespace MongoDB.Driver.Platform.Util
             //TODO make sure my byte count assumptions are correct
             try
             {
-                for (int i = 0; i < value.Length; i++ )
+                for (int i = 0; i < value.Length; i++)
                 {
                     secureString.AppendChar(Convert.ToChar(Marshal.ReadInt16(bstr)));
                 }

@@ -41,7 +41,7 @@ namespace MongoDB.Driver.Platform.IO
         /// Function which, when given a position within a file and a byte, states whether
         /// or not the byte represents the start of a character.
         /// </summary>
-        private Func<long,byte,bool> characterStartDetector;
+        private Func<long, byte, bool> characterStartDetector;
 
         /// <summary>
         /// Creates a LineReader from a stream source. The delegate is only
@@ -76,7 +76,7 @@ namespace MongoDB.Driver.Platform.IO
         {
         }
 
-            /// <summary>
+        /// <summary>
         /// Creates a LineReader from a stream source. The delegate is only
         /// called when the enumerator is fetched.
         /// </summary>
@@ -113,11 +113,12 @@ namespace MongoDB.Driver.Platform.IO
                 throw new ArgumentException("Only single byte, UTF-8 and Unicode encodings are permitted");
             }
         }
-        
+
         /// <summary>
         /// Returns the enumerator reading strings backwards. If this method discovers that
         /// the returned stream is either unreadable or unseekable, a NotSupportedException is thrown.
         /// </summary>
+        /// <returns></returns>
         public IEnumerator<string> GetEnumerator()
         {
             Stream stream = streamSource();

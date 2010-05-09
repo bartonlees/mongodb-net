@@ -2,10 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Linq.Expressions;
-using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
@@ -51,7 +48,7 @@ namespace MongoDB.Driver
             return new DBQuery(whereClause);
         }
 
-        
+
         /// <summary>
         /// Convenience constructor.
         /// Initializes a new instance of the <see cref="DBQuery"/> class.
@@ -78,6 +75,9 @@ namespace MongoDB.Driver
         public static DBQuery IsMaster { get { return _IsMaster; } }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class Where
     {
         /// <summary>

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace MongoDB.Driver.Message
 {
@@ -23,22 +21,37 @@ namespace MongoDB.Driver.Message
         /// <value>The IDs of the cursors to kill.</value>
         public List<long> CursorIDs { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KillCursors"/> class.
+        /// </summary>
         public KillCursors()
             : base(Operation.KillCursors)
         {
             CursorIDs = new List<long>();
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KillCursors"/> class.
+        /// </summary>
+        /// <param name="cursorIDs">The cursor I ds.</param>
         public KillCursors(params long[] cursorIDs)
             : base(Operation.KillCursors)
         {
             CursorIDs = new List<long>(cursorIDs);
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="KillCursors"/> class.
+        /// </summary>
+        /// <param name="cursorIDs">The cursor I ds.</param>
         public KillCursors(IEnumerable<long> cursorIDs)
             : base(Operation.KillCursors)
         {
             CursorIDs = new List<long>(cursorIDs);
         }
 
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected override void WriteBody(WireProtocolWriter writer)
         {
             writer.Write(0);

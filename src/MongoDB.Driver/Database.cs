@@ -1,18 +1,13 @@
 //COPYRIGHT
 
 using System;
-using MongoDB.Driver.Platform.Util;
 using System.Collections.Generic;
-using MongoDB.Driver.Platform.IO;
-using System.IO;
-using MongoDB.Driver.Platform.Conversion;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Command;
-using System.Security;
-using System.Text;
-using MongoDB.Driver.Command.Admin;
 using System.Data;
-using System.Transactions;
+using System.Security;
+using MongoDB.Driver.Command;
+using MongoDB.Driver.Command.Admin;
+using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Platform.Util;
 namespace MongoDB.Driver
 {
 
@@ -23,7 +18,16 @@ namespace MongoDB.Driver
     {
         /** The maximum number of cursors allowed */
         public static int NUM_CURSORS_BEFORE_KILL = 100;
+        /// <summary>
+        /// Gets the server hosting this database
+        /// </summary>
+        /// <value>The server.</value>
         public IServer Server { get; private set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Database"/> class.
+        /// </summary>
+        /// <param name="server">The server.</param>
+        /// <param name="binding">The binding.</param>
         public Database(IServer server, IDBBinding binding)
         {
             Server = server;
@@ -55,7 +59,10 @@ namespace MongoDB.Driver
             return c;
         }
 
-        public static HashSet<string> StandardCollectionNames = new HashSet<string>(new string[] {"admin", "system.namespaces" });
+        /// <summary>
+        /// 
+        /// </summary>
+        public static HashSet<string> StandardCollectionNames = new HashSet<string>(new string[] { "admin", "system.namespaces" });
 
         private bool IsStandardCollection(System.Uri collectionUri)
         {
@@ -109,6 +116,11 @@ namespace MongoDB.Driver
             return Uri.ToString();
         }
 
+        /// <summary>
+        /// Adds the user.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="passwd">The passwd.</param>
         public void AddUser(string username, SecureString passwd)
         {
             if (ReadOnly)
@@ -121,11 +133,20 @@ namespace MongoDB.Driver
             c.Save(o);
         }
 
+        /// <summary>
+        /// Execute a database command directly. <a href="http://mongodb.onconfluence.com/display/DOCS/Mongo+Commands">Mongo Commands</a>
+        /// </summary>
+        /// <param name="cmd">The command object to execute.</param>
+        /// <returns>The response object</returns>
         public IDBObject ExecuteCommand(DBQuery cmd)
         {
             return CmdCollection.FindOne(cmd);
         }
 
+        /// <summary>
+        /// Gets the special $cmd collection.
+        /// </summary>
+        /// <value>The $cmd collection.</value>
         public IDBCollection CmdCollection
         {
             get
@@ -134,23 +155,39 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the database binding.
+        /// </summary>
+        /// <value>The binding.</value>
         public IDBBinding Binding { get; private set; }
         Dictionary<string, DBCollection> _CollectionLookup = new Dictionary<string, DBCollection>();
         static List<IDBObject> EMPTY = new List<IDBObject>();
 
 
 
+        /// <summary>
+        /// The fully-qualified URI of this database.
+        /// </summary>
+        /// <value>The URI.</value>
         public Uri Uri
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether we are in a ReadOnly mode.
+        /// </summary>
+        /// <value><c>true</c> if read only; otherwise, <c>false</c>.</value>
         public bool ReadOnly { get { return Binding.ReadOnly; } }
 
+        /// <summary>
+        /// Enumerates the collection available on this database.
+        /// </summary>
+        /// <value>The collections.</value>
         public IEnumerable<IDBCollection> Collections
         {
-            get 
+            get
             {
                 foreach (Uri collectionUri in this.GetCollectionNames())
                 {
@@ -159,36 +196,63 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the <see cref="MongoDB.Driver.IDBCollection"/> with the specified collection URI.
+        /// </summary>
+        /// <value></value>
         public IDBCollection this[Uri collectionUri]
         {
             get { return GetCollection(collectionUri); }
         }
 
+        /// <summary>
+        /// Gets the <see cref="MongoDB.Driver.IDBCollection"/> with the specified collection URI.
+        /// </summary>
+        /// <value></value>
         public IDBCollection this[string collectionUri]
         {
             get { return this.GetCollection(collectionUri); }
         }
 
 
+        /// <summary>
+        /// Clears the collection cache.
+        /// </summary>
         public void ClearCollectionCache()
         {
             _CollectionLookup.Clear();
         }
 
 
+        /// <summary>
+        /// Gets the name of this database.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name
         {
             get { return Uri.GetDatabaseName(); }
         }
 
+        /// <summary>
+        /// Gets the admin.
+        /// </summary>
+        /// <value>The admin.</value>
         protected IAdminOperations Admin { get { return this as IAdminOperations; } }
 
+        /// <summary>
+        /// Gets the build info.
+        /// </summary>
+        /// <value>The build info.</value>
         public BuildInfo BuildInfo
         {
             get { return Admin.buildinfo(); }
         }
 
         DiagnosticLoggingLevel _DiagnosticLoggingLevel = DiagnosticLoggingLevel.Unknown;
+        /// <summary>
+        /// Gets or sets the diagnostic logging level.
+        /// </summary>
+        /// <value>The diagnostic logging level.</value>
         public DiagnosticLoggingLevel DiagnosticLoggingLevel
         {
             get
@@ -228,6 +292,10 @@ namespace MongoDB.Driver
         }
 
 
+        /// <summary>
+        /// Drops the collection.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
         public void DropCollection(IDBCollection collection)
         {
             if (ReadOnly)

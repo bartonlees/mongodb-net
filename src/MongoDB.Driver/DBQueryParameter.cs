@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Linq.Expressions;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
@@ -32,7 +30,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBQueryParameter SetFieldName(string name)
         {
-            Name = name; 
+            Name = name;
             return this;
         }
 
@@ -353,7 +351,7 @@ namespace MongoDB.Driver
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
@@ -375,9 +373,15 @@ namespace MongoDB.Driver
     internal static class LambdaExpressionExtensions
     {
         //Func<DBQueryField, DBQueryField, DBQueryField, bool>
-        public static DBQuery ToDBQuery<T>(this Expression<T> selector) where T:class
+        /// <summary>
+        /// Toes the DB query.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="selector">The selector.</param>
+        /// <returns></returns>
+        public static DBQuery ToDBQuery<T>(this Expression<T> selector) where T : class
         {
-            
+
             object[] fields = new object[selector.Parameters.Count];
             int i = 0;
             foreach (ParameterExpression px in selector.Parameters)

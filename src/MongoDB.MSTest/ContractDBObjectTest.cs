@@ -43,15 +43,13 @@ namespace MongoDB.MSTest
     {
         public int Data;
         public string Caption;
-        private float _secret;
-        public global::Newtonsoft.Json.Bson.BsonObjectId _id { get; set; }
+        public Oid _id { get; set; }
     }
 
     public struct TestContractStructNoID
     {
         public int Data;
         public string Caption;
-        private float _secret;
     }
     
     /// <summary>

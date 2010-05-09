@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 
 namespace MongoDB.Driver.Message
 {
@@ -28,13 +26,23 @@ namespace MongoDB.Driver.Message
         /// </summary>
         /// <value>The selector document.</value>
         public IDBObject DeleteQuery { get; set; }
-        
-        public Delete(IDBObject objectToDelete, string fullNameSpace) : base(Operation.Delete)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Delete"/> class.
+        /// </summary>
+        /// <param name="objectToDelete">The object to delete.</param>
+        /// <param name="fullNameSpace">The full name space.</param>
+        public Delete(IDBObject objectToDelete, string fullNameSpace)
+            : base(Operation.Delete)
         {
             FullNameSpace = fullNameSpace;
             DeleteQuery = objectToDelete;
         }
-        
+
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected override void WriteBody(WireProtocolWriter writer)
         {
             writer.Write(0);

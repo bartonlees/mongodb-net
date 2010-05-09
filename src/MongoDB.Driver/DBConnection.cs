@@ -1,22 +1,17 @@
 //COPYRIGHT
 
-using System.Net;
-using System.Runtime.CompilerServices;
-using MongoDB.Driver.Platform.Util;
-using System.Threading;
 using System;
-using System.Collections.Generic;
-using MongoDB.Driver.Platform.IO;
-using System.IO;
-using System.Net.Sockets;
-using MongoDB.Driver.Platform.Conversion;
-using System.Linq;
-using MongoDB.Driver.Platform.Conditions;
-using System.Security;
-using MongoDB.Driver.Command;
-using System.Text;
-using System.Runtime.InteropServices;
 using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+using System.Runtime.CompilerServices;
+using System.Security;
+using System.Threading;
+using MongoDB.Driver.Command;
+using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Platform.IO;
+using MongoDB.Driver.Platform.Util;
 namespace MongoDB.Driver
 {
 
@@ -25,13 +20,20 @@ namespace MongoDB.Driver
     /// </summary>
     internal class DBConnection : IDBConnection
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static TraceSource _ts = new TraceSource("DBConnection", SourceLevels.All);
         bool _Disposed = false;
 
         private NetworkStream _NetworkStream = null;
+        /// <summary>
+        /// Gets the network stream.
+        /// </summary>
+        /// <value>The network stream.</value>
         protected NetworkStream NetworkStream
         {
-            get 
+            get
             {
                 if (_Disposed)
                 {
@@ -44,11 +46,16 @@ namespace MongoDB.Driver
 
                     _NetworkStream = _Client.GetStream();
                 }
-                return _NetworkStream; 
+                return _NetworkStream;
             }
         }
 
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBConnection"/> class.
+        /// </summary>
+        /// <param name="addr">The addr.</param>
+        /// <param name="options">The options.</param>
         public DBConnection(IPEndPoint addr, DBConnectionOptions options)
         {
             Condition.Requires(addr, "addr").IsNotNull();
@@ -57,11 +64,21 @@ namespace MongoDB.Driver
             EndPoint = addr;
         }
 
+        /// <summary>
+        /// Calls the specified MSG.
+        /// </summary>
+        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <param name="msg">The MSG.</param>
+        /// <returns></returns>
         public IDBResponse<TDoc> Call<TDoc>(IDBRequest msg) where TDoc : class, IDocument
         {
             return _SendRequest<TDoc>(msg, true); ;
         }
 
+        /// <summary>
+        /// Says the specified MSG.
+        /// </summary>
+        /// <param name="msg">The MSG.</param>
         public void Say(IDBRequest msg)
         {
             _SendRequest<Document>(msg, false);
@@ -110,7 +127,7 @@ namespace MongoDB.Driver
                 {
                     _Client = new TcpClient();
                     _ts.TraceEvent(TraceEventType.Verbose, _Client.GetHashCode(), "Connecting: {0}", EndPoint);
-                    _Client.SendTimeout = Options.SendTimeout; 
+                    _Client.SendTimeout = Options.SendTimeout;
                     _Client.ReceiveTimeout = Options.ReceiveTimeout;
                     _Client.NoDelay = Options.NoDelay;
                     _Client.LingerState = Options.LingerState;
@@ -142,6 +159,12 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
             if (_Disposed)
@@ -151,6 +174,12 @@ namespace MongoDB.Driver
             return EndPoint.GetHashCode();
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String"/> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String"/> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             if (_Disposed)
@@ -160,15 +189,32 @@ namespace MongoDB.Driver
             return EndPoint.ToString();
         }
 
+        /// <summary>
+        /// Gets or sets the end point.
+        /// </summary>
+        /// <value>The end point.</value>
         public IPEndPoint EndPoint { get; private set; }
+        /// <summary>
+        /// Gets or sets the options.
+        /// </summary>
+        /// <value>The options.</value>
         public DBConnectionOptions Options { get; private set; }
         TcpClient _Client;
 
+        /// <summary>
+        /// Gets a value indicating whether this instance can request.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if this instance can request; otherwise, <c>false</c>.
+        /// </value>
         public bool CanRequest
         {
             get { return NetworkStream.CanWrite; }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             if (!_Disposed)
@@ -188,6 +234,13 @@ namespace MongoDB.Driver
 
         bool _authenticated = false;
 
+        /// <summary>
+        /// Tries the authenticate.
+        /// </summary>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="usrPassHash">The usr pass hash.</param>
+        /// <returns></returns>
         public bool TryAuthenticate(IDBCollection cmdCollection, string username, SecureString usrPassHash)
         {
             //If this connection has already authenticated

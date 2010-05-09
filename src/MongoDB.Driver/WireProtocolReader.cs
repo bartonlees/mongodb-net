@@ -1,15 +1,11 @@
 //COPYRIGHT
 #pragma warning disable 0618
-using MongoDB.Driver.Platform.Util;
-using System.Text;
 using System;
-using MongoDB.Driver.Platform.IO;
-using System.IO;
-using MongoDB.Driver.Platform.Conversion;
-using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Reflection;
+using System.IO;
+using System.Text.RegularExpressions;
+using MongoDB.Driver.Platform.Conversion;
+using MongoDB.Driver.Platform.IO;
 
 namespace MongoDB.Driver
 {
@@ -22,11 +18,12 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="WireProtocolReader"/> class.
         /// </summary>
         /// <param name="stream">The stream.</param>
-        public WireProtocolReader(Stream stream) : base(EndianBitConverter.Little, stream)
+        public WireProtocolReader(Stream stream)
+            : base(EndianBitConverter.Little, stream)
         {
         }
 
-        
+
 
 
         TDoc CreateDocument<TDoc>(bool partial) where TDoc : class, IDocument
@@ -36,6 +33,12 @@ namespace MongoDB.Driver
             return document;
         }
 
+        /// <summary>
+        /// Reads the document.
+        /// </summary>
+        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <param name="partial">if set to <c>true</c> [partial].</param>
+        /// <returns></returns>
         public TDoc ReadDocument<TDoc>(bool partial = false) where TDoc : class, IDocument
         {
             if (!BaseStream.CanRead)
@@ -66,7 +69,7 @@ namespace MongoDB.Driver
             if (type == TypeByte.EOO || !BaseStream.CanRead)
                 return false;
 
-            string name = cstring();            
+            string name = cstring();
 
             object created = null;
             IDBObject createdObject = null;
@@ -132,7 +135,7 @@ namespace MongoDB.Driver
 
                     createdObject = o.ContainsKey(name) ? o[name] as IDBObject : null; //Check for an existing object
 
-                    created = created ??  createdObject  ?? CreateDocument<TDoc>(partial);
+                    created = created ?? createdObject ?? CreateDocument<TDoc>(partial);
 
                     while (ReadNextElement<TDoc>((IDBObject)created, partial))
                     {
@@ -180,11 +183,15 @@ namespace MongoDB.Driver
             switch ((BinaryType)bType)
             {
                 case BinaryType.Binary:
-                   return ReadBytes(totalLen);
+                    return ReadBytes(totalLen);
             }
             return new DBBinary((BinaryType)bType, ReadBytes(totalLen));
         }
-        
+
+        /// <summary>
+        /// Cstrings this instance.
+        /// </summary>
+        /// <returns></returns>
         public string cstring()
         {
             List<byte> bytes = new List<byte>(50);
@@ -197,7 +204,11 @@ namespace MongoDB.Driver
             }
             return this.Encoding.GetString(bytes.ToArray());
         }
-        
+
+        /// <summary>
+        /// Data_strings this instance.
+        /// </summary>
+        /// <returns></returns>
         public string data_string()
         {
             int size = ReadInt32() - 1;

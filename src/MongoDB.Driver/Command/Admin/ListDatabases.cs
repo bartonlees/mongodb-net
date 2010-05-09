@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MongoDB.Driver.Command.Admin
 {
@@ -10,6 +8,7 @@ namespace MongoDB.Driver.Command.Admin
         /// <summary>
         /// Returns a list of database names and sizes.
         /// </summary>
+        /// <param name="db">The db.</param>
         /// <returns>the list</returns>
         public static DatabaseList listDatabases(this IAdminOperations db)
         {
@@ -22,13 +21,28 @@ namespace MongoDB.Driver.Command.Admin
     }
 
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class DatabaseList : DBObjectWrapper
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DatabaseList"/> class.
+        /// </summary>
+        /// <param name="response">The response.</param>
         public DatabaseList(IDBObject response)
             : base(response)
         {
         }
+        /// <summary>
+        /// Gets the databases.
+        /// </summary>
+        /// <value>The databases.</value>
         public DBObjectArray Databases { get { return (DBObjectArray)Object["databases"]; } }
+        /// <summary>
+        /// Gets the database names.
+        /// </summary>
+        /// <value>The database names.</value>
         public IEnumerable<Uri> DatabaseNames
         {
             get
@@ -39,6 +53,10 @@ namespace MongoDB.Driver.Command.Admin
                 }
             }
         }
+        /// <summary>
+        /// Gets the sys info.
+        /// </summary>
+        /// <value>The sys info.</value>
         public object SysInfo { get { return Object["sysInfo"]; } }
     }
 }

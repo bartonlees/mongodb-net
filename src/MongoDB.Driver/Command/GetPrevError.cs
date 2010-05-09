@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MongoDB.Driver.Command
 {
@@ -12,6 +9,11 @@ namespace MongoDB.Driver.Command
     /// </summary>
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Getpreverrors the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <returns></returns>
         public static PrevError getpreverror(this IDatabase db)
         {
             IDBObject res = db.ExecuteCommand(_getpreverror);
@@ -21,11 +23,19 @@ namespace MongoDB.Driver.Command
         static DBQuery _getpreverror = new DBQuery("getpreverror", 1);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class PrevError : DBObjectWrapper
     {
         //{ err : errorMessage, nPrev : countOpsBack, ok : 1 }
-        
-        public PrevError(IDBObject response) : base(response)
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PrevError"/> class.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        public PrevError(IDBObject response)
+            : base(response)
         {
         }
 

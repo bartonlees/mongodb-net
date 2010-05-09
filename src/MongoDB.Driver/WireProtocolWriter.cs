@@ -1,17 +1,15 @@
 //COPYRIGHT
 #pragma warning disable 0618
-using System.Collections.Generic;
-using MongoDB.Driver.Platform.Util;
-using System.Text;
-using System.Text.RegularExpressions;
+#pragma warning disable 0612
 using System;
 using System.Collections;
-using MongoDB.Driver.Platform.IO;
+using System.Collections.Generic;
 using System.IO;
-using Writer = MongoDB.Driver.Platform.IO.EndianBinaryWriter;
-using System.Diagnostics;
-using MongoDB.Driver.Platform.Conversion;
+using System.Text;
+using System.Text.RegularExpressions;
 using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Platform.Conversion;
+using MongoDB.Driver.Platform.IO;
 namespace MongoDB.Driver
 {
 
@@ -23,17 +21,21 @@ namespace MongoDB.Driver
         //TODO:Ensure WireProtocolWriter correctly implements IDisposable
         // things that won't get sent in the scope
         static HashSet<string> BAD_GLOBALS = new HashSet<string>() { "db", "local", "core", "args", "obj" };
-        static HashSet<string> DBONLY_FIELDS = new HashSet<string>() { "_ns", "_save", "_update", "_transientFields"};
+        static HashSet<string> DBONLY_FIELDS = new HashSet<string>() { "_ns", "_save", "_update", "_transientFields" };
 
-        public WireProtocolWriter(Stream stream) : base(EndianBitConverter.Little, stream)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WireProtocolWriter"/> class.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        public WireProtocolWriter(Stream stream)
+            : base(EndianBitConverter.Little, stream)
         {
         }
 
-        /** Encodes a <code>DBObject</code>.
-         * This is for the higher level api calls
-         * @param o the object to encode
-         * @return the number of characters in the encoding
-         */
+        /// <summary>
+        /// Writes the specified object.
+        /// </summary>
+        /// <param name="o">the object to encode</param>
         public void Write(IDBObject o)
         {
             element_object(null, o);
@@ -302,14 +304,14 @@ namespace MongoDB.Driver
         {
             element_type(TypeByte.SYMBOL);
             element_name(name);
-            WriteLengthPrefixedNullTerminated(s.Symbol);  
+            WriteLengthPrefixedNullTerminated(s.Symbol);
         }
 
         void element_string(string name, string s)
         {
             element_type(TypeByte.STRING);
             element_name(name);
-            WriteLengthPrefixedNullTerminated(s);  
+            WriteLengthPrefixedNullTerminated(s);
         }
 
         void element_oid(string name, Oid oid)

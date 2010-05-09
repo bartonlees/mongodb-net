@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MongoDB.Driver.Platform.Util;
+﻿using System.Linq;
 using System.Security;
 using MongoDB.Driver.Message;
 
@@ -10,6 +6,13 @@ namespace MongoDB.Driver.Command
 {
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Authenticates the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="nonce">The nonce.</param>
+        /// <param name="key">The key.</param>
         public static void authenticate(this IDatabase db, string username, string nonce, SecureString key)
         {
             DBQuery cmd = BuildQuery_authenticate(username, nonce, key);
@@ -17,6 +20,15 @@ namespace MongoDB.Driver.Command
             res.ThrowIfResponseNotOK("authenticate failed");
         }
 
+        /// <summary>
+        /// Authenticates the specified connection.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="collection">The collection.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="nonce">The nonce.</param>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
         public static bool authenticate(this IDBConnection connection, IDBCollection collection, string username, string nonce, SecureString key)
         {
             DBQuery cmd = BuildQuery_authenticate(username, nonce, key);

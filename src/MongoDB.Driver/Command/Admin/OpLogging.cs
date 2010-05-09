@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command.Admin
 {
     /// <summary>
@@ -10,6 +6,11 @@ namespace MongoDB.Driver.Command.Admin
     /// </summary>
     internal static partial class AdminCommandExtensions
     {
+        /// <summary>
+        /// Ops the logging.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <param name="useOpLogging">if set to <c>true</c> [use op logging].</param>
         public static void opLogging(this IAdminOperations db, bool useOpLogging)
         {
             DBQuery query = new DBQuery("opLogging", useOpLogging ? 1 : 0);

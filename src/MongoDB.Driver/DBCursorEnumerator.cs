@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Diagnostics;
 
 namespace MongoDB.Driver
@@ -9,8 +7,16 @@ namespace MongoDB.Driver
     internal class DBCursorEnumerator<TDoc> : IEnumerator<IDocument> where TDoc : class, IDocument
     {
         bool disposed = false;
+        /// <summary>
+        /// Gets or sets the cursor.
+        /// </summary>
+        /// <value>The cursor.</value>
         public DBCursor<TDoc> Cursor { get; private set; }
         IEnumerator<TDoc> _DocumentEnumerator = null;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCursorEnumerator&lt;TDoc&gt;"/> class.
+        /// </summary>
+        /// <param name="cursor">The cursor.</param>
         public DBCursorEnumerator(DBCursor<TDoc> cursor)
         {
             Cursor = cursor;
@@ -24,6 +30,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the current.
+        /// </summary>
+        /// <value>The current.</value>
         public IDocument Current
         {
             get
@@ -35,6 +45,9 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
         public void Dispose()
         {
             if (!disposed)
@@ -53,6 +66,13 @@ namespace MongoDB.Driver
             get { return Current; }
         }
 
+        /// <summary>
+        /// Advances the enumerator to the next element of the collection.
+        /// </summary>
+        /// <returns>
+        /// true if the enumerator was successfully advanced to the next element; false if the enumerator has passed the end of the collection.
+        /// </returns>
+        /// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception>
         public bool MoveNext()
         {
             CheckDisposed();
@@ -79,6 +99,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Sets the enumerator to its initial position, which is before the first element in the collection.
+        /// </summary>
+        /// <exception cref="T:System.InvalidOperationException">The collection was modified after the enumerator was created. </exception>
         public void Reset()
         {
             Debug.Assert(Cursor.CursorID.HasValue && Cursor.CursorID.Value == 0, "Probably leaking the cursor if this happens, investigate");

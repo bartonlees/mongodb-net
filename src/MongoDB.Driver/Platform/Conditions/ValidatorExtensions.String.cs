@@ -28,6 +28,9 @@ using System;
 namespace MongoDB.Driver.Platform.Conditions
 {
     // String checks
+    /// <summary>
+    /// 
+    /// </summary>
     public static partial class ValidatorExtensions
     {
         /// <summary>
@@ -36,7 +39,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="maxLength">The smallest invalid length.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is greater or equal to <paramref name="maxLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="maxLength"/> is smaller or equal to 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is greater or equal <paramref name="maxLength"/> to, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -64,11 +69,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="maxLength">The smallest invalid length.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is greater or equal to <paramref name="maxLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="maxLength"/> is smaller or equal to 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is greater or equal <paramref name="maxLength"/> to, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -92,12 +97,14 @@ namespace MongoDB.Driver.Platform.Conditions
         }
 
         /// <summary>
-        /// Checks whether the given value is shorter or equal in length than <paramref name="maxLength"/>. 
+        /// Checks whether the given value is shorter or equal in length than <paramref name="maxLength"/>.
         /// An exception is thrown otherwise. A null reference is considered to have a length of 0.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="maxLength">The biggest valid length.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="maxLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="maxLength"/> is smaller than 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="maxLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -120,16 +127,16 @@ namespace MongoDB.Driver.Platform.Conditions
         }
 
         /// <summary>
-        /// Checks whether the given value is shorter or equal in length than <paramref name="maxLength"/>. 
+        /// Checks whether the given value is shorter or equal in length than <paramref name="maxLength"/>.
         /// An exception is thrown otherwise. A null reference is considered to have a length of 0.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="maxLength">The biggest valid length.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="maxLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="maxLength"/> is smaller than 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="maxLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -158,7 +165,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="minLength">The biggest invalid length.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller or equal to <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="minLength"/> is greater or equal to 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller or equal to <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -186,11 +195,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="minLength">The biggest invalid length.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller or equal to <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="minLength"/> is greater or equal to 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller or equal to <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -219,7 +228,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="minLength">The smallest valid length.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="minLength"/> is greater than 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -247,11 +258,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="minLength">The smallest valid length.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="minLength"/> is greater than 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is smaller than <paramref name="minLength"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -280,7 +291,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="length">The valid length.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> un equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="length"/> un equals 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> un equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -308,11 +321,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="length">The valid length.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> un equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="length"/> un equals 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> un equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -341,7 +354,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="length">The invalid length.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="length"/> un equals 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -369,11 +384,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="length">The invalid length.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="length"/> un equals 0, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the length of <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> equals <paramref name="length"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -401,7 +416,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
         public static ConditionValidator<string> IsNullOrEmpty(this ConditionValidator<string> validator)
@@ -419,14 +436,14 @@ namespace MongoDB.Driver.Platform.Conditions
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
-        public static ConditionValidator<string> IsNullOrEmpty(this ConditionValidator<string> validator, 
+        public static ConditionValidator<string> IsNullOrEmpty(this ConditionValidator<string> validator,
             string conditionDescription)
         {
             if (!String.IsNullOrEmpty(validator.Value))
@@ -442,7 +459,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is <see cref="String.Empty"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -464,7 +483,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is <see cref="String.Empty"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -485,11 +506,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is <see cref="String.Empty"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is null or empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -507,11 +528,13 @@ namespace MongoDB.Driver.Platform.Conditions
         }
 
         /// <summary>
-        /// Checks whether the given value is an <see cref="String.Empty"/> string. An exception is thrown 
+        /// Checks whether the given value is an <see cref="String.Empty"/> string. An exception is thrown
         /// otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -526,15 +549,15 @@ namespace MongoDB.Driver.Platform.Conditions
         }
 
         /// <summary>
-        /// Checks whether the given value is an <see cref="String.Empty"/> string. An exception is thrown 
+        /// Checks whether the given value is an <see cref="String.Empty"/> string. An exception is thrown
         /// otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -553,7 +576,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
         public static ConditionValidator<string> IsNotEmpty(this ConditionValidator<string> validator)
@@ -571,14 +596,14 @@ namespace MongoDB.Driver.Platform.Conditions
         /// otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is empty, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
-        public static ConditionValidator<string> IsNotEmpty(this ConditionValidator<string> validator, 
+        public static ConditionValidator<string> IsNotEmpty(this ConditionValidator<string> validator,
             string conditionDescription)
         {
             if (validator.Value != null && validator.Value.Length == 0)
@@ -595,7 +620,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -610,11 +637,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -631,9 +658,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -650,13 +679,13 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -683,7 +712,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -698,11 +729,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -719,13 +750,15 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
-        public static ConditionValidator<string> DoesNotStartWith(this ConditionValidator<string> validator, string value, 
+        public static ConditionValidator<string> DoesNotStartWith(this ConditionValidator<string> validator, string value,
             StringComparison comparisonType)
         {
             return DoesNotStartWith(validator, value, comparisonType, null);
@@ -738,13 +771,13 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> start with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -771,7 +804,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not contain <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> contains no null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not contain <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -786,11 +821,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not contain <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> contains no null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not contain <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -817,7 +852,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> contains <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> and <paramref name="value"/> are both null references, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> contains <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -832,11 +869,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> contains <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> and <paramref name="value"/> are both null references, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> contains <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -863,7 +900,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -878,11 +917,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -899,9 +938,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -918,13 +959,13 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> does not end with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -951,7 +992,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -966,11 +1009,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -981,15 +1024,17 @@ namespace MongoDB.Driver.Platform.Conditions
         }
 
         /// <summary>
-        /// Checks whether the end of the given value does not match the specified <paramref name="value"/> 
+        /// Checks whether the end of the given value does not match the specified <paramref name="value"/>
         /// using the specified comparison option.
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
@@ -1000,19 +1045,19 @@ namespace MongoDB.Driver.Platform.Conditions
         }
 
         /// <summary>
-        /// Checks whether the end of the given value does not match the specified <paramref name="value"/> 
+        /// Checks whether the end of the given value does not match the specified <paramref name="value"/>
         /// using the specified comparison option.
         /// An exception is thrown otherwise.
         /// </summary>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="value">The value to compare.</param>
-        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how 
+        /// <param name="comparisonType">One of the <see cref="StringComparison"/> values that determines how
         /// this string and value are compared</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is a null reference and <paramref name="value"/> is not a null reference, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> ends with <paramref name="value"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>

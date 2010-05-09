@@ -40,7 +40,7 @@ namespace MongoDB.Driver.Platform.Conditions
         {
             string condition = GetFormattedConditionMessage(validator, SR.ValueShouldNotBeNull,
                 conditionDescription, validator.ArgumentName);
-                
+
             validator.ThrowException(condition);
         }
 
@@ -51,13 +51,13 @@ namespace MongoDB.Driver.Platform.Conditions
                 conditionDescription, validator.ArgumentName, minValue.Stringify(), maxValue.Stringify());
 
             string additionalMessage = GetActualValueMessage(validator);
-            ConstraintViolationType violationType = 
+            ConstraintViolationType violationType =
                 GetEnumViolationOrDefault<T>(ConstraintViolationType.OutOfRangeViolation);
 
             validator.ThrowException(condition, additionalMessage, violationType);
         }
 
-        internal static void ValueShouldBeEqualTo<T>(ConditionValidator<T> validator, T value, 
+        internal static void ValueShouldBeEqualTo<T>(ConditionValidator<T> validator, T value,
             string conditionDescription)
         {
             string condition = GetFormattedConditionMessage(validator, SR.ValueShouldBeEqualToX,
@@ -205,7 +205,7 @@ namespace MongoDB.Driver.Platform.Conditions
 
             validator.ThrowException(condition, additionalMessage, violationType);
         }
-        
+
         internal static void ValueShouldBeNullOrAnEmptyString(ConditionValidator<string> validator,
             string conditionDescription)
         {
@@ -215,7 +215,7 @@ namespace MongoDB.Driver.Platform.Conditions
             validator.ThrowException(condition);
         }
 
-        internal static void ValueShouldBeAnEmptyString(ConditionValidator<string> validator, 
+        internal static void ValueShouldBeAnEmptyString(ConditionValidator<string> validator,
             string conditionDescription)
         {
             string condition = GetFormattedConditionMessage(validator, SR.StringShouldBeEmpty,
@@ -354,13 +354,13 @@ namespace MongoDB.Driver.Platform.Conditions
 
             if (maxLength == 1)
             {
-                condition = 
+                condition =
                     GetFormattedConditionMessage(validator, SR.StringShouldBeShorterOrEqualTo1Character,
                     conditionDescription, validator.ArgumentName);
             }
             else
             {
-                condition = 
+                condition =
                     GetFormattedConditionMessage(validator, SR.StringShouldBeShorterOrEqualToXCharacters,
                     conditionDescription, validator.ArgumentName, maxLength);
             }
@@ -477,7 +477,7 @@ namespace MongoDB.Driver.Platform.Conditions
         {
             string condition = GetFormattedConditionMessage(validator, SR.ValueShouldBeFalse,
                 conditionDescription, validator.ArgumentName);
-            
+
             validator.ThrowException(condition);
         }
 
@@ -552,7 +552,7 @@ namespace MongoDB.Driver.Platform.Conditions
             validator.ThrowException(condition);
         }
 
-        internal static void CollectionShouldContainNumberOfElements<T>(ConditionValidator<T> validator, 
+        internal static void CollectionShouldContainNumberOfElements<T>(ConditionValidator<T> validator,
             int numberOfElements, string conditionDescription) where T : IEnumerable
         {
             string condition;
@@ -567,11 +567,11 @@ namespace MongoDB.Driver.Platform.Conditions
                 condition = GetFormattedConditionMessage(validator, SR.CollectionShouldContainXElements,
                     conditionDescription, validator.ArgumentName, numberOfElements);
             }
-            
+
             validator.ThrowException(condition, GetCollectionContainsElementsMessage(validator));
         }
 
-        internal static void CollectionShouldNotContainNumberOfElements<T>(ConditionValidator<T> validator, 
+        internal static void CollectionShouldNotContainNumberOfElements<T>(ConditionValidator<T> validator,
             int numberOfElements, string conditionDescription)
         {
             string condition;
@@ -618,13 +618,13 @@ namespace MongoDB.Driver.Platform.Conditions
 
             if (numberOfElements == 1)
             {
-                condition = 
+                condition =
                     GetFormattedConditionMessage(validator, SR.CollectionShouldNotContainLessThan1Element,
                         conditionDescription, validator.ArgumentName);
             }
             else
             {
-                condition = 
+                condition =
                     GetFormattedConditionMessage(validator, SR.CollectionShouldNotContainLessThanXElements,
                         conditionDescription, validator.ArgumentName, numberOfElements);
             }
@@ -638,7 +638,7 @@ namespace MongoDB.Driver.Platform.Conditions
             int numberOfElements, string conditionDescription) where T : IEnumerable
         {
             string condition =
-                GetFormattedConditionMessage(validator, SR.CollectionShouldContainXOrLessElements, 
+                GetFormattedConditionMessage(validator, SR.CollectionShouldContainXOrLessElements,
                 conditionDescription, validator.ArgumentName, numberOfElements);
 
             string additionalMessage = GetCollectionContainsElementsMessage(validator);
@@ -686,7 +686,7 @@ namespace MongoDB.Driver.Platform.Conditions
 
             if (numberOfElements == 1)
             {
-                condition = 
+                condition =
                     GetFormattedConditionMessage(validator, SR.CollectionShouldNotContainMoreThan1Element,
                     conditionDescription, validator.ArgumentName);
             }
@@ -705,10 +705,10 @@ namespace MongoDB.Driver.Platform.Conditions
         internal static void CollectionShouldContainMoreOrEqual<T>(ConditionValidator<T> validator,
             int numberOfElements, string conditionDescription) where T : IEnumerable
         {
-            string condition = 
+            string condition =
                 GetFormattedConditionMessage(validator, SR.CollectionShouldContainXOrMoreElements,
                     conditionDescription, validator.ArgumentName, numberOfElements);
-            
+
             string additionalMessage = GetCollectionContainsElementsMessage(validator);
 
             validator.ThrowException(condition, additionalMessage);
@@ -814,7 +814,7 @@ namespace MongoDB.Driver.Platform.Conditions
             }
         }
 
-        private static string FormatConditionDescription<T>(ConditionValidator<T> validator, 
+        private static string FormatConditionDescription<T>(ConditionValidator<T> validator,
             string conditionDescription)
         {
             try

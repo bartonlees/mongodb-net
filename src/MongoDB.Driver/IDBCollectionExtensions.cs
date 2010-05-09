@@ -1,12 +1,11 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
 using System;
 using System.Collections;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Command;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq.Expressions;
+using MongoDB.Driver.Command;
+using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
@@ -17,15 +16,22 @@ namespace MongoDB.Driver
         /// <summary>
         /// Ensures an optionally unique index on this collection..
         /// </summary>
-        /// <param name="indexKeysFieldSet">The keys.</param>
-        /// <param name="name">The name.</param>
-        /// <param name="force">if set to <c>true</c> index creation should be forced, even if it is unnecessary.</param>
+        /// <param name="collection">The collection.</param>
+        /// <param name="indexKeyFieldSet">The index key field set.</param>
+        /// <param name="indexUri">The index URI.</param>
         /// <param name="unique">if set to <c>true</c> the index will be unique.</param>
+        /// <returns></returns>
         public static IDBIndex EnsureIndex(this IDBCollection collection, DBFieldSet indexKeyFieldSet, string indexUri, bool unique)
         {
             return collection.EnsureIndex(indexKeyFieldSet, new Uri(indexUri, UriKind.RelativeOrAbsolute), unique);
         }
 
+        /// <summary>
+        /// Gets the index.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <param name="indexUri">The index URI.</param>
+        /// <returns></returns>
         public static IDBIndex GetIndex(this IDBCollection collection, string indexUri)
         {
             return collection.GetIndex(new Uri(indexUri, UriKind.RelativeOrAbsolute));
@@ -34,6 +40,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Saves a document to the database.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="document">The document to save.</param>
         public static void Insert(this IDBCollection collection, IDocument document)
         {
@@ -44,7 +51,8 @@ namespace MongoDB.Driver
         /// <summary>
         /// Saves a document to the database.
         /// </summary>
-        /// <param name="document">The document to save.</param>
+        /// <param name="collection">The collection.</param>
+        /// <param name="documents">The documents.</param>
         public static void Insert(this IDBCollection collection, params IDocument[] documents)
         {
             Condition.Requires(collection, "this").IsNotNull();
@@ -55,7 +63,10 @@ namespace MongoDB.Driver
         /// <summary>
         /// Saves a document to the database.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="document">The document to save.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         public static bool TryInsert(this IDBCollection collection, IDocument document, bool checkError = false)
         {
             Condition.Requires(collection, "this").IsNotNull();
@@ -65,7 +76,9 @@ namespace MongoDB.Driver
         /// <summary>
         /// Saves a document to the database.
         /// </summary>
-        /// <param name="document">The document to save.</param>
+        /// <param name="collection">The collection.</param>
+        /// <param name="documents">The documents.</param>
+        /// <returns></returns>
         public static bool TryInsert(this IDBCollection collection, params IDocument[] documents)
         {
             Condition.Requires(collection, "this").IsNotNull();
@@ -80,6 +93,7 @@ namespace MongoDB.Driver
         /// DBCollection users2 = mongo.getCollection( "wiki.users" );
         /// </code>
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="collectionName">the name of the sub-collection to find</param>
         /// <returns>the sub collection</returns>
         public static IDBCollection GetCollection(this IDBCollection collection, string collectionName)
@@ -91,6 +105,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Creates an index on a set of fields, if one does not already exist.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="keyFieldSet">key set of the fields desired for the index.</param>
         public static void EnsureIndex(this IDBCollection collection, DBFieldSet keyFieldSet)
         {
@@ -101,6 +116,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Forces the creation of an index on a set of fields, if one does not already exist.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="keyFieldSet">a key set of the fields desired for the index.</param>
         public static void CreateIndex(this IDBCollection collection, DBFieldSet keyFieldSet)
         {
@@ -110,8 +126,10 @@ namespace MongoDB.Driver
         /// <summary>
         /// Creates an index on a set of fields, if one does not already exist.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="keyFieldSet">a key set of the fields desired for the index.</param>
         /// <param name="force">if set to <c>true</c> index creation should be forced, even if it is unnecessary.</param>
+        /// <returns></returns>
         public static IDBIndex EnsureIndex(this IDBCollection collection, DBFieldSet keyFieldSet, bool force)
         {
             Condition.Requires(collection, "this").IsNotNull();
@@ -169,7 +187,6 @@ namespace MongoDB.Driver
         /// <summary>
         /// Gets a cursor for standard Documents
         /// </summary>
-        /// <typeparam name="TDoc">The type of the document.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query document used to search.</param>
         /// <param name="returnFields">A document that specifies what subset of fields of matching objects to return. (sending null will retrieve all fields)</param>
@@ -214,7 +231,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Finds one or more objects.
         /// </summary>
-        /// <typeparam name="TDoc"></typeparam>
+        /// <typeparam name="TDoc">The type of the doc.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query document used to search.</param>
         /// <param name="returnFields">A document that specifies what subset of fields of matching objects to return. (sending null will retrieve all fields)</param>
@@ -228,16 +245,16 @@ namespace MongoDB.Driver
         /// <param name="explicitIndexHint">The explicit index hint.</param>
         /// <returns>the matching objects</returns>
         public static IEnumerable<TDoc> Find<TDoc>(
-            this IDBCollection collection, 
-            DBQuery selector = null, 
-            DBFieldSet returnFields = null, 
-            DBFieldSet orderBy = null, 
-            int? numberToSkip = null, 
-            int? numberToReturn = null, 
-            int? limit = null, 
-            bool explain = false, 
-            bool snapshot = false, 
-            CursorFlags options = CursorFlags.None, 
+            this IDBCollection collection,
+            DBQuery selector = null,
+            DBFieldSet returnFields = null,
+            DBFieldSet orderBy = null,
+            int? numberToSkip = null,
+            int? numberToReturn = null,
+            int? limit = null,
+            bool explain = false,
+            bool snapshot = false,
+            CursorFlags options = CursorFlags.None,
             IDBIndex explicitIndexHint = null)
             where TDoc : class, IDocument
         {
@@ -330,12 +347,12 @@ namespace MongoDB.Driver
             IDBIndex idIndex = collection.EnsureIDIndex();
 
             return FindOne<TDoc>(
-                collection, 
-                selector: new DBQuery("_id", id), 
-                returnFields: returnFields, 
-                explain:explain, 
-                snapshot:snapshot, 
-                options:options, 
+                collection,
+                selector: new DBQuery("_id", id),
+                returnFields: returnFields,
+                explain: explain,
+                snapshot: snapshot,
+                options: options,
                 explicitIndexHint: idIndex);
         }
 
@@ -343,9 +360,15 @@ namespace MongoDB.Driver
         /// Finds an object by its id.
         /// This compares the passed in value to the _id field of the document
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="id">The id.</param>
         /// <param name="returnFields">Which fields to return or <c>null</c> for all.</param>
-        /// <returns>the object, if found, otherwise <code>null</code></returns>
+        /// <param name="explain">if set to <c>true</c> [explain].</param>
+        /// <param name="snapshot">if set to <c>true</c> [snapshot].</param>
+        /// <param name="options">The options.</param>
+        /// <returns>
+        /// the object, if found, otherwise <code>null</code>
+        /// </returns>
         public static IDocument FindByID(this IDBCollection collection,
             object id,
             DBFieldSet returnFields = null,
@@ -366,7 +389,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Returns a single object from this collection matching the query.
         /// </summary>
-        /// <typeparam name="TDoc"></typeparam>
+        /// <typeparam name="TDoc">The type of the doc.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query.</param>
         /// <param name="returnFields">The desired field set or <c>null</c> for all fields.</param>
@@ -388,12 +411,12 @@ namespace MongoDB.Driver
             IDBIndex explicitIndexHint = null)
             where TDoc : class, IDocument
         {
-            foreach (TDoc result in 
+            foreach (TDoc result in
                 collection.Find<TDoc>(
-                    selector : selector,
+                    selector: selector,
                     returnFields: returnFields,
                     numberToSkip: numToSkip,
-                    limit : 1,
+                    limit: 1,
                     explain: explain,
                     snapshot: snapshot,
                     options: options,
@@ -429,7 +452,7 @@ namespace MongoDB.Driver
                 returnFields: returnFields,
                 numToSkip: numToSkip,
                 explain: explain,
-                options: options, 
+                options: options,
                 explicitIndexHint: explicitIndexHint);
         }
 
@@ -437,6 +460,7 @@ namespace MongoDB.Driver
         /// Saves an object to this collection.
         /// will add <code>_id</code> field if needed
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="document">The target document.</param>
         public static void Save(this IDBCollection collection, IDocument document)
         {
@@ -453,7 +477,7 @@ namespace MongoDB.Driver
             }
             else
             {
-                collection.Update(new DBQuery("_id", document.ID), document:document, upsert:true);
+                collection.Update(new DBQuery("_id", document.ID), document: document, upsert: true);
             }
         }
 
@@ -461,7 +485,10 @@ namespace MongoDB.Driver
         /// Trys to aaves an object to this collection.
         /// will add <code>_id</code> field if needed
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="document">The target document.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         public static bool TrySave(this IDBCollection collection, IDocument document, bool checkError = false)
         {
             if (document == null ||
@@ -475,7 +502,7 @@ namespace MongoDB.Driver
 
             if ((document.State & DocumentState.Detached) != DocumentState.None)
             {
-                return collection.TryInsert(document,checkError: checkError);
+                return collection.TryInsert(document, checkError: checkError);
             }
             else
             {
@@ -486,6 +513,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Drops all indexes from this collection
         /// </summary>
+        /// <param name="collection">The collection.</param>
         public static void DropAllIndexes(this IDBCollection collection)
         {
             collection.DropIndex((IDBIndex)null);
@@ -494,6 +522,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Drops (deletes) this collection
         /// </summary>
+        /// <param name="collection">The collection.</param>
         public static void Drop(this IDBCollection collection)
         {
             collection.Database.DropCollection(collection);
@@ -502,9 +531,12 @@ namespace MongoDB.Driver
         /// <summary>
         /// Returns the number of documents in the collection that match the specified query
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query.</param>
         /// <param name="returnFields">The desired field set.</param>
-        /// <returns>number of documents that match query and fields</returns>
+        /// <returns>
+        /// number of documents that match query and fields
+        /// </returns>
         public static long GetCount(this IDBCollection collection, DBQuery selector = null, DBFieldSet returnFields = null)
         {
             DBQuery cmd = new DBQuery
@@ -535,6 +567,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Renames this collection
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="newName">new collection name (not a full namespace)</param>
         public static void Rename(this IDBCollection collection, Uri newName)
         {
@@ -546,6 +579,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Renames this collection
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="newName">new collection name (not a full namespace)</param>
         public static void Rename(this IDBCollection collection, string newName)
         {
@@ -555,6 +589,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Performs a group query, similar to the ‘SQL GROUP BY’ operation.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="key">either 1) an array of fields to group by, 2) a javascript function to generate the key object, or 3) nil.</param>
         /// <param name="cond">an optional document specifying a query to limit the documents over which group is run.</param>
         /// <param name="initial">initial value of the aggregation counter object</param>
@@ -568,6 +603,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// find distinct values for a key field and an optional query
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="keyField">The key field.</param>
         /// <param name="selector">an optional selector query to limit the documents over which the unique function is run.</param>
         /// <returns></returns>
@@ -588,6 +624,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Performs a map/reduce operation on the current collection. Returns a new collection containing the results of the operation.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="map">a map function, written in javascript.</param>
         /// <param name="reduce">a reduce function, written in javascript.</param>
         /// <param name="outputCollection">the name of the output collection. if specified, the collection will not be treated as temporary</param>
@@ -614,6 +651,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Performs a map/reduce operation on the current collection. Returns a new collection containing the results of the operation.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="command">The command.</param>
         /// <returns>the map/reduced result</returns>
         public static MapReduceInfo MapReduce(this IDBCollection collection, DBQuery command)
@@ -630,6 +668,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Return a list of the indexes for this collection.  Each object in the list is the "info document" from MongoDB
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <returns>list of index info documents</returns>
         public static IEnumerable<IDBObject> GetIndexInfo(this IDBCollection collection)
         {
@@ -641,6 +680,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Drops the index associated with the specified key set
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="keyFieldSet">The key field set.</param>
         public static void DropIndex(this IDBCollection collection, DBFieldSet keyFieldSet)
         {
@@ -650,6 +690,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Drops the named index.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="name">The name of the index to drop.</param>
         public static void DropIndex(this IDBCollection collection, string name)
         {
@@ -660,8 +701,10 @@ namespace MongoDB.Driver
         /// Ensures an index on this collection (that is, the index will be created if it does not exist).
         /// ensureIndex is optimized and is inexpensive if the index already exists.
         /// </summary>
+        /// <param name="collection">The collection.</param>
         /// <param name="indexKeysFieldSet">Fields to use for index.</param>
         /// <param name="name">An identifier for the index.</param>
+        /// <returns></returns>
         public static IDBIndex EnsureIndex(this IDBCollection collection, DBFieldSet indexKeysFieldSet, Uri name)
         {
             return collection.EnsureIndex(indexKeysFieldSet, name, false);
@@ -673,7 +716,6 @@ namespace MongoDB.Driver
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector.</param>
         /// <param name="modifier">The modifier.</param>
-        /// <param name="upsert">if set to <c>true</c> then the matching documents will either be updated or inserted (depending on existence)</param>
         /// <param name="multi">if set to <c>true</c> then allow the update of multiple matching documents.</param>
         public static void Update(this IDBCollection collection, DBQuery selector, DBModifier modifier, bool multi = true)
         {

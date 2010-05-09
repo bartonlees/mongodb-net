@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Data;
 using MongoDB.Driver.Command;
 using MongoDB.Driver.Command.Admin;
-using System.Data;
-using System.Net;
 namespace MongoDB.Driver
 {
     internal class Server : IServer
@@ -20,7 +17,8 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="Server"/> class.
         /// </summary>
         /// <param name="binding">The binding.</param>
-        public Server(IServerBinding binding) : this(binding, new DBConnectionOptions())
+        public Server(IServerBinding binding)
+            : this(binding, new DBConnectionOptions())
         {
         }
 
@@ -40,6 +38,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether [read only].
+        /// </summary>
+        /// <value><c>true</c> if [read only]; otherwise, <c>false</c>.</value>
         public bool ReadOnly
         {
             get { return Binding.ReadOnly; }
@@ -49,8 +51,8 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="Server"/> class.
         /// </summary>
         /// <param name="binding">The binding.</param>
-        public Server(Uri binding) 
-            : this (new ServerBinding(binding))
+        public Server(Uri binding)
+            : this(new ServerBinding(binding))
         {
         }
 
@@ -66,7 +68,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Gets an interface for the named database.
         /// </summary>
-        /// <param name="name">Name of the database.</param>
+        /// <param name="binding">The binding.</param>
         /// <returns></returns>
         public IDatabase GetDatabase(IDBBinding binding)
         {
@@ -130,11 +132,15 @@ namespace MongoDB.Driver
         {
             get
             {
-                DatabaseList r =  Admin.listDatabases();
+                DatabaseList r = Admin.listDatabases();
                 return r.DatabaseNames;
             }
         }
 
+        /// <summary>
+        /// Gets the admin option and operation interface.
+        /// </summary>
+        /// <value>The admin.</value>
         public IAdminOperations Admin
         {
             get
@@ -147,7 +153,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Drops the database.
         /// </summary>
-        /// <param name="dbName">Name of the database to drop.</param>
+        /// <param name="database">The database.</param>
         public void DropDatabase(IDatabase database)
         {
             if (ReadOnly)
@@ -163,6 +169,10 @@ namespace MongoDB.Driver
         public DBConnectionOptions Options { get; private set; }
         Dictionary<string, IDatabase> _DatabaseLookup = new Dictionary<string, IDatabase>();
 
+        /// <summary>
+        /// Gets this server's available databases.
+        /// </summary>
+        /// <value>The databases.</value>
         public IEnumerable<IDatabase> Databases
         {
             get
@@ -173,12 +183,19 @@ namespace MongoDB.Driver
         }
 
 
+        /// <summary>
+        /// Gets the URI associated with the current server.
+        /// </summary>
+        /// <value>The URI.</value>
         public Uri Uri
         {
             get { return Binding.ToUri(); }
         }
 
 
+        /// <summary>
+        /// Clears the database cache.
+        /// </summary>
         public void ClearDatabaseCache()
         {
             _DatabaseLookup.Clear();

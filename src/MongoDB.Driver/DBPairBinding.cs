@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MongoDB.Driver.Platform.Conditions;
-using System.IO;
-using System.Transactions;
-using MongoDB.Driver.Command;
 
 namespace MongoDB.Driver
 {
@@ -14,6 +8,12 @@ namespace MongoDB.Driver
     /// </summary>
     public class DBPairBinding : IInternalDBBinding
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBPairBinding"/> class.
+        /// </summary>
+        /// <param name="leftBinding">The left binding.</param>
+        /// <param name="rightBinding">The right binding.</param>
+        /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         public DBPairBinding(IDBBinding leftBinding, IDBBinding rightBinding, bool readOnly = false)
         {
             Condition.Requires(leftBinding, "leftBinding").IsNotNull();
@@ -23,6 +23,10 @@ namespace MongoDB.Driver
             ReadOnly = readOnly;
         }
 
+        /// <summary>
+        /// Gets or sets the server.
+        /// </summary>
+        /// <value>The server.</value>
         public IServer Server { get; private set; }
 
         /// <summary>
@@ -39,7 +43,7 @@ namespace MongoDB.Driver
         {
             if (_ActiveBinding != null)
                 return;
-            
+
             CycleSubBinding();// randomly choose a server to for ismaster query
             IDBCollection collection = Server.GetDatabase("admin").GetCollection("$cmd");
             IDBObject res = collection.FindOne(DBQuery.IsMaster);
@@ -53,8 +57,8 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Cycles the sub binding. 
-        /// If there is not currently an active binding, one is chosen randomly. 
+        /// Cycles the sub binding.
+        /// If there is not currently an active binding, one is chosen randomly.
         /// If there is an active binding, the alternative binding is activated.
         /// </summary>
         public void CycleSubBinding()
@@ -70,6 +74,10 @@ namespace MongoDB.Driver
         }
 
         IDBBinding _ActiveBinding = null;
+        /// <summary>
+        /// Gets the active binding.
+        /// </summary>
+        /// <value>The active binding.</value>
         public IDBBinding ActiveBinding
         {
             get
@@ -79,31 +87,56 @@ namespace MongoDB.Driver
                 return _ActiveBinding;
             }
         }
+        /// <summary>
+        /// Gets the end point.
+        /// </summary>
+        /// <value>The end point.</value>
         public System.Net.IPEndPoint EndPoint
         {
             get { return ActiveBinding.EndPoint; }
         }
 
+        /// <summary>
+        /// Gets the name of the host.
+        /// </summary>
+        /// <value>The name of the host.</value>
         public string HostName
         {
             get { return ActiveBinding.HostName; }
         }
 
+        /// <summary>
+        /// Gets the port.
+        /// </summary>
+        /// <value>The port.</value>
         public int Port
         {
             get { return ActiveBinding.Port; }
         }
 
+        /// <summary>
+        /// Gets the name of the database.
+        /// </summary>
+        /// <value>The name of the database.</value>
         public string DatabaseName
         {
             get { return ActiveBinding.DatabaseName; }
         }
 
+        /// <summary>
+        /// Gets the address.
+        /// </summary>
+        /// <value>The address.</value>
         public System.Net.IPAddress Address
         {
             get { return ActiveBinding.Address; }
         }
 
+        /// <summary>
+        /// Gets the sister binding.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public IDBBinding GetSisterBinding(Uri name)
         {
             DBPairBinding sisterBinding = new DBPairBinding(new DBBinding(LeftBinding.Server.Binding, name), new DBBinding(RightBinding.Server.Binding, name));
@@ -116,15 +149,33 @@ namespace MongoDB.Driver
             Server = server;
         }
 
+        /// <summary>
+        /// Gets the URI.
+        /// </summary>
+        /// <value>The URI.</value>
         public Uri Uri
         {
             get { return ActiveBinding.Uri; }
         }
 
+        /// <summary>
+        /// Gets or sets the left binding.
+        /// </summary>
+        /// <value>The left binding.</value>
         public IDBBinding LeftBinding { get; private set; }
+        /// <summary>
+        /// Gets or sets the right binding.
+        /// </summary>
+        /// <value>The right binding.</value>
         public IDBBinding RightBinding { get; private set; }
 
 
+        /// <summary>
+        /// Says the specified CMD collection.
+        /// </summary>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         public void Say(IDBCollection cmdCollection, IDBRequest request, bool checkError = false)
         {
             //using (TransactionScope transactionScope = new TransactionScope())
@@ -162,6 +213,13 @@ namespace MongoDB.Driver
             //}
         }
 
+        /// <summary>
+        /// Calls the specified CMD collection.
+        /// </summary>
+        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         public IDBResponse<TDoc> Call<TDoc>(IDBCollection cmdCollection, IDBRequest request) where TDoc : class, IDocument
         {
             return _Call<TDoc>(cmdCollection, request, 2);
@@ -193,44 +251,68 @@ namespace MongoDB.Driver
             //            //    throw new MongoException("not talking to master and retries used up");
             //            //}
             //        }
-                    return response;
-                //}
-                //catch (IOException ioe)
-                //{
+            return response;
+            //}
+            //catch (IOException ioe)
+            //{
 
-                //    if (retries > 0)
-                //    {
-                //        //Binding.CycleSubBinding();
-                //        return _Call<TDoc>(request, retries - 1);
-                //    }
-                //    throw new MongoException.Network("can't call something", ioe);
-                //}
-           // }
+            //    if (retries > 0)
+            //    {
+            //        //Binding.CycleSubBinding();
+            //        return _Call<TDoc>(request, retries - 1);
+            //    }
+            //    throw new MongoException.Network("can't call something", ioe);
+            //}
+            // }
         }
 
 
+        /// <summary>
+        /// Tries the say.
+        /// </summary>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="msg">The MSG.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         public bool TrySay(IDBCollection cmdCollection, IDBRequest msg, bool checkError = false)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets the last exception.
+        /// </summary>
+        /// <value>The last exception.</value>
         public Exception LastException
         {
             get { throw new NotImplementedException(); }
         }
 
 
+        /// <summary>
+        /// Gets the connection options.
+        /// </summary>
+        /// <value>The connection options.</value>
         public DBConnectionOptions ConnectionOptions
         {
             get { throw new NotImplementedException(); }
         }
 
 
+        /// <summary>
+        /// Gets the username we are logged in with (if any).
+        /// </summary>
+        /// <value>The username.</value>
         public string Username
         {
             get { throw new NotImplementedException(); }
         }
 
+        /// <summary>
+        /// sets connection credentials for using with the database.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="passwd">The password.</param>
         public void SetCredentials(string username, System.Security.SecureString passwd)
         {
             throw new NotImplementedException();

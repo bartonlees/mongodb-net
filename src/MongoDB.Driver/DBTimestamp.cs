@@ -58,7 +58,7 @@ namespace MongoDB.Driver
         /// Gets or sets the inc.
         /// </summary>
         /// <value>The inc.</value>
-        public int Inc { get; private set;}
+        public int Inc { get; private set; }
         DateTime? _time;
     }
 }

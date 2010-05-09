@@ -1,13 +1,9 @@
 //COPYRIGHT
 
-using MongoDB.Driver.Platform.Util;
-using MongoDB.Driver.Platform.IO;
-using System.IO;
-using MongoDB.Driver.Platform.Conversion;
-using MongoDB.Driver.Message;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using MongoDB.Driver.Message;
 namespace MongoDB.Driver
 {
     /// <summary>
@@ -22,9 +18,25 @@ namespace MongoDB.Driver
         //    int32   opCode;         // request type - see table below
         //}
 
+        /// <summary>
+        /// Gets the length of the message.
+        /// </summary>
+        /// <value>The length of the message.</value>
         int MessageLength { get; }
+        /// <summary>
+        /// Gets or sets the request ID.
+        /// </summary>
+        /// <value>The request ID.</value>
         int RequestID { get; set; }
+        /// <summary>
+        /// Gets the response to.
+        /// </summary>
+        /// <value>The response to.</value>
         int ResponseTo { get; }
+        /// <summary>
+        /// Gets the op code.
+        /// </summary>
+        /// <value>The op code.</value>
         Operation OpCode { get; }
     }
 
@@ -33,7 +45,15 @@ namespace MongoDB.Driver
     /// </summary>
     public interface IDBRequest : IDBMessage
     {
+        /// <summary>
+        /// Writes the specified writer.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         void Write(WireProtocolWriter writer);
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="IDBRequest"/> is partial.
+        /// </summary>
+        /// <value><c>true</c> if partial; otherwise, <c>false</c>.</value>
         bool Partial { get; }
     }
 
@@ -42,12 +62,28 @@ namespace MongoDB.Driver
     /// </summary>
     public interface IDBResponse : IDBMessage
     {
+        /// <summary>
+        /// Reads the specified reader.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
         void Read(WireProtocolReader reader);
+        /// <summary>
+        /// Gets the documents.
+        /// </summary>
+        /// <value>The documents.</value>
         IEnumerable<IDocument> Documents { get; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="TDoc">The type of the doc.</typeparam>
     public interface IDBResponse<TDoc> : IDBResponse where TDoc : class, IDocument
     {
+        /// <summary>
+        /// Gets the documents T.
+        /// </summary>
+        /// <value>The documents T.</value>
         IEnumerable<TDoc> DocumentsT { get; }
     }
 

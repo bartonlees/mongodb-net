@@ -1,6 +1,5 @@
 //COPYRIGHT
 using System;
-using System.Collections.Generic;
 using System.Reflection;
 using MongoDB.Driver.Platform.Conditions;
 
@@ -16,6 +15,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Connects to the default host, port, and database as defined in the app.config
         /// </summary>
+        /// <value>The default database.</value>
         /// <returns></returns>
         public static IDatabase DefaultDatabase
         {
@@ -31,6 +31,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Retrieves a readonly connection to the default host, port, and database as defined in the app.config
         /// </summary>
+        /// <value>The read only default database.</value>
         /// <returns></returns>
         public static IDatabase ReadOnlyDefaultDatabase
         {
@@ -43,6 +44,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the default server.
+        /// </summary>
+        /// <value>The default server.</value>
         public static IServer DefaultServer
         {
             get
@@ -51,6 +56,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the read only default server.
+        /// </summary>
+        /// <value>The read only default server.</value>
         public static IServer ReadOnlyDefaultServer
         {
             get
@@ -59,6 +68,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the default server binding.
+        /// </summary>
+        /// <value>The default server binding.</value>
         public static IServerBinding DefaultServerBinding
         {
             get
@@ -70,6 +83,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the read only default server binding.
+        /// </summary>
+        /// <value>The read only default server binding.</value>
         public static IServerBinding ReadOnlyDefaultServerBinding
         {
             get
@@ -81,11 +98,21 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the database.
+        /// </summary>
+        /// <param name="databaseBinding">The database binding.</param>
+        /// <returns></returns>
         public static IDatabase GetDatabase(string databaseBinding)
         {
             return GetDatabase(new Uri(databaseBinding, UriKind.RelativeOrAbsolute));
         }
 
+        /// <summary>
+        /// Gets the database.
+        /// </summary>
+        /// <param name="databaseUri">The database URI.</param>
+        /// <returns></returns>
         public static IDatabase GetDatabase(Uri databaseUri)
         {
             Condition.Requires(databaseUri, "databaseUri").IsNotNull().Evaluate(databaseUri.IsAbsoluteUri, "the database URI must be absolute and include server details");
@@ -95,11 +122,21 @@ namespace MongoDB.Driver
             return server.GetDatabase(dbBinding);
         }
 
+        /// <summary>
+        /// Gets the server.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns></returns>
         public static IServer GetServer(Uri location)
         {
             return GetServer(new ServerBinding(location));
         }
 
+        /// <summary>
+        /// Gets the server.
+        /// </summary>
+        /// <param name="location">The location.</param>
+        /// <returns></returns>
         public static IServer GetServer(string location)
         {
             return GetServer(new ServerBinding(location));
@@ -121,12 +158,21 @@ namespace MongoDB.Driver
         //    }
         //}
 
+        /// <summary>
+        /// Gets the server.
+        /// </summary>
+        /// <param name="serverBinding">The server binding.</param>
+        /// <returns></returns>
         public static IServer GetServer(IServerBinding serverBinding)
         {
             Server s = new Server(serverBinding);
             return s;
         }
 
+        /// <summary>
+        /// Gets the version.
+        /// </summary>
+        /// <value>The version.</value>
         public static Version Version
         {
             get

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
@@ -30,8 +27,25 @@ namespace MongoDB.Driver
         NoCursorTimeout = 16
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class DBCursorOptions
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCursorOptions"/> class.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
+        /// <param name="selector">The selector.</param>
+        /// <param name="returnFields">The return fields.</param>
+        /// <param name="orderBy">The order by.</param>
+        /// <param name="numberToSkip">The number to skip.</param>
+        /// <param name="numberToReturn">The number to return.</param>
+        /// <param name="limit">The limit.</param>
+        /// <param name="explain">if set to <c>true</c> [explain].</param>
+        /// <param name="snapshot">if set to <c>true</c> [snapshot].</param>
+        /// <param name="options">The options.</param>
+        /// <param name="explicitIndexHint">The explicit index hint.</param>
         public DBCursorOptions(IDBCollection collection,
             DBQuery selector = null,
             DBFieldSet returnFields = null,
@@ -67,13 +81,13 @@ namespace MongoDB.Driver
                 Limit = limit;
 
 
-        //            _addToQueryObject(foo, "query", Selector, true);
-        //            _addToQueryObject(foo, "orderby", OrderByFieldSet, false);
-        //            _addToQueryObject(foo, "$hint", _hint);
-        //            if (_explain)
-        //                foo["$explain"] = true;
-        //            if (_snapshot)
-        //                foo["$snapshot"] = true;
+            //            _addToQueryObject(foo, "query", Selector, true);
+            //            _addToQueryObject(foo, "orderby", OrderByFieldSet, false);
+            //            _addToQueryObject(foo, "$hint", _hint);
+            //            if (_explain)
+            //                foo["$explain"] = true;
+            //            if (_snapshot)
+            //                foo["$snapshot"] = true;
 
 
         }
@@ -83,6 +97,10 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value>number of documents to return in the first OP_REPLY.</value>
         public int NumberToReturn { get; private set; }
+        /// <summary>
+        /// Gets or sets the limit.
+        /// </summary>
+        /// <value>The limit.</value>
         public int? Limit
         {
             get
@@ -102,13 +120,45 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value>number of documents to skip when returning results.</value>
         public int? NumberToSkip { get; private set; }
+        /// <summary>
+        /// Gets or sets the hint.
+        /// </summary>
+        /// <value>The hint.</value>
         public IDBIndex Hint { get; private set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="DBCursorOptions"/> is explain.
+        /// </summary>
+        /// <value><c>true</c> if explain; otherwise, <c>false</c>.</value>
         public bool Explain { get; private set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="DBCursorOptions"/> is snapshot.
+        /// </summary>
+        /// <value><c>true</c> if snapshot; otherwise, <c>false</c>.</value>
         public bool Snapshot { get; private set; }
+        /// <summary>
+        /// Gets or sets the flags.
+        /// </summary>
+        /// <value>The flags.</value>
         public CursorFlags Flags { get; private set; }
+        /// <summary>
+        /// Gets or sets the return fields.
+        /// </summary>
+        /// <value>The return fields.</value>
         public DBFieldSet ReturnFields { get; private set; }
+        /// <summary>
+        /// Gets or sets the order by.
+        /// </summary>
+        /// <value>The order by.</value>
         public DBFieldSet OrderBy { get; private set; }
+        /// <summary>
+        /// Gets or sets the collection.
+        /// </summary>
+        /// <value>The collection.</value>
         public IDBCollection Collection { get; private set; }
+        /// <summary>
+        /// Gets or sets the selector.
+        /// </summary>
+        /// <value>The selector.</value>
         public DBQuery Selector { get; private set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command
 {
     /// <summary>
@@ -10,6 +6,11 @@ namespace MongoDB.Driver.Command
     /// </summary>
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Drops the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <param name="collectionFullName">Full name of the collection.</param>
         public static void drop(this IDatabase db, string collectionFullName)
         {
             //{drop : collection_name}

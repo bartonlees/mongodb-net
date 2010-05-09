@@ -28,6 +28,9 @@ using System;
 namespace MongoDB.Driver.Platform.Conditions
 {
     // Type checks
+    /// <summary>
+    /// 
+    /// </summary>
     public static partial class ValidatorExtensions
     {
         /// <summary>
@@ -39,7 +42,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// <typeparam name="T">The type of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/>.</typeparam>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="type">The <see cref="Type"/> that will be used to perform the check.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
         public static ConditionValidator<T> IsOfType<T>(this ConditionValidator<T> validator, Type type)
@@ -57,11 +62,11 @@ namespace MongoDB.Driver.Platform.Conditions
         /// <typeparam name="T">The type of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/>.</typeparam>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="type">The <see cref="Type"/> that will be used to perform the check.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is not of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
         public static ConditionValidator<T> IsOfType<T>(this ConditionValidator<T> validator, Type type,
@@ -90,7 +95,9 @@ namespace MongoDB.Driver.Platform.Conditions
         /// <typeparam name="T">The type of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/>.</typeparam>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="type">The <see cref="Type"/> that will be used to perform the check.</param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
         /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
         public static ConditionValidator<T> IsNotOfType<T>(this ConditionValidator<T> validator, Type type)
@@ -108,13 +115,13 @@ namespace MongoDB.Driver.Platform.Conditions
         /// <typeparam name="T">The type of the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/>.</typeparam>
         /// <param name="validator">The <see cref="ConditionValidator{T}"/> that holds the value that has to be checked.</param>
         /// <param name="type">The <see cref="Type"/> that will be used to perform the check.</param>
-        /// <param name="conditionDescription">
-        /// The description of the condition that should hold. The string may hold the placeholder '{0}' for 
-        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.
-        /// </param>
-        /// <returns>The specified <paramref name="validator"/> instance.</returns>
+        /// <param name="conditionDescription">The description of the condition that should hold. The string may hold the placeholder '{0}' for
+        /// the <see cref="ConditionValidator{T}.ArgumentName">ArgumentName</see>.</param>
+        /// <returns>
+        /// The specified <paramref name="validator"/> instance.
+        /// </returns>
         /// <exception cref="ArgumentException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Requires{T}(T,string)">Requires</see> extension method.</exception>
-        /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>      
+        /// <exception cref="PostconditionException">Thrown when the <see cref="ConditionValidator{T}.Value">Value</see> of the specified <paramref name="validator"/> is of the specified <paramref name="type"/>, while the specified <paramref name="validator"/> is created using the <see cref="Condition.Ensures{T}(T,string)">Ensures</see> extension method.</exception>
         public static ConditionValidator<T> IsNotOfType<T>(this ConditionValidator<T> validator, Type type,
             string conditionDescription) where T : class
         {

@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Text;
 
 namespace MongoDB.Driver.Message
 {
@@ -23,13 +20,21 @@ namespace MongoDB.Driver.Message
         /// <value>The query options.</value>
         public DBCursorOptions Options { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Query"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public Query(DBCursorOptions options)
             : base(Operation.Query, options.ReturnFields != null)
         {
             Options = options;
-            
+
         }
 
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected override void WriteBody(WireProtocolWriter writer)
         {
             writer.Write((int)Options.Flags);

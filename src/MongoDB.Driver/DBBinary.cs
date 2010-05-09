@@ -35,13 +35,26 @@ namespace MongoDB.Driver
     /// </summary>
     public class DBBinary
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBBinary"/> class.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="data">The data.</param>
         public DBBinary(BinaryType type, byte[] data)
         {
             Type = type;
             Buffer = data;
         }
 
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
+        /// <value>The type.</value>
         public BinaryType Type { get; private set; }
-        public byte[] Buffer { get; private set;}
+        /// <summary>
+        /// Gets or sets the buffer.
+        /// </summary>
+        /// <value>The buffer.</value>
+        public byte[] Buffer { get; private set; }
     }
 }

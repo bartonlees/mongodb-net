@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace MongoDB.Driver.Message
 {
@@ -35,7 +33,7 @@ namespace MongoDB.Driver.Message
         /// <summary>
         /// The documents in this reply
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <value>The documents T.</value>
         /// <returns></returns>
         public IEnumerable<TDoc> DocumentsT
         {
@@ -45,6 +43,10 @@ namespace MongoDB.Driver.Message
             }
         }
 
+        /// <summary>
+        /// Gets the documents.
+        /// </summary>
+        /// <value>The documents.</value>
         public IEnumerable<IDocument> Documents
         {
             get
@@ -55,12 +57,20 @@ namespace MongoDB.Driver.Message
 
         List<TDoc> _documents = new List<TDoc>();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Reply&lt;TDoc&gt;"/> class.
+        /// </summary>
+        /// <param name="partial">if set to <c>true</c> [partial].</param>
         public Reply(bool partial)
             : base(Operation.Reply)
         {
             Partial = partial;
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Reply&lt;TDoc&gt;"/> is partial.
+        /// </summary>
+        /// <value><c>true</c> if partial; otherwise, <c>false</c>.</value>
         public bool Partial { get; private set; }
 
         /// <summary>
@@ -68,13 +78,13 @@ namespace MongoDB.Driver.Message
         /// </summary>
         /// <param name="reader">The reader.</param>
         public void Read(WireProtocolReader reader)
-        {    
+        {
             //Read in the header
             MessageLength = reader.ReadInt32();
             RequestID = reader.ReadInt32();
             ResponseTo = reader.ReadInt32();
             int op = reader.ReadInt32();
-            if ((Operation)op != Operation.Reply) 
+            if ((Operation)op != Operation.Reply)
                 throw new InvalidDataException(string.Format("Unexpected OpCode: {0}", op));
 
             //Read Response fields
@@ -85,11 +95,16 @@ namespace MongoDB.Driver.Message
 
             _documents = new List<TDoc>(NumberReturned);
             for (int i = 0; i < NumberReturned; i++)
-            {        
+            {
                 _documents.Add(ReadDocument(reader));
             }
         }
 
+        /// <summary>
+        /// Reads the document.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns></returns>
         protected virtual TDoc ReadDocument(WireProtocolReader reader)
         {
             return reader.ReadDocument<TDoc>(Partial);

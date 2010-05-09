@@ -23,12 +23,12 @@ namespace MongoDB.Driver
         /// Gets or sets the resulting collection.
         /// </summary>
         /// <value>The resulting collection.</value>
-        public IDBCollection ResultingCollection { get; private set;}
+        public IDBCollection ResultingCollection { get; private set; }
 
         /// <summary>
         /// Gets or sets the counts.
         /// </summary>
         /// <value>The counts.</value>
-        public IDocument Counts { get; private set;}
+        public IDocument Counts { get; private set; }
     }
 }

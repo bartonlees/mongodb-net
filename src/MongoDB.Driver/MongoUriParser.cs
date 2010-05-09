@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
@@ -11,16 +7,23 @@ namespace MongoDB.Driver
     /// </summary>
     public class MongoUriParser : GenericUriParser
     {
-       
+
         static MongoUriParser()
         {
             UriParser.Register(new MongoUriParser(), "mongo", Properties.Settings.Default.DefaultPort);
         }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MongoUriParser"/> class.
+        /// </summary>
         public MongoUriParser()
             : base(GenericUriParserOptions.NoUserInfo | GenericUriParserOptions.NoQuery | GenericUriParserOptions.NoFragment)
         {
         }
 
+        /// <summary>
+        /// Gets the default port.
+        /// </summary>
+        /// <value>The default port.</value>
         public static int DefaultPort
         {
             get
@@ -30,5 +33,5 @@ namespace MongoDB.Driver
         }
     }
 
-    
+
 }

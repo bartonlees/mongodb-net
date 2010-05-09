@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MongoDB.Driver
 {
@@ -13,6 +10,8 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="Document"/> class.
         /// </summary>
+        /// <param name="id">The id.</param>
+        /// <param name="partial">if set to <c>true</c> [partial].</param>
         public Document(Oid id, bool partial)
         {
             ID = id;
@@ -24,7 +23,8 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="Document"/> class. For testing only...by specifying the Oid, you are simulating the arrival of the document from a server
         /// </summary>
         /// <param name="id">The id.</param>
-        public Document(Oid id) : this(id, false)
+        public Document(Oid id)
+            : this(id, false)
         {
         }
 
@@ -96,12 +96,20 @@ namespace MongoDB.Driver
             State = DocumentState.Detached;
         }
 
+        /// <summary>
+        /// Gets or sets the ID.
+        /// </summary>
+        /// <value>The ID.</value>
         public Oid ID
         {
             get { return this.GetAs<Oid>("_id", null); }
             set { this["_id"] = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the state.
+        /// </summary>
+        /// <value>The state.</value>
         public DocumentState State
         {
             get;
@@ -109,6 +117,10 @@ namespace MongoDB.Driver
         }
 
         IDBCollection _Collection = null;
+        /// <summary>
+        /// Gets or sets the collection.
+        /// </summary>
+        /// <value>The collection.</value>
         public IDBCollection Collection
         {
             get
@@ -122,6 +134,10 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="Document"/> is partial.
+        /// </summary>
+        /// <value><c>true</c> if partial; otherwise, <c>false</c>.</value>
         public bool Partial
         {
             get;

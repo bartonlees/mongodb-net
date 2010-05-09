@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command.Admin
 {
     internal static partial class AdminCommandExtensions
@@ -10,6 +6,9 @@ namespace MongoDB.Driver.Command.Admin
         /// <summary>
         /// Copy an entire database from one name on one server to another name on another server.
         /// </summary>
+        /// <param name="db">The db.</param>
+        /// <param name="fromDatabase">From database.</param>
+        /// <param name="toDatabase">To database.</param>
         public static void copydb(this IAdminOperations db, IDatabase fromDatabase, IDatabase toDatabase)
         {
             DBQuery query = new DBQuery() 

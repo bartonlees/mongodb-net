@@ -2,51 +2,59 @@
 
 using System.IO;
 using System;
-namespace MongoDB.Driver.GridFS {
+namespace MongoDB.Driver.GridFS
+{
 
 
-public class GridFSInputFile :  GridFSFile {
-    
-    GridFSInputFile( GridFS fs , Stream inStream , string filename )
+    public class GridFSInputFile : GridFSFile
     {
-        _fs = fs;
-        _in = inStream;
 
-        _filename = filename;
-        
-        _id = new Oid();
-        _chunkSize = GridFS.DEFAULT_CHUNKSIZE;
-        _uploadDate = new DateTime();
-    }
+        GridFSInputFile(GridFS fs, Stream inStream, string filename)
+        {
+            _fs = fs;
+            _in = inStream;
 
-    public DBObject getMetaData()
-    {
-        if ( _metadata == null )
-            _metadata = new BasicDBObject();
-        return _metadata;
-    }
+            _filename = filename;
 
-    public void setFilename( string fn ){
-        _filename = fn;
-    }
-
-    public void setContentType( string ct ){
-        _contentType = ct;
-    }
-    
-    public void save() {
-        if ( ! _saved ){
-            try {
-                saveChunks();
-            }
-            catch ( IOException ioe ){
-                throw new MongoException( "couldn't save chunks" , ioe );
-            }
+            _id = new Oid();
+            _chunkSize = GridFS.DEFAULT_CHUNKSIZE;
+            _uploadDate = new DateTime();
         }
-        base.save();
-    }
 
-    public int saveChunks()
+        public DBObject getMetaData()
+        {
+            if (_metadata == null)
+                _metadata = new BasicDBObject();
+            return _metadata;
+        }
+
+        public void setFilename(string fn)
+        {
+            _filename = fn;
+        }
+
+        public void setContentType(string ct)
+        {
+            _contentType = ct;
+        }
+
+        public void save()
+        {
+            if (!_saved)
+            {
+                try
+                {
+                    saveChunks();
+                }
+                catch (IOException ioe)
+                {
+                    throw new MongoException("couldn't save chunks", ioe);
+                }
+            }
+            base.save();
+        }
+
+        public int saveChunks()
         {
         if ( _saved )
             throw new Exception( "already saved!" );
@@ -107,8 +115,8 @@ public class GridFSInputFile :  GridFSFile {
         _saved = true;
         return cn;
     }
-    
-    internal Stream _in;
-    bool _saved = false;
-}
+
+        internal Stream _in;
+        bool _saved = false;
+    }
 }

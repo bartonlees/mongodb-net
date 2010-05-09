@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command
 {
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Assertinfoes the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <returns></returns>
         public static AssertInfo assertinfo(this IDatabase db)
         {
             IDBObject res = db.ExecuteCommand(_assertinfo);
@@ -28,11 +29,18 @@ namespace MongoDB.Driver.Command
         //    "ok" : 1.0
         //}
 
-        
+
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public class AssertInfo : DBObjectWrapper
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AssertInfo"/> class.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
         public AssertInfo(IDBObject obj)
             : base(obj)
         {

@@ -1,11 +1,7 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
 using System;
-using System.Collections;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Command;
-using System.Data;
+using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
@@ -47,12 +43,15 @@ namespace MongoDB.Driver
         /// Saves a series of documents to the database.
         /// </summary>
         /// <param name="documents">The series</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         void Insert(IEnumerable<IDocument> documents, bool checkError = false);
 
         /// <summary>
         /// Tries to saves a series of documents to the database.
         /// </summary>
         /// <param name="documents">The series</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         bool TryInsert(IEnumerable<IDocument> documents, bool checkError = false);
 
         /// <summary>
@@ -63,6 +62,7 @@ namespace MongoDB.Driver
         /// <param name="modifier">The modifier.</param>
         /// <param name="upsert">if set to <c>true</c> then the matching documents will either be updated or inserted (depending on existence)</param>
         /// <param name="multi">if set to <c>true</c> then allow the update of multiple matching documents.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         void Update(DBQuery selector = null, IDocument document = null, DBModifier modifier = null, bool upsert = false, bool multi = false, bool checkError = false);
 
         /// <summary>
@@ -73,18 +73,23 @@ namespace MongoDB.Driver
         /// <param name="modifier">The modifier.</param>
         /// <param name="upsert">if set to <c>true</c> then the matching documents will either be updated or inserted (depending on existence)</param>
         /// <param name="multi">if set to <c>true</c> then allow the update of multiple matching documents.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         bool TryUpdate(DBQuery selector = null, IDocument document = null, DBModifier modifier = null, bool upsert = false, bool multi = false, bool checkError = false);
 
         /// <summary>
         /// Removes the specified object from the collection.
         /// </summary>
         /// <param name="document">The object to remove.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         void Remove(IDocument document, bool checkError = false);
 
         /// <summary>
         /// Removes the specified object from the collection.
         /// </summary>
         /// <param name="document">The object to remove.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         bool TryRemove(IDocument document, bool checkError = false);
 
         /// <summary>
@@ -106,10 +111,10 @@ namespace MongoDB.Driver
         /// <summary>
         /// Ensures an optionally unique index on this collection..
         /// </summary>
-        /// <param name="indexKeysFieldSet">The keys.</param>
+        /// <param name="indexKeyFieldSet">The index key field set.</param>
         /// <param name="name">The name.</param>
-        /// <param name="force">if set to <c>true</c> index creation should be forced, even if it is unnecessary.</param>
         /// <param name="unique">if set to <c>true</c> the index will be unique.</param>
+        /// <returns></returns>
         IDBIndex EnsureIndex(DBFieldSet indexKeyFieldSet, Uri name, bool unique);
 
         /// <summary>
@@ -128,6 +133,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Ensures that there is an index for the ID Field.
         /// </summary>
+        /// <returns></returns>
         IDBIndex EnsureIDIndex();
 
         /// <summary>
@@ -144,7 +150,9 @@ namespace MongoDB.Driver
         /// <summary>
         /// Gets a value indicating whether the collection is read only.
         /// </summary>
-        /// <value><c>true</c> if the collection is read only; otherwise, <c>false</c>.</value>
+        /// <value>
+        /// 	<c>true</c> if the collection is read only; otherwise, <c>false</c>.
+        /// </value>
         bool ReadOnly { get; }
     }
 }

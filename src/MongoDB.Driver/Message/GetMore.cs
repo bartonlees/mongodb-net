@@ -1,6 +1,3 @@
-using System;
-using System.IO;
-using System.Text;
 
 namespace MongoDB.Driver.Message
 {
@@ -17,19 +14,26 @@ namespace MongoDB.Driver.Message
         //          int64     cursorID;               // cursorID from the OP_REPLY
         //      }
 
+        /// <summary>
+        /// Gets or sets the cursor.
+        /// </summary>
+        /// <value>The cursor.</value>
         public IDBCursor Cursor { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GetMore"/> class and OP_GETMORE message.
         /// </summary>
-        /// <param name="fullCollectionName">Full name of the collection.</param>
-        /// <param name="cursorID">The cursor ID.</param>
+        /// <param name="cursor">The cursor.</param>
         public GetMore(IDBCursor cursor)
             : base(Operation.GetMore)
         {
             Cursor = cursor;
         }
 
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected override void WriteBody(WireProtocolWriter writer)
         {
             writer.Write(0);

@@ -11,8 +11,12 @@ namespace MongoDB.Driver
         /// Gets or sets the symbol.
         /// </summary>
         /// <value>The symbol.</value>
-        public string Symbol { get; private set;}
+        public string Symbol { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBSymbol"/> class.
+        /// </summary>
+        /// <param name="s">The s.</param>
         public DBSymbol(string s)
         {
             Symbol = s;

@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using MongoDB.Driver;
 
 namespace MongoDB.Newtonsoft.Json
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class JsonIDBCollectionExtensions
     {
         /// <summary>
         /// Gets a cursor for contract Documents of type T
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query document used to search.</param>
         /// <param name="returnFields">A document that specifies what subset of fields of matching objects to return. (sending null will retrieve all fields)</param>
@@ -34,7 +35,7 @@ namespace MongoDB.Newtonsoft.Json
             bool explain = false,
             bool snapshot = false,
             CursorFlags options = CursorFlags.None,
-            IDBIndex explicitIndexHint = null) where T:new()
+            IDBIndex explicitIndexHint = null) where T : new()
         {
             return IDBCollectionExtensions.GetCursor<ContractDocument<T>>(
                 collection: collection,
@@ -54,6 +55,7 @@ namespace MongoDB.Newtonsoft.Json
         /// <summary>
         /// Finds the specified contract document collection.
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector.</param>
         /// <param name="returnFields">The desired field set.</param>
@@ -98,9 +100,16 @@ namespace MongoDB.Newtonsoft.Json
         /// Finds an object by its id.
         /// This compares the passed in value to the _id field of the document
         /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
         /// <param name="id">The id.</param>
         /// <param name="returnFields">Which fields to return or <c>null</c> for all.</param>
-        /// <returns>the object, if found, otherwise <code>null</code></returns>
+        /// <param name="explain">if set to <c>true</c> [explain].</param>
+        /// <param name="snapshot">if set to <c>true</c> [snapshot].</param>
+        /// <param name="options">The options.</param>
+        /// <returns>
+        /// the object, if found, otherwise <code>null</code>
+        /// </returns>
         public static ContractDocument<T> FindContractDocumentByID<T>(this IDBCollection collection,
             object id,
             DBFieldSet returnFields = null,
@@ -120,6 +129,7 @@ namespace MongoDB.Newtonsoft.Json
         /// <summary>
         /// Returns a single object from this collection matching the query.
         /// </summary>
+        /// <typeparam name="T"></typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query.</param>
         /// <param name="returnFields">The desired field set or <c>null</c> for all fields.</param>

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Net;
 
 namespace MongoDB.Driver
 {
@@ -28,7 +25,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Drops the database.
         /// </summary>
-        /// <param name="databaseUri">The database.</param>
+        /// <param name="database">The database.</param>
         void DropDatabase(IDatabase database);
 
         /// <summary>

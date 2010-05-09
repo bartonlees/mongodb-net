@@ -1,14 +1,8 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
 using System;
-using MongoDB.Driver.Platform.Util;
-using System.Text;
-using System.IO;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Command;
+using System.Collections.Generic;
 using System.Security;
-using MongoDB.Driver.Command.Admin;
 
 namespace MongoDB.Driver
 {
@@ -108,7 +102,7 @@ namespace MongoDB.Driver
         /// Gets or sets a value indicating whether we are in a ReadOnly mode.
         /// </summary>
         /// <value><c>true</c> if read only; otherwise, <c>false</c>.</value>
-        bool ReadOnly { get;}
+        bool ReadOnly { get; }
     }
 
     /// <summary>
@@ -116,9 +110,25 @@ namespace MongoDB.Driver
     /// </summary>
     public interface IAdminOperations : IDatabase
     {
+        /// <summary>
+        /// Gets the build info.
+        /// </summary>
+        /// <value>The build info.</value>
         BuildInfo BuildInfo { get; }
+        /// <summary>
+        /// Gets or sets the diagnostic logging level.
+        /// </summary>
+        /// <value>The diagnostic logging level.</value>
         DiagnosticLoggingLevel DiagnosticLoggingLevel { get; set; }
+        /// <summary>
+        /// Gets or sets a value indicating whether [op logging].
+        /// </summary>
+        /// <value><c>true</c> if [op logging]; otherwise, <c>false</c>.</value>
         bool OpLogging { get; set; }
+        /// <summary>
+        /// Gets or sets the query trace level.
+        /// </summary>
+        /// <value>The query trace level.</value>
         int QueryTraceLevel { get; set; }
     }
 }

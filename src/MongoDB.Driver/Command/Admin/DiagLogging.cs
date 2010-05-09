@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command.Admin
 {
     internal static partial class AdminCommandExtensions
     {
+        /// <summary>
+        /// Diags the logging.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <param name="logLevel">The log level.</param>
         public static void diagLogging(this IAdminOperations db, ref DiagnosticLoggingLevel logLevel)
         {
             DBQuery query = new DBQuery("diagLogging", (int)logLevel);
@@ -19,8 +20,14 @@ namespace MongoDB.Driver.Command.Admin
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public enum DiagnosticLoggingLevel
     {
+        /// <summary>
+        /// 
+        /// </summary>
         Unknown = -1,
 
         /// <summary>

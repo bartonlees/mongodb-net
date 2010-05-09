@@ -1,7 +1,5 @@
 //COPYRIGHT
 
-using System;
-using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
@@ -31,7 +29,7 @@ namespace MongoDB.Driver
             {
                 _FetchResult = Collection.FindByID(ID);
             }
-            return _FetchResult; 
+            return _FetchResult;
         }
 
         /// <summary>

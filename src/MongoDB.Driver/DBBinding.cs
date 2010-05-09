@@ -1,18 +1,14 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
-using System.Net;
 using System;
-using System.Net.Sockets;
-using System.Diagnostics.Contracts;
-using MongoDB.Driver.Platform.Util;
-using MongoDB.Driver.Platform.Conditions;
+using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
-using System.IO;
-using MongoDB.Driver.Command;
+using System.Net;
+using System.Net.Sockets;
 using System.Security;
-using System.Text;
+using System.Transactions;
+using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Platform.Util;
 
 namespace MongoDB.Driver
 {
@@ -22,16 +18,13 @@ namespace MongoDB.Driver
     /// <code>
     /// //BASIC
     /// DBBinding basic = new DBBinding("mongo://localhost/db");
-    /// 
     /// //FROM TEMPLATE BINDING
     /// DBBinding template = new DBBinding("mongo://localhost/db");
     /// DBBinding templated = new DBBinding(template, "db2");
     /// //Equivalent to "mongo://localhost/db2"
-    /// 
     /// //HOSTNAME AND DB NAME
     /// DBBinding withnames = new DBBinding("localhost", "db");
     /// //Equivalent to "mongo://localhost/db"
-    /// 
     /// //WITH PORT
     /// DBBinding withport = new DBBinding("localhost", 1910, "db");
     /// //Equivalent to "mongo://localhost:1910/db"
@@ -52,7 +45,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Requires that a connection is pulled from the available pool and is initialized for the specified binding
         /// </summary>
-        /// <param name="binding">The binding.</param>
+        /// <param name="transaction">The transaction.</param>
         /// <returns></returns>
         public IDBConnection RequireConnection(Transaction transaction)
         {
@@ -75,7 +68,7 @@ namespace MongoDB.Driver
             }
             return connection;
         }
-        
+
         void TransactionCompleted(object sender, TransactionEventArgs e)
         {
             IDBConnection connection = null;
@@ -88,7 +81,7 @@ namespace MongoDB.Driver
                         IdleConnection(connection);
                         return; //If everything went ok, idle for reuse...don't dispose
                     case TransactionStatus.Aborted:
-                        //Fallthrough
+                    //Fallthrough
                     case TransactionStatus.InDoubt:
                         break;
                 }
@@ -117,13 +110,14 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="DBBinding"/> class based on an existing server binding
         /// </summary>
+        /// <param name="serverBinding">The server binding.</param>
+        /// <param name="databaseUri">Name of the database.</param>
+        /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         /// <code>
         /// ServerBinding template = new ServerBinding("mongo://localhost");
         /// DBBinding templated = new DBBinding(template, "db");
         /// //result would be "mongo://localhost/db"
         /// </code>
-        /// <param name="serverBinding">The server binding.</param>
-        /// <param name="databaseUri">Name of the database.</param>
         public DBBinding(IServerBinding serverBinding, Uri databaseUri, bool readOnly = false)
         {
             Condition.Requires(serverBinding, "serverBinding")
@@ -139,13 +133,14 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="DBBinding"/> class based on an existing server binding
         /// </summary>
+        /// <param name="serverBinding">The server binding.</param>
+        /// <param name="databaseUri">Name of the database.</param>
+        /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         /// <code>
         /// ServerBinding template = new ServerBinding("mongo://localhost");
         /// DBBinding templated = new DBBinding(template, "db");
         /// //result would be "mongo://localhost/db"
         /// </code>
-        /// <param name="serverBinding">The server binding.</param>
-        /// <param name="databaseUri">Name of the database.</param>
         public DBBinding(IServerBinding serverBinding, string databaseUri, bool readOnly = false)
             : this(serverBinding, new Uri(databaseUri, UriKind.RelativeOrAbsolute))
         {
@@ -165,13 +160,13 @@ namespace MongoDB.Driver
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
             int hash = 17;
             hash = hash * 23 + EndPoint.GetHashCode();
-            hash = hash * 23 + DatabaseName.GetHashCode();  
+            hash = hash * 23 + DatabaseName.GetHashCode();
             return hash;
         }
 
@@ -262,7 +257,11 @@ namespace MongoDB.Driver
         /// <value>The address.</value>
         public IPAddress Address { get; private set; }
 
-        public Uri Uri { get; private set;}
+        /// <summary>
+        /// Gets or sets the URI.
+        /// </summary>
+        /// <value>The URI.</value>
+        public Uri Uri { get; private set; }
 
         /// <summary>
         /// Returns the default database host.
@@ -293,6 +292,12 @@ namespace MongoDB.Driver
             Server = server;
         }
 
+        /// <summary>
+        /// Says the specified CMD collection.
+        /// </summary>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         public void Say(IDBCollection cmdCollection, IDBRequest request, bool checkError = false)
         {
             _Say(cmdCollection, request, checkError, false);
@@ -304,9 +309,25 @@ namespace MongoDB.Driver
             }
         }
 
-        public bool CredentialsSpecified { get { return !string.IsNullOrWhiteSpace(Username); }}
+        /// <summary>
+        /// Gets a value indicating whether [credentials specified].
+        /// </summary>
+        /// <value><c>true</c> if [credentials specified]; otherwise, <c>false</c>.</value>
+        public bool CredentialsSpecified { get { return !string.IsNullOrWhiteSpace(Username); } }
+        /// <summary>
+        /// Gets or sets a value indicating whether this <see cref="DBBinding"/> is authenticated.
+        /// </summary>
+        /// <value><c>true</c> if authenticated; otherwise, <c>false</c>.</value>
         public bool Authenticated { get; private set; }
 
+        /// <summary>
+        /// _s the say.
+        /// </summary>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <param name="suppressException">if set to <c>true</c> [suppress exception].</param>
+        /// <returns></returns>
         public bool _Say(IDBCollection cmdCollection, IDBRequest request, bool checkError, bool suppressException)
         {
             LastException = null;
@@ -314,7 +335,7 @@ namespace MongoDB.Driver
             {
                 //Not explicitly disposing connection...its lifespan is longer than just this message
                 IDBConnection connection = RequireConnection(Transaction.Current);
-                
+
                 if (CredentialsSpecified)
                 {
                     Authenticated = connection.TryAuthenticate(cmdCollection, Username, _UsernamePasswordHash);
@@ -335,7 +356,7 @@ namespace MongoDB.Driver
                         if (le.Code != DBError.Code.NoError)
                             this.LastException = new MongoException.LastError(le);
                     }
-                } 
+                }
                 catch (Exception x)
                 {
                     if (!suppressException)
@@ -353,20 +374,34 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Tries the say.
+        /// </summary>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         public bool TrySay(IDBCollection cmdCollection, IDBRequest request, bool checkError)
         {
             return _Say(cmdCollection, request, checkError, true);
         }
 
+        /// <summary>
+        /// Calls the specified CMD collection.
+        /// </summary>
+        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <param name="request">The request.</param>
+        /// <returns></returns>
         public IDBResponse<TDoc> Call<TDoc>(IDBCollection cmdCollection, IDBRequest request) where TDoc : class, IDocument
-        {        
+        {
             IDBResponse<TDoc> response = null;
             string err = null;
             using (TransactionScope transactionScope = new TransactionScope())
             {
                 //Not explicitly disposing connection...its lifespan is longer than just this message
                 IDBConnection connection = RequireConnection(Transaction.Current);
-                response = connection.Call<TDoc>(request);         
+                response = connection.Call<TDoc>(request);
 
                 //If we got this far, our transaction succeeded.
                 transactionScope.Complete();
@@ -390,6 +425,10 @@ namespace MongoDB.Driver
         public IServer Server { get; private set; }
 
 
+        /// <summary>
+        /// Gets or sets the last exception.
+        /// </summary>
+        /// <value>The last exception.</value>
         public Exception LastException
         {
             get;
@@ -397,6 +436,10 @@ namespace MongoDB.Driver
         }
 
 
+        /// <summary>
+        /// Gets the username we are logged in with (if any).
+        /// </summary>
+        /// <value>The username.</value>
         public string Username
         {
             get;
@@ -405,6 +448,11 @@ namespace MongoDB.Driver
 
         SecureString _UsernamePasswordHash;
 
+        /// <summary>
+        /// Sets the credentials.
+        /// </summary>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
         public void SetCredentials(string username, SecureString password)
         {
             Username = username;

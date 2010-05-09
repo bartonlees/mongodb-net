@@ -1,12 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MongoDB.Driver.Command
 {
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Forceerrors the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <returns></returns>
         public static DBError forceerror(this IDatabase db)
         {
             IDBObject res = db.ExecuteCommand(_forceerror);

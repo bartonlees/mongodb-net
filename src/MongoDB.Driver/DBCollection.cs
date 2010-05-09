@@ -1,23 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MongoDB.Driver.Platform.Conditions;
-using System.Diagnostics;
 using System.Data;
+using System.Linq;
 using MongoDB.Driver.Command;
+using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
     internal class DBCollection : IDBCollection
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCollection"/> class.
+        /// </summary>
+        /// <param name="database">The database.</param>
+        /// <param name="collectionUri">The collection URI.</param>
         public DBCollection(Database database, Uri collectionUri)
         {
             Uri relative = collectionUri.IsAbsoluteUri ? collectionUri.MakeRelativeUri(database.Uri) : collectionUri;
-            Uri = new Uri(new Uri(database.Uri.ToString()+"/"), relative);
+            Uri = new Uri(new Uri(database.Uri.ToString() + "/"), relative);
             _Database = database;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the collection is read only.
+        /// </summary>
+        /// <value>
+        /// 	<c>true</c> if the collection is read only; otherwise, <c>false</c>.
+        /// </value>
         public bool ReadOnly
         {
             get
@@ -26,6 +35,11 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Saves a series of documents to the database.
+        /// </summary>
+        /// <param name="documents">The series</param>
+        /// <param name="checkError"></param>
         public void Insert(IEnumerable<IDocument> documents, bool checkError = false)
         {
             if (ReadOnly)
@@ -39,6 +53,12 @@ namespace MongoDB.Driver
             _Database.Binding.Say(Database.CmdCollection, insert, checkError);
         }
 
+        /// <summary>
+        /// Tries to saves a series of documents to the database.
+        /// </summary>
+        /// <param name="documents">The series</param>
+        /// <param name="checkError"></param>
+        /// <returns></returns>
         public bool TryInsert(IEnumerable<IDocument> documents, bool checkError = false)
         {
             if (ReadOnly)
@@ -52,6 +72,11 @@ namespace MongoDB.Driver
             return _Database.Binding.TrySay(Database.CmdCollection, insert, checkError);
         }
 
+        /// <summary>
+        /// Removes the specified o.
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         public void Remove(IDocument o, bool checkError = false)
         {
             if (ReadOnly)
@@ -61,6 +86,12 @@ namespace MongoDB.Driver
             _Database.Binding.Say(Database.CmdCollection, delete, checkError);
         }
 
+        /// <summary>
+        /// Tries the remove.
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <param name="checkError">if set to <c>true</c> [check error].</param>
+        /// <returns></returns>
         public bool TryRemove(IDocument o, bool checkError = false)
         {
             if (ReadOnly)
@@ -75,7 +106,7 @@ namespace MongoDB.Driver
         /// </summary>
         /// <typeparam name="TDoc">The type of the document proxy</typeparam>
         /// <param name="cursor">The cursor.</param>
-        /// <returns></returns>
+        /// <returns>The documents of this batch</returns>
         public IEnumerable<TDoc> Query<TDoc>(IDBCursor<TDoc> cursor) where TDoc : class, IDocument
         {
             Condition.Requires(cursor, "cursor").IsNotNull();
@@ -121,6 +152,15 @@ namespace MongoDB.Driver
             return response.Documents.Cast<TDoc>();
         }
 
+        /// <summary>
+        /// Performs an update operation.
+        /// </summary>
+        /// <param name="selector">search query for old object to update.</param>
+        /// <param name="document">The document.</param>
+        /// <param name="modifier">The modifier.</param>
+        /// <param name="upsert">if set to <c>true</c> then the matching documents will either be updated or inserted (depending on existence)</param>
+        /// <param name="multi">if set to <c>true</c> then allow the update of multiple matching documents.</param>
+        /// <param name="checkError"></param>
         public void Update(DBQuery selector = null, IDocument document = null, DBModifier modifier = null, bool upsert = false, bool multi = false, bool checkError = false)
         {
             if (ReadOnly)
@@ -141,6 +181,16 @@ namespace MongoDB.Driver
             _Database.Binding.Say(Database.CmdCollection, update, checkError);
         }
 
+        /// <summary>
+        /// Tries to perform an update operation.
+        /// </summary>
+        /// <param name="selector">search query for old object to update.</param>
+        /// <param name="document">The document.</param>
+        /// <param name="modifier">The modifier.</param>
+        /// <param name="upsert">if set to <c>true</c> then the matching documents will either be updated or inserted (depending on existence)</param>
+        /// <param name="multi">if set to <c>true</c> then allow the update of multiple matching documents.</param>
+        /// <param name="checkError"></param>
+        /// <returns></returns>
         public bool TryUpdate(DBQuery selector = null, IDocument document = null, DBModifier modifier = null, bool upsert = false, bool multi = false, bool checkError = false)
         {
             if (ReadOnly)
@@ -167,6 +217,7 @@ namespace MongoDB.Driver
         /// <param name="indexKeyFieldSet">The index key field set.</param>
         /// <param name="indexUri">Name of the index.</param>
         /// <param name="unique">if set to <c>true</c> [unique].</param>
+        /// <returns></returns>
         public IDBIndex EnsureIndex(DBFieldSet indexKeyFieldSet, Uri indexUri, bool unique)
         {
             Condition.Requires(indexKeyFieldSet, "indexKeyFieldSet").IsNotNull().IsNotEmpty();
@@ -201,7 +252,7 @@ namespace MongoDB.Driver
         /// Returns a hash code for this instance. (based off of the full name of the collection)
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
         /// </returns>
         public override int GetHashCode()
         {
@@ -256,6 +307,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Creates an index on the id field, if one does not already exist.
         /// </summary>
+        /// <returns></returns>
         public IDBIndex EnsureIDIndex()
         {
             if (_IdIndex != null)
@@ -272,19 +324,35 @@ namespace MongoDB.Driver
         }
 
         internal Database _Database { get; private set; }
+        /// <summary>
+        /// Gets the DB.
+        /// </summary>
+        /// <value>The DB.</value>
         public IDatabase Database { get { return _Database; } }
 
+        /// <summary>
+        /// Gets the absolute URI for this collection.
+        /// </summary>
+        /// <value>The URI.</value>
         public Uri Uri { get; protected set; }
 
         List<DBFieldSet> __hintFields = new List<DBFieldSet>();
+        /// <summary>
+        /// Gets or sets the index hint field sets.
+        /// </summary>
+        /// <value>The index hint field sets.</value>
         public IEnumerable<DBFieldSet> IndexHintFieldSets { get { return __hintFields; } set { __hintFields = new List<DBFieldSet>(value); } }
 
         IDBIndex _IdIndex = null;
-        
+
 
         SortedDictionary<string, DBIndex> _IndexLookup = new SortedDictionary<string, DBIndex>();
 
 
+        /// <summary>
+        /// Enumerates all indexes known to the server.
+        /// </summary>
+        /// <value>The indexes.</value>
         public IEnumerable<IDBIndex> Indexes
         {
             get
@@ -306,23 +374,40 @@ namespace MongoDB.Driver
             }
         }
 
+        /// <summary>
+        /// Gets the index specified by the URI.
+        /// </summary>
+        /// <param name="indexUri">The index URI.</param>
+        /// <returns></returns>
         public IDBIndex GetIndex(Uri indexUri)
         {
             return _IndexLookup[indexUri.GetIndexName()];
         }
 
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
+        /// <value>The name.</value>
         public string Name
         {
             get { return Uri.GetCollectionName(); }
         }
 
 
+        /// <summary>
+        /// Gets the full name. (database.collection)
+        /// </summary>
+        /// <value>The full name.</value>
         public string FullName
         {
             get { return Uri.GetFullCollectionName(); }
         }
 
+        /// <summary>
+        /// Gets the enumerator.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<IDocument> GetEnumerator()
         {
             return this.Find(DBQuery.SelectAll, null, null, null).GetEnumerator();
@@ -331,8 +416,12 @@ namespace MongoDB.Driver
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
-        }        
+        }
 
+        /// <summary>
+        /// Drops the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
         public void DropIndex(IDBIndex index)
         {
             if (ReadOnly)

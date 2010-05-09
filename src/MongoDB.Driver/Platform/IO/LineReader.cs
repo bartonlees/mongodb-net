@@ -75,6 +75,7 @@ namespace MongoDB.Driver.Platform.IO
         /// <summary>
         /// Enumerates the data source line by line.
         /// </summary>
+        /// <returns></returns>
         public IEnumerator<string> GetEnumerator()
         {
             using (TextReader reader = dataSource())

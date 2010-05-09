@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command
 {
     /// <summary>
@@ -10,6 +6,12 @@ namespace MongoDB.Driver.Command
     /// </summary>
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Deletes the indexes.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <param name="collection">The collection.</param>
+        /// <param name="indexName">Name of the index.</param>
         public static void deleteIndexes(this IDatabase db, IDBCollection collection, string indexName)
         {
             DBQuery cmd = new DBQuery

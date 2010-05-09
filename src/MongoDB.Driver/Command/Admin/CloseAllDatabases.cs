@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command.Admin
 {
     internal static partial class AdminCommandExtensions
@@ -10,7 +6,7 @@ namespace MongoDB.Driver.Command.Admin
         /// <summary>
         /// closesAllDatabases
         /// </summary>
-        /// <returns>the list</returns>
+        /// <param name="db">The db.</param>
         public static void closeAllDatabases(this IAdminOperations db)
         {
             IDBObject response = db.ExecuteCommand(_closeAllDatabases);

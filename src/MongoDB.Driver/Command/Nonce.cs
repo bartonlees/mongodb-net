@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using MongoDB.Driver.Message;
 
 namespace MongoDB.Driver.Command
 {
     internal static partial class CommandExtensions
     {
+        /// <summary>
+        /// Nonces the specified db.
+        /// </summary>
+        /// <param name="db">The db.</param>
+        /// <returns></returns>
         public static string nonce(this IAdminOperations db)
         {
             IDBObject res = db.ExecuteCommand(_getnonce);
@@ -15,6 +17,12 @@ namespace MongoDB.Driver.Command
             return res.GetAsString("nonce");
         }
 
+        /// <summary>
+        /// Nonces the specified connection.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <param name="cmdCollection">The CMD collection.</param>
+        /// <returns></returns>
         public static string nonce(this IDBConnection connection, IDBCollection cmdCollection)
         {
             IDocument result = connection.Call<Document>(new Query(new DBCursorOptions(cmdCollection, selector: _getnonce, limit: 1))).Documents.FirstOrDefault();

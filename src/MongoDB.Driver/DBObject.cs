@@ -1,13 +1,11 @@
 //COPYRIGHT
 
-using System;
 using System.Collections.Generic;
-using MongoDB.Driver.Platform.Util;
 namespace MongoDB.Driver
 {
 
     /// <summary>
-    /// A simple implementation of <code>IDBObject</code>.  
+    /// A simple implementation of <code>IDBObject</code>.
     /// An <code>IDBObject</code> can be created as follows, using this class:
     /// <blockquote><pre>
     /// IDBObject obj = new BasicDBObject();

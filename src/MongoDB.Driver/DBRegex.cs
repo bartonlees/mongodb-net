@@ -10,7 +10,11 @@ namespace MongoDB.Driver
     [Obsolete]
     public class DBRegex
     {
-        public string Pattern { get; private set;}
+        /// <summary>
+        /// Gets or sets the pattern.
+        /// </summary>
+        /// <value>The pattern.</value>
+        public string Pattern { get; private set; }
         private string _options;
 
         /// <summary>

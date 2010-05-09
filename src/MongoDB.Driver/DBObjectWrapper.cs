@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace MongoDB.Driver
 {
@@ -10,13 +7,28 @@ namespace MongoDB.Driver
     /// </summary>
     public class DBObjectWrapper
     {
+        /// <summary>
+        /// Gets or sets the object.
+        /// </summary>
+        /// <value>The object.</value>
         protected IDBObject Object { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBObjectWrapper"/> class.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
         public DBObjectWrapper(IDBObject obj)
         {
             Object = obj;
         }
 
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/> is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        /// 	<c>true</c> if the specified <see cref="System.Object"/> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
         public override bool Equals(object obj)
         {
             DBObjectWrapper wrapper = obj as DBObjectWrapper;
@@ -27,6 +39,12 @@ namespace MongoDB.Driver
             return false;
         }
 
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+        /// </returns>
         public override int GetHashCode()
         {
             return Object.GetHashCode();

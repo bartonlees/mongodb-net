@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Reflection;
 using System.Linq.Expressions;
+using System.Reflection;
 using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
 {
-    
+
     /// <summary>
     /// Creates a new document instance using a dynamically created (and emitted) lambda expression. See:
     /// http://www.smelser.net/blog/post/2010/03/05/When-Activator-is-just-to-slow.aspx

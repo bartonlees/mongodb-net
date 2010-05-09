@@ -1,12 +1,5 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
-using System;
-using System.Collections;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Command;
-using System.Data;
-using System.Linq.Expressions;
 namespace MongoDB.Driver
 {
     /// <summary>
@@ -14,6 +7,10 @@ namespace MongoDB.Driver
     /// </summary>
     public static class IDBIndexExtensions
     {
+        /// <summary>
+        /// Drops the specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
         public static void Drop(this IDBIndex index)
         {
             index.Collection.DropIndex(index);

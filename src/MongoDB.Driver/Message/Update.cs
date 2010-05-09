@@ -1,9 +1,8 @@
 using System;
-using System.IO;
 
 namespace MongoDB.Driver.Message
 {
-  
+
 
     internal class Update : Request
     {
@@ -15,16 +14,40 @@ namespace MongoDB.Driver.Message
         //    BSON      selector;           // the query to select the document
         //    BSON      document;           // the document data to update with or insert
         //}
-        
+
+        /// <summary>
+        /// Gets or sets the full name space.
+        /// </summary>
+        /// <value>The full name space.</value>
         public string FullNameSpace { get; set; }
 
+        /// <summary>
+        /// Gets or sets the selector.
+        /// </summary>
+        /// <value>The selector.</value>
         public IDBObject Selector { get; set; }
 
+        /// <summary>
+        /// Gets or sets the document.
+        /// </summary>
+        /// <value>The document.</value>
         public IDBObject Document { get; set; }
 
+        /// <summary>
+        /// Gets or sets the flags.
+        /// </summary>
+        /// <value>The flags.</value>
         public UpdateOption Flags { get; set; }
 
-        public Update(string fullNameSpace, IDBObject selector, IDBObject document, UpdateOption flags) : base(Operation.Update)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Update"/> class.
+        /// </summary>
+        /// <param name="fullNameSpace">The full name space.</param>
+        /// <param name="selector">The selector.</param>
+        /// <param name="document">The document.</param>
+        /// <param name="flags">The flags.</param>
+        public Update(string fullNameSpace, IDBObject selector, IDBObject document, UpdateOption flags)
+            : base(Operation.Update)
         {
             FullNameSpace = fullNameSpace;
             Selector = selector;
@@ -32,6 +55,10 @@ namespace MongoDB.Driver.Message
             Flags = flags;
         }
 
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected override void WriteBody(WireProtocolWriter writer)
         {
             writer.Write(0);
@@ -45,11 +72,23 @@ namespace MongoDB.Driver.Message
 
 namespace MongoDB.Driver
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [Flags]
     public enum UpdateOption
     {
+        /// <summary>
+        /// 
+        /// </summary>
         None = 0x00,
+        /// <summary>
+        /// 
+        /// </summary>
         Upsert = 0x01,
+        /// <summary>
+        /// 
+        /// </summary>
         MultiUpdate = 0x02
     }
 }

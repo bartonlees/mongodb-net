@@ -1,10 +1,8 @@
 //COPYRIGHT
 
-using System.Text;
 using System;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
 using System.Collections;
+using System.Text.RegularExpressions;
 namespace MongoDB.Driver
 {
 
@@ -100,12 +98,22 @@ namespace MongoDB.Driver
         MINKEY = 255,
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class WireProtocol
     {
-        /** Gets the type byte for a given object.
-         * @param o the object
-         * @return the byte value associated with the type, or 0 if <code>o</code> was <code>null</code>
-         */
+        /// <summary>
+        /// Gets the type byte.
+        /// </summary>
+        /// <param name="o">The o.</param>
+        /// <returns></returns>
+        /// Gets the type byte for a given object.
+        /// @param o the object
+        /// @return the byte value associated with the type, or 0 if 
+        /// <code>o</code>
+        ///  was 
+        /// <code>null</code>
         public static TypeByte GetTypeByte(object o)
         {
             if (o == null)

@@ -663,7 +663,7 @@ namespace MongoDB.Driver.Platform.Conditions
             return 0;
         }
 
-        private static Dictionary<object, byte> ConvertToSet(IEnumerable sequence, 
+        private static Dictionary<object, byte> ConvertToSet(IEnumerable sequence,
             out bool sequenceContainsNull)
         {
             // A dictionary can have null as one of it's keys, therefore we have to communicate whether the

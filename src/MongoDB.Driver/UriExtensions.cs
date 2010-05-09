@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
@@ -11,12 +8,18 @@ namespace MongoDB.Driver
     /// </summary>
     public static class UriExtensions
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public const string UriPrefixMongo = "mongo://";
+        /// <summary>
+        /// 
+        /// </summary>
         public const string UriSchemeMongo = "mongo";
 
         internal static string GetFullCollectionName(this Uri collectionUri)
         {
-            Condition.Requires(collectionUri, "collectionUri").IsNotNull().Evaluate(collectionUri.IsAbsoluteUri,"an absolute collection URI is required to retrieve the full collection name");
+            Condition.Requires(collectionUri, "collectionUri").IsNotNull().Evaluate(collectionUri.IsAbsoluteUri, "an absolute collection URI is required to retrieve the full collection name");
             string[] parts = collectionUri.PathAndQuery.Split(new char[] { '/' }, StringSplitOptions.RemoveEmptyEntries);
             Condition.Requires(collectionUri, "collectionUri").Evaluate(parts.Length == 2 && !string.IsNullOrWhiteSpace(parts[0]) && !string.IsNullOrWhiteSpace(parts[1]), "absolute collection URI must have a database and then collection name component");
             return string.Join(".", parts);
@@ -63,6 +66,6 @@ namespace MongoDB.Driver
                 Condition.Requires(indexUri, "indexUri").Evaluate(parts.Length >= 1 && !string.IsNullOrWhiteSpace(parts[0]), "relative index URI must have an index name component");
                 return parts[0];
             }
-        } 
+        }
     }
 }

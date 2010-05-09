@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Collections.Generic;
 
 namespace MongoDB.Driver.Message
@@ -17,14 +15,16 @@ namespace MongoDB.Driver.Message
         /// <summary>
         /// Gets or sets the full name of the collection.
         /// </summary>
-        /// <value>The full name of the collection in the form "dbname.collectionname"</value>
+        /// <value>
+        /// The full name of the collection in the form "dbname.collectionname"
+        /// </value>
         public string FullCollectionName { get; private set; }
 
         /// <summary>
         /// Gets or sets the documents.
         /// </summary>
         /// <value>one or more documents to insert into the collection</value>
-        public IEnumerable<IDocument> Documents { get{ return _documents; }}
+        public IEnumerable<IDocument> Documents { get { return _documents; } }
         List<IDocument> _documents = null;
 
         /// <summary>
@@ -49,6 +49,10 @@ namespace MongoDB.Driver.Message
         {
         }
 
+        /// <summary>
+        /// Writes the body.
+        /// </summary>
+        /// <param name="writer">The writer.</param>
         protected override void WriteBody(WireProtocolWriter writer)
         {
             writer.Write(0);

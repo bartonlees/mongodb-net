@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace MongoDB.Driver.Command.Admin
 {
     internal static partial class AdminCommandExtensions
@@ -15,7 +11,7 @@ namespace MongoDB.Driver.Command.Admin
         /// <returns></returns>
         public static string copydbgetnonce(this IAdminOperations db, IDatabase fromDatabase)
         {
-            IDBObject res = db.ExecuteCommand(new DBQuery ()
+            IDBObject res = db.ExecuteCommand(new DBQuery()
             {
                 {"copydbgetnonce", 1},
                 {"fromdb", fromDatabase.Name}

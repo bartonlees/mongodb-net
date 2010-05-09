@@ -1,9 +1,8 @@
 //COPYRIGHT
 
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
 
@@ -25,6 +24,10 @@ namespace MongoDB.Driver
         {
         }
 
+        /// <summary>
+        /// Gets the enumerator.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerator<IDocument> GetEnumerator()
         {
             return new DBCursorEnumerator<TDoc>(this);
@@ -35,7 +38,7 @@ namespace MongoDB.Driver
             return GetEnumerator();
         }
 
-        
+
 
         //        _lookForHints();
 
@@ -65,7 +68,11 @@ namespace MongoDB.Driver
         //    }
         //}
 
-        ///**
+        /// <summary>
+        /// Gets or sets the options.
+        /// </summary>
+        /// <value>The options.</value>
+        /// **
         // * if there is a hint to use, use it
         // */
         //private void _lookForHints()
@@ -101,7 +108,11 @@ namespace MongoDB.Driver
         //}
 
         public DBCursorOptions Options { get; private set; }
-        
+
+        /// <summary>
+        /// Gets the documents T.
+        /// </summary>
+        /// <value>The documents T.</value>
         public IEnumerable<TDoc> DocumentsT
         {
             get { return this.Cast<TDoc>(); }
@@ -113,31 +124,52 @@ namespace MongoDB.Driver
         }
 
 
+        /// <summary>
+        /// Copies this instance.
+        /// </summary>
+        /// <returns></returns>
         public IDBCursor Copy()
         {
             return new DBCursor<TDoc>(Options);
         }
 
         long? _CursorID = null;
+        /// <summary>
+        /// Gets or sets the cursor ID.
+        /// </summary>
+        /// <value>The cursor ID.</value>
         public long? CursorID
         {
             get { return _CursorID; }
             set { _CursorID = value; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has more.
+        /// </summary>
+        /// <value><c>true</c> if this instance has more; otherwise, <c>false</c>.</value>
         public bool HasMore
         {
-            get { return !_CursorID.HasValue || _CursorID.Value != 0; } 
+            get { return !_CursorID.HasValue || _CursorID.Value != 0; }
         }
     }
 
     internal class DBCursor : DBCursor<Document>
     {
-        public DBCursor(DBCursorOptions options = null) : base(options)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBCursor"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public DBCursor(DBCursorOptions options = null)
+            : base(options)
         {
         }
         static Dictionary<string, List<long>> _DeadCursorLookup = new Dictionary<string, List<long>>();
 
+        /// <summary>
+        /// Cleanups the cursors.
+        /// </summary>
+        /// <param name="collection">The collection.</param>
         public static void CleanupCursors(IDBCollection collection)
         {
             //void _cleanCursors()

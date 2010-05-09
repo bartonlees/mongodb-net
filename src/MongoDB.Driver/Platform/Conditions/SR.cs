@@ -39,7 +39,7 @@ namespace MongoDB.Driver.Platform.Conditions
         internal const string CollectionContainsCurrently1Element = "CollectionContainsCurrently1Element";
         internal const string CollectionContainsCurrentlyXElements = "CollectionContainsCurrentlyXElements";
         internal const string CollectionIsCurrentlyANullReference = "CollectionIsCurrentlyANullReference";
-        
+
         internal const string CollectionShouldBeEmpty = "CollectionShouldBeEmpty";
         internal const string CollectionShouldContainAllOfX = "CollectionShouldContainAllOfX";
         internal const string CollectionShouldContainAtLeastOneOfX = "CollectionShouldContainAtLeastOneOfX";
@@ -65,7 +65,7 @@ namespace MongoDB.Driver.Platform.Conditions
         internal const string CollectionShouldNotContainXElements = "CollectionShouldNotContainXElements";
         internal const string CollectionShouldNotContainXOrLessElements = "CollectionShouldNotContainXOrLessElements";
         internal const string CollectionShouldNotContainXOrMoreElements = "CollectionShouldNotContainXOrMoreElements";
-        
+
         internal const string LambdaXShouldHoldForValue = "LambdaXShouldHoldForValue";
 
         internal const string PostconditionFailed = "PostconditionFailed";
@@ -145,7 +145,7 @@ namespace MongoDB.Driver.Platform.Conditions
                 return format;
             }
 
-            return string.Format(CultureInfo.CurrentCulture, format, args);         
+            return string.Format(CultureInfo.CurrentCulture, format, args);
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
@@ -59,14 +57,36 @@ namespace MongoDB.Driver
         Modified = 16,
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IDocument : IDBObject
     {
+        /// <summary>
+        /// Gets or sets the ID.
+        /// </summary>
+        /// <value>The ID.</value>
         Oid ID { get; set; }
+        /// <summary>
+        /// Gets the state.
+        /// </summary>
+        /// <value>The state.</value>
         DocumentState State { get; }
+        /// <summary>
+        /// Gets or sets the collection.
+        /// </summary>
+        /// <value>The collection.</value>
         IDBCollection Collection { get; set; }
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="IDocument"/> is partial.
+        /// </summary>
+        /// <value><c>true</c> if partial; otherwise, <c>false</c>.</value>
         bool Partial { get; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
     public static class IDocumentExtensions
     {
         /// <summary>

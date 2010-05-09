@@ -19,6 +19,24 @@ namespace MongoDB.Newtonsoft.Json
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContractDocument&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="instance">An instance of the Contracted Type.</param>
+        public ContractDocument(Oid oid, bool partial)
+            : this(new T(), DocumentState.Unchanged, new MongoDBSerializer())
+        {
+            Partial = partial;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContractDocument&lt;T&gt;"/> class.
+        /// </summary>
+        /// <param name="instance">An instance of the Contracted Type.</param>
+        public ContractDocument(T instance)
+            : this(instance, DocumentState.Detached, new MongoDBSerializer())
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ContractDocument&lt;T&gt;"/> class.
@@ -39,6 +57,7 @@ namespace MongoDB.Newtonsoft.Json
         {
             object id = this["_id"];
             State = state;
+            Partial = false;
         }
 
         public Oid ID

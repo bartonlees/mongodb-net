@@ -21,7 +21,7 @@ namespace MongoDB.Newtonsoft.Json
     /// </summary>
     public class ContractDBObject<T> : IDBObjectCustom where T:new()
     {
-        T _Instance;
+        public T Instance { get; private set; }
         MongoDBSerializer _Serializer;
         JsonObjectContract _Contract;
 
@@ -61,7 +61,7 @@ namespace MongoDB.Newtonsoft.Json
             if (_Contract == null)
                 throw new NotSupportedException("Only a serializer that resolves a JsonContract of type JsonObjectContract is supported");
             
-            _Instance = instance;
+            Instance = instance;
             _Serializer = serializer;
         }
 
@@ -77,7 +77,7 @@ namespace MongoDB.Newtonsoft.Json
             Condition.Requires(boxedInstance, "instance").IsNotNull();
             Condition.Requires(contract, "contract").IsNotNull();
             _Contract = contract;            
-            _Instance = instance;
+            Instance = instance;
             _Serializer = serializer;
         }
 
@@ -95,7 +95,7 @@ namespace MongoDB.Newtonsoft.Json
             using (JsonTextWriter jsonTextWriter = new JsonTextWriter(streamWriter))
             {
                 jsonTextWriter.Formatting = Formatting.Indented;
-                _Serializer.Serialize(jsonTextWriter, _Instance);
+                _Serializer.Serialize(jsonTextWriter, Instance);
                 return streamWriter.GetStringBuilder().ToString();
             }
         }
@@ -128,7 +128,7 @@ namespace MongoDB.Newtonsoft.Json
             JsonProperty prop = _Contract.Properties.GetClosestMatchProperty(key);
             if (prop == null)
                 return false;
-            value = prop.ValueProvider.GetValue(_Instance);
+            value = prop.ValueProvider.GetValue(Instance);
             return true;
         }
 
@@ -136,7 +136,7 @@ namespace MongoDB.Newtonsoft.Json
         {
             get
             {
-                return _Contract.Properties.Select(prop => prop.ValueProvider.GetValue(_Instance)).ToList();
+                return _Contract.Properties.Select(prop => prop.ValueProvider.GetValue(Instance)).ToList();
             }
         }
 
@@ -147,14 +147,14 @@ namespace MongoDB.Newtonsoft.Json
                 JsonProperty prop = _Contract.Properties.GetClosestMatchProperty(key);
                 if (prop == null)
                     throw new KeyNotFoundException(string.Format("Cannot find a suitable match for: {0}", key));
-                return prop.ValueProvider.GetValue(_Instance);
+                return prop.ValueProvider.GetValue(Instance);
             }
             set
             {
                 JsonProperty prop = _Contract.Properties.GetClosestMatchProperty(key);
                 if (prop == null)
                     throw new KeyNotFoundException(string.Format("Cannot find a suitable match for: {0}", key));
-                prop.ValueProvider.SetValue(_Instance, value);
+                prop.ValueProvider.SetValue(Instance, value);
             }
         }
 
@@ -217,7 +217,7 @@ namespace MongoDB.Newtonsoft.Json
             using (NonClosingStreamWrapper rawStream = new NonClosingStreamWrapper(writer.BaseStream))
             using (BsonWriter bsonWriter = new BsonWriter(rawStream))
             {
-                _Serializer.Serialize(bsonWriter, _Instance);
+                _Serializer.Serialize(bsonWriter, Instance);
             }
         }
 
@@ -226,7 +226,7 @@ namespace MongoDB.Newtonsoft.Json
             using (NonClosingStreamWrapper rawStream = new NonClosingStreamWrapper(reader.BaseStream))
             using (BsonReader bsonReader = new BsonReader(rawStream))
             {
-                _Serializer.Populate(bsonReader, _Instance);
+                _Serializer.Populate(bsonReader, Instance);
             }
         }
     }

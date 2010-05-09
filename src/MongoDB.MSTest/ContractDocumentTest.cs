@@ -156,10 +156,27 @@ namespace MongoDB.MSTest
         }
 
         [TestMethod()]
-        [DeploymentItem("MongoDB.Newtonsoft.Json.dll")]
         public void StateTest()
         {
             StateTestHelper<TestContractObject>();
         }
+
+        [TestMethod()]
+        public void RoundTripTest()
+        {
+            TestContractObject newObj = new TestContractObject();
+            newObj.ID = new Oid(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
+            newObj.Caption = "good";
+            newObj.Data = 345;
+            ContractDocument<TestContractObject> newDoc = new ContractDocument<TestContractObject>(newObj);
+            IDBCollection coll = Mongo.DefaultDatabase.GetCollection("TestContractObject");
+            coll.Save(newDoc);
+            ContractDocument<TestContractObject> existingDoc = coll.FindContractDocumentByID<TestContractObject>(newDoc.ID);
+            TestContractObject existingObj = existingDoc.Instance;
+            existingObj.ID.Should().Be(newObj.ID);
+            existingObj.Data.Should().Be(newObj.Data);
+            existingObj.Caption.Should().Be(newObj.Caption);
+        }
+
     }
 }

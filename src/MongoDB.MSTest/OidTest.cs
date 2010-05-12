@@ -199,9 +199,9 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void FromByteArrayTest()
         {
-            Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
-            byte[] buffer = null; // TODO: Initialize to an appropriate value
-            target.FromByteArray(buffer);
+            //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
+            //byte[] buffer = null; // TODO: Initialize to an appropriate value
+            //target.FromByteArray(buffer);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -212,9 +212,9 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void FromHexadecimalStringTest()
         {
-            Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
-            string val = string.Empty; // TODO: Initialize to an appropriate value
-            target.FromHexadecimalString(val);
+            //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
+            //string val = string.Empty; // TODO: Initialize to an appropriate value
+            //target.FromHexadecimalString(val);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -365,12 +365,12 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void BufferTest()
         {
-            Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
-            byte[] expected = null; // TODO: Initialize to an appropriate value
-            byte[] actual;
-            target.Buffer = expected;
-            actual = target.Buffer;
-            Assert.AreEqual(expected, actual);
+            //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
+            //byte[] expected = null; // TODO: Initialize to an appropriate value
+            //byte[] actual;
+            //target.Buffer = expected;
+            //actual = target.Buffer;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

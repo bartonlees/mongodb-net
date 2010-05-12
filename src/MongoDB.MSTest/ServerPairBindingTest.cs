@@ -150,13 +150,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void LeftBindingTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ServerPairBinding_Accessor target = new ServerPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            ServerBinding expected = null; // TODO: Initialize to an appropriate value
-            ServerBinding actual;
-            target.LeftBinding = expected;
-            actual = target.LeftBinding;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //ServerPairBinding_Accessor target = new ServerPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //ServerBinding expected = null; // TODO: Initialize to an appropriate value
+            //ServerBinding actual;
+            //target.LeftBinding = expected;
+            //actual = target.LeftBinding;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -182,13 +182,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ReadOnlyTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ServerPairBinding_Accessor target = new ServerPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.ReadOnly = expected;
-            actual = target.ReadOnly;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //ServerPairBinding_Accessor target = new ServerPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //target.ReadOnly = expected;
+            //actual = target.ReadOnly;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -199,13 +199,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void RightBindingTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ServerPairBinding_Accessor target = new ServerPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            ServerBinding expected = null; // TODO: Initialize to an appropriate value
-            ServerBinding actual;
-            target.RightBinding = expected;
-            actual = target.RightBinding;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //ServerPairBinding_Accessor target = new ServerPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //ServerBinding expected = null; // TODO: Initialize to an appropriate value
+            //ServerBinding actual;
+            //target.RightBinding = expected;
+            //actual = target.RightBinding;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

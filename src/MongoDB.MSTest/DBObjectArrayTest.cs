@@ -617,12 +617,12 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void StateTest()
         {
-            DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
-            DocumentState expected = new DocumentState(); // TODO: Initialize to an appropriate value
-            DocumentState actual;
-            target.State = expected;
-            actual = target.State;
-            Assert.AreEqual(expected, actual);
+            //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
+            //DocumentState expected = new DocumentState(); // TODO: Initialize to an appropriate value
+            //DocumentState actual;
+            //target.State = expected;
+            //actual = target.State;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -727,9 +727,9 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void _icollectionTest()
         {
-            DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
-            ICollection actual;
-            actual = target._icollection;
+            //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
+            //ICollection actual;
+            //actual = target._icollection;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -740,9 +740,9 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void _ilistTest()
         {
-            DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
-            IList actual;
-            actual = target._ilist;
+            //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
+            //IList actual;
+            //actual = target._ilist;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

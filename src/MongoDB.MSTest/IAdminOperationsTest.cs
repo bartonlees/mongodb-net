@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using SharpTestsEx;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
@@ -82,10 +82,10 @@ namespace MongoDB.MSTest
             BuildInfo actual;
             actual = target.BuildInfo;
             Console.WriteLine(actual);
-            actual.Bits.Should().Not.Be(0);
-            actual.GitVersion.Should().Not.Be(string.Empty);
-            actual.SysInfo.Should().Not.Be(string.Empty);
-            actual.Version.Should().Not.Be(string.Empty);
+            actual.Bits.Should().NotBe(0);
+            actual.GitVersion.Should().NotBe(string.Empty);
+            actual.SysInfo.Should().NotBe(string.Empty);
+            actual.Version.Should().NotBe(string.Empty);
         }
 
         /// <summary>

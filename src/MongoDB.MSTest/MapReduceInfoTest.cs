@@ -83,13 +83,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void CountsTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            MapReduceInfo_Accessor target = new MapReduceInfo_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDocument expected = null; // TODO: Initialize to an appropriate value
-            IDocument actual;
-            target.Counts = expected;
-            actual = target.Counts;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //MapReduceInfo_Accessor target = new MapReduceInfo_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDocument expected = null; // TODO: Initialize to an appropriate value
+            //IDocument actual;
+            //target.Counts = expected;
+            //actual = target.Counts;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -100,13 +100,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ResultingCollectionTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            MapReduceInfo_Accessor target = new MapReduceInfo_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            target.ResultingCollection = expected;
-            actual = target.ResultingCollection;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //MapReduceInfo_Accessor target = new MapReduceInfo_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //target.ResultingCollection = expected;
+            //actual = target.ResultingCollection;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

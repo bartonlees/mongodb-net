@@ -91,13 +91,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CollectionTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            target.Collection = expected;
-            actual = target.Collection;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //target.Collection = expected;
+            //actual = target.Collection;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -108,13 +108,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ExplainTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.Explain = expected;
-            actual = target.Explain;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //target.Explain = expected;
+            //actual = target.Explain;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -125,13 +125,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void FlagsTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            CursorFlags expected = new CursorFlags(); // TODO: Initialize to an appropriate value
-            CursorFlags actual;
-            target.Flags = expected;
-            actual = target.Flags;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //CursorFlags expected = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //CursorFlags actual;
+            //target.Flags = expected;
+            //actual = target.Flags;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -142,13 +142,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void HintTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBIndex expected = null; // TODO: Initialize to an appropriate value
-            IDBIndex actual;
-            target.Hint = expected;
-            actual = target.Hint;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBIndex expected = null; // TODO: Initialize to an appropriate value
+            //IDBIndex actual;
+            //target.Hint = expected;
+            //actual = target.Hint;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -159,13 +159,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void NumberToReturnTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.NumberToReturn = expected;
-            actual = target.NumberToReturn;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //int expected = 0; // TODO: Initialize to an appropriate value
+            //int actual;
+            //target.NumberToReturn = expected;
+            //actual = target.NumberToReturn;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -176,13 +176,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void NumberToSkipTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            Nullable<int> expected = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> actual;
-            target.NumberToSkip = expected;
-            actual = target.NumberToSkip;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //Nullable<int> expected = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> actual;
+            //target.NumberToSkip = expected;
+            //actual = target.NumberToSkip;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -193,13 +193,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void OrderByTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            DBFieldSet expected = null; // TODO: Initialize to an appropriate value
-            DBFieldSet actual;
-            target.OrderBy = expected;
-            actual = target.OrderBy;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //DBFieldSet expected = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet actual;
+            //target.OrderBy = expected;
+            //actual = target.OrderBy;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -210,13 +210,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ReturnFieldsTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            DBFieldSet expected = null; // TODO: Initialize to an appropriate value
-            DBFieldSet actual;
-            target.ReturnFields = expected;
-            actual = target.ReturnFields;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //DBFieldSet expected = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet actual;
+            //target.ReturnFields = expected;
+            //actual = target.ReturnFields;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -227,13 +227,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void SelectorTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
-            DBQuery actual;
-            target.Selector = expected;
-            actual = target.Selector;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery actual;
+            //target.Selector = expected;
+            //actual = target.Selector;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -244,13 +244,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void SnapshotTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.Snapshot = expected;
-            actual = target.Snapshot;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBCursorOptions_Accessor target = new DBCursorOptions_Accessor(param0); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //target.Snapshot = expected;
+            //actual = target.Snapshot;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

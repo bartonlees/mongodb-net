@@ -107,12 +107,12 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void IncTest()
         {
-            DBTimestamp_Accessor target = new DBTimestamp_Accessor(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            target.Inc = expected;
-            actual = target.Inc;
-            Assert.AreEqual(expected, actual);
+            //DBTimestamp_Accessor target = new DBTimestamp_Accessor(); // TODO: Initialize to an appropriate value
+            //int expected = 0; // TODO: Initialize to an appropriate value
+            //int actual;
+            //target.Inc = expected;
+            //actual = target.Inc;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

@@ -188,12 +188,12 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void PartialTest()
         {
-            Document_Accessor target = new Document_Accessor(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.Partial = expected;
-            actual = target.Partial;
-            Assert.AreEqual(expected, actual);
+            //Document_Accessor target = new Document_Accessor(); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //target.Partial = expected;
+            //actual = target.Partial;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -204,12 +204,12 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void StateTest()
         {
-            Document_Accessor target = new Document_Accessor(); // TODO: Initialize to an appropriate value
-            DocumentState expected = new DocumentState(); // TODO: Initialize to an appropriate value
-            DocumentState actual;
-            target.State = expected;
-            actual = target.State;
-            Assert.AreEqual(expected, actual);
+            //Document_Accessor target = new Document_Accessor(); // TODO: Initialize to an appropriate value
+            //DocumentState expected = new DocumentState(); // TODO: Initialize to an appropriate value
+            //DocumentState actual;
+            //target.State = expected;
+            //actual = target.State;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

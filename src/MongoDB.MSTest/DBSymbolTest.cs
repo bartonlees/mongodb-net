@@ -79,16 +79,16 @@ namespace MongoDB.MSTest
         ///A test for Symbol
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+        //[DeploymentItem("MongoDB.Driver.dll")]
         public void SymbolTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBSymbol_Accessor target = new DBSymbol_Accessor(param0); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            target.Symbol = expected;
-            actual = target.Symbol;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBSymbol_Accessor target = new DBSymbol_Accessor(param0); // TODO: Initialize to an appropriate value
+            //string expected = string.Empty; // TODO: Initialize to an appropriate value
+            //string actual;
+            //target.Symbol = expected;
+            //actual = target.Symbol;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

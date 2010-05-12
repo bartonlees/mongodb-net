@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using SharpTestsEx;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
@@ -87,7 +87,7 @@ namespace MongoDB.MSTest
         {
             DBBinary target;
             target = new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
-            target.Buffer.Should().Have.SameSequenceAs( new byte[] {1, 2, 1, 2, 12, 2, 2});
+            target.Buffer.Should().ContainInOrder( new byte[] {1, 2, 1, 2, 12, 2, 2});
         }
 
         /// <summary>

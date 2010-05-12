@@ -82,13 +82,13 @@ namespace MongoDB.MSTest
         public void CreateDocumentTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            WireProtocolReader_Accessor target = new WireProtocolReader_Accessor(param0); // TODO: Initialize to an appropriate value
-            bool partial = false; // TODO: Initialize to an appropriate value
-            TDoc expected = default(TDoc); // TODO: Initialize to an appropriate value
-            TDoc actual;
-            actual = target.CreateDocument<TDoc>(partial);
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //WireProtocolReader_Accessor target = new WireProtocolReader_Accessor(param0); // TODO: Initialize to an appropriate value
+            //bool partial = false; // TODO: Initialize to an appropriate value
+            //TDoc expected = default(TDoc); // TODO: Initialize to an appropriate value
+            //TDoc actual;
+            //actual = target.CreateDocument<TDoc>(partial);
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -130,14 +130,14 @@ namespace MongoDB.MSTest
         public void ReadNextElementTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            WireProtocolReader_Accessor target = new WireProtocolReader_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBObject o = null; // TODO: Initialize to an appropriate value
-            bool partial = false; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.ReadNextElement<TDoc>(o, partial);
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //WireProtocolReader_Accessor target = new WireProtocolReader_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBObject o = null; // TODO: Initialize to an appropriate value
+            //bool partial = false; // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //actual = target.ReadNextElement<TDoc>(o, partial);
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -172,12 +172,12 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void data_binaryTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            WireProtocolReader_Accessor target = new WireProtocolReader_Accessor(param0); // TODO: Initialize to an appropriate value
-            object expected = null; // TODO: Initialize to an appropriate value
-            object actual;
-            actual = target.data_binary();
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //WireProtocolReader_Accessor target = new WireProtocolReader_Accessor(param0); // TODO: Initialize to an appropriate value
+            //object expected = null; // TODO: Initialize to an appropriate value
+            //object actual;
+            //actual = target.data_binary();
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

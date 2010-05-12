@@ -269,13 +269,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ReadOnlyTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            ServerBinding_Accessor target = new ServerBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.ReadOnly = expected;
-            actual = target.ReadOnly;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //ServerBinding_Accessor target = new ServerBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //target.ReadOnly = expected;
+            //actual = target.ReadOnly;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

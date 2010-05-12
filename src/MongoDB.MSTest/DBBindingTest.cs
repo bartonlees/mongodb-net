@@ -4,7 +4,7 @@ using System;
 using System.Transactions;
 using System.Security;
 using System.Net;
-using SharpTestsEx;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
@@ -95,7 +95,7 @@ namespace MongoDB.MSTest
         {
             DBBinding target1 = new DBBinding(Mongo.DefaultServerBinding, "coll");
             DBBinding target2 = new DBBinding(Mongo.DefaultServerBinding, "coll");
-            target1.Should().Be.EqualTo(target2);   
+            target1.Should().BeSameAs(target2);   
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace MongoDB.MSTest
         {
             DBBinding target1 = new DBBinding(Mongo.DefaultServerBinding, "coll");
             DBBinding target2 = new DBBinding(Mongo.DefaultServerBinding, "coll2");
-            target1.GetHashCode().Should().Not.Be(target2.GetHashCode());
+            target1.GetHashCode().Should().NotBe(target2.GetHashCode());
         }
 
         /// <summary>
@@ -193,13 +193,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ServerTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBBinding_Accessor target = new DBBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            IServer expected = null; // TODO: Initialize to an appropriate value
-            IServer actual;
-            target.Server = expected;
-            actual = target.Server;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBBinding_Accessor target = new DBBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IServer expected = null; // TODO: Initialize to an appropriate value
+            //IServer actual;
+            //target.Server = expected;
+            //actual = target.Server;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -209,13 +209,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UriTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBBinding_Accessor target = new DBBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            Uri expected = null; // TODO: Initialize to an appropriate value
-            Uri actual;
-            target.Uri = expected;
-            actual = target.Uri;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBBinding_Accessor target = new DBBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //Uri expected = null; // TODO: Initialize to an appropriate value
+            //Uri actual;
+            //target.Uri = expected;
+            //actual = target.Uri;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -225,13 +225,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UsernameTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBBinding_Accessor target = new DBBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            target.Username = expected;
-            actual = target.Username;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBBinding_Accessor target = new DBBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //string expected = string.Empty; // TODO: Initialize to an appropriate value
+            //string actual;
+            //target.Username = expected;
+            //actual = target.Username;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

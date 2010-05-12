@@ -144,9 +144,9 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void PickInitialSubBindingTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            target.PickInitialSubBinding();
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //target.PickInitialSubBinding();
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -209,15 +209,15 @@ namespace MongoDB.MSTest
         public void _CallTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
-            IDBRequest request = null; // TODO: Initialize to an appropriate value
-            int retries = 0; // TODO: Initialize to an appropriate value
-            IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
-            IDBResponse<TDoc> actual;
-            actual = target._Call<TDoc>(cmdCollection, request, retries);
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
+            //IDBRequest request = null; // TODO: Initialize to an appropriate value
+            //int retries = 0; // TODO: Initialize to an appropriate value
+            //IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
+            //IDBResponse<TDoc> actual;
+            //actual = target._Call<TDoc>(cmdCollection, request, retries);
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -341,13 +341,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void LeftBindingTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBBinding expected = null; // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            target.LeftBinding = expected;
-            actual = target.LeftBinding;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBBinding expected = null; // TODO: Initialize to an appropriate value
+            //IDBBinding actual;
+            //target.LeftBinding = expected;
+            //actual = target.LeftBinding;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -373,13 +373,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ReadOnlyTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.ReadOnly = expected;
-            actual = target.ReadOnly;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //target.ReadOnly = expected;
+            //actual = target.ReadOnly;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -390,13 +390,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void RightBindingTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBBinding expected = null; // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            target.RightBinding = expected;
-            actual = target.RightBinding;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBBinding expected = null; // TODO: Initialize to an appropriate value
+            //IDBBinding actual;
+            //target.RightBinding = expected;
+            //actual = target.RightBinding;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -407,13 +407,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ServerTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            IServer expected = null; // TODO: Initialize to an appropriate value
-            IServer actual;
-            target.Server = expected;
-            actual = target.Server;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IServer expected = null; // TODO: Initialize to an appropriate value
+            //IServer actual;
+            //target.Server = expected;
+            //actual = target.Server;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

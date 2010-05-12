@@ -99,13 +99,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void CollectionTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBRef_Accessor target = new DBRef_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            target.Collection = expected;
-            actual = target.Collection;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBRef_Accessor target = new DBRef_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //target.Collection = expected;
+            //actual = target.Collection;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -116,13 +116,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void IDTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBRef_Accessor target = new DBRef_Accessor(param0); // TODO: Initialize to an appropriate value
-            object expected = null; // TODO: Initialize to an appropriate value
-            object actual;
-            target.ID = expected;
-            actual = target.ID;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBRef_Accessor target = new DBRef_Accessor(param0); // TODO: Initialize to an appropriate value
+            //object expected = null; // TODO: Initialize to an appropriate value
+            //object actual;
+            //target.ID = expected;
+            //actual = target.ID;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

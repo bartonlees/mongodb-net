@@ -95,8 +95,8 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void GenerateConstantsTest()
         {
-            Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
-            target.GenerateConstants();
+            //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
+            //target.GenerateConstants();
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -107,11 +107,11 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void GenerateHostHashTest()
         {
-            Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
-            byte[] expected = null; // TODO: Initialize to an appropriate value
-            byte[] actual;
-            actual = target.GenerateHostHash();
-            Assert.AreEqual(expected, actual);
+            //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
+            //byte[] expected = null; // TODO: Initialize to an appropriate value
+            //byte[] actual;
+            //actual = target.GenerateHostHash();
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -122,11 +122,11 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void GenerateIncTest()
         {
-            Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.GenerateInc();
-            Assert.AreEqual(expected, actual);
+            //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
+            //int expected = 0; // TODO: Initialize to an appropriate value
+            //int actual;
+            //actual = target.GenerateInc();
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -137,11 +137,11 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void GenerateProcIdTest()
         {
-            Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.GenerateProcId();
-            Assert.AreEqual(expected, actual);
+            //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
+            //int expected = 0; // TODO: Initialize to an appropriate value
+            //int actual;
+            //actual = target.GenerateProcId();
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -152,11 +152,11 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void GenerateTimeTest()
         {
-            Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.GenerateTime();
-            Assert.AreEqual(expected, actual);
+            //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
+            //int expected = 0; // TODO: Initialize to an appropriate value
+            //int actual;
+            //actual = target.GenerateTime();
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

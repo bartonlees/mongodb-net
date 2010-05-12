@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using MongoDB.Driver;
 using System.Collections;
 using Newtonsoft.Json.Serialization;
-using SharpTestsEx;
+using FluentAssertions;
 using System.IO;
 
 namespace MongoDB.MSTest
@@ -116,7 +116,7 @@ namespace MongoDB.MSTest
         public void ContractDBObjectConstructorTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>(new T(), new MongoDBSerializer());
-            Executing.This(() => { ContractDBObject<T> target3 = new ContractDBObject<T>(new T(), null); }).Should().Throw();
+            this.Invoking((t) => { ContractDBObject<T> target3 = new ContractDBObject<T>(new T(), null); }).ShouldThrow<Exception>();
         }
 
         [TestMethod()]
@@ -124,8 +124,8 @@ namespace MongoDB.MSTest
         {
             ContractDBObjectConstructorTestHelper<TestContractStruct>();
             ContractDBObjectConstructorTestHelper<TestContractObject>();
-            Executing.This(() => { ContractDBObject<TestContractObject> target2 = new ContractDBObject<TestContractObject>(null, new MongoDBSerializer()); }).Should().Throw();
-            Executing.This(() => ContractDBObjectConstructorTestHelper<List<int>>()).Should().Throw();
+            this.Invoking((t) => { ContractDBObject<TestContractObject> target2 = new ContractDBObject<TestContractObject>(null, new MongoDBSerializer()); }).ShouldThrow<Exception>();
+            this.Invoking((t) => ContractDBObjectConstructorTestHelper<List<int>>()).ShouldThrow<Exception>();
             //Don't force an _id here
             ContractDBObjectConstructorTestHelper<TestContractObjectNoID>();
             ContractDBObjectConstructorTestHelper<TestContractStructNoID>();
@@ -144,8 +144,8 @@ namespace MongoDB.MSTest
         {
             ContractDBObjectConstructorTest1Helper<TestContractStruct>();
             ContractDBObjectConstructorTest1Helper<TestContractObject>();
-            Executing.This(() => { ContractDBObject<TestContractObject> target2 = new ContractDBObject<TestContractObject>(null); }).Should().Throw();
-            Executing.This(() => ContractDBObjectConstructorTest1Helper<List<int>>()).Should().Throw();
+            this.Invoking((t) => { ContractDBObject<TestContractObject> target2 = new ContractDBObject<TestContractObject>(null); }).ShouldThrow<Exception>();
+            this.Invoking((t) => ContractDBObjectConstructorTest1Helper<List<int>>()).ShouldThrow<Exception>();
             //Don't force an _id here
             ContractDBObjectConstructorTest1Helper<TestContractObjectNoID>();
             ContractDBObjectConstructorTest1Helper<TestContractStructNoID>();
@@ -157,7 +157,7 @@ namespace MongoDB.MSTest
         public void AddTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            Executing.This(() => target.Add("test", 1)).Should().Throw<KeyNotFoundException>();
+            this.Invoking((t) => target.Add("test", 1)).ShouldThrow<KeyNotFoundException>();
             target.Add("Data", 123);
             target["Data"].Should().Be(123);
         }
@@ -174,7 +174,7 @@ namespace MongoDB.MSTest
         public void AddTest1Helper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            Executing.This(()=> target.Add(new KeyValuePair<string, object>("test",1))).Should().Throw<KeyNotFoundException>();
+            this.Invoking((t)=> target.Add(new KeyValuePair<string, object>("test",1))).ShouldThrow<KeyNotFoundException>();
             target.Add(new KeyValuePair<string, object>("Data", 123));
             target["Data"].Should().Be(123);
         }
@@ -191,7 +191,7 @@ namespace MongoDB.MSTest
         public void ClearTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            Executing.This(()=> target.Clear()).Should().Throw();
+            this.Invoking((t)=> target.Clear()).ShouldThrow<Exception>();
         }
 
         [TestMethod()]
@@ -241,8 +241,8 @@ namespace MongoDB.MSTest
             KeyValuePair<string, object>[] array = new KeyValuePair<string,object>[4];
             int arrayIndex = 0;
             target.CopyTo(array, arrayIndex);
-            array.Select(p => p.Key).Should().Have.SameValuesAs("Caption", "Data", "_id", null);
-            array[3].Key.Should().Be.NullOrEmpty();
+            array.Select(p => p.Key).Should().Contain("Caption", "Data", "_id", null);
+            array[3].Key.Should().BeEmpty();
         }
 
         [TestMethod()]
@@ -257,7 +257,7 @@ namespace MongoDB.MSTest
         public void GetEnumeratorTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            (target as IEnumerable<KeyValuePair<string, object>>).Select(p => p.Key).Should().Have.SameValuesAs("Caption", "Data", "_id");
+            (target as IEnumerable<KeyValuePair<string, object>>).Select(p => p.Key).Should().Contain("Caption", "Data", "_id");
         }
 
         [TestMethod()]
@@ -275,7 +275,7 @@ namespace MongoDB.MSTest
             target.PutAll(new Dictionary<string, object>() {{"Caption","Perambulator"},{"Data",222} });
             target["Caption"].Should().Be("Perambulator");
             target["Data"].Should().Be(222);
-            Executing.This(() => target.PutAll(new Dictionary<string, object>() { { "Putin", "Powell" }})).Should().Throw<KeyNotFoundException>();
+            this.Invoking((t) => target.PutAll(new Dictionary<string, object>() { { "Putin", "Powell" }})).ShouldThrow<KeyNotFoundException>();
         }
 
         [TestMethod()]
@@ -312,7 +312,7 @@ namespace MongoDB.MSTest
         public void RemoveTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            Executing.This(() => target.Remove(new KeyValuePair<string, object>())).Should().Throw<NotSupportedException>();
+            this.Invoking((t) => target.Remove(new KeyValuePair<string, object>())).ShouldThrow<NotSupportedException>();
         }
 
         [TestMethod()]
@@ -327,7 +327,7 @@ namespace MongoDB.MSTest
         public void RemoveTest1Helper<T>() where T:new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            Executing.This(() => target.Remove("Data")).Should().Throw<NotSupportedException>();
+            this.Invoking((t) => target.Remove("Data")).ShouldThrow<NotSupportedException>();
         }
 
         [TestMethod()]
@@ -441,7 +441,7 @@ namespace MongoDB.MSTest
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
             target["Data"].Should().Be(321);
-            Executing.This(() => { object obj = target["turnkey"]; }).Should().Throw<KeyNotFoundException>();
+            this.Invoking((t) => { object obj = target["turnkey"]; }).ShouldThrow<KeyNotFoundException>();
         }
 
         [TestMethod()]
@@ -456,7 +456,7 @@ namespace MongoDB.MSTest
         public void KeysTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.Keys.Should().Have.SameValuesAs("Data", "Caption", "_id");
+            target.Keys.Should().Contain("Data", "Caption", "_id");
         }
 
         [TestMethod()]
@@ -471,7 +471,7 @@ namespace MongoDB.MSTest
         public void ValuesTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.Values.Should().Have.SameValuesAs(321, "Amble", Oid.Empty);
+            target.Values.Should().Contain(321, "Amble", Oid.Empty);
         }
 
         [TestMethod()]

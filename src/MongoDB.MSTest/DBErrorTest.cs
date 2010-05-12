@@ -148,13 +148,13 @@ namespace MongoDB.MSTest
         [DeploymentItem("MongoDB.Driver.dll")]
         public void ResponseTest()
         {
-            PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            DBError_Accessor target = new DBError_Accessor(param0); // TODO: Initialize to an appropriate value
-            IDBObject expected = null; // TODO: Initialize to an appropriate value
-            IDBObject actual;
-            target.Response = expected;
-            actual = target.Response;
-            Assert.AreEqual(expected, actual);
+            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
+            //DBError_Accessor target = new DBError_Accessor(param0); // TODO: Initialize to an appropriate value
+            //IDBObject expected = null; // TODO: Initialize to an appropriate value
+            //IDBObject actual;
+            //target.Response = expected;
+            //actual = target.Response;
+            //Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

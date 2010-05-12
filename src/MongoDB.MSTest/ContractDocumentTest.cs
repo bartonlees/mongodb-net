@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MongoDB.Driver;
 using Newtonsoft.Json;
-using SharpTestsEx;
+using FluentAssertions;
 using System.Collections.Generic;
 
 namespace MongoDB.MSTest
@@ -74,7 +74,7 @@ namespace MongoDB.MSTest
         public void ContractDocumentConstructorTestHelper<T>() where T : new()
         {
             ContractDocument<T> target = new ContractDocument<T>(new T(), DocumentState.Unchanged, new MongoDBSerializer());
-            Executing.This(() => { ContractDocument<T> target3 = new ContractDocument<T>(new T(), DocumentState.Unchanged, null); }).Should().Throw();
+            this.Invoking((t) => { ContractDocument<T> target3 = new ContractDocument<T>(new T(), DocumentState.Unchanged, null); }).ShouldThrow<Exception>();
         }
 
         [TestMethod()]
@@ -82,10 +82,10 @@ namespace MongoDB.MSTest
         {
             ContractDocumentConstructorTestHelper<TestContractStruct>();
             ContractDocumentConstructorTestHelper<TestContractObject>();
-            Executing.This(() => { ContractDocument<TestContractObject> target2 = new ContractDocument<TestContractObject>(null, DocumentState.Unchanged, new MongoDBSerializer()); }).Should().Throw();
-            Executing.This(() => ContractDocumentConstructorTestHelper<List<int>>()).Should().Throw();
-            Executing.This(() => ContractDocumentConstructorTestHelper<TestContractObjectNoID>()).Should().Throw<KeyNotFoundException>();
-            Executing.This(() => ContractDocumentConstructorTestHelper<TestContractStructNoID>()).Should().Throw<KeyNotFoundException>();
+            this.Invoking((t) => { ContractDocument<TestContractObject> target2 = new ContractDocument<TestContractObject>(null, DocumentState.Unchanged, new MongoDBSerializer()); }).ShouldThrow<Exception>();
+            this.Invoking((t) => ContractDocumentConstructorTestHelper<List<int>>()).ShouldThrow<Exception>();
+            this.Invoking((t) => ContractDocumentConstructorTestHelper<TestContractObjectNoID>()).ShouldThrow<KeyNotFoundException>();
+            this.Invoking((t) => ContractDocumentConstructorTestHelper<TestContractStructNoID>()).ShouldThrow<KeyNotFoundException>();
         }
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace MongoDB.MSTest
         {
             ContractDocumentConstructorTest1Helper<TestContractStruct>();
             ContractDocumentConstructorTest1Helper<TestContractObject>();
-            Executing.This(() => { ContractDocument<TestContractObject> target2 = new ContractDocument<TestContractObject>(null, DocumentState.Unchanged); }).Should().Throw();
-            Executing.This(() => ContractDocumentConstructorTest1Helper<List<int>>()).Should().Throw();
-            Executing.This(() => ContractDocumentConstructorTest1Helper<TestContractObjectNoID>()).Should().Throw<KeyNotFoundException>();
-            Executing.This(() => ContractDocumentConstructorTest1Helper<TestContractStructNoID>()).Should().Throw<KeyNotFoundException>();
+            this.Invoking((t) => { ContractDocument<TestContractObject> target2 = new ContractDocument<TestContractObject>(null, DocumentState.Unchanged); }).ShouldThrow<Exception>();
+            this.Invoking((t) => ContractDocumentConstructorTest1Helper<List<int>>()).ShouldThrow<Exception>();
+            this.Invoking((t) => ContractDocumentConstructorTest1Helper<TestContractObjectNoID>()).ShouldThrow<KeyNotFoundException>();
+            this.Invoking((t) => ContractDocumentConstructorTest1Helper<TestContractStructNoID>()).ShouldThrow<KeyNotFoundException>();
         }
 
         /// <summary>

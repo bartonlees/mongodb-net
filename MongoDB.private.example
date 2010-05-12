@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!--To use, copy this file, fill in username and password, then name "MongoDB.private"-->
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<GcuUsername>me@domain.com</GcuUsername>
+		<GcuPassword>somethinggood</GcuPassword>
+	</PropertyGroup>
+</Project>

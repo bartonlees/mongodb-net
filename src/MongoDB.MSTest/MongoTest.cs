@@ -1,7 +1,8 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-
+using System.Collections.Generic;
+using FluentAssertions;
 namespace MongoDB.MSTest
 {
     
@@ -62,7 +63,6 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
-
 
         /// <summary>
         ///A test for GetDatabase
@@ -142,7 +142,8 @@ namespace MongoDB.MSTest
         {
             IDatabase actual;
             actual = Mongo.DefaultDatabase;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            List<Uri> names = new List<Uri>(actual.GetCollectionNames());
+            names.Should().Contain("cmd"); //Todo:get the actual name for the command collection
         }
 
         /// <summary>
@@ -153,7 +154,6 @@ namespace MongoDB.MSTest
         {
             IServer actual;
             actual = Mongo.DefaultServer;
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -184,9 +184,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyDefaultServerTest()
         {
-            IServer actual;
-            actual = Mongo.ReadOnlyDefaultServer;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IServer readOnlyServer = Mongo.ReadOnlyDefaultServer;
+            readOnlyServer.ReadOnly.Should().BeTrue("it is a read only server");
         }
 
         /// <summary>

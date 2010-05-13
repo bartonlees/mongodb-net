@@ -63,6 +63,28 @@ namespace MongoDB.MSTest
         //
         #endregion
 
+        [TestMethod]
+        public void RoundTrip()
+        {
+            IDBCollection a = Mongo.DefaultDatabase.GetCollection("refroundtripa");
+            IDBCollection b = Mongo.DefaultDatabase.GetCollection("refroundtripb");
+            a.Drop();
+            b.Drop();
+
+            Document docA = new Document("n", 111);
+            Document docB = new Document() { { "n", 12 }, { "l", new DBRef(a, docA.ID) } };
+
+            a.Save(docA);
+            b.Save(docB);
+
+            IDocument one = b.FindOne();
+
+            Assert.AreEqual(12, one["n"]);
+            //Assert.That(one.GetAsIDBObject("l")["n"], Is.EqualTo(111));
+            //TODO:This appears to be mostly useless and deprecated...should verify though
+
+        }
+
 
         /// <summary>
         ///A test for DBRef Constructor
@@ -82,14 +104,17 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FetchTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
-            DBRef target = new DBRef(collection, id); // TODO: Initialize to an appropriate value
-            IDocument expected = null; // TODO: Initialize to an appropriate value
-            IDocument actual;
-            actual = target.Fetch();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBCollection c = Mongo.DefaultDatabase.GetCollection("test");
+            c.Drop();
+
+            Document obj = new Document() { { "test", "me" } };
+            c.Save(obj);
+
+            DBRef r = new DBRef(c, obj.ID);
+            IDocument deref = r.Fetch();
+
+            Assert.That(deref, Is.Not.Null);
+            Assert.That(deref.ID, Is.EqualTo(obj.ID));
         }
 
         /// <summary>

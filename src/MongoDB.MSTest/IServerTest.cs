@@ -64,7 +64,6 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
         internal virtual IServer CreateIServer()
         {
             // TODO: Instantiate an appropriate concrete class.
@@ -89,8 +88,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DropDatabaseTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
-            IDatabase database = null; // TODO: Initialize to an appropriate value
+            IServer readOnlyServer = Mongo.ReadOnlyDefaultServer;
+            IServer defaultServer = Mongo.DefaultServer;
+            readOnlyServer.DropDatabase(readOnlyServer.),
+                Throws.InstanceOf<ReadOnlyException>());
             target.DropDatabase(database);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
@@ -155,10 +156,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DatabaseNamesTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
-            IEnumerable<Uri> actual;
-            actual = target.DatabaseNames;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            foreach (Uri name in Mongo.DefaultServer.DatabaseNames)
+            {
+                Console.WriteLine(name);
+            }
         }
 
         /// <summary>

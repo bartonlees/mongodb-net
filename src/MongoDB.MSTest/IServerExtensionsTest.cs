@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
@@ -62,6 +63,7 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
+
 
 
         /// <summary>

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
@@ -64,46 +65,9 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
-        [Test]
-        public void AutoExpandToIndex()
-        {
-            DBObjectArray l = new DBObjectArray();
-            l[10] = "test";
-            Assert.AreEqual(l[10], "test");
-            Assert.AreEqual(l[3], null);
-        }
 
-        [Test]
-        public void AutoExpandToStringIndex()
-        {
-            DBObjectArray l = new DBObjectArray();
-            l["10"] = "test";
-            Assert.AreEqual(l["10"], "test");
-            Assert.AreEqual(l["3"], null);
-        }
 
-        [Test]
-        public void NegativeIndex()
-        {
-            DBObjectArray l = new DBObjectArray();
-            Assert.That(()=> l[-10] = "test", Throws.Exception);
-        }
-
-        [Test]
-        public void NegativeStringIndex()
-        {
-            DBObjectArray l = new DBObjectArray();
-            Assert.That(()=> l["-10"] = "test", Throws.Exception);
-        }
-
-        [Test]
-        public void NonIntegerStringIndex()
-        {
-            DBObjectArray l = new DBObjectArray();
-            Assert.That(()=> l[".003"] = "test", Throws.Exception);
-        }
-
-        [Test]
+        [TestMethod]
         public void RoundTrip()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("dblist");
@@ -116,11 +80,12 @@ namespace MongoDB.MSTest
 
             c.Insert(new Document() { { "array", l } });
             IDBObject obj = c.FindOne();
-            Assert.That(obj.GetAsIDBObject("array")["0"], Is.EqualTo("a"));
-            Assert.That(obj.GetAsIDBObject("array")["1"], Is.EqualTo("b"));
-            Assert.That(obj.GetAsIDBObject("array")["2"], Is.EqualTo("c"));
+            obj.Should().NotBeNull("we added a document");
+            obj.GetAsIDBObject("array").Should().NotBeNull("we sent a nested array");
+            obj.GetAsIDBObject("array")["0"].Should().Be("a");
+            obj.GetAsIDBObject("array")["1"].Should().Be("b");
+            obj.GetAsIDBObject("array")["2"].Should().Be("c");
         }
-
 
         /// <summary>
         ///A test for DBObjectArray Constructor
@@ -613,14 +578,17 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ItemTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object expected = null; // TODO: Initialize to an appropriate value
-            object actual;
-            target[key] = expected;
-            actual = target[key];
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObjectArray l = new DBObjectArray();
+            l["0"] = "zero";
+            l["0"].Should().Be("zero", "we just set it");
+            l["10"] = "test";
+            l["10"].Should().Be("test", "we just set it");
+            l["3"].Should().BeNull("we expanded to a size of 10, and size was 0. All inbetween should be null.");
+            
+            Action<string> accessor = s => new DBObjectArray()[s] = "test";
+
+            "-10".Invoking(accessor).ShouldThrow<Exception>("string index is negative");
+            ".003".Invoking(accessor).ShouldThrow<Exception>("string index is not an integer");
         }
 
         /// <summary>
@@ -629,14 +597,16 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ItemTest1()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int key = 0; // TODO: Initialize to an appropriate value
-            object expected = null; // TODO: Initialize to an appropriate value
-            object actual;
-            target[key] = expected;
-            actual = target[key];
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObjectArray l = new DBObjectArray();
+            l[0] = "zero";
+            l[0].Should().Be("zero", "we just set it");
+            l[10] = "test";
+            l[10].Should().Be("test", "we just set it");
+            l[1].Should().BeNull("we expanded to a size of 10, and size was 0. All inbetween should be null.");
+
+            Action<int> accessor = i => new DBObjectArray()[i] = "test";
+
+            ((Int32)(-10)).Invoking(accessor).ShouldThrow<Exception>("string index is negative");
         }
 
         /// <summary>

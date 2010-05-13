@@ -3,6 +3,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using MongoDB.Driver.Command;
+using FluentAssertions;
+using System.Transactions;
 
 namespace MongoDB.MSTest
 {
@@ -85,13 +87,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CollectionExistsTest()
         {
-            IDatabase db = null; // TODO: Initialize to an appropriate value
-            Uri collectionUri = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = IDatabaseExtensions.CollectionExists(db, collectionUri);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBCollection coll1 = Mongo.DefaultDatabase["test"];
+            Uri collUri = coll1.Uri;
+            coll1.Drop();
+            Assert.IsFalse(Mongo.DefaultDatabase.CollectionExists(collUri));
+
+            IDBCollection coll2 = Mongo.DefaultDatabase.CreateCollection("test");
+            Assert.IsTrue(Mongo.DefaultDatabase.CollectionExists(collUri));
         }
 
         /// <summary>
@@ -100,16 +102,50 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CreateCollectionTest()
         {
-            IDatabase db = null; // TODO: Initialize to an appropriate value
-            string name = string.Empty; // TODO: Initialize to an appropriate value
-            Nullable<bool> capped = new Nullable<bool>(); // TODO: Initialize to an appropriate value
-            Nullable<int> size = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> max = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            actual = IDatabaseExtensions.CreateCollection(db, name, capped, size, max);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBCollection foo1 = Mongo.DefaultDatabase.GetCollection("foo1");
+            foo1.Drop();
+            foo1 = Mongo.DefaultDatabase.CreateCollection("foo1", capped: false);
+
+            IDBCollection foo2 = Mongo.DefaultDatabase.GetCollection("foo2");
+            foo2.Drop();
+
+            foo2 = Mongo.DefaultDatabase.CreateCollection("foo2", capped: true, size: 100);
+
+            for (int test = 0; test < 30; test++)
+            {
+                foo2.Insert(new Document("test", test));
+            }
+
+            foo2.Find().Count().Should().BLessThan(10);
+
+            IDBCollection foo3 = Mongo.DefaultDatabase.GetCollection("foo3");
+            foo3.Drop();
+            foo3 = Mongo.DefaultDatabase.CreateCollection("foo3", capped: true, max: 2);
+            for (int test = 0; test < 30; test++)
+            {
+                foo3.Insert(new Document("test", test));
+            }
+            Assert.That(foo3.Find().Count(), Is.EqualTo(2));
+
+            IDBCollection foo4 = Mongo.DefaultDatabase.GetCollection("foo4");
+            foo4.Drop();
+
+            foo4 = Mongo.DefaultDatabase.CreateCollection("foo4", capped: true, size: 100, max: 35);
+            for (int test = 0; test < 30; test++)
+            {
+                foo4.Insert(new Document("test", test));
+            }
+            Assert.That(foo4.Find().Count(), Is.LessThan(10));
+
+            IDBCollection foo5 = Mongo.DefaultDatabase.GetCollection("foo5");
+            foo5.Drop();
+
+            Assert.That(() => foo5 = Mongo.DefaultDatabase.CreateCollection("foo5", capped: true, size: -20), Throws.Exception, "Negative size should not be allowed");
+
+            IDBCollection foo6 = Mongo.DefaultDatabase.GetCollection("foo6");
+            foo6.Drop();
+
+            Assert.That(() => foo6 = Mongo.DefaultDatabase.CreateCollection("foo6", capped: true, max: -20), Throws.Exception, "Negative size should not be allowed");
         }
 
         /// <summary>
@@ -185,29 +221,52 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for GetLastError
         ///</summary>
-        [TestMethod()]
-        public void GetLastErrorTest()
+        [TestMethod]
+        public void LastErrorTest()
         {
-            IDatabase db = null; // TODO: Initialize to an appropriate value
-            LastError expected = null; // TODO: Initialize to an appropriate value
-            LastError actual;
-            actual = IDatabaseExtensions.GetLastError(db);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            using (TransactionScope scope = new TransactionScope())
+            {
+                IDatabase db = Mongo.DefaultDatabase;
+                db.ResetError();
+                db.GetLastError().ErrorMessage.Should().BeNull("we just reset errors");
+
+                db.ForceError();
+                db.GetLastError().ErrorMessage.Should().NotBeNull("we just forced an error"); ;
+
+                db.ResetError();
+                db.GetLastError().ErrorMessage.Should().BeNull("we just reset errors");
+            }
         }
 
         /// <summary>
         ///A test for GetPreviousError
         ///</summary>
-        [TestMethod()]
-        public void GetPreviousErrorTest()
+        [TestMethod]
+        public void PrevErrorTest()
         {
-            IDatabase db = null; // TODO: Initialize to an appropriate value
-            PrevError expected = null; // TODO: Initialize to an appropriate value
-            PrevError actual;
-            actual = IDatabaseExtensions.GetPreviousError(db);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            using (TransactionScope scope = new TransactionScope())
+            {
+                IDatabase db = Mongo.DefaultDatabase;
+                db.ResetError();
+
+                db.GetLastError().ErrorMessage.Should().BeNull("we just reset errors");
+                db.GetPreviousError().ErrorMessage.Should().BeNull("we just reset errors");
+
+                db.ForceError();
+
+                db.GetLastError().ErrorMessage.Should().NotBeNull("we just forced an error");
+                db.GetPreviousError().ErrorMessage.Should().BeNull("we are still reset");
+
+                Mongo.DefaultDatabase.GetCollection("misc").Insert(new Document("foo", 1));
+
+                db.GetLastError().ErrorMessage.Should().BeNull("we had a successful operation");
+                db.GetPreviousError().ErrorMessage.Should().NotBeNull("the last is now the previous");
+
+                Mongo.DefaultDatabase.ResetError();
+
+                db.GetLastError().ErrorMessage.Should().BeNull("we just reset errors");
+                db.GetPreviousError().ErrorMessage.Should().BeNull("we just reset errors");
+            }
         }
 
         /// <summary>

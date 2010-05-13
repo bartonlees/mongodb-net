@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
 using System.Collections;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {

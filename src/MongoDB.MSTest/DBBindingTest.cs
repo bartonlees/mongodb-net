@@ -66,25 +66,7 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
-        [Test]
-        public void ConstructionTests()
-        {   
-            ServerBinding serverLoopback = new ServerBinding("mongo://localhost");
-            DBBinding b1 = new DBBinding(serverLoopback, "db");
-            ServerBinding serverLoopback2 = new ServerBinding("mongo://localhost/db2/test/goat");
-            DBBinding b2 = new DBBinding(serverLoopback, "db");
-            Assert.That(b1, Is.EqualTo(b2), "should have replaced the database portion if specified");
-        }
-
-        [Test]
-        public void BadConstructionTests()
-        {
-            //Template, name
-            Assert.That(() => new DBBinding((ServerBinding)null, "test"), Throws.Exception, "null binding template (hostname OK) : should have failed");
-            Assert.That(() => new DBBinding(new ServerBinding("mongo://localhost"), (string)null), Throws.Exception, "null host (binding template OK) : should have failed");
-        }
-
-
+ 
         /// <summary>
         ///A test for DBBinding Constructor
         ///</summary>
@@ -92,6 +74,18 @@ namespace MongoDB.MSTest
         public void DBBindingConstructorTest()
         {
             DBBinding target = new DBBinding(Mongo.DefaultServerBinding, "database");
+
+            ServerBinding serverLoopback = new ServerBinding("mongo://localhost");
+            DBBinding b1 = new DBBinding(serverLoopback, "db");
+            ServerBinding serverLoopback2 = new ServerBinding("mongo://localhost/db2/test/goat");
+            DBBinding b2 = new DBBinding(serverLoopback, "db");
+            b1.Should().Be(b2, "the database portion should have been replaced");
+
+            Action<Tuple<ServerBinding, string>> ctor = t => new DBBinding(t.Item1, t.Item2);
+
+            //Template, name
+            new Tuple<ServerBinding, string>((ServerBinding)null, "test").Invoking(ctor).ShouldThrow<Exception>("although the hostname was OK, the server binding was null");
+            new Tuple<ServerBinding, string>(new ServerBinding("mongo://localhost"), (string)null).Invoking(ctor).ShouldThrow <Exception> ("although the binding template was valid, the hostname was null");
         }
 
         /// <summary>

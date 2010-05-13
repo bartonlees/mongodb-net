@@ -66,8 +66,8 @@ namespace MongoDB.MSTest
         #endregion
 
 
-        [Test]
-        public void Remove()
+        [TestMethod]
+        public void RemoveTest()
         {
             DBObject obj = new DBObject();
             obj["test"] = "y";
@@ -88,23 +88,7 @@ namespace MongoDB.MSTest
         }
 
 
-        [Test]
-        public void DottedFieldName()
-        {
-            IDBCollection c = Mongo.DefaultDatabase.GetCollection("dotted");
-            c.Drop();
-
-            Assert.That(() => c.Save(new Document() { { "a.b", "test" } }), Throws.Exception);
-        }
-
-        [Test]
-        public void NestedDottedFieldName()
-        {
-            IDBCollection c = Mongo.DefaultDatabase.GetCollection("nesteddotted");
-            c.Drop();
-
-            Assert.That(() => c.Save(new Document() { { "a", new Document() { { "file.ext", 0 } } } }), Throws.Exception);
-        }
+        
 
         [Test]
         public void EntryOrder()

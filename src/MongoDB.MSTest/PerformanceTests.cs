@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using FluentAssertions;
 using System.IO;
+
 namespace MongoDB.Driver.Test
 {
 

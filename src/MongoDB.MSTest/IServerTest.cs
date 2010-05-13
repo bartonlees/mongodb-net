@@ -2,7 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-
+using FluentAssertions;
+using System.Data;
 namespace MongoDB.MSTest
 {
     
@@ -88,12 +89,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DropDatabaseTest()
         {
-            IServer readOnlyServer = Mongo.ReadOnlyDefaultServer;
             IServer defaultServer = Mongo.DefaultServer;
-            readOnlyServer.DropDatabase(readOnlyServer.),
-                Throws.InstanceOf<ReadOnlyException>());
-            target.DropDatabase(database);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            IDatabase defaultDatabase = defaultServer.GetDatabase("drop1");
+            defaultDatabase.GetCollection("test").Insert(new Document() {{"a",1}});
+            defaultServer.DropDatabase(defaultDatabase);
+
+            IServer readonlyServer = Mongo.ReadOnlyDefaultServer;
+            IDatabase readonlyDatabase = readonlyServer.GetDatabase("drop1");
+            Action drop = () =>readonlyServer.DropDatabase(readonlyDatabase);
+            drop.ShouldThrow<ReadOnlyException>("one shouldn't be able to drop a readonly database");
         }
 
         /// <summary>

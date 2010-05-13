@@ -131,7 +131,20 @@ namespace MongoDB.MSTest
 
 
         [TestMethod]
-        public void SaveAndFindSingle()
+        public void Save_InternalChecks()
+        {
+           
+            IDBCollection c = Mongo.DefaultDatabase.GetCollection("dotted");
+            c.Drop();
+
+            Action<IDocument> save = d => c.Save(d);
+
+            new Document() { { "a.b", "test" } }.Invoking(save).ShouldThrow<Exception>();
+            new Document() { { "a", new Document() { { "file.ext", 0 } } } }.Invoking(save).ShouldThrow<Exception>();
+        }
+
+        [TestMethod]
+        public void SaveAndFindByID()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("test1");
             c.Drop();
@@ -154,7 +167,7 @@ namespace MongoDB.MSTest
 
 
         [TestMethod]
-        public void TrySaveAndFindSingle()
+        public void TrySaveAndFindByID()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("test1");
             c.Drop();
@@ -176,7 +189,7 @@ namespace MongoDB.MSTest
         }
 
         [TestMethod]
-        public void TrySaveCheckErrorAndFindSingle()
+        public void TrySaveCheckErrorAndFindByID()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("test1");
             c.Drop();
@@ -198,7 +211,7 @@ namespace MongoDB.MSTest
         }
 
         [TestMethod]
-        public void SaveAndFindSingleNested()
+        public void SaveAndFindByID_Nested()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("test2");
             c.Drop();

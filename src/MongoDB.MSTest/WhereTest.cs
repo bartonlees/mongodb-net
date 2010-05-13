@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq.Expressions;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {

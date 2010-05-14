@@ -745,31 +745,5 @@ namespace MongoDB.MSTest
             actual = target.Values;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
-
-        /// <summary>
-        ///A test for _icollection
-        ///</summary>
-        [TestMethod()]
-
-        public void _icollectionTest()
-        {
-            //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
-            //ICollection actual;
-            //actual = target._icollection;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for _ilist
-        ///</summary>
-        [TestMethod()]
-
-        public void _ilistTest()
-        {
-            //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
-            //IList actual;
-            //actual = target._ilist;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
     }
 }

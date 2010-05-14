@@ -93,10 +93,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBRefConstructorTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
+            IDBCollection collection = Mongo.DefaultDatabase["ref"];
+            object id = Oid.NewOid();
             DBRef target = new DBRef(collection, id);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            target.ID.Should().Be(id);
+            target.Collection.Should().BeEquivalentTo(collection);
         }
 
         /// <summary>

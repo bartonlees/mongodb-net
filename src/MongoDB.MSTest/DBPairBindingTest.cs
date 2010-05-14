@@ -205,32 +205,6 @@ namespace MongoDB.MSTest
         }
 
         /// <summary>
-        ///A test for _Call
-        ///</summary>
-        public void _CallTestHelper<TDoc>()
-            where TDoc : class , IDocument
-        {
-            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            //IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
-            //IDBRequest request = null; // TODO: Initialize to an appropriate value
-            //int retries = 0; // TODO: Initialize to an appropriate value
-            //IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
-            //IDBResponse<TDoc> actual;
-            //actual = target._Call<TDoc>(cmdCollection, request, retries);
-            //Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-
-        public void _CallTest()
-        {
-            Assert.Inconclusive("No appropriate type parameter is found to satisfies the type constraint(s) of TDo" +
-                    "c. Please call _CallTestHelper<TDoc>() with appropriate type parameters.");
-        }
-
-        /// <summary>
         ///A test for ActiveBinding
         ///</summary>
         [TestMethod()]

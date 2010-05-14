@@ -7,8 +7,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBPairBindingTest and is intended
     ///to contain all DBPairBindingTest Unit Tests
@@ -142,7 +142,7 @@ namespace MongoDB.MSTest
         ///A test for PickInitialSubBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void PickInitialSubBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -223,7 +223,7 @@ namespace MongoDB.MSTest
         }
 
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void _CallTest()
         {
             Assert.Inconclusive("No appropriate type parameter is found to satisfies the type constraint(s) of TDo" +
@@ -339,7 +339,7 @@ namespace MongoDB.MSTest
         ///A test for LeftBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void LeftBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -371,7 +371,7 @@ namespace MongoDB.MSTest
         ///A test for ReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadOnlyTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -388,7 +388,7 @@ namespace MongoDB.MSTest
         ///A test for RightBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RightBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -405,7 +405,7 @@ namespace MongoDB.MSTest
         ///A test for Server
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ServerTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

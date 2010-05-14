@@ -6,8 +6,8 @@ using FluentAssertions;
 using System.Data;
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IServerTest and is intended
     ///to contain all IServerTest Unit Tests
@@ -91,12 +91,12 @@ namespace MongoDB.MSTest
         {
             IServer defaultServer = Mongo.DefaultServer;
             IDatabase defaultDatabase = defaultServer.GetDatabase("drop1");
-            defaultDatabase.GetCollection("test").Insert(new Document() {{"a",1}});
+            defaultDatabase.GetCollection("test").Insert(new Document() { { "a", 1 } });
             defaultServer.DropDatabase(defaultDatabase);
 
             IServer readonlyServer = Mongo.ReadOnlyDefaultServer;
             IDatabase readonlyDatabase = readonlyServer.GetDatabase("drop1");
-            Action drop = () =>readonlyServer.DropDatabase(readonlyDatabase);
+            Action drop = () => readonlyServer.DropDatabase(readonlyDatabase);
             drop.ShouldThrow<ReadOnlyException>("one shouldn't be able to drop a readonly database");
         }
 

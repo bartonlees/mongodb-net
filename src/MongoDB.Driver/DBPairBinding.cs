@@ -45,7 +45,7 @@ namespace MongoDB.Driver
                 return;
 
             CycleSubBinding();// randomly choose a server to for ismaster query
-            IDBCollection collection = Server.GetDatabase("admin").GetCollection("$cmd");
+            IDBCollection collection = Server.Admin.CmdCollection;
             IDBObject res = collection.FindOne(DBQuery.IsMaster);
             if (1 == res.GetAsInt("ismaster"))
                 return; //Current binding is master

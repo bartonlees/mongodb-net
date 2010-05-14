@@ -5,8 +5,8 @@ using MongoDB.Driver;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for OpTimeTest and is intended
     ///to contain all OpTimeTest Unit Tests

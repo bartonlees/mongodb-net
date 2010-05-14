@@ -7,8 +7,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBObjectArrayTest and is intended
     ///to contain all DBObjectArrayTest Unit Tests
@@ -375,7 +375,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.Generic.IEnumerable<System.Object>.GetEnumerator
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GetEnumeratorTest1()
         {
             //IEnumerable<T> target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -390,7 +390,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.ICollection.CopyTo
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void CopyToTest2()
         {
             ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -404,7 +404,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IEnumerable.GetEnumerator
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GetEnumeratorTest2()
         {
             IEnumerable target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -419,7 +419,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.Add
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void AddTest3()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -435,7 +435,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.Clear
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ClearTest1()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -447,7 +447,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.Contains
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ContainsTest2()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -463,7 +463,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.IndexOf
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IndexOfTest1()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -479,7 +479,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.Insert
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void InsertTest1()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -493,7 +493,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.Remove
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RemoveTest3()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -506,7 +506,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.RemoveAt
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RemoveAtTest1()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -584,7 +584,7 @@ namespace MongoDB.MSTest
             l["10"] = "test";
             l["10"].Should().Be("test", "we just set it");
             l["3"].Should().BeNull("we expanded to a size of 10, and size was 0. All inbetween should be null.");
-            
+
             Action<string> accessor = s => new DBObjectArray()[s] = "test";
 
             "-10".Invoking(accessor).ShouldThrow<Exception>("string index is negative");
@@ -640,7 +640,7 @@ namespace MongoDB.MSTest
         ///A test for State
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void StateTest()
         {
             //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
@@ -656,7 +656,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.ICollection.Count
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void CountTest1()
         {
             ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -669,7 +669,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.ICollection.IsSynchronized
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IsSynchronizedTest()
         {
             ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -682,7 +682,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.ICollection.SyncRoot
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void SyncRootTest()
         {
             ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -695,7 +695,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.IsFixedSize
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IsFixedSizeTest()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -708,7 +708,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.IsReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IsReadOnlyTest1()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -721,7 +721,7 @@ namespace MongoDB.MSTest
         ///A test for System.Collections.IList.Item
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ItemTest2()
         {
             IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
@@ -750,7 +750,7 @@ namespace MongoDB.MSTest
         ///A test for _icollection
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void _icollectionTest()
         {
             //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
@@ -763,7 +763,7 @@ namespace MongoDB.MSTest
         ///A test for _ilist
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void _ilistTest()
         {
             //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value

@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBFieldSetTest and is intended
     ///to contain all DBFieldSetTest Unit Tests

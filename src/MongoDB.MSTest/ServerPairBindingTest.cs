@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for ServerPairBindingTest and is intended
     ///to contain all ServerPairBindingTest Unit Tests
@@ -148,7 +148,7 @@ namespace MongoDB.MSTest
         ///A test for LeftBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void LeftBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -180,7 +180,7 @@ namespace MongoDB.MSTest
         ///A test for ReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadOnlyTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -197,7 +197,7 @@ namespace MongoDB.MSTest
         ///A test for RightBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RightBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

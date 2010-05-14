@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for LambdaTest and is intended
     ///to contain all LambdaTest Unit Tests

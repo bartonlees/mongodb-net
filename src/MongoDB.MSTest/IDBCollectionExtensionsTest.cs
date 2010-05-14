@@ -7,8 +7,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDBCollectionExtensionsTest and is intended
     ///to contain all IDBCollectionExtensionsTest Unit Tests
@@ -371,14 +371,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCountTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            long expected = 0; // TODO: Initialize to an appropriate value
-            long actual;
-            actual = IDBCollectionExtensions.GetCount(collection, selector, returnFields);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBCollection c = Mongo.DefaultDatabase.GetCollection("testCount");
+            c.Drop();
+            Assert.IsNull(c.FindOne());
+            c.GetCount().Should().Be(0);
+            for (int test = 0; test < 100; test++)
+            {
+                c.Insert(new Document("test", test));
+            }
+            c.GetCount().Should().Be(100);
         }
 
         /// <summary>

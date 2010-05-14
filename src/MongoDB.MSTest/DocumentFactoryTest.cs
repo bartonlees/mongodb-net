@@ -5,8 +5,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DocumentFactoryTest and is intended
     ///to contain all DocumentFactoryTest Unit Tests

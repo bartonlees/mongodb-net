@@ -8,8 +8,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBBindingTest and is intended
     ///to contain all DBBindingTest Unit Tests
@@ -66,7 +66,7 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
- 
+
         /// <summary>
         ///A test for DBBinding Constructor
         ///</summary>
@@ -85,7 +85,7 @@ namespace MongoDB.MSTest
 
             //Template, name
             new Tuple<ServerBinding, string>((ServerBinding)null, "test").Invoking(ctor).ShouldThrow<Exception>("although the hostname was OK, the server binding was null");
-            new Tuple<ServerBinding, string>(new ServerBinding("mongo://localhost"), (string)null).Invoking(ctor).ShouldThrow <Exception> ("although the binding template was valid, the hostname was null");
+            new Tuple<ServerBinding, string>(new ServerBinding("mongo://localhost"), (string)null).Invoking(ctor).ShouldThrow<Exception>("although the binding template was valid, the hostname was null");
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace MongoDB.MSTest
         {
             DBBinding target1 = new DBBinding(Mongo.DefaultServerBinding, "coll");
             DBBinding target2 = new DBBinding(Mongo.DefaultServerBinding, "coll");
-            target1.Should().BeSameAs(target2);   
+            target1.Should().BeSameAs(target2);
         }
 
         /// <summary>
@@ -191,7 +191,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyTest()
         {
-            DBBinding target = new DBBinding(Mongo.DefaultServerBinding, "db",true);
+            DBBinding target = new DBBinding(Mongo.DefaultServerBinding, "db", true);
             target.ReadOnly.Should().Be(true);
 
             DBBinding target2 = new DBBinding(Mongo.DefaultServerBinding, "db");

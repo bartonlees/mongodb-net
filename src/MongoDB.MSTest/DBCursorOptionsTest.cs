@@ -5,8 +5,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBCursorOptionsTest and is intended
     ///to contain all DBCursorOptionsTest Unit Tests
@@ -106,7 +106,7 @@ namespace MongoDB.MSTest
         ///A test for Explain
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ExplainTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -123,7 +123,7 @@ namespace MongoDB.MSTest
         ///A test for Flags
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void FlagsTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -140,7 +140,7 @@ namespace MongoDB.MSTest
         ///A test for Hint
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void HintTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -157,7 +157,7 @@ namespace MongoDB.MSTest
         ///A test for NumberToReturn
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void NumberToReturnTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -174,7 +174,7 @@ namespace MongoDB.MSTest
         ///A test for NumberToSkip
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void NumberToSkipTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -191,7 +191,7 @@ namespace MongoDB.MSTest
         ///A test for OrderBy
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void OrderByTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -208,7 +208,7 @@ namespace MongoDB.MSTest
         ///A test for ReturnFields
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReturnFieldsTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -225,7 +225,7 @@ namespace MongoDB.MSTest
         ///A test for Selector
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void SelectorTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -242,7 +242,7 @@ namespace MongoDB.MSTest
         ///A test for Snapshot
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void SnapshotTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

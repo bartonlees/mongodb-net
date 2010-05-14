@@ -5,11 +5,12 @@ using System.Security;
 using System.Collections.Generic;
 using FluentAssertions;
 using System.Transactions;
+using System.Data;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDatabaseTest and is intended
     ///to contain all IDatabaseTest Unit Tests
@@ -235,28 +236,22 @@ namespace MongoDB.MSTest
             IDBCollection testWritable = Mongo.DefaultDatabase["test"];
             testWritable.Drop();
 
-            Assert.That(Mongo.ReadOnlyDefaultDatabase.ReadOnly, Is.True, "Database.Read");
+            IDatabase readonlyDatabase = Mongo.ReadOnlyDefaultDatabase;
+            readonlyDatabase.ReadOnly.Should().BeTrue("we just constructed it to be so");
 
-            Assert.That(() => Mongo.ReadOnlyDefaultDatabase.AddUser("test", new char[] { 'g', 'o' }),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readonlyDatabase.AddUser("test", new char[] { 'g', 'o' })).ShouldThrow<ReadOnlyException>();
 
-            Assert.That(() => Mongo.ReadOnlyDefaultDatabase.Drop(),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readonlyDatabase.Drop()).ShouldThrow<ReadOnlyException>();
 
-            Assert.That(() => Mongo.ReadOnlyDefaultDatabase.CreateCollection("test"),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readonlyDatabase.CreateCollection("test")).ShouldThrow<ReadOnlyException>();
 
-            Assert.That(() => Mongo.ReadOnlyDefaultDatabase.GetCollection("test"),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readonlyDatabase.GetCollection("test")).ShouldThrow<ReadOnlyException>();
 
-            Assert.That(() => Mongo.ReadOnlyDefaultDatabase["test"],
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => { IDBCollection test = readonlyDatabase["test"]; }).ShouldThrow<ReadOnlyException>();
 
-            Assert.That(() => Mongo.DefaultServer.Admin.CopyDatabase(Mongo.DefaultDatabase, Mongo.ReadOnlyDefaultDatabase),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => Mongo.DefaultServer.Admin.CopyDatabase(Mongo.DefaultDatabase, readonlyDatabase)).ShouldThrow<ReadOnlyException>();
 
-            Assert.That(() => Mongo.ReadOnlyDefaultDatabase.AddUser("test", new char[] { 'g', 'o' }),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readonlyDatabase.AddUser("test", new char[] { 'g', 'o' })).ShouldThrow<ReadOnlyException>();
         }
 
         /// <summary>

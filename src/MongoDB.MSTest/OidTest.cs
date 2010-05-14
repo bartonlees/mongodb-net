@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for OidTest and is intended
     ///to contain all OidTest Unit Tests
@@ -61,7 +61,7 @@ namespace MongoDB.MSTest
         //{
         //}
         //
-        #endregion        
+        #endregion
 
         [TestMethod]
         public void TestBase64Roundtrip()
@@ -146,7 +146,7 @@ namespace MongoDB.MSTest
         {
             Oid a = Oid.NewOid();
             Oid b = new Oid(a);
-            Assert.That(a, Is.EqualTo(b));
+            a.Should().Be(b);
         }
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void OidConstructorTest4()
         {
-            Assert.That(new Oid(), Is.EqualTo(Oid.Empty));
+            new Oid().Should().Be(Oid.Empty, "a default Oid constructor should initialize to empty");
         }
 
         /// <summary>
@@ -234,7 +234,7 @@ namespace MongoDB.MSTest
         ///A test for FromByteArray
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void FromByteArrayTest()
         {
             //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
@@ -247,7 +247,7 @@ namespace MongoDB.MSTest
         ///A test for FromHexadecimalString
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void FromHexadecimalStringTest()
         {
             //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
@@ -289,7 +289,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void NewOidTest()
         {
-            Assert.That(Oid.NewOid(), Is.Not.EqualTo(Oid.NewOid()));
+            Oid.NewOid().Should().NotBe(Oid.NewOid());
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace MongoDB.MSTest
         public void ToMongoDBStringTest()
         {
             Oid a = Oid.NewOid();
-            Console.WriteLine(a.ToMongoDBString());            
+            Console.WriteLine(a.ToMongoDBString());
         }
 
         /// <summary>
@@ -369,18 +369,17 @@ namespace MongoDB.MSTest
         public void op_ImplicitTest1()
         {
             string hex = "4a7067c30a57000000008ecb";
-            Assert.That(new Oid(hex), Is.EqualTo(new Oid(hex)));
+            new Oid(hex).Should().Be(new Oid(hex));
 
             string hex2 = "4a7067c30a57000000008ecb";
             string hex3 = "4a7067c30a57000000008ecc";
-            Assert.That(new Oid(hex2), Is.Not.EqualTo(new Oid(hex3)));
+            new Oid(hex2).Should().NotBe(new Oid(hex3));
         }
 
         /// <summary>
         ///A test for Buffer
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
         public void BufferTest()
         {
             //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value

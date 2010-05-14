@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using FluentAssertions;
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for MongoTest and is intended
     ///to contain all MongoTest Unit Tests

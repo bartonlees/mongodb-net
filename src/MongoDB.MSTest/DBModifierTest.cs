@@ -7,8 +7,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBModifierTest and is intended
     ///to contain all DBModifierTest Unit Tests

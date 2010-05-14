@@ -9,8 +9,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for WireProtocolWriterTest and is intended
     ///to contain all WireProtocolWriterTest Unit Tests
@@ -84,7 +84,7 @@ namespace MongoDB.MSTest
         ///A test for RewindAndWriteSize
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RewindAndWriteSizeTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -111,7 +111,7 @@ namespace MongoDB.MSTest
         ///A test for _dontRefContains
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void _dontRefContainsTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -128,7 +128,7 @@ namespace MongoDB.MSTest
         ///A test for _handleSpecialObjects
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void _handleSpecialObjectsTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -146,7 +146,7 @@ namespace MongoDB.MSTest
         ///A test for element
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void elementTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -161,7 +161,7 @@ namespace MongoDB.MSTest
         ///A test for element_array
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_arrayTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -176,7 +176,7 @@ namespace MongoDB.MSTest
         ///A test for element_binary
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_binaryTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -191,7 +191,7 @@ namespace MongoDB.MSTest
         ///A test for element_binary
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_binaryTest1()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -206,7 +206,7 @@ namespace MongoDB.MSTest
         ///A test for element_boolean
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_booleanTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -221,7 +221,7 @@ namespace MongoDB.MSTest
         ///A test for element_code
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_codeTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -236,7 +236,7 @@ namespace MongoDB.MSTest
         ///A test for element_date
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_dateTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -251,7 +251,7 @@ namespace MongoDB.MSTest
         ///A test for element_int
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_intTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -266,7 +266,7 @@ namespace MongoDB.MSTest
         ///A test for element_long
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_longTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -281,7 +281,7 @@ namespace MongoDB.MSTest
         ///A test for element_name
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_nameTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -295,7 +295,7 @@ namespace MongoDB.MSTest
         ///A test for element_null
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_nullTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -309,7 +309,7 @@ namespace MongoDB.MSTest
         ///A test for element_number
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_numberTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -324,7 +324,7 @@ namespace MongoDB.MSTest
         ///A test for element_number
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_numberTest1()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -339,7 +339,7 @@ namespace MongoDB.MSTest
         ///A test for element_object
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_objectTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -354,7 +354,7 @@ namespace MongoDB.MSTest
         ///A test for element_oid
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_oidTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -369,7 +369,7 @@ namespace MongoDB.MSTest
         ///A test for element_ref
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_refTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -385,7 +385,7 @@ namespace MongoDB.MSTest
         ///A test for element_regex
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_regexTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -400,7 +400,7 @@ namespace MongoDB.MSTest
         ///A test for element_regex
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_regexTest1()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -415,7 +415,7 @@ namespace MongoDB.MSTest
         ///A test for element_string
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_stringTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -430,7 +430,7 @@ namespace MongoDB.MSTest
         ///A test for element_symbol
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_symbolTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -445,7 +445,7 @@ namespace MongoDB.MSTest
         ///A test for element_timestamp
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_timestampTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -460,7 +460,7 @@ namespace MongoDB.MSTest
         ///A test for element_type
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_typeTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -474,7 +474,7 @@ namespace MongoDB.MSTest
         ///A test for element_undefined
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void element_undefinedTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

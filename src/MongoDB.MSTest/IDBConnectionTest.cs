@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDBConnectionTest and is intended
     ///to contain all IDBConnectionTest Unit Tests

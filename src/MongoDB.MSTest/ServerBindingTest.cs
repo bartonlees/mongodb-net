@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for ServerBindingTest and is intended
     ///to contain all ServerBindingTest Unit Tests
@@ -64,7 +64,7 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
-        
+
         /// <summary>
         ///A test for ServerBinding Constructor
         ///</summary>
@@ -289,7 +289,7 @@ namespace MongoDB.MSTest
         ///A test for ReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadOnlyTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

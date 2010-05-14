@@ -9,8 +9,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDBCursorTest and is intended
     ///to contain all IDBCursorTest Unit Tests
@@ -104,8 +104,8 @@ namespace MongoDB.MSTest
                 c.Save(new Document("test", test));
             Assert.AreEqual(100, c.ToList().Count);
             Assert.AreEqual(100, c.ToArray().Length);
-            Assert.AreEqual(100, c.Find(snapshot:true).Count());
-            Assert.AreEqual(50, c.Find(snapshot:true,limit:50).Count());
+            Assert.AreEqual(100, c.Find(snapshot: true).Count());
+            Assert.AreEqual(50, c.Find(snapshot: true, limit: 50).Count());
         }
 
         [TestMethod]
@@ -159,12 +159,12 @@ namespace MongoDB.MSTest
             DBQuery q = new DBQuery("test", new DBQuery("$gt", 50));
 
             Assert.AreEqual(49, c.Find(q).Count());
-            Assert.AreEqual(20, c.Find(q, limit:20).Count());
+            Assert.AreEqual(20, c.Find(q, limit: 20).Count());
 
             c.EnsureIndex(new DBFieldSet("test"));
 
             Assert.AreEqual(49, c.Find(q).Count());
-            Assert.AreEqual(20, c.Find(q, limit:20).Count());
+            Assert.AreEqual(20, c.Find(q, limit: 20).Count());
 
             //Assert.AreEqual(49, c.Find(q, explain:true)["n"]);
 

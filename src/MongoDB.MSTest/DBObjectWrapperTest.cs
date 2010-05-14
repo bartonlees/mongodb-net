@@ -5,8 +5,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBObjectWrapperTest and is intended
     ///to contain all DBObjectWrapperTest Unit Tests
@@ -71,7 +71,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectWrapperConstructorTest()
         {
-            DBObjectWrapper target = new DBObjectWrapper(new DBObject(){{"a",1},{"b",true}});            
+            DBObjectWrapper target = new DBObjectWrapper(new DBObject() { { "a", 1 }, { "b", true } });
         }
     }
 }

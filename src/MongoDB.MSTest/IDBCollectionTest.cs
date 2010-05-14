@@ -3,10 +3,15 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using FluentAssertions;
+using System.Collections;
+using System.Linq;
+using System.Data;
+using MongoDB.Driver.Platform.Util;
+using System.Text.RegularExpressions;
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDBCollectionTest and is intended
     ///to contain all IDBCollectionTest Unit Tests
@@ -133,7 +138,7 @@ namespace MongoDB.MSTest
         [TestMethod]
         public void Save_InternalChecks()
         {
-           
+
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("dotted");
             c.Drop();
 
@@ -240,22 +245,7 @@ namespace MongoDB.MSTest
             nestedDocument["bar"].Should().Be("1z");
         }
 
-
-        [Test]
-        public void CollectionGetCount()
-        {
-            IDBCollection c = Mongo.DefaultDatabase.GetCollection("testCount");
-            c.Drop();
-            Assert.IsNull(c.FindOne());
-            Assert.That(c.GetCount(), Is.EqualTo(0));
-            for (int test = 0; test < 100; test++)
-            {
-                c.Insert(new Document("test", test));
-            }
-            Assert.That(c.GetCount(), Is.EqualTo(100));
-        }
-
-        [Test]
+        [TestMethod]
         public void ImplicitAndExplicitIndexCreate()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("testIndex");
@@ -268,19 +258,19 @@ namespace MongoDB.MSTest
                 c.Insert(new Document("test", test));
             }
 
-            Assert.That(c.GetCount(), Is.EqualTo(100), "There should have been 100 documents in the collection");
+            c.GetCount().Should().Be(100, "we added 100 documents");
 
             c.CreateIndex(new DBFieldSet("test"));
 
             List<IDBObject> list = new List<IDBObject>(c.GetIndexInfo());
 
-            Assert.That(list.Count, Is.EqualTo(2), "There should have been 2 indexes on the collection");
+            list.Count.Should().Be(2, "there is one implicit and one explicit index");
             Assert.IsTrue(list.Count == 2);
-            Assert.That(list[0]["name"], Is.EqualTo("_id_"), "The second index should have been named '_id'");
-            Assert.That(list[1]["name"], Is.EqualTo("test_1"), "The second index should have been named 'test'");
+            list[0]["name"].Should().Be("_id_", "The first index should have been named '_id_'");
+            list[1]["name"].Should().Be("test_1", "The second index should have been named 'test_'");
         }
 
-        [Test]
+        [TestMethod]
         public void GroupCount()
         {
 
@@ -298,7 +288,7 @@ namespace MongoDB.MSTest
             Assert.AreEqual(2, l.Count);
         }
 
-        [Test]
+        [TestMethod]
         public void PartialDocumentQuery()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("partial1");
@@ -311,11 +301,11 @@ namespace MongoDB.MSTest
             Assert.AreEqual(2, fullView["b"]);
 
             IDocument partial = c.FindOne("*", "a");
-            Assert.That(1, Is.EqualTo(partial["a"]));
-            Assert.That(!partial.ContainsKey("b"), "the partial view should not contain the key 'b'");
+            partial["a"].Should().Be(1);
+            partial.ContainsKey("b").Should().BeFalse("the partial view should not contain the key 'b'");
         }
 
-        [Test]
+        [TestMethod]
         public void FindOne()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("test");
@@ -349,7 +339,7 @@ namespace MongoDB.MSTest
             Assert.AreEqual(obj["y"], 2);
         }
 
-        [Test]
+        [TestMethod]
         public void DropIndex()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("dropindex1");
@@ -375,7 +365,7 @@ namespace MongoDB.MSTest
 
         }
 
-        [Test]
+        [TestMethod]
         public void Distinct()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("distinct1");
@@ -396,30 +386,30 @@ namespace MongoDB.MSTest
             IList l = c.Distinct("test");
             Assert.AreEqual(10, l.Count);
 
-            l = c.Distinct("test",Lambda.Query(_id => _id > 95));
+            l = c.Distinct("test", Lambda.Query(_id => _id > 95));
             Assert.AreEqual(4, l.Count);
 
         }
 
-        [Test]
+        [TestMethod]
         public void UpdateWithSet()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("group1");
             c.Drop();
             c.Save(new Document() { { "id", 1 }, { "test", true } });
-            Assert.That(c.FindOne()["test"], Is.TypeOf<bool>(), "expected test was a boolean");
+            c.FindOne()["test"].Should().BeOfType<bool>("we saved it as a bool");
 
             c.Update(Where.Field(id => id == 1), Do.Set("test", 5.5));
-            Assert.AreEqual(typeof(Double), c.FindOne()["test"].GetType());
+            c.FindOne()["test"].Should().BeOfType<double>("we just set to a double");
         }
 
-        [Test]
+        [TestMethod]
         public void UpdateWithNestedSet()
         {
 
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("keys1");
             c.Drop();
-            c.Save(new Document() {{"a", new Document("test", 1)}});
+            c.Save(new Document() { { "a", new Document("test", 1) } });
 
             Assert.AreEqual(1, ((IDBObject)c.FindOne()["a"])["test"]);
             c.Update("*", Do.Set("a.test", 2));
@@ -428,7 +418,7 @@ namespace MongoDB.MSTest
 
         }
 
-        [Test]
+        [TestMethod]
         public void RoundTripDBTimestamp()
         {
 
@@ -441,13 +431,11 @@ namespace MongoDB.MSTest
             Assert.IsTrue(test.Inc > 0);
         }
 
-        [Test]
+        [TestMethod]
         public void WriteConcernStrict()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("write1");
             c.Drop();
-            
-
 
             Document a = new Document();
             a.ID = Oid.Empty;
@@ -456,11 +444,11 @@ namespace MongoDB.MSTest
             b.ID = Oid.Empty;
 
             c.Insert(a);
-            Assert.That(() => c.Insert(b), Throws.Exception);
+            new Action(() => c.Insert(b)).ShouldThrow<Exception>("there already exists a document with that Id and we are inserting it nonetheless");
             Assert.AreEqual(1, c.Find().Count());
         }
 
-        [Test]
+        [TestMethod]
         public void RegexQuery()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("jp1");
@@ -476,7 +464,7 @@ namespace MongoDB.MSTest
         }
 
 
-        [Test]
+        [TestMethod]
         public void RoundTripDate()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("dates1");
@@ -485,11 +473,11 @@ namespace MongoDB.MSTest
             IDocument ins = new Document("test", new DateTime());
             c.Insert(ins);
             IDBObject outs = c.FindOne();
-            Assert.That(ins["test"], Is.InstanceOf<DateTime>());
+            ins["test"].Should().BeOfType<DateTime>("we sent a datetime and should have gotten one back");
             Assert.AreEqual(ins["test"].GetType(), outs["test"].GetType());
         }
 
-        [Test]
+        [TestMethod]
         public void MapReduce()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("jmr1");
@@ -500,8 +488,8 @@ namespace MongoDB.MSTest
             c.Save(new Document("test", new string[] { "c", "d" }));
 
             MapReduceInfo info =
-                c.MapReduce("function(){ for ( var test=0; test<this.test.length; test++ ){ emit( this.test[test] , 1 ); } }",
-                             "function(key,values){ var sum=0; for( var test=0; test<values.length; test++ ) sum += values[test]; return sum;}",
+                c.MapReduce("function(){ for ( var test=0; test<this.test.length; test++ ){ emit( this.test[TestMethod] , 1 ); } }",
+                             "function(key,values){ var sum=0; for( var test=0; test<values.length; test++ ) sum += values[TestMethod]; return sum;}",
                              null, null);
 
             Dictionary<string, int> m = new Dictionary<string, int>();
@@ -521,7 +509,7 @@ namespace MongoDB.MSTest
         string _testMulti(IDBCollection c)
         {
             string test = "";
-            foreach (IDBObject z in c.Find(orderBy:"_id"))
+            foreach (IDBObject z in c.Find(orderBy: "_id"))
             {
                 if (test.Length > 0)
                     test += ",";
@@ -531,66 +519,70 @@ namespace MongoDB.MSTest
         }
 
 
-        [Test]
+        [TestMethod]
         public void UpdateInc()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("inc");
             c.Drop();
-            c.Insert(new Document() {{ "test", 1 }});
-            Assert.That(c.FindOne().GetAsInt("test"), Is.EqualTo(1));
+            c.Insert(new Document() { { "test", 1 } });
+            c.FindOne().GetAsInt("test").Should().Be(1);
             c.Update("*", Do.Inc("test", 2));
-            Assert.That(c.FindOne().GetAsInt("test"), Is.EqualTo(3));
+            c.FindOne().GetAsInt("test").Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void UpdateMulti()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("multi1");
             c.Drop();
 
-            c.Insert(new Document() {{"i", 1},{"test", 1}});
-            c.Insert(new Document() {{"i", 2},{"test", 5}});
+            c.Insert(new Document() { { "i", 1 }, { "test", 1 } });
+            c.Insert(new Document() { { "i", 2 }, { "test", 5 } });
             c.EnsureIndex("i");
 
-            Assert.That(c.Find(orderBy:"i").Select(doc => doc.GetAsInt("test")), Is.EquivalentTo(new int[] {1, 5}));
+            c.Find(orderBy: "i").Select(doc => doc.GetAsInt("test")).Should().Contain(new int[] { 1, 5 });
 
             c.Update(Do.Inc("test", 1));
-            Assert.That(c.Find(orderBy:"i").Select(doc => doc.GetAsInt("test")), Is.EquivalentTo(new int[] {2, 5}));
+            c.Find(orderBy: "i").Select(doc => doc.GetAsInt("test")).Should().Contain(new int[] { 2, 5 });
 
-            c.Update(Where.Field(i => i == 2),  Do.Inc("test", 1));
-            Assert.That(c.Find(orderBy:"i").Select(doc => doc.GetAsInt("test")), Is.EquivalentTo(new int[] {2, 6}));
+            c.Update(Where.Field(i => i == 2), Do.Inc("test", 1));
+            c.Find(orderBy: "i").Select(doc => doc.GetAsInt("test")).Should().Contain(new int[] { 2, 6 });
 
-            c.Update(Do.Inc("test", 1), multi:true);
-            Assert.That(c.Find(orderBy: "i").Select(doc => doc.GetAsInt("test")), Is.EquivalentTo(new int[] { 3, 7 }));
+            c.Update(Do.Inc("test", 1), multi: true);
+            c.Find(orderBy: "i").Select(doc => doc.GetAsInt("test")).Should().Contain(new int[] { 3, 7 });
         }
 
-        [Test]
+        [TestMethod]
         public void Authenticate()
         {
-            Assert.AreEqual("26e3d12bd197368526409177b3e8aab6", Util._hash("test", new char[] { 'j' }));
+            "26e3d12bd197368526409177b3e8aab6".Should().Be(Util._hash("test", new char[] { 'j' }));
 
-            IDBCollection test = Mongo.DefaultDatabase.GetCollection("system.users");
+
+            IDatabase database = Mongo.DefaultDatabase;
+            IDBCollection systemUser = database.SystemUsersCollection;
             try
             {
-                Assert.AreEqual(0, test.Find().Count());
+                systemUser.Find().Count().Should().Be(0);
 
-                Mongo.DefaultDatabase.AddUser("xx", new char[] { 't', 'e', 's', 't' });
-                Assert.AreEqual(1, test.Find().Count());
+                database.AddUser("xx", new char[] { 't', 'e', 's', 't' });
+                Assert.AreEqual(1, systemUser.Find().Count());
 
-                Mongo.DefaultDatabase.Binding.SetCredentials("xx", new char[] { 'f' });
-                Assert.That(Mongo.DefaultDatabase.GetCollectionNames(), Throws.InstanceOf<MongoException.Authentication>());
+                database.Binding.SetCredentials("xx", new char[] { 'f' });
+                new Action(() => database.GetCollectionNames()).ShouldThrow<MongoException.Authentication>("we sent a bad password");
 
-                Mongo.DefaultDatabase.Binding.SetCredentials("xx", new char[] { 't', 'e', 's', 't' });
-                Assert.That(Mongo.DefaultDatabase.GetCollectionNames(), Throws.InstanceOf<MongoException.Authentication>());
+                database.Binding.SetCredentials("yy", new char[] { 't', 'e', 's', 't' });
+                new Action(() => database.GetCollectionNames()).ShouldThrow<MongoException.Authentication>("we sent a bad username");
+
+                database.Binding.SetCredentials("xx", new char[] { 't', 'e', 's', 't' });
             }
             finally
             {
-                test.Remove(new Document());
-                Assert.AreEqual(0, test.Find().Count());
+                systemUser.Remove(new Document());
+                Assert.AreEqual(0, systemUser.Find().Count());
             }
         }
 
-        [Test]
+        [TestMethod]
         public void OidCompatibility()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("oidc");
@@ -605,10 +597,10 @@ namespace MongoDB.MSTest
             Oid a = (Oid)(l[0]["_id"]);
             Oid b = (Oid)(l[1]["_id"]);
 
-            Assert.Less(Math.Abs(a.Time - b.Time), 10000);
+            Math.Abs(a.Time - b.Time).Should().BeLessThan(10000);
         }
 
-        [Test]
+        [TestMethod]
         public void OidCompat2()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("oidc");
@@ -622,7 +614,7 @@ namespace MongoDB.MSTest
         }
 
 
-        [Test]
+        [TestMethod]
         public void testLargeBulkInsert()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("largebulk");
@@ -631,59 +623,50 @@ namespace MongoDB.MSTest
             while (test.Length < 10000)
                 test += test;
             List<IDBObject> l = new List<IDBObject>();
-            int num = 3 * (Bytes.MAX_OBJECT_SIZE / test.Length);
+            int num = 3 * (Constants.MAX_OBJECT_SIZE / test.Length);
 
             for (int t = 0; t < num; t++)
             {
                 l.Add(new Document("test", t));
             }
             Assert.AreEqual(0, c.Find().Count());
-            c.Insert(new Document("l",l));
+            c.Insert(new Document("l", l));
             Assert.AreEqual(num, c.Find().Count());
 
             test = l.ToString();
-            Assert.IsTrue(test.Length > Bytes.MAX_OBJECT_SIZE);
-            Assert.That(()=> c.Save(new Document("foo", test)), Throws.Exception);
+            test.Length.Should().BeGreaterThan(Constants.MAX_OBJECT_SIZE, "we are simulating a huge object for an exceptional state test");
+            new Action(() => c.Save(new Document("foo", test))).ShouldThrow<Exception>();
             Assert.AreEqual(num, c.Find().Count());
         }
 
-        [Test]
+        [TestMethod]
         public void ReadOnly()
         {
             //Make sure this collection doesn't exist
             IDBCollection readOnlyCollection = Mongo.ReadOnlyDefaultDatabase["test"];
             readOnlyCollection.Drop();
 
-            Assert.That(readOnlyCollection.ReadOnly, Is.True, "Collection.ReadOnly");
+            readOnlyCollection.ReadOnly.Should().BeTrue("it came from a read only database");
 
-            Assert.That(() => readOnlyCollection.Update(Do.Inc("test",1)),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.Update(Do.Inc("test", 1))).ShouldThrow<ReadOnlyException>("an update would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.EnsureIndex("_id",true),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.EnsureIndex("_id", true)).ShouldThrow<ReadOnlyException>("an index creation would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.Insert(new Document("test", "test")),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.Insert(new Document("test", "test"))).ShouldThrow<ReadOnlyException>("a document insertion would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.Remove(new Document("test", "test")),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.Remove(new Document("test", "test"))).ShouldThrow<ReadOnlyException>("a document removal would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.Save(new Document("test", "test")),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.Save(new Document("test", "test"))).ShouldThrow<ReadOnlyException>("a document save would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.DropIndex("_id"),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.DropIndex("_id")).ShouldThrow<ReadOnlyException>("an index drop would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.Drop(),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.Drop()).ShouldThrow<ReadOnlyException>("an collection drop would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.Rename("timmy"),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.Rename("timmy")).ShouldThrow<ReadOnlyException>("an collection rename would involve changing the database");
 
-            Assert.That(() => readOnlyCollection.MapReduce("function(){ for ( var test=0; test<this.test.length; test++ ){ emit( this.test[test] , 1 ); } }",
-                             "function(key,values){ var sum=0; for( var test=0; test<values.length; test++ ) sum += values[test]; return sum;}",
-                             null, null),
-                Throws.InstanceOf<ReadOnlyException>());
+            new Action(() => readOnlyCollection.MapReduce("function(){ for ( var test=0; test<this.test.length; test++ ){ emit( this.test[TestMethod] , 1 ); } }",
+                             "function(key,values){ var sum=0; for( var test=0; test<values.length; test++ ) sum += values[TestMethod]; return sum;}",
+                             null, null)).ShouldThrow<ReadOnlyException>("this map reduction would involve changing the database");
         }
 
 

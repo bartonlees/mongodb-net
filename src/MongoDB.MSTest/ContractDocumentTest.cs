@@ -8,8 +8,8 @@ using System.Collections.Generic;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for ContractDocumentTest and is intended
     ///to contain all ContractDocumentTest Unit Tests
@@ -113,7 +113,7 @@ namespace MongoDB.MSTest
         public void CollectionTestHelper<T>() where T : new()
         {
             ContractDocument<T> target = new ContractDocument<T>();
-            IDBCollection expected = Mongo.DefaultDatabase.CmdCollection; 
+            IDBCollection expected = Mongo.DefaultDatabase.CmdCollection;
             IDBCollection actual;
             target.Collection = expected;
             actual = target.Collection;

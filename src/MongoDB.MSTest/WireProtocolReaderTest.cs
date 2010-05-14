@@ -7,8 +7,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for WireProtocolReaderTest and is intended
     ///to contain all WireProtocolReaderTest Unit Tests
@@ -177,7 +177,7 @@ namespace MongoDB.MSTest
         }
 
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void CreateDocumentTest()
         {
             Assert.Inconclusive("No appropriate type parameter is found to satisfies the type constraint(s) of TDo" +
@@ -226,7 +226,7 @@ namespace MongoDB.MSTest
         }
 
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadNextElementTest()
         {
             Assert.Inconclusive("No appropriate type parameter is found to satisfies the type constraint(s) of TDo" +
@@ -253,7 +253,7 @@ namespace MongoDB.MSTest
         ///A test for data_binary
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void data_binaryTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

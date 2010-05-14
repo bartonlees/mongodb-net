@@ -57,6 +57,12 @@ namespace MongoDB.Driver
         IDBCollection CmdCollection { get; }
 
         /// <summary>
+        /// Gets the special system.users collection.
+        /// </summary>
+        /// <value>The system.users collection.</value>
+        IDBCollection SystemUsersCollection { get; }
+
+        /// <summary>
         /// Enumerates the collection available on this database.
         /// </summary>
         /// <value>The collections.</value>

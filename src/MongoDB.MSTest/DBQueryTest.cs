@@ -3,10 +3,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using FluentAssertions;
+using System.Text.RegularExpressions;
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBQueryTest and is intended
     ///to contain all DBQueryTest Unit Tests
@@ -68,295 +69,295 @@ namespace MongoDB.MSTest
         public void LambdaSimpleEq()
         {
             DBQuery query = Where.Field(test => test == 1);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
-            Assert.That(query["test"], Is.EqualTo(1));
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
+            query["test"].Should().Be(1);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleEqMirror()
         {
             DBQuery query = Where.Field(test => 1 == test);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
-            Assert.That(query["test"], Is.EqualTo(1));
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
+            query["test"].Should().Be(1);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleNe()
         {
             DBQuery query = Where.Field(test => test != 3);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$ne"), "the query should have generated a nested '$ne' key");
-            Assert.That(nested["$ne"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$ne").Should().BeTrue("the query should have generated a nested '$ne' key");
+            nested["$ne"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleNeMirror()
         {
             DBQuery query = Where.Field(test => 3 != test);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$ne"), "the query should have generated a nested '$ne' key");
-            Assert.That(nested["$ne"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$ne").Should().BeTrue("the query should have generated a nested '$ne' key");
+            nested["$ne"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleGt()
         {
             DBQuery query = Where.Field(test => test > 3);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$gt"), "the query should have generated a nested '$gt' key");
-            Assert.That(nested["$gt"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$gt").Should().BeTrue("the query should have generated a nested '$gt' key");
+            nested["$gt"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleGtMirror()
         {
             DBQuery query = Where.Field(test => 3 > test);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$lte"), "the query should have generated a nested '$lte' key");
-            Assert.That(nested["$lte"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$lte").Should().BeTrue("the query should have generated a nested '$lte' key");
+            nested["$lte"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleLt()
         {
             DBQuery query = Where.Field(test => test < 3);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$lt"), "the query should have generated a nested '$lt' key");
-            Assert.That(nested["$lt"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$lt").Should().BeTrue("the query should have generated a nested '$lt' key");
+            nested["$lt"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleLtMirror()
         {
             DBQuery query = Where.Field(test => 3 < test);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$gte"), "the query should have generated a nested '$gte' key");
-            Assert.That(nested["$gte"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$gte").Should().BeTrue("the query should have generated a nested '$gte' key");
+            nested["$gte"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleGte()
         {
             DBQuery query = Where.Field(test => test >= 3);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$gte"), "the query should have generated a nested '$gte' key");
-            Assert.That(nested["$gte"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$gte").Should().BeTrue("the query should have generated a nested '$gte' key");
+            nested["$gte"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleGteMirror()
         {
             DBQuery query = Where.Field(test => 3 >= test);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$lt"), "the query should have generated a nested '$lt' key");
-            Assert.That(nested["$lt"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$lt").Should().BeTrue("the query should have generated a nested '$lt' key");
+            nested["$lt"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleLte()
         {
             DBQuery query = Where.Field(test => test <= 3);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$lte"), "the query should have generated a nested '$lte' key");
-            Assert.That(nested["$lte"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$lte").Should().BeTrue("the query should have generated a nested '$lte' key");
+            nested["$lte"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleLteMirror()
         {
             DBQuery query = Where.Field(test => 3 <= test);
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$gt"), "the query should have generated a nested '$gt' key");
-            Assert.That(nested["$gt"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$gt").Should().BeTrue("the query should have generated a nested '$gt' key");
+            nested["$gt"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleIn()
         {
             DBQuery query = Where.Field(test => test.In(new int[] { 1, 2, 3 }));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$in"), "the query should have generated a nested '$in' key");
-            Assert.That(nested["$in"], Is.TypeOf<int[]>());
-            Assert.That(nested["$in"], Is.EquivalentTo(new int[] { 1, 2, 3 }));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$in").Should().BeTrue("the query should have generated a nested '$in' key");
+            nested["$in"].Should().BeOfType<int[]>();
+            ((int[])nested["$in"]).Should().Contain(new int[] { 1, 2, 3 });
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleNin()
         {
             DBQuery query = Where.Field(test => test.Nin(new int[] { 1, 2, 3 }));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$nin"), "the query should have generated a nested '$nin' key");
-            Assert.That(nested["$nin"], Is.TypeOf<int[]>());
-            Assert.That(nested["$nin"], Is.EquivalentTo(new int[] { 1, 2, 3 }));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$nin").Should().BeTrue("the query should have generated a nested '$nin' key");
+            nested["$nin"].Should().BeOfType<int[]>();
+            ((int[])nested["$nin"]).Should().Contain(new int[] { 1, 2, 3 });
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleAll()
         {
             DBQuery query = Where.Field(test => test.All(new int[] { 1, 2, 3 }));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$all"), "the query should have generated a nested '$all' key");
-            Assert.That(nested["$all"], Is.TypeOf<int[]>());
-            Assert.That(nested["$all"], Is.EquivalentTo(new int[] { 1, 2, 3 }));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$all").Should().BeTrue("the query should have generated a nested '$all' key");
+            nested["$all"].Should().BeOfType<int[]>();
+            ((int[])nested["$all"]).Should().Contain(new int[] { 1, 2, 3 });
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleSizeInt()
         {
             DBQuery query = Where.Field(test => test.Size(3));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$size"), "the query should have generated a nested '$size' key");
-            Assert.That(nested["$size"], Is.TypeOf<int>());
-            Assert.That(nested["$size"], Is.EqualTo(3));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$size").Should().BeTrue("the query should have generated a nested '$size' key");
+            nested["$size"].Should().BeOfType<int>();
+            nested["$size"].Should().Be(3);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleSizeLong()
         {
             DBQuery query = Where.Field(test => test.Size(3L));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$size"), "the query should have generated a nested '$size' key");
-            Assert.That(nested["$size"], Is.TypeOf<long>());
-            Assert.That(nested["$size"], Is.EqualTo(3L));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$size").Should().BeTrue("the query should have generated a nested '$size' key");
+            nested["$size"].Should().BeOfType<long>();
+            nested["$size"].Should().Be(3L);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleModInt()
         {
-            DBQuery query = Where.Field(test => test.Mod(2,3));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            DBQuery query = Where.Field(test => test.Mod(2, 3));
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$mod"), "the query should have generated a nested '$mod' key");
-            Assert.That(nested["$mod"], Is.TypeOf<int[]>());
-            Assert.That(nested["$mod"], Is.EqualTo(new int[] { 2, 3 }));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$mod").Should().BeTrue("the query should have generated a nested '$mod' key");
+            nested["$mod"].Should().BeOfType<int[]>();
+            nested["$mod"].Should().Be(new int[] { 2, 3 });
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleModLong()
         {
             DBQuery query = Where.Field(test => test.Mod(2L, 3L));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$mod"), "the query should have generated a nested '$mod' key");
-            Assert.That(nested["$mod"], Is.TypeOf<long[]>());
-            Assert.That(nested["$mod"], Is.EqualTo(new long[] { 2, 3 }));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$mod").Should().BeTrue("the query should have generated a nested '$mod' key");
+            nested["$mod"].Should().BeOfType<long[]>();
+            nested["$mod"].Should().Be(new long[] { 2, 3 });
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleExists()
         {
             DBQuery query = Where.Field(test => test.Exists());
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$exists"), "the query should have generated a nested '$exists' key");
-            Assert.That(nested["$exists"], Is.TypeOf<bool>());
-            Assert.That(nested["$exists"], Is.EqualTo(true));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$exists").Should().BeTrue("the query should have generated a nested '$exists' key");
+            nested["$exists"].Should().BeOfType<bool>();
+            nested["$exists"].Should().Be(true);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleNexists()
         {
             DBQuery query = Where.Field(test => test.Nexists());
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested, Is.Not.Null);
-            Assert.That(nested.ContainsKey("$exists"), "the query should have generated a nested '$exists' key");
-            Assert.That(nested["$exists"], Is.TypeOf<bool>());
-            Assert.That(nested["$exists"], Is.EqualTo(false));
+            nested.Should().NotBeNull();
+            nested.ContainsKey("$exists").Should().BeTrue("the query should have generated a nested '$exists' key");
+            nested["$exists"].Should().BeOfType<bool>();
+            nested["$exists"].Should().Be(false);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaSimpleMatches()
         {
             DBQuery query = Where.Field(test => test.Matches(new Regex("^a$")));
-            Assert.That(query.ContainsKey("test"), "the query should have generated a 'test' key");
-            Assert.That(query["test"].ToString(), Is.EqualTo(new Regex("^a$").ToString()));
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
+            query["test"].ToString().Should().Be(new Regex("^a$").ToString());
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaTwoFieldsEqual()
         {
             DBQuery query = Where.Fields((a, b) => a == 1 && b == 2);
-            Assert.That(query.ContainsKey("a"), "the query should have generated an 'a' key");
-            Assert.That(query.ContainsKey("b"), "the query should have generated a 'b' key");
-            Assert.That(query["a"], Is.EqualTo(1));
-            Assert.That(query["b"], Is.EqualTo(2));
+            query.ContainsKey("a").Should().BeTrue("the query should have generated an 'a' key");
+            query.ContainsKey("b").Should().BeTrue("the query should have generated a 'b' key");
+            query["a"].Should().Be(1);
+            query["b"].Should().Be(2);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaTwoFieldsEqualMirror()
         {
             DBQuery query = Where.Fields((a, b) => b == 1 && a == 2);
-            Assert.That(query.ContainsKey("a"), "the query should have generated an 'a' key");
-            Assert.That(query.ContainsKey("b"), "the query should have generated a 'b' key");
-            Assert.That(query["b"], Is.EqualTo(1));
-            Assert.That(query["a"], Is.EqualTo(2));
+            query.ContainsKey("a").Should().BeTrue("the query should have generated an 'a' key");
+            query.ContainsKey("b").Should().BeTrue("the query should have generated a 'b' key");
+            query["b"].Should().Be(1);
+            query["a"].Should().Be(2);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaTwoFieldsExplicitNaming()
         {
             DBQuery query = Where.Fields((a, b) => b["c"] == 1 && a["d"] == 2);
-            Assert.That(query.ContainsKey("c"), "the query should have generated an 'a' key");
-            Assert.That(query.ContainsKey("d"), "the query should have generated a 'b' key");
-            Assert.That(query["c"], Is.EqualTo(1));
-            Assert.That(query["d"], Is.EqualTo(2));
+            query.ContainsKey("c").Should().BeTrue("the query should have generated an 'a' key");
+            query.ContainsKey("d").Should().BeTrue("the query should have generated a 'b' key");
+            query["c"].Should().Be(1);
+            query["d"].Should().Be(2);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaGtAndLt()
         {
             DBQuery query = Where.Field(test => test > 1 && test < 7);
-            Assert.That(query.ContainsKey("test"), "the query should have generated an 'a' key");
+            query.ContainsKey("test").Should().BeTrue("the query should have generated an 'a' key");
             IDBObject nested = query.GetAsIDBObject("test");
-            Assert.That(nested["$lt"], Is.EqualTo(7));
-            Assert.That(nested["$gt"], Is.EqualTo(1));
+            nested["$lt"].Should().Be(7);
+            nested["$gt"].Should().Be(1);
         }
 
-        [Test]
+        [TestMethod]
         public void LambdaDuplicateExplicitNames()
         {
-            Assert.That(() => Where.Fields((a, b, c) => a["b"] > 1 && b < 7 && c == 4), Throws.Exception, "shouldn't allow two identical field names");
+            new Action(() => Where.Fields((a, b, c) => a["b"] > 1 && b < 7 && c == 4)).ShouldThrow<Exception>("two identical field names are not allowed");
         }
 
         //TODO:Enable logical contradiction testing
-        //[Test]
+        //[TestMethod]
         //public void LambdaInvalidExpressions()
         //{
-        //    Assert.That(() => Where.Field(a => a == 3 || a != 3), Throws.Exception, "Or is not allowed");
+        //    () => Where.Field(a => a == 3 || a != 3), Throws.Exception, "Or is not allowed");
         //}
 
 

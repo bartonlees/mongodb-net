@@ -5,11 +5,12 @@ using System.Collections.Generic;
 using MongoDB.Driver.Command;
 using FluentAssertions;
 using System.Transactions;
+using System.Linq;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDatabaseExtensionsTest and is intended
     ///to contain all IDatabaseExtensionsTest Unit Tests
@@ -116,7 +117,7 @@ namespace MongoDB.MSTest
                 foo2.Insert(new Document("test", test));
             }
 
-            foo2.Find().Count().Should().BLessThan(10);
+            foo2.Find().Count().Should().BeLessThan(10);
 
             IDBCollection foo3 = Mongo.DefaultDatabase.GetCollection("foo3");
             foo3.Drop();
@@ -125,7 +126,7 @@ namespace MongoDB.MSTest
             {
                 foo3.Insert(new Document("test", test));
             }
-            Assert.That(foo3.Find().Count(), Is.EqualTo(2));
+            foo3.Find().Count().Should().Be(2);
 
             IDBCollection foo4 = Mongo.DefaultDatabase.GetCollection("foo4");
             foo4.Drop();
@@ -135,17 +136,17 @@ namespace MongoDB.MSTest
             {
                 foo4.Insert(new Document("test", test));
             }
-            Assert.That(foo4.Find().Count(), Is.LessThan(10));
+            foo4.Find().Count().Should().BeLessThan(10);
 
             IDBCollection foo5 = Mongo.DefaultDatabase.GetCollection("foo5");
             foo5.Drop();
 
-            Assert.That(() => foo5 = Mongo.DefaultDatabase.CreateCollection("foo5", capped: true, size: -20), Throws.Exception, "Negative size should not be allowed");
+            new Action(() => foo5 = Mongo.DefaultDatabase.CreateCollection("foo5", capped: true, size: -20)).ShouldThrow<Exception>("negative size should not be allowed");
 
             IDBCollection foo6 = Mongo.DefaultDatabase.GetCollection("foo6");
             foo6.Drop();
 
-            Assert.That(() => foo6 = Mongo.DefaultDatabase.CreateCollection("foo6", capped: true, max: -20), Throws.Exception, "Negative size should not be allowed");
+            new Action(() => foo6 = Mongo.DefaultDatabase.CreateCollection("foo6", capped: true, max: -20)).ShouldThrow<Exception>("Negative max should not be allowed");
         }
 
         /// <summary>

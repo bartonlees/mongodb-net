@@ -70,7 +70,7 @@ namespace MongoDB.MSTest
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("testBinary");
             c.Drop();
             c.Save(new Document() { { "a", Encoding.UTF8.GetBytes("devfuel") } });
-            Encoding.UTF8.GetString((byte[])c.FindOne()["a"]).ShouldBe("devfuel", "byte array came from roundtrip");
+            Encoding.UTF8.GetString((byte[])c.FindOne()["a"]).Should().Be("devfuel", "byte array came from roundtrip");
             c.Drop();
         }
 
@@ -82,10 +82,10 @@ namespace MongoDB.MSTest
 
             c.Save(new Document("a", new DBBinary(BinaryType.Binary, Encoding.UTF8.GetBytes("devfuel"))));
 
-            Encoding.UTF8.GetString((byte[])c.FindOne().GetAs<byte[]>("a")).ShouldBe("devfuel", "DBBinary came from roundtrip");
+            Encoding.UTF8.GetString((byte[])c.FindOne().GetAs<byte[]>("a")).Should().Be("devfuel", "DBBinary came from roundtrip");
         }
 
-        [Test]
+        [TestMethod]
         public void DBBinaryUserDefinedRoundtrip()
         {
             IDBCollection c = Mongo.DefaultDatabase.GetCollection("testBinary");
@@ -93,7 +93,7 @@ namespace MongoDB.MSTest
 
             c.Save(new Document("a", new DBBinary(BinaryType.UserDefined, Encoding.UTF8.GetBytes("devfuel"))));
 
-            Encoding.UTF8.GetString(c.FindOne().GetAs<DBBinary>("a").Buffer).ShouldBe("devfuel", "UserDefined DBBinary roundtrip failed");
+            Encoding.UTF8.GetString(c.FindOne().GetAs<DBBinary>("a").Buffer).Should().Be("devfuel", "UserDefined DBBinary roundtrip failed");
         }
 
 
@@ -119,7 +119,7 @@ namespace MongoDB.MSTest
         {
             DBBinary target;
             target = new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
-            target.Buffer.Should().ContainInOrder( new byte[] {1, 2, 1, 2, 12, 2, 2});
+            target.Buffer.Should().ContainInOrder(new byte[] { 1, 2, 1, 2, 12, 2, 2 });
         }
 
         /// <summary>

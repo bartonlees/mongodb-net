@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBObjectTest and is intended
     ///to contain all DBObjectTest Unit Tests
@@ -88,9 +88,9 @@ namespace MongoDB.MSTest
         }
 
 
-        
 
-        [Test]
+
+        [TestMethod]
         public void EntryOrder()
         {
             DBObject o = new DBObject();
@@ -103,12 +103,12 @@ namespace MongoDB.MSTest
             o["s"] = 6;
             string[] keys = new string[7];
             o.Keys.CopyTo(keys, 0);
-            Assert.That(string.Join("", keys), Is.EqualTo("umpires"), "keys should be in order added");
+            string.Join("", keys).Should().Be("umpires", "keys should be in order added");
 
             List<KeyValuePair<string, object>> pairs = new List<KeyValuePair<string, object>>(o);
             for (int i = 0; i < 7; i++)
             {
-                Assert.That(pairs[i].Value, Is.EqualTo(i), "pairs should be in order added");
+                pairs[i].Value.Should().Be(i, "pairs should be in order added");
             }
         }
 
@@ -207,10 +207,10 @@ namespace MongoDB.MSTest
             IDBObject start = new DBObject() { { "a", 7 }, { "d", 4 } };
             start.PutAll(new DBObject() { { "a", 1 }, { "b", 2 }, { "c", 3 } });
 
-            start["a"].ShouldBe(1,"put should have overwritten a");
-            start["b"].ShouldBe(2,"put should have added b");
-            start["c"].ShouldBe(3,"put should have added c");
-            start["d"].ShouldBe(4, "d was not in the put");
+            start["a"].Should().Be(1, "put should have overwritten a");
+            start["b"].Should().Be(2, "put should have added b");
+            start["c"].Should().Be(3, "put should have added c");
+            start["d"].Should().Be(4, "d was not in the put");
         }
     }
 }

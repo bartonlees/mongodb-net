@@ -5,8 +5,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBErrorTest and is intended
     ///to contain all DBErrorTest Unit Tests
@@ -146,7 +146,7 @@ namespace MongoDB.MSTest
         ///A test for Response
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ResponseTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

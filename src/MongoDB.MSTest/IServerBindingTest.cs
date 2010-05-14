@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IServerBindingTest and is intended
     ///to contain all IServerBindingTest Unit Tests

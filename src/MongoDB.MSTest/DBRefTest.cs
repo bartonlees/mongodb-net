@@ -5,8 +5,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBRefTest and is intended
     ///to contain all DBRefTest Unit Tests
@@ -81,7 +81,7 @@ namespace MongoDB.MSTest
             IDocument one = b.FindOne();
 
             Assert.AreEqual(12, one["n"]);
-            //Assert.That(one.GetAsIDBObject("l")["n"], Is.EqualTo(111));
+            //Assert.That(one.GetAsIDBObject("l")["n"].Should().Be(111));
             //TODO:This appears to be mostly useless and deprecated...should verify though
 
         }
@@ -114,15 +114,15 @@ namespace MongoDB.MSTest
             DBRef r = new DBRef(c, obj.ID);
             IDocument deref = r.Fetch();
 
-            Assert.That(deref, Is.Not.Null);
-            Assert.That(deref.ID, Is.EqualTo(obj.ID));
+            deref.Should().NotBeNull();
+            deref.ID.Should().Be(obj.ID);
         }
 
         /// <summary>
         ///A test for Collection
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void CollectionTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -139,7 +139,7 @@ namespace MongoDB.MSTest
         ///A test for ID
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IDTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

@@ -5,8 +5,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for MongoUriParserTest and is intended
     ///to contain all MongoUriParserTest Unit Tests
@@ -68,30 +68,16 @@ namespace MongoDB.MSTest
         {
             string address = "mongo://localhost:7899/db";
             Uri uri = new Uri(address);
-            Assert.That(uri.Scheme, Is.EqualTo(UriExtensions.UriSchemeMongo));
-            Assert.That(uri.Port, Is.EqualTo(7899));
-            Assert.That(uri.AbsolutePath, Is.EqualTo("/db"));
-            Assert.That(uri.Host, Is.EqualTo("localhost"));
-            Assert.That(uri.Authority, Is.EqualTo("localhost:7899"));
-            Assert.That(uri.IsAbsoluteUri);
+            uri.Scheme.Should().Be(UriExtensions.UriSchemeMongo);
+            uri.Port.Should().Be(7899);
+            uri.AbsolutePath.Should().Be("/db");
+            uri.Host.Should().Be("localhost");
+            uri.Authority.Should().Be("localhost:7899");
+            uri.IsAbsoluteUri.Should().BeTrue();
             Assert.IsFalse(uri.IsDefaultPort);
         }
 
-        [Test]
-        public void DefaultPortTest()
-        {
-            string address = "mongo://localhost/db";
-            Uri uri = new Uri(address);
-            Assert.That(uri.Scheme, Is.EqualTo(UriExtensions.UriSchemeMongo));
-            Assert.That(uri.Port, Is.EqualTo(-1));
-            Assert.That(uri.AbsolutePath, Is.EqualTo("/db"));
-            Assert.That(uri.Host, Is.EqualTo("localhost"));
-            Assert.That(uri.Authority, Is.EqualTo("localhost"));
-            Assert.That(uri.IsAbsoluteUri);
-            Assert.That(uri.IsDefaultPort);
-        }
-
-        [Test]
+        [TestMethod]
         public void DotTest()
         {
             string address = "mongo://localhost/db.testing";
@@ -115,9 +101,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DefaultPortTest()
         {
-            int actual;
-            actual = MongoUriParser.DefaultPort;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            string address = "mongo://localhost/db";
+            Uri uri = new Uri(address);
+            uri.Scheme.Should().Be(UriExtensions.UriSchemeMongo);
+            uri.Port.Should().Be(-1);
+            uri.AbsolutePath.Should().Be("/db");
+            uri.Host.Should().Be("localhost");
+            uri.Authority.Should().Be("localhost");
+            uri.IsAbsoluteUri.Should().BeTrue();
+            uri.IsDefaultPort.Should().BeTrue();
         }
     }
 }

@@ -72,7 +72,7 @@ namespace MongoDB.Driver.Test
             IDBCollection c;
             if (index)
             {
-                c =  Mongo.DefaultDatabase.GetCollection(name + "_index");
+                c = Mongo.DefaultDatabase.GetCollection(name + "_index");
                 c.Drop();
                 c.EnsureIndex("test");
             }
@@ -235,7 +235,7 @@ namespace MongoDB.Driver.Test
 
             IDBCollection c = getCollection(name, true);
             int min = (int)perTrial / 2;
-            int max = (int)perTrial / 2 + batchSize;              
+            int max = (int)perTrial / 2 + batchSize;
 
             double start = (double)DateTime.Now.Ticks;
             for (int i = 0; i < perTrial; i++)

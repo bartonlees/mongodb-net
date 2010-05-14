@@ -6,8 +6,8 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DocumentTest and is intended
     ///to contain all DocumentTest Unit Tests
@@ -186,7 +186,7 @@ namespace MongoDB.MSTest
         ///A test for Partial
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void PartialTest()
         {
             //Document_Accessor target = new Document_Accessor(); // TODO: Initialize to an appropriate value
@@ -202,7 +202,7 @@ namespace MongoDB.MSTest
         ///A test for State
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void StateTest()
         {
             //Document_Accessor target = new Document_Accessor(); // TODO: Initialize to an appropriate value

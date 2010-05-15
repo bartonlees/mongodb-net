@@ -31,11 +31,7 @@ namespace MongoDB.Driver
         {
             Binding = binding;
             Options = options;
-            IInternalDBBinding internalBinding = binding as IInternalDBBinding;
-            if (internalBinding != null)
-            {
-                internalBinding.Initialize(this); //Initialize the binding
-            }
+            Binding.Bind(this); //Initialize the binding
         }
 
         /// <summary>

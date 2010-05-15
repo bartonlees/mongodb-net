@@ -14,23 +14,29 @@ namespace MongoDB.Driver
 {
     /// <summary>
     /// A Simple database binding.
+    /// </summary>
     /// Some construction options:
-    /// <code>
+    /// <example>
     /// //BASIC
     /// DBBinding basic = new DBBinding("mongo://localhost/db");
+    /// </example>
+    /// <example>
     /// //FROM TEMPLATE BINDING
     /// DBBinding template = new DBBinding("mongo://localhost/db");
     /// DBBinding templated = new DBBinding(template, "db2");
     /// //Equivalent to "mongo://localhost/db2"
+    /// </example>
+    /// <example>
     /// //HOSTNAME AND DB NAME
     /// DBBinding withnames = new DBBinding("localhost", "db");
     /// //Equivalent to "mongo://localhost/db"
+    /// </example>
+    /// <example>
     /// //WITH PORT
     /// DBBinding withport = new DBBinding("localhost", 1910, "db");
     /// //Equivalent to "mongo://localhost:1910/db"
-    /// </code>
-    /// </summary>
-    public class DBBinding : IInternalDBBinding
+    /// </example>
+    internal class DBBinding : IDBBinding
     {
         /// <summary>
         /// Gets this pool's options.
@@ -287,11 +293,6 @@ namespace MongoDB.Driver
             }
         }
 
-        void IInternalDBBinding.Initialize(IServer server)
-        {
-            Server = server;
-        }
-
         /// <summary>
         /// Says the specified CMD collection.
         /// </summary>
@@ -459,6 +460,12 @@ namespace MongoDB.Driver
             _UsernamePasswordHash = new SecureString();
             _UsernamePasswordHash.Append(username);
             _UsernamePasswordHash.Append(password);
+        }
+
+
+        public void Bind(IServer server)
+        {
+            Server = server;
         }
     }
 }

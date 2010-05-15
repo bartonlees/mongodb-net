@@ -9,7 +9,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// This interface represents the core operations and data of a MongoDB database
     /// </summary>
-    public interface IDatabase
+    public interface IDatabase : IUriComparable
     {
         /// <summary>
         /// Gets the collection.

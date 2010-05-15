@@ -75,7 +75,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly);
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
@@ -88,7 +88,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             Uri name = null; // TODO: Initialize to an appropriate value
             IDBBinding expected = null; // TODO: Initialize to an appropriate value
             IDBBinding actual;
@@ -106,7 +106,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             Uri expected = null; // TODO: Initialize to an appropriate value
             Uri actual;
             actual = target.ToUri();
@@ -123,7 +123,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             IPAddress actual;
             actual = target.Address;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -138,7 +138,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             string actual;
             actual = target.HostName;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -170,7 +170,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             int actual;
             actual = target.Port;
             Assert.Inconclusive("Verify the correctness of this test method.");

@@ -1,8 +1,8 @@
-﻿using MongoDB.Driver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Security;
+﻿using System;
 using System.Net;
+using System.Security;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MongoDB.Driver;
 using FluentAssertions;
 
 namespace MongoDB.MSTest
@@ -210,13 +210,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ActiveBindingTest()
         {
-            IDBBinding leftBinding = null; // TODO: Initialize to an appropriate value
-            IDBBinding rightBinding = null; // TODO: Initialize to an appropriate value
-            bool readOnly = false; // TODO: Initialize to an appropriate value
-            DBPairBinding target = new DBPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            actual = target.ActiveBinding;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBBinding leftBinding = Mongo.DefaultServerBinding.GetDBBinding("db1");
+            IDBBinding rightBinding = Mongo.DefaultAltServerBinding.GetDBBinding("db1"); 
+            DBPairBinding target = new DBPairBinding(leftBinding, rightBinding);
+            IDatabase server = Mongo.GetDatabase(target);
+            target.ActiveBinding.Should().NotBeNull("The pair binding should have chosen an active binding from the parameters");
+            new IDBBinding[] { leftBinding, rightBinding }.Should().Contain(target.ActiveBinding);
         }
 
         /// <summary>

@@ -1,33 +1,42 @@
 ﻿using System;
 using MongoDB.Driver.Platform.Conditions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MongoDB.Driver
 {
     /// <summary>
     /// A database binding that leverages a pair of databases
     /// </summary>
-    public class DBPairBinding : IInternalDBBinding
+    internal class DBMultiBinding : IDBMultiBinding
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DBPairBinding"/> class.
+        /// Initializes a new instance of the <see cref="DBMultiBinding"/> class.
         /// </summary>
         /// <param name="leftBinding">The left binding.</param>
         /// <param name="rightBinding">The right binding.</param>
         /// <param name="readOnly">if set to <c>true</c> [read only].</param>
-        public DBPairBinding(IDBBinding leftBinding, IDBBinding rightBinding, bool readOnly = false)
+        public DBMultiBinding(IServerMultiBinding serverMultiBinding, IEnumerable<IDBBinding> subBindings, bool readOnly)
         {
-            Condition.Requires(leftBinding, "leftBinding").IsNotNull();
+            Condition.Requires(serverMultiBinding).IsNotNull();
+
+            Condition.Requires(subBindings, "subBindings").IsNotNull();
+
+            List<IDBBinding> subBindingList = subBindings.ToList();
+            List<IDBBinding> uniqueBindings = subBindingList.Distinct(new UriEqualityComparer());
+
             Condition.Requires(rightBinding, "rightBinding").IsNotNull().Evaluate(rightBinding.DatabaseName.Equals(leftBinding.DatabaseName), "In order to be paired, both DBBindings must include the same DatabaseName.");
+            ServerMultiBinding = serverMultiBinding;
             LeftBinding = leftBinding;
             RightBinding = rightBinding;
             ReadOnly = readOnly;
         }
 
         /// <summary>
-        /// Gets or sets the server.
+        /// Gets the bound Database
         /// </summary>
         /// <value>The server.</value>
-        public IServer Server { get; private set; }
+        public IDatabase BoundDatabase { get; private set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether modifications to the server data is allowed.
@@ -139,12 +148,12 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public IDBBinding GetSisterBinding(Uri name)
         {
-            DBPairBinding sisterBinding = new DBPairBinding(new DBBinding(LeftBinding.Server.Binding, name), new DBBinding(RightBinding.Server.Binding, name));
+            DBMultiBinding sisterBinding = new DBMultiBinding(new DBBinding(LeftBinding.BoundDatabase.Binding, name), new DBBinding(RightBinding.BoundDatabase.Binding, name));
             (sisterBinding as IInternalDBBinding).Initialize(Server);
             return sisterBinding;
         }
 
-        void IInternalDBBinding.Initialize(IServer server)
+        public void Initialize(IServer server)
         {
             Server = server;
         }
@@ -316,6 +325,26 @@ namespace MongoDB.Driver
         public void SetCredentials(string username, System.Security.SecureString passwd)
         {
             throw new NotImplementedException();
+        }
+
+        public System.Collections.Generic.IEnumerable<IDBBinding> SubBindings
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public void Bind(IDatabase database)
+        {
+            BoundDatabase = database;
+            foreach (IDBBinding subBinding in SubBindings)
+            {
+                subBinding.Bind(database);
+            }
+        }
+
+        public IServerMultiBinding ServerMultiBinding
+        {
+            get;
+            private set;
         }
     }
 }

@@ -1,17 +1,14 @@
 ﻿#pragma warning disable 0612
-using MongoDB.Driver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Collections;
 using System.Text.RegularExpressions;
 using FluentAssertions;
-using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MongoDB.Driver;
 
 namespace MongoDB.MSTest
 {
-
-
     /// <summary>
     ///This is a test class for WireProtocolWriterTest and is intended
     ///to contain all WireProtocolWriterTest Unit Tests
@@ -137,7 +134,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void element_binaryTest()
         {
-            WriteToString(new DBBinary(BinaryType.Binary, new byte[] { 1,2,3})).Should().Be("");
+            WriteToString(new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 3 })).Should().Be("");
         }
 
         /// <summary>
@@ -200,7 +197,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void element_objectTest()
         {
-            WriteToString(new DBObject("b",2)).Should().Be("");
+            WriteToString(new DBObject("b", 2)).Should().Be("");
         }
 
         /// <summary>
@@ -254,7 +251,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void element_timestampTest()
         {
-            WriteToString(new DBTimestamp(34,2)).Should().Be("");
+            WriteToString(new DBTimestamp(34, 2)).Should().Be("");
         }
     }
 }

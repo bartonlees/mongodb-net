@@ -7,15 +7,15 @@ namespace MongoDB.Driver
     /// <summary>
     /// A database binding that leverages a pair of databases
     /// </summary>
-    public class ServerPairBinding : IServerBinding
+    internal class ServerMultiBinding : IServerMultiBinding
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServerPairBinding"/> class.
+        /// Initializes a new instance of the <see cref="ServerMultiBinding"/> class.
         /// </summary>
         /// <param name="leftBinding">The left binding.</param>
         /// <param name="rightBinding">The right binding.</param>
         /// <param name="readOnly">if set to <c>true</c> [read only].</param>
-        public ServerPairBinding(ServerBinding leftBinding, ServerBinding rightBinding, bool readOnly = false)
+        public ServerMultiBinding(ServerBinding leftBinding, ServerBinding rightBinding, bool readOnly = false)
         {
             Condition.Requires(leftBinding, "leftBinding").IsNotNull();
             Condition.Requires(rightBinding, "rightBinding").IsNotNull();
@@ -42,7 +42,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public IDBBinding GetDBBinding(Uri name)
         {
-            return new DBPairBinding(LeftBinding.GetDBBinding(name), RightBinding.GetDBBinding(name), ReadOnly);
+            return new DBMultiBinding(LeftBinding.GetDBBinding(name), RightBinding.GetDBBinding(name), ReadOnly);
         }
 
         /// <summary>
@@ -89,6 +89,16 @@ namespace MongoDB.Driver
         public Uri ToUri()
         {
             return LeftBinding.ToUri();
+        }
+
+        public System.Collections.Generic.IEnumerable<IServerBinding> SubBindings
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public IDBMultiBinding GetDBMultiBinding(Uri uri)
+        {
+            throw new NotImplementedException();
         }
     }
 }

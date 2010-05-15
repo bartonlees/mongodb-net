@@ -84,6 +84,34 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
+        /// Gets the default alternate server binding (for pairing).
+        /// </summary>
+        /// <value>The default server binding.</value>
+        public static IServerBinding DefaultAltServerBinding
+        {
+            get
+            {
+                ServerBinding binding = new ServerBinding(
+                Properties.Settings.Default.DefaultAltHost,
+                Properties.Settings.Default.DefaultAltPort);
+                return binding;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the default paired server binding.
+        /// </summary>
+        /// <value>The default server binding.</value>
+        public static IServerBinding DefaultServerPairBinding
+        {
+            get
+            {
+                return new ServerMultiBinding(DefaultServerBinding as ServerBinding, DefaultAltServerBinding as ServerBinding);
+            }
+        }
+
+        /// <summary>
         /// Gets the read only default server binding.
         /// </summary>
         /// <value>The read only default server binding.</value>

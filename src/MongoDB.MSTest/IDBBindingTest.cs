@@ -260,7 +260,7 @@ namespace MongoDB.MSTest
         {
             IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
             IServer actual;
-            actual = target.Server;
+            actual = target.BoundDatabase;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

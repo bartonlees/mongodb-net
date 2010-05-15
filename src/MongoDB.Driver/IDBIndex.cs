@@ -5,7 +5,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// Represents an index on an collection
     /// </summary>
-    public interface IDBIndex
+    public interface IDBIndex : IUriComparable
     {
         /// <summary>
         /// Gets the collection.

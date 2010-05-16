@@ -59,7 +59,10 @@ namespace MongoDB.Driver
             if (string.IsNullOrWhiteSpace(error) || !error.StartsWith("E"))
                 return Code.NoError;
             //Retrieve numeric characters after "E"
-            string code = new string(error.Substring(1, 11).TakeWhile(c => char.IsNumber(c)).ToArray());
+            int maxLen = error.Length - 1;
+            if (maxLen > 11)
+                maxLen = 11;
+            string code = new string(error.Substring(1,maxLen).TakeWhile(c => char.IsNumber(c)).ToArray());
             int i;
             if (!int.TryParse(code, out i) || !Enum.IsDefined(typeof(Code), i))
                 return Code.NoError;

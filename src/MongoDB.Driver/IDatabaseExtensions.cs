@@ -115,6 +115,8 @@ namespace MongoDB.Driver
         /// <param name="passwd">The passwd.</param>
         public static void AddUser(this IDatabase db, string username, IEnumerable<char> passwd)
         {
+            Condition.Requires(username, "username").IsNotNullOrWhitespace();
+            Condition.Requires(passwd, "passwd").IsNotNull().IsLongerThan(1);
             SecureString ss = new SecureString();
             foreach (char c in passwd)
             {

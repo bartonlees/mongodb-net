@@ -242,7 +242,7 @@ namespace MongoDB.MSTest
             int arrayIndex = 0;
             target.CopyTo(array, arrayIndex);
             array.Select(p => p.Key).Should().Contain("Caption", "Data", "_id", null);
-            array[3].Key.Should().BeEmpty();
+            array[3].Key.Should().BeNull();
         }
 
         [TestMethod()]

@@ -6,7 +6,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// The interface that represents a remote MongoDB server
     /// </summary>
-    public interface IServer
+    public interface IServer : IUriComparable
     {
         /// <summary>
         /// Gets the database.

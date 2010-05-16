@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Net;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for ServerPairBindingTest and is intended
     ///to contain all ServerPairBindingTest Unit Tests
@@ -74,7 +75,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly);
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly);
             Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
@@ -87,7 +88,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             Uri name = null; // TODO: Initialize to an appropriate value
             IDBBinding expected = null; // TODO: Initialize to an appropriate value
             IDBBinding actual;
@@ -105,7 +106,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             Uri expected = null; // TODO: Initialize to an appropriate value
             Uri actual;
             actual = target.ToUri();
@@ -122,7 +123,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             IPAddress actual;
             actual = target.Address;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -137,7 +138,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             string actual;
             actual = target.HostName;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -147,7 +148,7 @@ namespace MongoDB.MSTest
         ///A test for LeftBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void LeftBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -169,7 +170,7 @@ namespace MongoDB.MSTest
             ServerBinding leftBinding = null; // TODO: Initialize to an appropriate value
             ServerBinding rightBinding = null; // TODO: Initialize to an appropriate value
             bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerPairBinding target = new ServerPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
+            ServerMultiBinding target = new ServerMultiBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
             int actual;
             actual = target.Port;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -179,7 +180,7 @@ namespace MongoDB.MSTest
         ///A test for ReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadOnlyTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -196,7 +197,7 @@ namespace MongoDB.MSTest
         ///A test for RightBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RightBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

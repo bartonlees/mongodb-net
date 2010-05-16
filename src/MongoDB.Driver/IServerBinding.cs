@@ -6,7 +6,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// Represents connection details for a logical server (could be a pool of servers in reality)
     /// </summary>
-    public interface IServerBinding
+    public interface IServerBinding : IUriComparable
     {
         /// <summary>
         /// Gets the DB binding.
@@ -34,10 +34,17 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value><c>true</c> if [read only]; otherwise, <c>false</c>.</value>
         bool ReadOnly { get; }
+        
         /// <summary>
-        /// Toes the URI.
+        /// Binds the specified server proxy to this connection information.
         /// </summary>
-        /// <returns></returns>
-        Uri ToUri();
+        /// <param name="server">The server.</param>
+        void Bind(IServer server);
+
+        /// <summary>
+        /// Gets the bound server.
+        /// </summary>
+        /// <value>The bound server.</value>
+        IServer BoundServer { get; }
     }
 }

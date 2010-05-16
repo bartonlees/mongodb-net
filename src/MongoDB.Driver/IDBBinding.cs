@@ -8,7 +8,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// An interface that represents the binding of a client to server data source(s)
     /// </summary>
-    public interface IDBBinding
+    public interface IDBBinding : IUriComparable
     {
         /// <summary>
         /// Gets the sister binding.
@@ -52,10 +52,10 @@ namespace MongoDB.Driver
         /// <value>The connection options.</value>
         DBConnectionOptions ConnectionOptions { get; }
         /// <summary>
-        /// Gets the server.
+        /// Gets the bound Database.
         /// </summary>
         /// <value>The server.</value>
-        IServer Server { get; }
+        IDatabase BoundDatabase { get; }
         /// <summary>
         /// Gets the end point.
         /// </summary>
@@ -103,14 +103,12 @@ namespace MongoDB.Driver
         /// <param name="username">The username.</param>
         /// <param name="passwd">The password.</param>
         void SetCredentials(string username, SecureString passwd);
-    }
 
-    internal interface IInternalDBBinding : IDBBinding
-    {
         /// <summary>
-        /// Initializes the specified server.
+        /// Binds the specified database proxy object to this binding's details.
         /// </summary>
         /// <param name="server">The server.</param>
-        void Initialize(IServer server);
+        void Bind(IDatabase database);
     }
+    
 }

@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq.Expressions;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for WhereTest and is intended
     ///to contain all WhereTest Unit Tests

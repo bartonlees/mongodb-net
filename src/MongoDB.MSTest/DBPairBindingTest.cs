@@ -1,13 +1,14 @@
-﻿using MongoDB.Driver;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Security;
+﻿using System;
 using System.Net;
+using System.Security;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MongoDB.Driver;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBPairBindingTest and is intended
     ///to contain all DBPairBindingTest Unit Tests
@@ -141,7 +142,7 @@ namespace MongoDB.MSTest
         ///A test for PickInitialSubBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void PickInitialSubBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -204,44 +205,17 @@ namespace MongoDB.MSTest
         }
 
         /// <summary>
-        ///A test for _Call
-        ///</summary>
-        public void _CallTestHelper<TDoc>()
-            where TDoc : class , IDocument
-        {
-            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            //DBPairBinding_Accessor target = new DBPairBinding_Accessor(param0); // TODO: Initialize to an appropriate value
-            //IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
-            //IDBRequest request = null; // TODO: Initialize to an appropriate value
-            //int retries = 0; // TODO: Initialize to an appropriate value
-            //IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
-            //IDBResponse<TDoc> actual;
-            //actual = target._Call<TDoc>(cmdCollection, request, retries);
-            //Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
-        public void _CallTest()
-        {
-            Assert.Inconclusive("No appropriate type parameter is found to satisfies the type constraint(s) of TDo" +
-                    "c. Please call _CallTestHelper<TDoc>() with appropriate type parameters.");
-        }
-
-        /// <summary>
         ///A test for ActiveBinding
         ///</summary>
         [TestMethod()]
         public void ActiveBindingTest()
         {
-            IDBBinding leftBinding = null; // TODO: Initialize to an appropriate value
-            IDBBinding rightBinding = null; // TODO: Initialize to an appropriate value
-            bool readOnly = false; // TODO: Initialize to an appropriate value
-            DBPairBinding target = new DBPairBinding(leftBinding, rightBinding, readOnly); // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            actual = target.ActiveBinding;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBBinding leftBinding = Mongo.DefaultServerBinding.GetDBBinding("db1");
+            IDBBinding rightBinding = Mongo.DefaultAltServerBinding.GetDBBinding("db1"); 
+            DBPairBinding target = new DBPairBinding(leftBinding, rightBinding);
+            IDatabase server = Mongo.GetDatabase(target);
+            target.ActiveBinding.Should().NotBeNull("The pair binding should have chosen an active binding from the parameters");
+            new IDBBinding[] { leftBinding, rightBinding }.Should().Contain(target.ActiveBinding);
         }
 
         /// <summary>
@@ -338,7 +312,7 @@ namespace MongoDB.MSTest
         ///A test for LeftBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void LeftBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -370,7 +344,7 @@ namespace MongoDB.MSTest
         ///A test for ReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadOnlyTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -387,7 +361,7 @@ namespace MongoDB.MSTest
         ///A test for RightBinding
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void RightBindingTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -404,7 +378,7 @@ namespace MongoDB.MSTest
         ///A test for Server
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ServerTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

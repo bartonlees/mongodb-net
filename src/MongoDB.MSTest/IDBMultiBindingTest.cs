@@ -1,18 +1,18 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using FluentAssertions;
+using System.Collections.Generic;
 
 namespace MongoDB.MSTest
 {
-
-
+    
+    
     /// <summary>
-    ///This is a test class for DBObjectWrapperTest and is intended
-    ///to contain all DBObjectWrapperTest Unit Tests
+    ///This is a test class for IDBMultiBindingTest and is intended
+    ///to contain all IDBMultiBindingTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class DBObjectWrapperTest
+    public class IDBMultiBindingTest
     {
 
 
@@ -65,13 +65,47 @@ namespace MongoDB.MSTest
         #endregion
 
 
+        internal virtual IDBMultiBinding CreateIDBMultiBinding()
+        {
+            // TODO: Instantiate an appropriate concrete class.
+            IDBMultiBinding target = null;
+            return target;
+        }
+
         /// <summary>
-        ///A test for DBObjectWrapper Constructor
+        ///A test for ActiveBinding
         ///</summary>
         [TestMethod()]
-        public void DBObjectWrapperConstructorTest()
+        public void ActiveBindingTest()
         {
-            DBObjectWrapper target = new DBObjectWrapper(new DBObject() { { "a", 1 }, { "b", true } });
+            IDBMultiBinding target = CreateIDBMultiBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding actual;
+            actual = target.ActiveBinding;
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for ServerMultiBinding
+        ///</summary>
+        [TestMethod()]
+        public void ServerMultiBindingTest()
+        {
+            IDBMultiBinding target = CreateIDBMultiBinding(); // TODO: Initialize to an appropriate value
+            IServerMultiBinding actual;
+            actual = target.ServerMultiBinding;
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for SubBindings
+        ///</summary>
+        [TestMethod()]
+        public void SubBindingsTest()
+        {
+            IDBMultiBinding target = CreateIDBMultiBinding(); // TODO: Initialize to an appropriate value
+            IEnumerable<IDBBinding> actual;
+            actual = target.SubBindings;
+            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

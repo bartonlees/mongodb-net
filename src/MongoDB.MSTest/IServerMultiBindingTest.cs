@@ -1,18 +1,18 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using FluentAssertions;
+using System.Collections.Generic;
 
 namespace MongoDB.MSTest
 {
-
-
+    
+    
     /// <summary>
-    ///This is a test class for DBObjectWrapperTest and is intended
-    ///to contain all DBObjectWrapperTest Unit Tests
+    ///This is a test class for IServerMultiBindingTest and is intended
+    ///to contain all IServerMultiBindingTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class DBObjectWrapperTest
+    public class IServerMultiBindingTest
     {
 
 
@@ -65,13 +65,38 @@ namespace MongoDB.MSTest
         #endregion
 
 
+        internal virtual IServerMultiBinding CreateIServerMultiBinding()
+        {
+            // TODO: Instantiate an appropriate concrete class.
+            IServerMultiBinding target = null;
+            return target;
+        }
+
         /// <summary>
-        ///A test for DBObjectWrapper Constructor
+        ///A test for GetDBMultiBinding
         ///</summary>
         [TestMethod()]
-        public void DBObjectWrapperConstructorTest()
+        public void GetDBMultiBindingTest()
         {
-            DBObjectWrapper target = new DBObjectWrapper(new DBObject() { { "a", 1 }, { "b", true } });
+            IServerMultiBinding target = CreateIServerMultiBinding(); // TODO: Initialize to an appropriate value
+            Uri uri = null; // TODO: Initialize to an appropriate value
+            IDBMultiBinding expected = null; // TODO: Initialize to an appropriate value
+            IDBMultiBinding actual;
+            actual = target.GetDBMultiBinding(uri);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for SubBindings
+        ///</summary>
+        [TestMethod()]
+        public void SubBindingsTest()
+        {
+            IServerMultiBinding target = CreateIServerMultiBinding(); // TODO: Initialize to an appropriate value
+            IEnumerable<IServerBinding> actual;
+            actual = target.SubBindings;
+            Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }

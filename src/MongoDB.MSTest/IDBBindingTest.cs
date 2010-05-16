@@ -3,11 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Security;
 using System.Net;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDBBindingTest and is intended
     ///to contain all IDBBindingTest Unit Tests
@@ -255,11 +256,11 @@ namespace MongoDB.MSTest
         ///A test for Server
         ///</summary>
         [TestMethod()]
-        public void ServerTest()
+        public void BoundDatabaseTest()
         {
             IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            IServer actual;
-            actual = target.Server;
+            IDatabase actual;
+            actual = target.BoundDatabase;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

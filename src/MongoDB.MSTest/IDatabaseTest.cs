@@ -3,11 +3,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Security;
 using System.Collections.Generic;
+using FluentAssertions;
+using System.Transactions;
+using System.Data;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IDatabaseTest and is intended
     ///to contain all IDatabaseTest Unit Tests
@@ -65,7 +68,6 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
         internal virtual IDatabase CreateIDatabase()
         {
             // TODO: Instantiate an appropriate concrete class.
@@ -115,13 +117,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ExecuteCommandTest()
         {
-            IDatabase target = CreateIDatabase(); // TODO: Initialize to an appropriate value
-            DBQuery cmd = null; // TODO: Initialize to an appropriate value
-            IDBObject expected = null; // TODO: Initialize to an appropriate value
-            IDBObject actual;
-            actual = target.ExecuteCommand(cmd);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Mongo.DefaultDatabase.Evaluate("return 17").Should().Be(17);
+            Mongo.DefaultDatabase.Evaluate("function(test){ return 17 + test; }", 1).Should().Be(18);
+            Mongo.DefaultDatabase.Evaluate("function(a,b){ return a + b; }", 2, 3).Should().Be(5);
         }
 
         /// <summary>
@@ -234,10 +232,26 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyTest()
         {
-            IDatabase target = CreateIDatabase(); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.ReadOnly;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            //Make sure this collection doesn't exist
+            IDBCollection testWritable = Mongo.DefaultDatabase["test"];
+            testWritable.Drop();
+
+            IDatabase readonlyDatabase = Mongo.DefaultReadOnlyDatabase;
+            readonlyDatabase.ReadOnly.Should().BeTrue("we just constructed it to be so");
+
+            new Action(() => readonlyDatabase.AddUser("test", new char[] { 'g', 'o' })).ShouldThrow<ReadOnlyException>();
+
+            new Action(() => readonlyDatabase.Drop()).ShouldThrow<ReadOnlyException>();
+
+            new Action(() => readonlyDatabase.CreateCollection("test")).ShouldThrow<ReadOnlyException>();
+
+            new Action(() => readonlyDatabase.GetCollection("test")).ShouldThrow<ReadOnlyException>();
+
+            new Action(() => { IDBCollection test = readonlyDatabase["test"]; }).ShouldThrow<ReadOnlyException>();
+
+            new Action(() => Mongo.DefaultServer.Admin.CopyDatabase(Mongo.DefaultDatabase, readonlyDatabase)).ShouldThrow<ReadOnlyException>();
+
+            new Action(() => readonlyDatabase.AddUser("test", new char[] { 'g', 'o' })).ShouldThrow<ReadOnlyException>();
         }
 
         /// <summary>

@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Net;
 using MongoDB.Driver.Platform.Conditions;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace MongoDB.Driver
 {
     /// <summary>
     /// A database binding that leverages a pair of databases
     /// </summary>
-    public class ServerPairBinding : IServerBinding
+    internal class ServerMultiBinding : IServerMultiBinding
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServerPairBinding"/> class.
+        /// Initializes a new instance of the <see cref="ServerMultiBinding"/> class.
         /// </summary>
         /// <param name="leftBinding">The left binding.</param>
         /// <param name="rightBinding">The right binding.</param>
         /// <param name="readOnly">if set to <c>true</c> [read only].</param>
-        public ServerPairBinding(ServerBinding leftBinding, ServerBinding rightBinding, bool readOnly = false)
+        public ServerMultiBinding(IEnumerable<IServerBinding> subBindings, bool readOnly = false)
         {
-            Condition.Requires(leftBinding, "leftBinding").IsNotNull();
-            Condition.Requires(rightBinding, "rightBinding").IsNotNull();
-            LeftBinding = leftBinding;
-            RightBinding = rightBinding;
+            Condition.Requires(subBindings, "subBindings").IsNotNull();
+            _SubBindings = subBindings.Distinct(new UriEqualityComparer<IServerBinding>()).ToList();
+            Condition.Requires(_SubBindings, "SubBindings").IsLongerThan(1,"Must have more than one unique server binding.");
             ReadOnly = readOnly;
         }
+
+        
+
+        public IServer BoundServer { get; private set; }
 
         /// <summary>
         /// Gets or sets the left binding.
@@ -42,7 +47,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public IDBBinding GetDBBinding(Uri name)
         {
-            return new DBPairBinding(LeftBinding.GetDBBinding(name), RightBinding.GetDBBinding(name), ReadOnly);
+            return GetDBMultiBinding(name);
         }
 
         /// <summary>
@@ -83,12 +88,31 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Toes the URI.
+        /// Retrieves a representational Uri
         /// </summary>
         /// <returns></returns>
-        public Uri ToUri()
+        public Uri Uri
         {
-            return LeftBinding.ToUri();
+            get
+            {
+                return LeftBinding.Uri;
+            }
+        }
+
+        public List<IServerBinding> _SubBindings;
+        public IEnumerable<IServerBinding> SubBindings
+        {
+            get { return _SubBindings; }
+        }
+
+        public IDBMultiBinding GetDBMultiBinding(Uri name)
+        {
+            return new DBMultiBinding(this, SubBindings.Select(b => b.GetDBBinding(name)), ReadOnly);
+        }
+
+        public void Bind(IServer server)
+        {
+            BoundServer = server;
         }
     }
 }

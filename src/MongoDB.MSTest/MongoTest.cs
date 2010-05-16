@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-
+using System.Collections.Generic;
+using FluentAssertions;
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for MongoTest and is intended
     ///to contain all MongoTest Unit Tests
@@ -63,7 +64,6 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
         /// <summary>
         ///A test for GetDatabase
         ///</summary>
@@ -98,20 +98,6 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetServerTest()
         {
-            IServerBinding serverBinding = null; // TODO: Initialize to an appropriate value
-            IServer expected = null; // TODO: Initialize to an appropriate value
-            IServer actual;
-            actual = Mongo.GetServer(serverBinding);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for GetServer
-        ///</summary>
-        [TestMethod()]
-        public void GetServerTest1()
-        {
             string location = string.Empty; // TODO: Initialize to an appropriate value
             IServer expected = null; // TODO: Initialize to an appropriate value
             IServer actual;
@@ -124,7 +110,7 @@ namespace MongoDB.MSTest
         ///A test for GetServer
         ///</summary>
         [TestMethod()]
-        public void GetServerTest2()
+        public void GetServerTest1()
         {
             Uri location = null; // TODO: Initialize to an appropriate value
             IServer expected = null; // TODO: Initialize to an appropriate value
@@ -142,7 +128,8 @@ namespace MongoDB.MSTest
         {
             IDatabase actual;
             actual = Mongo.DefaultDatabase;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            List<Uri> names = new List<Uri>(actual.GetCollectionNames());
+            names.Should().Contain("cmd"); //Todo:get the actual name for the command collection
         }
 
         /// <summary>
@@ -153,18 +140,6 @@ namespace MongoDB.MSTest
         {
             IServer actual;
             actual = Mongo.DefaultServer;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for DefaultServerBinding
-        ///</summary>
-        [TestMethod()]
-        public void DefaultServerBindingTest()
-        {
-            IServerBinding actual;
-            actual = Mongo.DefaultServerBinding;
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>
@@ -174,7 +149,7 @@ namespace MongoDB.MSTest
         public void ReadOnlyDefaultDatabaseTest()
         {
             IDatabase actual;
-            actual = Mongo.ReadOnlyDefaultDatabase;
+            actual = Mongo.DefaultReadOnlyDatabase;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -184,20 +159,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyDefaultServerTest()
         {
-            IServer actual;
-            actual = Mongo.ReadOnlyDefaultServer;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for ReadOnlyDefaultServerBinding
-        ///</summary>
-        [TestMethod()]
-        public void ReadOnlyDefaultServerBindingTest()
-        {
-            IServerBinding actual;
-            actual = Mongo.ReadOnlyDefaultServerBinding;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IServer readOnlyServer = Mongo.DefaultReadOnlyServer;
+            readOnlyServer.ReadOnly.Should().BeTrue("it is a read only server");
         }
 
         /// <summary>

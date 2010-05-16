@@ -81,6 +81,9 @@
     <Compile Include="Command\ServerStatus.cs" />
     <Compile Include="Command\Admin\ShutDown.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="IServerMultiBinding.cs" />
+    <Compile Include="IDBMultiBinding.cs" />
+    <Compile Include="IServerBindingExtensions.cs" />
     <Compile Include="IDBBindingExtensions.cs" />
     <Compile Include="IDBIndexExtensions.cs" />
     <Compile Include="DBModifier.cs" />
@@ -97,13 +100,14 @@
     <Compile Include="Document.cs" />
     <Compile Include="IDBIndex.cs" />
     <Compile Include="IDocument.cs" />
+    <Compile Include="IUriComparable.cs" />
     <Compile Include="Lambda.cs" />
     <Compile Include="Properties\AssemblyInfo.vs.cs" />
-    <Compile Include="ServerPairBinding.cs" />
+    <Compile Include="ServerMultiBinding.cs" />
     <Compile Include="IServerBinding.cs" />
     <Compile Include="ServerBinding.cs" />
     <Compile Include="IDBConnection.cs" />
-    <Compile Include="DBPairBinding.cs" />
+    <Compile Include="DBMultiBinding.cs" />
     <Compile Include="IDBBinding.cs" />
     <Compile Include="DBCollection.cs" />
     <Compile Include="DBError.cs" />

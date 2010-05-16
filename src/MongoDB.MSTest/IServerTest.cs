@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-
+using FluentAssertions;
+using System.Data;
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IServerTest and is intended
     ///to contain all IServerTest Unit Tests
@@ -64,7 +65,6 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
         internal virtual IServer CreateIServer()
         {
             // TODO: Instantiate an appropriate concrete class.
@@ -89,10 +89,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DropDatabaseTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
-            IDatabase database = null; // TODO: Initialize to an appropriate value
-            target.DropDatabase(database);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            IServer defaultServer = Mongo.DefaultServer;
+            IDatabase defaultDatabase = defaultServer.GetDatabase("drop1");
+            defaultDatabase.GetCollection("test").Insert(new Document() { { "a", 1 } });
+            defaultServer.DropDatabase(defaultDatabase);
+
+            IServer readonlyServer = Mongo.DefaultReadOnlyServer;
+            IDatabase readonlyDatabase = readonlyServer.GetDatabase("drop1");
+            Action drop = () => readonlyServer.DropDatabase(readonlyDatabase);
+            drop.ShouldThrow<ReadOnlyException>("one shouldn't be able to drop a readonly database");
         }
 
         /// <summary>
@@ -155,10 +160,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DatabaseNamesTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
-            IEnumerable<Uri> actual;
-            actual = target.DatabaseNames;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            foreach (Uri name in Mongo.DefaultServer.DatabaseNames)
+            {
+                Console.WriteLine(name);
+            }
         }
 
         /// <summary>

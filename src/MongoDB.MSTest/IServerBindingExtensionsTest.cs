@@ -5,14 +5,14 @@ using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-
-
+    
+    
     /// <summary>
-    ///This is a test class for DBObjectWrapperTest and is intended
-    ///to contain all DBObjectWrapperTest Unit Tests
+    ///This is a test class for IServerBindingExtensionsTest and is intended
+    ///to contain all IServerBindingExtensionsTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class DBObjectWrapperTest
+    public class IServerBindingExtensionsTest
     {
 
 
@@ -64,14 +64,5 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
-        /// <summary>
-        ///A test for DBObjectWrapper Constructor
-        ///</summary>
-        [TestMethod()]
-        public void DBObjectWrapperConstructorTest()
-        {
-            DBObjectWrapper target = new DBObjectWrapper(new DBObject() { { "a", 1 }, { "b", true } });
-        }
     }
 }

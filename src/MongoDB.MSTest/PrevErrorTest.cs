@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MongoDB.Driver;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for PrevErrorTest and is intended
     ///to contain all PrevErrorTest Unit Tests

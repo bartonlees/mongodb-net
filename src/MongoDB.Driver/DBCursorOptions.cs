@@ -44,7 +44,7 @@ namespace MongoDB.Driver
         /// <param name="limit">The limit.</param>
         /// <param name="explain">if set to <c>true</c> [explain].</param>
         /// <param name="snapshot">if set to <c>true</c> [snapshot].</param>
-        /// <param name="options">The options.</param>
+        /// <param name="flags">The flag options.</param>
         /// <param name="explicitIndexHint">The explicit index hint.</param>
         public DBCursorOptions(IDBCollection collection,
             DBQuery selector = null,
@@ -55,7 +55,7 @@ namespace MongoDB.Driver
             int? limit = null,
             bool explain = false,
             bool snapshot = false,
-            CursorFlags options = CursorFlags.None,
+            CursorFlags flags = CursorFlags.None,
             IDBIndex explicitIndexHint = null)
         {
             Condition.Requires(snapshot, "snapshot")
@@ -68,7 +68,7 @@ namespace MongoDB.Driver
             Selector = selector ?? DBQuery.SelectAll;
             ReturnFields = returnFields;
             Explain = explain;
-            Flags = options;
+            Flags = flags;
             Hint = explicitIndexHint;
             OrderBy = orderBy;
             Snapshot = snapshot;

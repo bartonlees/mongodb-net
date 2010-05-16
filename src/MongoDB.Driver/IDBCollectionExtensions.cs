@@ -173,7 +173,7 @@ namespace MongoDB.Driver
                 returnFields: returnFields,
                 explain: explain,
                 explicitIndexHint: explicitIndexHint,
-                options: options,
+                flags: options,
                 orderBy: orderBy,
                 snapshot: snapshot,
                 numberToReturn: numberToReturn,

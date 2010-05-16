@@ -67,13 +67,98 @@ namespace MongoDB.MSTest
         #endregion
 
 
+        [TestMethod()]
+        public void DBBindingConstructorTest()
+        {
+        }
+
+        /// <summary>
+        ///A test for DBBinding Constructor
+        ///</summary>
+        [TestMethod()]
+        public void DBBindingConstructorTest1()
+        {
+            
+        }
+
+        /// <summary>
+        ///A test for Equals
+        ///</summary>
+        [TestMethod()]
+        public void EqualsTest()
+        {
+            IDatabase b1 = Mongo.GetDatabase("mongo://localhost/db");
+            IDatabase b2 = Mongo.GetDatabase("mongo://localhost/db");
+            b1.Binding.Should().BeSameAs(b2.Binding);
+        }
+
+        /// <summary>
+        ///A test for GetHashCode
+        ///</summary>
+        [TestMethod()]
+        public void GetHashCodeTest()
+        {
+            IDatabase b1 = Mongo.GetDatabase("mongo://localhost/db1");
+            IDatabase b2 = Mongo.GetDatabase("mongo://localhost/db2");
+            b1.GetHashCode().Should().NotBe(b2.GetHashCode());
+        }
+
+        /// <summary>
+        ///A test for GetSisterBinding
+        ///</summary>
+        [TestMethod()]
+        public void GetSisterBindingTest()
+        {
+            IDatabase b1 = Mongo.GetDatabase("mongo://localhost/db1");
+            IDBBinding actual = b1.Binding.GetSisterBinding("sister");
+        }
+
+        /// <summary>
+        ///A test for SetCredentials
+        ///</summary>
+        [TestMethod()]
+        public void SetCredentialsTest()
+        {
+            IDatabase b1 = Mongo.GetDatabase("mongo://localhost/db");
+            string username = "melon";
+            SecureString password = new SecureString();
+            password.AppendChar('a');
+            password.AppendChar('b');
+            password.AppendChar('c');
+            b1.Binding.SetCredentials(username, password);
+        }
+
+        /// <summary>
+        ///A test for ToString
+        ///</summary>
+        [TestMethod()]
+        public void ToStringTest()
+        {
+            IDatabase b1 = Mongo.GetDatabase("mongo://localhost/db");
+            string expected = "mongo://localhost/db";
+            string actual;
+            actual = b1.ToString();
+            Console.WriteLine(actual);
+            actual.Should().Be(expected);
+        }
+
+        /// <summary>
+        ///A test for DatabaseName
+        ///</summary>
+        [TestMethod()]
+        public void DatabaseNameTest()
+        {
+            IDatabase b1 = Mongo.GetDatabase("mongo://localhost/db");
+            b1.Binding.DatabaseName.Should().Be("db");
+        }
+
         /// <summary>
         ///A test for Call
         ///</summary>
         public void CallTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
             IDBRequest msg = null; // TODO: Initialize to an appropriate value
             IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
@@ -85,75 +170,7 @@ namespace MongoDB.MSTest
 
         internal virtual IDBBinding CreateIDBBinding()
         {
-            // TODO: Instantiate an appropriate concrete class.
-            IDBBinding target = null;
-            return target;
-        }
-
-        [TestMethod()]
-        public void CallTest()
-        {
-            Assert.Inconclusive("No appropriate type parameter is found to satisfies the type constraint(s) of TDo" +
-                    "c. Please call CallTestHelper<TDoc>() with appropriate type parameters.");
-        }
-
-        /// <summary>
-        ///A test for GetSisterBinding
-        ///</summary>
-        [TestMethod()]
-        public void GetSisterBindingTest()
-        {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            Uri name = null; // TODO: Initialize to an appropriate value
-            IDBBinding expected = null; // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            actual = target.GetSisterBinding(name);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Say
-        ///</summary>
-        [TestMethod()]
-        public void SayTest()
-        {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
-            IDBRequest msg = null; // TODO: Initialize to an appropriate value
-            bool checkError = false; // TODO: Initialize to an appropriate value
-            target.Say(cmdCollection, msg, checkError);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for SetCredentials
-        ///</summary>
-        [TestMethod()]
-        public void SetCredentialsTest()
-        {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            string username = string.Empty; // TODO: Initialize to an appropriate value
-            SecureString passwd = null; // TODO: Initialize to an appropriate value
-            target.SetCredentials(username, passwd);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for TrySay
-        ///</summary>
-        [TestMethod()]
-        public void TrySayTest()
-        {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            IDBCollection cmdCollection = null; // TODO: Initialize to an appropriate value
-            IDBRequest msg = null; // TODO: Initialize to an appropriate value
-            bool checkError = false; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.TrySay(cmdCollection, msg, checkError);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            return Mongo.DefaultDatabase.Binding;
         }
 
         /// <summary>
@@ -162,10 +179,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddressTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             IPAddress actual;
             actual = target.Address;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            target.Address.Should().NotBeNull();
         }
 
         /// <summary>
@@ -174,22 +191,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ConnectionOptionsTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             DBConnectionOptions actual;
             actual = target.ConnectionOptions;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for DatabaseName
-        ///</summary>
-        [TestMethod()]
-        public void DatabaseNameTest()
-        {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.DatabaseName;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().NotBeNull();
         }
 
         /// <summary>
@@ -198,10 +203,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void EndPointTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             IPEndPoint actual;
             actual = target.EndPoint;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().NotBeNull();
         }
 
         /// <summary>
@@ -210,10 +215,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void HostNameTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             string actual;
             actual = target.HostName;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().NotBeNull();
         }
 
         /// <summary>
@@ -222,10 +227,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void LastExceptionTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             Exception actual;
             actual = target.LastException;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().BeNull();
         }
 
         /// <summary>
@@ -234,10 +239,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PortTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             int actual;
             actual = target.Port;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().Be(Mongo.DefaultPort);
         }
 
         /// <summary>
@@ -246,10 +251,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = Mongo.DefaultReadOnlyDatabase.Binding;
             bool actual;
             actual = target.ReadOnly;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().BeTrue();
         }
 
         /// <summary>
@@ -258,10 +263,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void BoundDatabaseTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             IDatabase actual;
             actual = target.BoundDatabase;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().NotBeNull();
         }
 
         /// <summary>
@@ -270,10 +275,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UriTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             Uri actual;
             actual = target.Uri;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().NotBeNull();
         }
 
         /// <summary>
@@ -282,10 +287,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UsernameTest()
         {
-            IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
+            IDBBinding target = CreateIDBBinding();
             string actual;
             actual = target.Username;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual.Should().BeNull();
         }
     }
 }

@@ -91,11 +91,6 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value>The username.</value>
         string Username { get; }
-        /// <summary>
-        /// Gets the URI.
-        /// </summary>
-        /// <value>The URI.</value>
-        Uri Uri { get; }
 
         /// <summary>
         /// sets connection credentials for using with the database.
@@ -107,7 +102,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Binds the specified database proxy object to this binding's details.
         /// </summary>
-        /// <param name="server">The server.</param>
+        /// <param name="database">The database.</param>
         void Bind(IDatabase database);
     }
     

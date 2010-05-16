@@ -1,18 +1,17 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Collections.Generic;
 
 namespace MongoDB.MSTest
 {
     
     
     /// <summary>
-    ///This is a test class for IDBMultiBindingTest and is intended
-    ///to contain all IDBMultiBindingTest Unit Tests
+    ///This is a test class for IUriComparableTest and is intended
+    ///to contain all IUriComparableTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class IDBMultiBindingTest
+    public class IUriComparableTest
     {
 
 
@@ -65,46 +64,22 @@ namespace MongoDB.MSTest
         #endregion
 
 
-        internal virtual IDBMultiBinding CreateIDBMultiBinding()
+        internal virtual IUriComparable CreateIUriComparable()
         {
             // TODO: Instantiate an appropriate concrete class.
-            IDBMultiBinding target = null;
+            IUriComparable target = null;
             return target;
         }
 
         /// <summary>
-        ///A test for ActiveBinding
+        ///A test for Uri
         ///</summary>
         [TestMethod()]
-        public void ActiveBindingTest()
+        public void UriTest()
         {
-            IDBMultiBinding target = CreateIDBMultiBinding(); // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            actual = target.ActiveSubBinding;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for ServerMultiBinding
-        ///</summary>
-        [TestMethod()]
-        public void ServerMultiBindingTest()
-        {
-            IDBMultiBinding target = CreateIDBMultiBinding(); // TODO: Initialize to an appropriate value
-            IServerMultiBinding actual;
-            actual = target.ServerMultiBinding;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for SubBindings
-        ///</summary>
-        [TestMethod()]
-        public void SubBindingsTest()
-        {
-            IDBMultiBinding target = CreateIDBMultiBinding(); // TODO: Initialize to an appropriate value
-            IEnumerable<IDBBinding> actual;
-            actual = target.SubBindings;
+            IUriComparable target = CreateIUriComparable(); // TODO: Initialize to an appropriate value
+            Uri actual;
+            actual = target.Uri;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

@@ -88,7 +88,7 @@ namespace MongoDB.Driver
         /// Gets the active binding.
         /// </summary>
         /// <value>The active binding.</value>
-        public IDBBinding ActiveBinding
+        public IDBBinding ActiveSubBinding
         {
             get
             {
@@ -103,7 +103,7 @@ namespace MongoDB.Driver
         /// <value>The end point.</value>
         public System.Net.IPEndPoint EndPoint
         {
-            get { return ActiveBinding.EndPoint; }
+            get { return ActiveSubBinding.EndPoint; }
         }
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace MongoDB.Driver
         /// <value>The name of the host.</value>
         public string HostName
         {
-            get { return ActiveBinding.HostName; }
+            get { return ActiveSubBinding.HostName; }
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace MongoDB.Driver
         /// <value>The port.</value>
         public int Port
         {
-            get { return ActiveBinding.Port; }
+            get { return ActiveSubBinding.Port; }
         }
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace MongoDB.Driver
         /// <value>The name of the database.</value>
         public string DatabaseName
         {
-            get { return ActiveBinding.DatabaseName; }
+            get { return ActiveSubBinding.DatabaseName; }
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace MongoDB.Driver
         /// <value>The address.</value>
         public System.Net.IPAddress Address
         {
-            get { return ActiveBinding.Address; }
+            get { return ActiveSubBinding.Address; }
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace MongoDB.Driver
         /// <value>The URI.</value>
         public Uri Uri
         {
-            get { return ActiveBinding.Uri; }
+            get { return ActiveSubBinding.Uri; }
         }
 
         

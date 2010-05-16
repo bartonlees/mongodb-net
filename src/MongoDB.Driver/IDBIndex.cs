@@ -18,11 +18,6 @@ namespace MongoDB.Driver
         /// <value>The key field set.</value>
         DBFieldSet KeyFieldSet { get; }
         /// <summary>
-        /// Gets the URI.
-        /// </summary>
-        /// <value>The URI.</value>
-        Uri Uri { get; }
-        /// <summary>
         /// Gets the name.
         /// </summary>
         /// <value>The name.</value>

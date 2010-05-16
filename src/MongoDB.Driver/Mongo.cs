@@ -13,6 +13,31 @@ namespace MongoDB.Driver
     public static class Mongo
     {
         /// <summary>
+        /// Returns the default database host.
+        /// </summary>
+        /// <value>the db_ip setting from the .config, or "127.0.0.1" as a default</value>
+        public static string DefaultHost
+        {
+            get
+            {
+                return Properties.Settings.Default.DefaultHost;
+            }
+        }
+
+        /// <summary>
+        /// Gets the default port that the database runs on.
+        /// </summary>
+        /// <value>the db_port setting from the .config, or 27017 as a default.</value>
+        public static int DefaultPort
+        {
+            get
+            {
+                return Properties.Settings.Default.DefaultPort;
+            }
+        }
+
+
+        /// <summary>
         /// A proxy for a "default" database with the host, port, and database defined in the app.config (usually mongo://localhost/test)
         /// </summary>
         /// <value>The default database.</value>
@@ -183,12 +208,12 @@ namespace MongoDB.Driver
         public static IDatabase GetDatabase(string hostName, string databaseName, int? port = null, DBConnectionOptions options = null, bool readOnly = false)
         {
             if (!port.HasValue)
-                port = ServerBinding.DefaultPort;
+                port = Mongo.DefaultPort;
 
             Condition.Requires(databaseName, "databaseName").IsNotNullOrWhitespace();
             Condition.Requires(hostName, "hostName").IsNotNullOrWhitespace();
             Condition.Requires(port.Value, "port").IsGreaterOrEqual(0);
-            string databaseUriString = (port.Value == ServerBinding.DefaultPort ? string.Format("mongo://{0}/{1}", hostName.Trim(), databaseName) : string.Format("mongo://{0}:{1}/{2}", hostName.Trim(), port.Value, databaseName));
+            string databaseUriString = (port.Value == Mongo.DefaultPort ? string.Format("mongo://{0}/{1}", hostName.Trim(), databaseName) : string.Format("mongo://{0}:{1}/{2}", hostName.Trim(), port.Value, databaseName));
             return GetDatabase(databaseUriString, options, readOnly);
         }
 
@@ -251,7 +276,7 @@ namespace MongoDB.Driver
         /// </example>
         public static IServer GetServer(string host, int port, DBConnectionOptions options = null, bool readOnly = false)
         {
-            string uri = (port == ServerBinding.DefaultPort ? string.Format("mongo://{0}", host.Trim()) : string.Format("mongo://{0}:{1}", host.Trim(), port));
+            string uri = (port == Mongo.DefaultPort ? string.Format("mongo://{0}", host.Trim()) : string.Format("mongo://{0}:{1}", host.Trim(), port));
             return GetServer(uri, options, readOnly);
         }
 

@@ -52,7 +52,7 @@ namespace MongoDB.Driver
         /// <value>The port.</value>
         public int Port
         {
-            get { return Uri.IsDefaultPort ? DefaultPort : Uri.Port; }
+            get { return Uri.IsDefaultPort ? Mongo.DefaultPort : Uri.Port; }
         }
 
         /// <summary>
@@ -80,30 +80,6 @@ namespace MongoDB.Driver
         {
             get;
             private set;
-        }
-
-        /// <summary>
-        /// Returns the default database host.
-        /// </summary>
-        /// <value>the db_ip setting from the .config, or "127.0.0.1" as a default</value>
-        public static string DefaultHost
-        {
-            get
-            {
-                return Properties.Settings.Default.DefaultHost;
-            }
-        }
-
-        /// <summary>
-        /// Gets the default port that the database runs on.
-        /// </summary>
-        /// <value>the db_port setting from the .config, or 27017 as a default.</value>
-        public static int DefaultPort
-        {
-            get
-            {
-                return Properties.Settings.Default.DefaultPort;
-            }
         }
 
         /// <summary>

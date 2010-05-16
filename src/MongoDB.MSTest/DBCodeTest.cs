@@ -14,8 +14,6 @@ namespace MongoDB.MSTest
     [TestClass()]
     public class DBCodeTest
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>

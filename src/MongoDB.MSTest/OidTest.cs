@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Runtime.Serialization;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for OidTest and is intended
     ///to contain all OidTest Unit Tests
@@ -14,8 +15,6 @@ namespace MongoDB.MSTest
     [TestClass()]
     public class OidTest
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
@@ -64,6 +63,40 @@ namespace MongoDB.MSTest
         //
         #endregion
 
+        [TestMethod]
+        public void TestBase64Roundtrip()
+        {
+            Oid a = Oid.NewOid();
+            string val = a.ToBase64String();
+            string val2 = a.ToString("b", null);
+            val.Should().Be(val2);
+            Oid b = new Oid(val, "b");
+            b.Should().Be(a);
+        }
+
+        [TestMethod]
+        public void TestHexadecimalRoundtrip()
+        {
+            Oid a = Oid.NewOid();
+            string val = a.ToHexadecimalString();
+            string val2 = a.ToString("h", null);
+            val.Should().Be(val2);
+            Oid b = new Oid(val, "h");
+            Oid c = new Oid(val);
+            b.Should().Be(a);
+            b.Should().Be(c);
+        }
+
+        [TestMethod]
+        public void TestMongoDBRoundtrip()
+        {
+            Oid a = Oid.NewOid();
+            string val = a.ToMongoDBString();
+            string val2 = a.ToString("m", null);
+            val.Should().Be(val2);
+            Oid b = new Oid(val, "m");
+            b.Should().Be(a);
+        }
 
         /// <summary>
         ///A test for Oid Constructor
@@ -71,9 +104,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void OidConstructorTest()
         {
-            string value = string.Empty; // TODO: Initialize to an appropriate value
-            Oid target = new Oid(value);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Action<string> ctor = (s) => new Oid(s);
+            "BAD0".Invoking(ctor).ShouldThrow<ArgumentException>();
+            "BAD0BAD0BAD0BAD0BAD0BAD0BAD0BAD0".Invoking(ctor).ShouldThrow<ArgumentException>();
+            "BADBOYc30a57000000008ecb".Invoking(ctor).ShouldThrow<ArgumentOutOfRangeException>();
+
+            new Oid("4a7067c30a57000000008ecb").Should().NotBe(Oid.Empty);
+            new Oid(string.Empty).Should().Be(Oid.Empty);
         }
 
         /// <summary>
@@ -94,9 +131,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void OidConstructorTest2()
         {
-            byte[] buffer = null; // TODO: Initialize to an appropriate value
-            Oid target = new Oid(buffer);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Action<byte[]> ctor = (p) => new Oid(p);
+
+            new byte[] { 0, 1, 3, 5 }.Invoking(ctor).ShouldThrow<ArgumentException>("input does not have enough bytes for ObjectId");
+            new byte[] { 0, 1, 3, 5, 0, 1, 3, 5, 0, 1, 3, 5, 0, 1, 3, 5, 0, 1, 3, 5, }.Invoking(ctor).ShouldThrow<ArgumentException>("input has too many bytes for ObjectId");
+            new Oid(new byte[] { 0, 1, 3, 5, 0, 1, 3, 5, 0, 1, 3, 5 }).Should().NotBe(Oid.Empty);
         }
 
         /// <summary>
@@ -105,9 +144,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void OidConstructorTest3()
         {
-            Oid from = null; // TODO: Initialize to an appropriate value
-            Oid target = new Oid(from);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Oid a = Oid.NewOid();
+            Oid b = new Oid(a);
+            a.Should().Be(b);
         }
 
         /// <summary>
@@ -116,8 +155,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void OidConstructorTest4()
         {
-            Oid target = new Oid();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            new Oid().Should().Be(Oid.Empty, "a default Oid constructor should initialize to empty");
         }
 
         /// <summary>
@@ -196,7 +234,7 @@ namespace MongoDB.MSTest
         ///A test for FromByteArray
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void FromByteArrayTest()
         {
             //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
@@ -209,7 +247,7 @@ namespace MongoDB.MSTest
         ///A test for FromHexadecimalString
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void FromHexadecimalStringTest()
         {
             //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
@@ -251,11 +289,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void NewOidTest()
         {
-            Oid expected = null; // TODO: Initialize to an appropriate value
-            Oid actual;
-            actual = Oid.NewOid();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Oid.NewOid().Should().NotBe(Oid.NewOid());
         }
 
         /// <summary>
@@ -264,12 +298,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToBase64StringTest()
         {
-            Oid target = new Oid(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToBase64String();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Oid a = Oid.NewOid();
+            Console.WriteLine(a.ToBase64String());
         }
 
         /// <summary>
@@ -278,12 +308,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToHexadecimalStringTest()
         {
-            Oid target = new Oid(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToHexadecimalString();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Oid a = Oid.NewOid();
+            Console.WriteLine(a.ToHexadecimalString());
         }
 
         /// <summary>
@@ -292,12 +318,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToMongoDBStringTest()
         {
-            Oid target = new Oid(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToMongoDBString();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Oid a = Oid.NewOid();
+            Console.WriteLine(a.ToMongoDBString());
         }
 
         /// <summary>
@@ -306,14 +328,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToStringTest()
         {
-            Oid target = new Oid(); // TODO: Initialize to an appropriate value
-            string format = string.Empty; // TODO: Initialize to an appropriate value
-            IFormatProvider formatProvider = null; // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToString(format, formatProvider);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Oid a = Oid.NewOid();
+            Console.WriteLine(a.ToString("m", null));
+            Console.WriteLine(a.ToString("h", null));
+            Console.WriteLine(a.ToString("b", null));
         }
 
         /// <summary>
@@ -322,12 +340,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToStringTest1()
         {
-            Oid target = new Oid(); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToString();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Oid a = Oid.NewOid();
+            Console.WriteLine(a.ToBase64String());
+            Console.WriteLine(a.ToHexadecimalString());
+            Console.WriteLine(a.ToString("m", null));
+            Console.WriteLine(a.ToString("h", null));
+            Console.WriteLine(a.ToString("b", null));
         }
 
         /// <summary>
@@ -350,19 +368,18 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void op_ImplicitTest1()
         {
-            string s = string.Empty; // TODO: Initialize to an appropriate value
-            Oid expected = null; // TODO: Initialize to an appropriate value
-            Oid actual;
-            actual = s;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            string hex = "4a7067c30a57000000008ecb";
+            new Oid(hex).Should().Be(new Oid(hex));
+
+            string hex2 = "4a7067c30a57000000008ecb";
+            string hex3 = "4a7067c30a57000000008ecc";
+            new Oid(hex2).Should().NotBe(new Oid(hex3));
         }
 
         /// <summary>
         ///A test for Buffer
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
         public void BufferTest()
         {
             //Oid_Accessor target = new Oid_Accessor(); // TODO: Initialize to an appropriate value
@@ -404,10 +421,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void TimeTest()
         {
-            Oid target = new Oid(); // TODO: Initialize to an appropriate value
-            long actual;
-            actual = target.Time;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            long a = DateTime.Now.Ticks;
+            long b = Oid.NewOid().Time;
+            Math.Abs(b - a).Should().BeLessThan(3000);
         }
     }
 }

@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBObjectTest and is intended
     ///to contain all DBObjectTest Unit Tests
@@ -63,6 +64,53 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
+
+
+        [TestMethod]
+        public void RemoveTest()
+        {
+            DBObject obj = new DBObject();
+            obj["test"] = "y";
+            obj["y"] = "z";
+
+            Assert.IsTrue(obj.ContainsKey("test"));
+            Assert.IsTrue(obj.ContainsKey("y"));
+
+            obj.Remove("test");
+
+            Assert.IsFalse(obj.ContainsKey("test"));
+            Assert.IsTrue(obj.ContainsKey("y"));
+
+            obj["test"] = "y";
+
+            Assert.IsTrue(obj.ContainsKey("test"));
+            Assert.IsTrue(obj.ContainsKey("y"));
+        }
+
+
+
+
+        [TestMethod]
+        public void EntryOrder()
+        {
+            DBObject o = new DBObject();
+            o["u"] = 0;
+            o["m"] = 1;
+            o["p"] = 2;
+            o["i"] = 3;
+            o["r"] = 4;
+            o["e"] = 5;
+            o["s"] = 6;
+            string[] keys = new string[7];
+            o.Keys.CopyTo(keys, 0);
+            string.Join("", keys).Should().Be("umpires", "keys should be in order added");
+
+            List<KeyValuePair<string, object>> pairs = new List<KeyValuePair<string, object>>(o);
+            for (int i = 0; i < 7; i++)
+            {
+                pairs[i].Value.Should().Be(i, "pairs should be in order added");
+            }
+        }
 
 
         /// <summary>
@@ -123,9 +171,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectConstructorTest4()
         {
-            IDictionary<string, object> obj = null; // TODO: Initialize to an appropriate value
-            DBObject target = new DBObject(obj);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            Dictionary<string, object> m = new Dictionary<string, object>();
+            m["key"] = "value";
+            m["foo"] = 1;
+            m["bar"] = null;
+
+            IDBObject obj = new DBObject(m);
+            obj["key"].Should().Be("value");
+            obj["foo"].Should().Be(1);
+            obj["bar"].Should().BeNull();
         }
 
         /// <summary>
@@ -150,10 +204,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PutAllTest()
         {
-            DBObject target = new DBObject(); // TODO: Initialize to an appropriate value
-            IDictionary<string, object> dbObject = null; // TODO: Initialize to an appropriate value
-            target.PutAll(dbObject);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            IDBObject start = new DBObject() { { "a", 7 }, { "d", 4 } };
+            start.PutAll(new DBObject() { { "a", 1 }, { "b", 2 }, { "c", 3 } });
+
+            start["a"].Should().Be(1, "put should have overwritten a");
+            start["b"].Should().Be(2, "put should have added b");
+            start["c"].Should().Be(3, "put should have added c");
+            start["d"].Should().Be(4, "d was not in the put");
         }
     }
 }

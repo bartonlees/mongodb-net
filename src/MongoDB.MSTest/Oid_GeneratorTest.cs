@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for Oid_GeneratorTest and is intended
     ///to contain all Oid_GeneratorTest Unit Tests
@@ -92,7 +93,7 @@ namespace MongoDB.MSTest
         ///A test for GenerateConstants
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GenerateConstantsTest()
         {
             //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
@@ -104,7 +105,7 @@ namespace MongoDB.MSTest
         ///A test for GenerateHostHash
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GenerateHostHashTest()
         {
             //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
@@ -119,7 +120,7 @@ namespace MongoDB.MSTest
         ///A test for GenerateInc
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GenerateIncTest()
         {
             //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
@@ -134,7 +135,7 @@ namespace MongoDB.MSTest
         ///A test for GenerateProcId
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GenerateProcIdTest()
         {
             //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value
@@ -149,7 +150,7 @@ namespace MongoDB.MSTest
         ///A test for GenerateTime
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void GenerateTimeTest()
         {
             //Oid_Accessor.Generator target = new Oid_Accessor.Generator(); // TODO: Initialize to an appropriate value

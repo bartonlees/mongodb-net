@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for MapReduceInfoTest and is intended
     ///to contain all MapReduceInfoTest Unit Tests
@@ -80,7 +81,7 @@ namespace MongoDB.MSTest
         ///A test for Counts
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void CountsTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -97,7 +98,7 @@ namespace MongoDB.MSTest
         ///A test for ResultingCollection
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ResultingCollectionTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

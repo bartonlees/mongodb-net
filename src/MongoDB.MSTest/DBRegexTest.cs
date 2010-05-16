@@ -3,11 +3,12 @@
 using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBRegexTest and is intended
     ///to contain all DBRegexTest Unit Tests

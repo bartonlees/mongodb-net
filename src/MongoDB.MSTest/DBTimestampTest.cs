@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBTimestampTest and is intended
     ///to contain all DBTimestampTest Unit Tests
@@ -104,7 +105,7 @@ namespace MongoDB.MSTest
         ///A test for Inc
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IncTest()
         {
             //DBTimestamp_Accessor target = new DBTimestamp_Accessor(); // TODO: Initialize to an appropriate value

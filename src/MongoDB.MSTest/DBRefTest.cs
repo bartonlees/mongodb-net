@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBRefTest and is intended
     ///to contain all DBRefTest Unit Tests
@@ -63,6 +64,28 @@ namespace MongoDB.MSTest
         //
         #endregion
 
+        [TestMethod]
+        public void RoundTrip()
+        {
+            IDBCollection a = Mongo.DefaultDatabase.GetCollection("refroundtripa");
+            IDBCollection b = Mongo.DefaultDatabase.GetCollection("refroundtripb");
+            a.Drop();
+            b.Drop();
+
+            Document docA = new Document("n", 111);
+            Document docB = new Document() { { "n", 12 }, { "l", new DBRef(a, docA.ID) } };
+
+            a.Save(docA);
+            b.Save(docB);
+
+            IDocument one = b.FindOne();
+
+            Assert.AreEqual(12, one["n"]);
+            //Assert.That(one.GetAsIDBObject("l")["n"].Should().Be(111));
+            //TODO:This appears to be mostly useless and deprecated...should verify though
+
+        }
+
 
         /// <summary>
         ///A test for DBRef Constructor
@@ -70,10 +93,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBRefConstructorTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
+            IDBCollection collection = Mongo.DefaultDatabase["ref"];
+            object id = Oid.NewOid();
             DBRef target = new DBRef(collection, id);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            target.ID.Should().Be(id);
+            target.Collection.Should().BeEquivalentTo(collection);
         }
 
         /// <summary>
@@ -82,21 +106,24 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FetchTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
-            DBRef target = new DBRef(collection, id); // TODO: Initialize to an appropriate value
-            IDocument expected = null; // TODO: Initialize to an appropriate value
-            IDocument actual;
-            actual = target.Fetch();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IDBCollection c = Mongo.DefaultDatabase.GetCollection("test");
+            c.Drop();
+
+            Document obj = new Document() { { "test", "me" } };
+            c.Save(obj);
+
+            DBRef r = new DBRef(c, obj.ID);
+            IDocument deref = r.Fetch();
+
+            deref.Should().NotBeNull();
+            deref.ID.Should().Be(obj.ID);
         }
 
         /// <summary>
         ///A test for Collection
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void CollectionTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
@@ -113,7 +140,7 @@ namespace MongoDB.MSTest
         ///A test for ID
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void IDTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

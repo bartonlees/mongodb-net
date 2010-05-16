@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for DBSymbolTest and is intended
     ///to contain all DBSymbolTest Unit Tests
@@ -79,7 +80,7 @@ namespace MongoDB.MSTest
         ///A test for Symbol
         ///</summary>
         [TestMethod()]
-        //[DeploymentItem("MongoDB.Driver.dll")]
+        //
         public void SymbolTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

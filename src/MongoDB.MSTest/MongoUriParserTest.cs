@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for MongoUriParserTest and is intended
     ///to contain all MongoUriParserTest Unit Tests
@@ -62,6 +63,26 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
+        [TestMethod]
+        public void FullUriParseTest()
+        {
+            string address = "mongo://localhost:7899/db";
+            Uri uri = new Uri(address);
+            uri.Scheme.Should().Be(UriExtensions.UriSchemeMongo);
+            uri.Port.Should().Be(7899);
+            uri.AbsolutePath.Should().Be("/db");
+            uri.Host.Should().Be("localhost");
+            uri.Authority.Should().Be("localhost:7899");
+            uri.IsAbsoluteUri.Should().BeTrue();
+            Assert.IsFalse(uri.IsDefaultPort);
+        }
+
+        [TestMethod]
+        public void DotTest()
+        {
+            string address = "mongo://localhost/db.testing";
+            Uri uri = new Uri(address);
+        }
 
 
         /// <summary>
@@ -80,9 +101,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DefaultPortTest()
         {
-            int actual;
-            actual = MongoUriParser.DefaultPort;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            string address = "mongo://localhost/db";
+            Uri uri = new Uri(address);
+            uri.Scheme.Should().Be(UriExtensions.UriSchemeMongo);
+            uri.Port.Should().Be(-1);
+            uri.AbsolutePath.Should().Be("/db");
+            uri.Host.Should().Be("localhost");
+            uri.Authority.Should().Be("localhost");
+            uri.IsAbsoluteUri.Should().BeTrue();
+            uri.IsDefaultPort.Should().BeTrue();
         }
     }
 }

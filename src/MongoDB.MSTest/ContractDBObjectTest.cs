@@ -23,7 +23,7 @@ namespace MongoDB.MSTest
         public int Data { get; set; }
         public string Caption { get; set; }
         private float _secret { get; set; }
-        [JsonProperty(PropertyName="_id")]
+        [JsonProperty(PropertyName = "_id")]
         public Oid ID { get; set; }
     }
 
@@ -51,7 +51,7 @@ namespace MongoDB.MSTest
         public int Data;
         public string Caption;
     }
-    
+
     /// <summary>
     ///This is a test class for ContractDBObjectTest and is intended
     ///to contain all ContractDBObjectTest Unit Tests
@@ -174,7 +174,7 @@ namespace MongoDB.MSTest
         public void AddTest1Helper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            this.Invoking((t)=> target.Add(new KeyValuePair<string, object>("test",1))).ShouldThrow<KeyNotFoundException>();
+            this.Invoking((t) => target.Add(new KeyValuePair<string, object>("test", 1))).ShouldThrow<KeyNotFoundException>();
             target.Add(new KeyValuePair<string, object>("Data", 123));
             target["Data"].Should().Be(123);
         }
@@ -191,7 +191,7 @@ namespace MongoDB.MSTest
         public void ClearTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            this.Invoking((t)=> target.Clear()).ShouldThrow<Exception>();
+            this.Invoking((t) => target.Clear()).ShouldThrow<Exception>();
         }
 
         [TestMethod()]
@@ -206,8 +206,8 @@ namespace MongoDB.MSTest
         public void ContainsTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.Contains(new KeyValuePair<string, object>("Data",0)).Should().Be(true);
-            target.Contains(new KeyValuePair<string, object>("monkey",0)).Should().Be(false);
+            target.Contains(new KeyValuePair<string, object>("Data", 0)).Should().Be(true);
+            target.Contains(new KeyValuePair<string, object>("monkey", 0)).Should().Be(false);
         }
 
         [TestMethod()]
@@ -238,7 +238,7 @@ namespace MongoDB.MSTest
         public void CopyToTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            KeyValuePair<string, object>[] array = new KeyValuePair<string,object>[4];
+            KeyValuePair<string, object>[] array = new KeyValuePair<string, object>[4];
             int arrayIndex = 0;
             target.CopyTo(array, arrayIndex);
             array.Select(p => p.Key).Should().Contain("Caption", "Data", "_id", null);
@@ -272,10 +272,10 @@ namespace MongoDB.MSTest
         public void PutAllTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            target.PutAll(new Dictionary<string, object>() {{"Caption","Perambulator"},{"Data",222} });
+            target.PutAll(new Dictionary<string, object>() { { "Caption", "Perambulator" }, { "Data", 222 } });
             target["Caption"].Should().Be("Perambulator");
             target["Data"].Should().Be(222);
-            this.Invoking((t) => target.PutAll(new Dictionary<string, object>() { { "Putin", "Powell" }})).ShouldThrow<KeyNotFoundException>();
+            this.Invoking((t) => target.PutAll(new Dictionary<string, object>() { { "Putin", "Powell" } })).ShouldThrow<KeyNotFoundException>();
         }
 
         [TestMethod()]
@@ -324,7 +324,7 @@ namespace MongoDB.MSTest
         /// <summary>
         ///A test for Remove
         ///</summary>
-        public void RemoveTest1Helper<T>() where T:new()
+        public void RemoveTest1Helper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
             this.Invoking((t) => target.Remove("Data")).ShouldThrow<NotSupportedException>();
@@ -383,7 +383,7 @@ namespace MongoDB.MSTest
         public void TryGetValueTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            object value = null; 
+            object value = null;
             target.TryGetValue("Data", out value).Should().Be(true);
             value.Should().Be(321);
             target.TryGetValue("goat", out value).Should().Be(false);

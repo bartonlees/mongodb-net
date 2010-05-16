@@ -3,11 +3,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using MongoDB.Driver;
 using System.Collections.Generic;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for JsonIDBCollectionExtensionsTest and is intended
     ///to contain all JsonIDBCollectionExtensionsTest Unit Tests

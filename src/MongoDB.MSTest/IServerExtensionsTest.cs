@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for IServerExtensionsTest and is intended
     ///to contain all IServerExtensionsTest Unit Tests
@@ -62,6 +63,7 @@ namespace MongoDB.MSTest
         //}
         //
         #endregion
+
 
 
         /// <summary>

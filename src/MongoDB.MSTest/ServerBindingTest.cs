@@ -2,11 +2,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Net;
+using FluentAssertions;
 
 namespace MongoDB.MSTest
 {
-    
-    
+
+
     /// <summary>
     ///This is a test class for ServerBindingTest and is intended
     ///to contain all ServerBindingTest Unit Tests
@@ -64,18 +65,19 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
         /// <summary>
         ///A test for ServerBinding Constructor
         ///</summary>
         [TestMethod()]
         public void ServerBindingConstructorTest()
         {
-            string host = string.Empty; // TODO: Initialize to an appropriate value
-            int port = 0; // TODO: Initialize to an appropriate value
-            bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerBinding target = new ServerBinding(host, port, readOnly);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            ServerBinding host_port_dbname = new ServerBinding("localhost", 1910);
+
+            Action<Tuple<string, int>> ctor = t => new ServerBinding(t.Item1, t.Item2);
+
+            new Tuple<string, int>((string)null, 123).Invoking(ctor).ShouldThrow<Exception>("although the port was OK, the hostname was null");
+            new Tuple<string, int>("localhost", -1).Invoking(ctor).ShouldThrow<Exception>("although the hostname was OK, the port was negative");
+            new Tuple<string, int>("localhost", 65536).Invoking(ctor).ShouldThrow<Exception>("although the hostname was OK, the port was out of range");
         }
 
         /// <summary>
@@ -84,10 +86,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ServerBindingConstructorTest1()
         {
-            Uri uri = null; // TODO: Initialize to an appropriate value
-            bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerBinding target = new ServerBinding(uri, readOnly);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            ServerBinding binding = new ServerBinding(new Uri("mongo://localhost"));
+
+            Action<Uri> ctor = (uri) => new ServerBinding(uri, false);
+            ((Uri)null).Invoking(ctor).ShouldThrow<Exception>("URI is null");
         }
 
         /// <summary>
@@ -96,10 +98,31 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ServerBindingConstructorTest2()
         {
-            string address = string.Empty; // TODO: Initialize to an appropriate value
-            bool readOnly = false; // TODO: Initialize to an appropriate value
-            ServerBinding target = new ServerBinding(address, readOnly);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            ServerBinding loopback = new ServerBinding("mongo://localhost");
+            ServerBinding ipv4loopback = new ServerBinding("mongo://127.0.0.1");
+            ServerBinding ipv6loopback = new ServerBinding("mongo://[::1]");
+            ServerBinding loopbackport = new ServerBinding("mongo://localhost:1910");
+            ServerBinding ipv4loopbackport = new ServerBinding("mongo://127.0.0.1:1910");
+            ServerBinding ipv6loopbackport = new ServerBinding("mongo://[::1]:1910");
+
+            loopbackport.Should().Be(loopback, "port number differs");
+            ipv4loopbackport.Should().Be(ipv4loopback, "port number differs");
+            ipv6loopbackport.Should().Be(ipv6loopback, "port number differs");
+
+            ServerBinding host_port_dbname = new ServerBinding("localhost", 1910);
+
+            loopbackport.Should().Be(host_port_dbname, "explicit loopback host + port + db should still be equivalent to shorthand loopback");
+
+            Action<string> ctor = s => new ServerBinding(s);
+
+            //Strings
+            ((string)null).Invoking(ctor).ShouldThrow<ArgumentNullException>("URI string was null");
+            string.Empty.Invoking(ctor).ShouldThrow<UriFormatException>("URI string was empty");
+            " ".Invoking(ctor).ShouldThrow<UriFormatException>("URI string was whitespace");
+            "db".Invoking(ctor).ShouldThrow<UriFormatException>("URI string was unqualified, ambiguous identifier");
+            "http://localhost".Invoking(ctor).ShouldThrow<ArgumentException>("bad scheme uristring : should have failed");
+            "localhost:1910".Invoking(ctor).ShouldThrow<ArgumentException>("existence of ':port' forced interpretation of hostname, but no database name can be inferred");
+
         }
 
         /// <summary>
@@ -266,7 +289,7 @@ namespace MongoDB.MSTest
         ///A test for ReadOnly
         ///</summary>
         [TestMethod()]
-        [DeploymentItem("MongoDB.Driver.dll")]
+
         public void ReadOnlyTest()
         {
             //PrivateObject param0 = null; // TODO: Initialize to an appropriate value

@@ -11,5 +11,11 @@
     <Setting Name="DefaultDatabaseName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Test</Value>
     </Setting>
+    <Setting Name="DefaultAltHost" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
+    <Setting Name="DefaultAltPort" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">27018</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

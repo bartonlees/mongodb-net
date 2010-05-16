@@ -9,7 +9,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// This interface represents the core operations and data of a MongoDB database
     /// </summary>
-    public interface IDatabase
+    public interface IDatabase : IUriComparable
     {
         /// <summary>
         /// Gets the collection.
@@ -55,6 +55,12 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value>The $cmd collection.</value>
         IDBCollection CmdCollection { get; }
+
+        /// <summary>
+        /// Gets the special system.users collection.
+        /// </summary>
+        /// <value>The system.users collection.</value>
+        IDBCollection SystemUsersCollection { get; }
 
         /// <summary>
         /// Enumerates the collection available on this database.

@@ -125,7 +125,7 @@ namespace MongoDB.Driver
         {
             if (ReadOnly)
                 throw new ReadOnlyException("cannot add a user while using a readonly binding");
-            IDBCollection c = this.GetCollection("system.users");
+            IDBCollection c = this.SystemUsersCollection;
             IDocument o = c.FindOne(new DBQuery("user", username));
             if (o == null)
                 o = new Document("user", username);
@@ -151,7 +151,19 @@ namespace MongoDB.Driver
         {
             get
             {
-                return this.GetCollection("$cmd");
+                return this.GetCollection(Constants.CollectionNames.Cmd);
+            }
+        }
+
+        /// <summary>
+        /// Gets the special system.users collection.
+        /// </summary>
+        /// <value>The system.users collection.</value>
+        public IDBCollection SystemUsersCollection
+        {
+            get
+            {
+                return this.GetCollection(Constants.CollectionNames.SystemUsers);
             }
         }
 

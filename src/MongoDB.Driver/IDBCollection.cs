@@ -28,12 +28,6 @@ namespace MongoDB.Driver
         string FullName { get; }
 
         /// <summary>
-        /// Gets the absolute URI for this collection.
-        /// </summary>
-        /// <value>The URI.</value>
-        Uri Uri { get; }
-
-        /// <summary>
         /// Gets or sets the index hint field sets.
         /// </summary>
         /// <value>The index hint field sets.</value>

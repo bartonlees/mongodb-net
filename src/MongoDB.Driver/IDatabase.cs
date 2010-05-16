@@ -81,12 +81,6 @@ namespace MongoDB.Driver
         IDBCollection this[string collectionUri] { get; }
 
         /// <summary>
-        /// The fully-qualified URI of this database.
-        /// </summary>
-        /// <value>The URI.</value>
-        Uri Uri { get; }
-
-        /// <summary>
         /// Gets the name of this database.
         /// </summary>
         /// <value>The name.</value>

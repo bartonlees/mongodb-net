@@ -11,7 +11,7 @@ namespace MongoDB.Driver
         /// Gets the <see cref="IDBBinding"/>
         /// </summary>
         /// <param name="binding">The binding.</param>
-        /// <param name="uri">Either a fully qualified URI, or the db name</param>
+        /// <param name="uriString">Either a fully qualified URI, or the db name</param>
         /// <returns>a binding for the URI</returns>
         public static IDBBinding GetDBBinding(this IServerBinding binding, string uriString)
         {

@@ -65,7 +65,6 @@ namespace MongoDB.MSTest
         //
         #endregion
 
-
         internal virtual IServerBinding CreateIServerBinding()
         {
             // TODO: Instantiate an appropriate concrete class.
@@ -80,12 +79,13 @@ namespace MongoDB.MSTest
         public void GetDBBindingTest()
         {
             IServerBinding target = CreateIServerBinding(); // TODO: Initialize to an appropriate value
-            Uri name = null; // TODO: Initialize to an appropriate value
-            IDBBinding expected = null; // TODO: Initialize to an appropriate value
-            IDBBinding actual;
-            actual = target.GetDBBinding(name);
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IServer serverLoopback = Mongo.GetServer("mongo://localhost");
+            IDBBinding b1 = serverLoopback.Binding.GetDBBinding("db");
+            IServer serverLoopback2 = Mongo.GetServer("mongo://localhost/db2/test/goat");
+            IDBBinding b2 = serverLoopback.Binding.GetDBBinding("db");
+            b1.Should().Be(b2, "the database portion should have been replaced");
+
+            new Action(()=> target.GetDBBinding((string)null)).ShouldThrow<Exception>("a null hostname is not valid");
         }
 
         /// <summary>

@@ -14,8 +14,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerMultiBinding"/> class.
         /// </summary>
-        /// <param name="leftBinding">The left binding.</param>
-        /// <param name="rightBinding">The right binding.</param>
+        /// <param name="subBindings">The sub bindings.</param>
         /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         public ServerMultiBinding(IEnumerable<IServerBinding> subBindings, bool readOnly = false)
         {

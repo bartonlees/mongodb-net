@@ -70,12 +70,6 @@ namespace MongoDB.Driver
         IAdminOperations Admin { get; }
 
         /// <summary>
-        /// Gets the URI associated with the current server.
-        /// </summary>
-        /// <value>The URI.</value>
-        Uri Uri { get; }
-
-        /// <summary>
         /// Gets a value indicating whether [read only].
         /// </summary>
         /// <value><c>true</c> if [read only]; otherwise, <c>false</c>.</value>

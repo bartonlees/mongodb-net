@@ -60,7 +60,6 @@
     <Compile Include="ContractDBObjectTest.cs" />
     <Compile Include="ContractDocumentTest.cs" />
     <Compile Include="DBBinaryTest.cs" />
-    <None Include="DBBindingTest.cs" />
     <Compile Include="DBCodeTest.cs" />
     <Compile Include="DBConnectionOptionsTest.cs" />
     <Compile Include="DBCursorOptionsTest.cs" />
@@ -70,7 +69,6 @@
     <Compile Include="DBObjectArrayTest.cs" />
     <Compile Include="DBObjectTest.cs" />
     <Compile Include="DBObjectWrapperTest.cs" />
-    <None Include="DBPairBindingTest.cs" />
     <Compile Include="DBQueryTest.cs" />
     <Compile Include="DBRefTest.cs" />
     <Compile Include="DBRegexTest.cs" />
@@ -106,6 +104,7 @@
     <Compile Include="IServerExtensionsTest.cs" />
     <Compile Include="IServerMultiBindingTest.cs" />
     <Compile Include="IServerTest.cs" />
+    <Compile Include="IUriComparableTest.cs" />
     <Compile Include="JsonIDBCollectionExtensionsTest.cs" />
     <Compile Include="LambdaTest.cs" />
     <Compile Include="LastErrorTest.cs" />
@@ -119,9 +118,8 @@
     <Compile Include="PerformanceTests.cs" />
     <Compile Include="PrevErrorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="ServerBindingTest.cs" />
-    <None Include="ServerPairBindingTest.cs" />
     <Compile Include="StringExtensions.cs" />
+    <Compile Include="UriEqualityComparerTest.cs" />
     <Compile Include="WhereTest.cs" />
     <Compile Include="WireProtocolReaderTest.cs" />
     <Compile Include="WireProtocolWriterTest.cs" />

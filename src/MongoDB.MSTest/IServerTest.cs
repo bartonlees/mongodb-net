@@ -67,8 +67,7 @@ namespace MongoDB.MSTest
 
         internal virtual IServer CreateIServer()
         {
-            // TODO: Instantiate an appropriate concrete class.
-            IServer target = null;
+            IServer target = Mongo.DefaultServer;
             return target;
         }
 
@@ -78,7 +77,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ClearDatabaseCacheTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             target.ClearDatabaseCache();
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
@@ -106,7 +105,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetDatabaseTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             Uri name = null; // TODO: Initialize to an appropriate value
             IDatabase expected = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
@@ -121,7 +120,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetDatabaseTest1()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             IDBBinding binding = null; // TODO: Initialize to an appropriate value
             IDatabase expected = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
@@ -136,7 +135,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AdminTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             IAdminOperations actual;
             actual = target.Admin;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -148,7 +147,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void BindingTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             IServerBinding actual;
             actual = target.Binding;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -172,7 +171,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DatabasesTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             IEnumerable<IDatabase> actual;
             actual = target.Databases;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -184,7 +183,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ItemTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             string databaseUri = string.Empty; // TODO: Initialize to an appropriate value
             IDatabase actual;
             actual = target[databaseUri];
@@ -197,7 +196,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ItemTest1()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             Uri databaseUri = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
             actual = target[databaseUri];
@@ -210,7 +209,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             bool actual;
             actual = target.ReadOnly;
             Assert.Inconclusive("Verify the correctness of this test method.");
@@ -222,7 +221,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UriTest()
         {
-            IServer target = CreateIServer(); // TODO: Initialize to an appropriate value
+            IServer target = CreateIServer();
             Uri actual;
             actual = target.Uri;
             Assert.Inconclusive("Verify the correctness of this test method.");

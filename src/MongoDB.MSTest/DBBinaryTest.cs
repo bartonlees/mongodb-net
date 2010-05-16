@@ -118,8 +118,9 @@ namespace MongoDB.MSTest
         public void BufferTest()
         {
             DBBinary target;
-            target = new DBBinary(BinaryType.Binary, new byte[] { 1, 2, 1, 2, 12, 2, 2 });
-            target.Buffer.Should().ContainInOrder(new byte[] { 1, 2, 1, 2, 12, 2, 2 });
+            byte[] buffer = new byte[] { 1, 2, 1, 2, 12, 2, 2 };
+            target = new DBBinary(BinaryType.Binary, buffer);
+            target.Buffer.ToDashedHexString().Should().Be(buffer.ToDashedHexString());
         }
 
         /// <summary>

@@ -290,7 +290,7 @@ namespace MongoDB.MSTest
         public void ReadTestHelper<T>() where T : new()
         {
             ContractDBObject<T> target = new ContractDBObject<T>();
-            using (MemoryStream stream = new MemoryStream("34-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-07-5F-69-64-00-00-00-00-00-00-00-00-00-00-00-00-00-00".ToBytes()))
+            using (MemoryStream stream = new MemoryStream("34-00-00-00-10-44-61-74-61-00-6F-00-00-00-02-43-61-70-74-69-6F-6E-00-07-00-00-00-67-61-67-67-6C-65-00-07-5F-69-64-00-00-00-00-00-00-00-00-00-00-00-00-00-00".FromDashedHexString()))
             using (WireProtocolReader reader = new WireProtocolReader(stream))
             {
                 target.Read(reader);

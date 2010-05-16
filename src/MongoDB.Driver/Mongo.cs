@@ -58,7 +58,7 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value>The default database.</value>
         /// <returns></returns>
-        public static IDatabase DefaultAltDatabase
+        public static IDatabase DefaultDatabase_Alt
         {
             get
             {
@@ -74,7 +74,7 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value>The read only default database.</value>
         /// <returns></returns>
-        public static IDatabase DefaultReadOnlyDatabase
+        public static IDatabase DefaultDatabase_ReadOnly
         {
             get
             {
@@ -86,11 +86,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// A read only proxy to the database indicated by <see cref="DefaultAltDatabase"/>
+        /// A read only proxy to the database indicated by <see cref="DefaultDatabase_Alt"/>
         /// </summary>
         /// <value>The read only default database.</value>
         /// <returns></returns>
-        public static IDatabase DefaultAltReadOnlyDatabase
+        public static IDatabase DefaultDatabase_Alt_ReadOnly
         {
             get
             {
@@ -115,10 +115,36 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
+        /// A proxy for a "default pair mode" server with the hosts, and ports of the pair defined in the app.config
+        /// </summary>
+        /// <value>The default server.</value>
+        public static IServer DefaultServer_PairMode
+        {
+            get
+            {
+                return GetServer(Properties.Settings.Default.DefaultHost,
+                    Properties.Settings.Default.DefaultPort);
+            }
+        }
+
+        /// <summary>
+        /// A proxy for a "default cluster mode" server with the hosts, and ports of the pair defined in the app.config
+        /// </summary>
+        /// <value>The default server.</value>
+        public static IServer DefaultServer_ClusterMode
+        {
+            get
+            {
+                return GetServer(Properties.Settings.Default.DefaultHost,
+                    Properties.Settings.Default.DefaultPort);
+            }
+        }
+
+        /// <summary>
         /// A proxy for an "alternate default" server with the host, and port defined in the app.config (usually mongo://localhost:27018)
         /// </summary>
         /// <value>The default server.</value>
-        public static IServer DefaultAltServer
+        public static IServer DefaultServer_Alt
         {
             get
             {
@@ -131,7 +157,7 @@ namespace MongoDB.Driver
         /// A read only proxy to the server indicated by <see cref="DefaultServer"/>
         /// </summary>
         /// <value>The read only default server.</value>
-        public static IServer DefaultReadOnlyServer
+        public static IServer DefaultServer_ReadOnly
         {
             get
             {
@@ -141,10 +167,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// A read only proxy to the server indicated by <see cref="DefaultAltServer"/>
+        /// A read only proxy to the server indicated by <see cref="DefaultServer_Alt"/>
         /// </summary>
         /// <value>The read only default server.</value>
-        public static IServer DefaultAltReadOnlyServer
+        public static IServer DefaultServer_Alt_ReadOnly
         {
             get
             {

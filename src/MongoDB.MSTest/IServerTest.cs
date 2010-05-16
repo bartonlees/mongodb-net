@@ -93,7 +93,7 @@ namespace MongoDB.MSTest
             defaultDatabase.GetCollection("test").Insert(new Document() { { "a", 1 } });
             defaultServer.DropDatabase(defaultDatabase);
 
-            IServer readonlyServer = Mongo.DefaultReadOnlyServer;
+            IServer readonlyServer = Mongo.DefaultServer_ReadOnly;
             IDatabase readonlyDatabase = readonlyServer.GetDatabase("drop1");
             Action drop = () => readonlyServer.DropDatabase(readonlyDatabase);
             drop.ShouldThrow<ReadOnlyException>("one shouldn't be able to drop a readonly database");

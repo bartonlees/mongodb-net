@@ -643,7 +643,7 @@ namespace MongoDB.MSTest
         public void ReadOnly()
         {
             //Make sure this collection doesn't exist
-            IDBCollection readOnlyCollection = Mongo.DefaultReadOnlyDatabase["test"];
+            IDBCollection readOnlyCollection = Mongo.DefaultDatabase_ReadOnly["test"];
             readOnlyCollection.Drop();
 
             readOnlyCollection.ReadOnly.Should().BeTrue("it came from a read only database");

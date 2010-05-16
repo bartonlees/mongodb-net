@@ -67,8 +67,7 @@ namespace MongoDB.MSTest
 
         internal virtual IServerMultiBinding CreateIServerMultiBinding()
         {
-            // TODO: Instantiate an appropriate concrete class.
-            IServerMultiBinding target = null;
+            IServerMultiBinding target = Mongo.DefaultServer_PairMode.Binding as IServerMultiBinding;
             return target;
         }
 
@@ -78,13 +77,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetDBMultiBindingTest()
         {
-            IServerMultiBinding target = CreateIServerMultiBinding(); // TODO: Initialize to an appropriate value
-            Uri uri = null; // TODO: Initialize to an appropriate value
-            IDBMultiBinding expected = null; // TODO: Initialize to an appropriate value
+            IServerMultiBinding target = CreateIServerMultiBinding();
             IDBMultiBinding actual;
-            actual = target.GetDBMultiBinding(uri);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            actual = target.GetDBMultiBinding(new Uri("test", UriKind.Relative));
+            actual.Should().NotBeNull();
         }
 
         /// <summary>
@@ -93,10 +89,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void SubBindingsTest()
         {
-            IServerMultiBinding target = CreateIServerMultiBinding(); // TODO: Initialize to an appropriate value
-            IEnumerable<IServerBinding> actual;
-            actual = target.SubBindings;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IServerMultiBinding target = CreateIServerMultiBinding();
+            target.SubBindings.Should().NotBeNull().And.HaveCount(2);
         }
     }
 }

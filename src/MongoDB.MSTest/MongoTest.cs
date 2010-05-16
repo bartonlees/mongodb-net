@@ -185,7 +185,7 @@ namespace MongoDB.MSTest
         public void ReadOnlyDefaultDatabaseTest()
         {
             IDatabase actual;
-            actual = Mongo.DefaultReadOnlyDatabase;
+            actual = Mongo.DefaultDatabase_ReadOnly;
             actual.Should().NotBeNull();
             actual.ReadOnly.Should().BeTrue("that is how we set it");
         }
@@ -196,7 +196,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyDefaultServerTest()
         {
-            IServer readOnlyServer = Mongo.DefaultReadOnlyServer;
+            IServer readOnlyServer = Mongo.DefaultServer_ReadOnly;
             readOnlyServer.ReadOnly.Should().BeTrue("it is a read only server");
         }
 

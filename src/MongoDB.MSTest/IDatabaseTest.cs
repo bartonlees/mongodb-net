@@ -236,7 +236,7 @@ namespace MongoDB.MSTest
             IDBCollection testWritable = Mongo.DefaultDatabase["test"];
             testWritable.Drop();
 
-            IDatabase readonlyDatabase = Mongo.DefaultReadOnlyDatabase;
+            IDatabase readonlyDatabase = Mongo.DefaultDatabase_ReadOnly;
             readonlyDatabase.ReadOnly.Should().BeTrue("we just constructed it to be so");
 
             new Action(() => readonlyDatabase.AddUser("test", new char[] { 'g', 'o' })).ShouldThrow<ReadOnlyException>();

@@ -251,7 +251,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReadOnlyTest()
         {
-            IDBBinding target = Mongo.DefaultReadOnlyDatabase.Binding;
+            IDBBinding target = Mongo.DefaultDatabase_ReadOnly.Binding;
             bool actual;
             actual = target.ReadOnly;
             actual.Should().BeTrue();

@@ -130,7 +130,8 @@ namespace MongoDB.Driver
                     _Client.SendTimeout = Options.SendTimeout;
                     _Client.ReceiveTimeout = Options.ReceiveTimeout;
                     _Client.NoDelay = Options.NoDelay;
-                    _Client.LingerState = Options.LingerState;
+                    if (Options.LingerState != null)
+                        _Client.LingerState = Options.LingerState;
                     _Client.ReceiveBufferSize = Options.ReceiveBufferSize;
                     _Client.SendBufferSize = Options.SendBufferSize;
                     _Client.Connect(EndPoint);

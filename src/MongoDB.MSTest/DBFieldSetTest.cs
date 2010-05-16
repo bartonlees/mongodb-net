@@ -99,7 +99,7 @@ namespace MongoDB.MSTest
             Uri expected = null; // TODO: Initialize to an appropriate value
             Uri actual;
             actual = target.GenerateIndexUri();
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -109,11 +109,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void op_ImplicitTest()
         {
-            DBFieldSet fieldSet = null; // TODO: Initialize to an appropriate value
-            string[] expected = null; // TODO: Initialize to an appropriate value
-            string[] actual;
-            actual = fieldSet;
-            Assert.AreEqual(expected, actual);
+            //DBFieldSet fieldSet = null; // TODO: Initialize to an appropriate value
+            //string[] expected = null; // TODO: Initialize to an appropriate value
+            //string[] actual;
+            //actual = fieldSet;
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -123,11 +123,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void op_ImplicitTest1()
         {
-            string[] s = null; // TODO: Initialize to an appropriate value
-            DBFieldSet expected = null; // TODO: Initialize to an appropriate value
-            DBFieldSet actual;
-            actual = s;
-            Assert.AreEqual(expected, actual);
+            //string[] s = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet expected = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet actual;
+            //actual = s;
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -141,7 +141,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = fieldSet;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -151,11 +151,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void op_ImplicitTest3()
         {
-            string s = string.Empty; // TODO: Initialize to an appropriate value
-            DBFieldSet expected = null; // TODO: Initialize to an appropriate value
-            DBFieldSet actual;
-            actual = s;
-            Assert.AreEqual(expected, actual);
+            //string s = string.Empty; // TODO: Initialize to an appropriate value
+            //DBFieldSet expected = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet actual;
+            //actual = s;
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

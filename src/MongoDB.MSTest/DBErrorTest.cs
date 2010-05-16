@@ -99,7 +99,7 @@ namespace MongoDB.MSTest
             DBError.Code expected = new DBError.Code(); // TODO: Initialize to an appropriate value
             DBError.Code actual;
             actual = DBError.ToCode(error);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -155,7 +155,7 @@ namespace MongoDB.MSTest
             //IDBObject actual;
             //target.Response = expected;
             //actual = target.Response;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

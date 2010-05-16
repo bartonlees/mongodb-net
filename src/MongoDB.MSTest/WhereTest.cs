@@ -72,11 +72,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FieldTest()
         {
-            Expression<Func<DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
-            DBQuery actual;
-            actual = Where.Field(selector);
-            Assert.AreEqual(expected, actual);
+            //Expression<Func<DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery actual;
+            //actual = Where.Field(selector);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -86,11 +86,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FieldsTest()
         {
-            Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
-            DBQuery actual;
-            actual = Where.Fields(selector);
-            Assert.AreEqual(expected, actual);
+            //Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery actual;
+            //actual = Where.Fields(selector);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -100,11 +100,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FieldsTest1()
         {
-            Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
-            DBQuery actual;
-            actual = Where.Fields(selector);
-            Assert.AreEqual(expected, actual);
+            //Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery actual;
+            //actual = Where.Fields(selector);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

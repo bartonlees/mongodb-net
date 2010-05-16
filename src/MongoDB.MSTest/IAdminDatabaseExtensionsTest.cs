@@ -100,7 +100,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = IAdminDatabaseExtensions.CopyDatabaseGetNonce(adminDatabase, fromDatabase);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -123,11 +123,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCmdCollectionTest()
         {
-            IAdminOperations db = null; // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            actual = IAdminDatabaseExtensions.GetCmdCollection(db);
-            Assert.AreEqual(expected, actual);
+            //IAdminOperations db = null; // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //actual = IAdminDatabaseExtensions.GetCmdCollection(db);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

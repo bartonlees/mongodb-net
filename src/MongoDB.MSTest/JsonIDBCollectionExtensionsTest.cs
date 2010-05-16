@@ -73,16 +73,16 @@ namespace MongoDB.MSTest
         public void FindContractDocumentByIDTestHelper<T>()
             where T : new()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            ContractDocument<T> expected = null; // TODO: Initialize to an appropriate value
-            ContractDocument<T> actual;
-            actual = JsonIDBCollectionExtensions.FindContractDocumentByID<T>(collection, id, returnFields, explain, snapshot, options);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //object id = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //ContractDocument<T> expected = null; // TODO: Initialize to an appropriate value
+            //ContractDocument<T> actual;
+            //actual = JsonIDBCollectionExtensions.FindContractDocumentByID<T>(collection, id, returnFields, explain, snapshot, options);
+            ////expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -98,21 +98,21 @@ namespace MongoDB.MSTest
         public void FindContractDocumentsTestHelper<T>()
             where T : new()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IEnumerable<ContractDocument<T>> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerable<ContractDocument<T>> actual;
-            actual = JsonIDBCollectionExtensions.FindContractDocuments<T>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<ContractDocument<T>> expected = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<ContractDocument<T>> actual;
+            //actual = JsonIDBCollectionExtensions.FindContractDocuments<T>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -128,17 +128,17 @@ namespace MongoDB.MSTest
         public void FindOneContractDocumentTestHelper<T>()
             where T : new()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            ContractDocument<T> expected = null; // TODO: Initialize to an appropriate value
-            ContractDocument<T> actual;
-            actual = JsonIDBCollectionExtensions.FindOneContractDocument<T>(collection, selector, returnFields, numToSkip, explain, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //ContractDocument<T> expected = null; // TODO: Initialize to an appropriate value
+            //ContractDocument<T> actual;
+            //actual = JsonIDBCollectionExtensions.FindOneContractDocument<T>(collection, selector, returnFields, numToSkip, explain, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -154,21 +154,21 @@ namespace MongoDB.MSTest
         public void GetContractDocumentCursorTestHelper<T>()
             where T : new()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IDBCursor<ContractDocument<T>> expected = null; // TODO: Initialize to an appropriate value
-            IDBCursor<ContractDocument<T>> actual;
-            actual = JsonIDBCollectionExtensions.GetContractDocumentCursor<T>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IDBCursor<ContractDocument<T>> expected = null; // TODO: Initialize to an appropriate value
+            //IDBCursor<ContractDocument<T>> actual;
+            //actual = JsonIDBCollectionExtensions.GetContractDocumentCursor<T>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

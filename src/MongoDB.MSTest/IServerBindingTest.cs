@@ -98,7 +98,7 @@ namespace MongoDB.MSTest
             Uri expected = null; // TODO: Initialize to an appropriate value
             Uri actual;
             actual = target.Uri;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

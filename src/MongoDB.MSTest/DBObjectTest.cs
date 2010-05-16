@@ -188,13 +188,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AppendTest()
         {
-            DBObject target = new DBObject(); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object val = null; // TODO: Initialize to an appropriate value
-            DBObject expected = null; // TODO: Initialize to an appropriate value
-            DBObject actual;
-            actual = target.Append(key, val);
-            Assert.AreEqual(expected, actual);
+            //DBObject target = new DBObject(); // TODO: Initialize to an appropriate value
+            //string key = string.Empty; // TODO: Initialize to an appropriate value
+            //object val = null; // TODO: Initialize to an appropriate value
+            //DBObject expected = null; // TODO: Initialize to an appropriate value
+            //DBObject actual;
+            //actual = target.Append(key, val);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

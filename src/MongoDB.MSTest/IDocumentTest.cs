@@ -83,7 +83,7 @@ namespace MongoDB.MSTest
             IDBCollection actual;
             target.Collection = expected;
             actual = target.Collection;
-            Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -98,7 +98,7 @@ namespace MongoDB.MSTest
             Oid actual;
             target.ID = expected;
             actual = target.ID;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

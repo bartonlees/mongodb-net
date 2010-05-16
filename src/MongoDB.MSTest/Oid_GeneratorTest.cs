@@ -85,7 +85,7 @@ namespace MongoDB.MSTest
             Oid expected = null; // TODO: Initialize to an appropriate value
             Oid actual;
             actual = target.Generate();
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -112,7 +112,7 @@ namespace MongoDB.MSTest
             //byte[] expected = null; // TODO: Initialize to an appropriate value
             //byte[] actual;
             //actual = target.GenerateHostHash();
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -127,7 +127,7 @@ namespace MongoDB.MSTest
             //int expected = 0; // TODO: Initialize to an appropriate value
             //int actual;
             //actual = target.GenerateInc();
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -142,7 +142,7 @@ namespace MongoDB.MSTest
             //int expected = 0; // TODO: Initialize to an appropriate value
             //int actual;
             //actual = target.GenerateProcId();
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -157,7 +157,7 @@ namespace MongoDB.MSTest
             //int expected = 0; // TODO: Initialize to an appropriate value
             //int actual;
             //actual = target.GenerateTime();
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

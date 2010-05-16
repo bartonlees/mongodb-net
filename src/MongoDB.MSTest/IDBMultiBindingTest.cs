@@ -67,9 +67,7 @@ namespace MongoDB.MSTest
 
         internal virtual IDBMultiBinding CreateIDBMultiBinding()
         {
-            // TODO: Instantiate an appropriate concrete class.
-            IDBMultiBinding target = null;
-            return target;
+            return null;// Mongo.DefaultMultiDatabase;
         }
 
         /// <summary>

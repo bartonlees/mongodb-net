@@ -11,7 +11,6 @@ namespace MongoDB.Driver
     /// </summary>
     public class DBConnectionOptions
     {
-
         /// <summary>
         /// Initializes a new instance of the <see cref="DBConnectionOptions"/> class.
         /// </summary>
@@ -34,27 +33,28 @@ namespace MongoDB.Driver
             SendBufferSize = 8192;
             LingerState = new LingerOption(false, 0);
             ConnectionFactory = (ep, co) => new DBConnection(ep, co);
+            NoDelay = true;
         }
 
-        /**
-          connect timeout in milliseconds. 0 is default and infinite
-        */
-        public int SendTimeout;
+        /// <summary>
+        /// Gets or sets the amount of time a TcpClient will wait for a send operation to complete successfully.
+        /// </summary>
+        /// <remarks>Value is in milliseconds. 0 is default and infinite.</remarks>
+        /// <value>The send timeout.</value>
+        public int SendTimeout { get; set; }
 
-        /**
-           receive timeout in milliseconds. 0 is default and infinite
-         */
-        public int ReceiveTimeout;
+        /// <summary>
+        /// Gets or sets the amount of time a TcpClient will wait to receive data once a read operation is initiated.
+        /// </summary>
+        /// <remarks>The send time-out value, in milliseconds. The default is 0.</remarks>
+        /// <value>The receive timeout.</value>
+        public int ReceiveTimeout { get; set; }
 
-        /**
-           socket timeout.  0 is default and infinite
-         */
-        public int socketTimeout;
-
-        /**
-           this controls whether or not on a connect, the system retries automatically 
-        */
-        public bool AutoConnectRetry;
+        /// <summary>
+        /// Gets or sets a value indicating whether to automatically retry on a connect.
+        /// </summary>
+        /// <value><c>true</c> automatically retry otherwise, <c>false</c>.</value>
+        public bool AutoConnectRetry { get; set; }
 
         /// <summary>
         /// Gets or sets the size of the connection pool.
@@ -65,20 +65,19 @@ namespace MongoDB.Driver
         /// <summary>
         /// Gets or sets the size of the receive buffer.
         /// </summary>
-        /// <value>The size of the receive buffer.</value>
+        /// <value>The size of the receive buffer, in bytes. The default value is 8192 bytes.</value>
         public int ReceiveBufferSize { get; set; }
         /// <summary>
-        /// Gets or sets the size of the send buffer.
+        /// Gets or sets the size of the receive buffer.
         /// </summary>
-        /// <value>The size of the send buffer.</value>
+        /// <value>The size of the send buffer, in bytes. The default value is 8192 bytes.</value>
         public int SendBufferSize { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [no delay].
+        /// Gets or sets a value that disables a delay when send or receive buffers are not full.
         /// </summary>
-        /// <value><c>true</c> if [no delay]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the delay is disabled, otherwise, <c>false</c>. The default value is <c>false</c>.</value>
         public bool NoDelay { get; set; }
-
 
         /// <summary>
         /// Gets or sets the retry time.
@@ -87,10 +86,16 @@ namespace MongoDB.Driver
         public long RetryTime { get; set; }
 
         /// <summary>
-        /// Gets or sets the state of the linger.
+        /// Gets or sets information about the linger state of the associated socket.
         /// </summary>
         /// <value>The state of the linger.</value>
         public LingerOption LingerState { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether or not to check for an error after every modifying call to the database.
+        /// </summary>
+        /// <value>Set this to <c>true</c> if you want to intentionally "fire and forget"; otherwise, <c>false</c>.</value>
+        public bool FireAndForgetUpdate { get; set; }
 
         /// <summary>
         /// Gets or sets the connection factory.

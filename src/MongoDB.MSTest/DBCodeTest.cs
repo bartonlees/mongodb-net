@@ -71,9 +71,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBCodeConstructorTest()
         {
-            string code = string.Empty; // TODO: Initialize to an appropriate value
+            string code = "function( x , y ){ return x + y; }";
             DBCode target = new DBCode(code);
-            Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         /// <summary>
@@ -82,29 +81,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToStringTest()
         {
-            string code = string.Empty; // TODO: Initialize to an appropriate value
+            string code = "function( x , y ){ return x + y; }";
             DBCode target = new DBCode(code); // TODO: Initialize to an appropriate value
-            string expected = string.Empty; // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.ToString();
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Code
-        ///</summary>
-        [TestMethod()]
-        public void CodeTest()
-        {
-            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            //DBCode_Accessor target = new DBCode_Accessor(param0); // TODO: Initialize to an appropriate value
-            //string expected = string.Empty; // TODO: Initialize to an appropriate value
-            //string actual;
-            //target.Code = expected;
-            //actual = target.Code;
-            //Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            target.ToString().Should().Be(code);
         }
     }
 }

@@ -88,13 +88,13 @@ namespace MongoDB.MSTest
         public void EqualsTestHelper<T>()
             where T : IUriComparable
         {
-            UriEqualityComparer<T> target = new UriEqualityComparer<T>(); // TODO: Initialize to an appropriate value
-            T x = default(T); // TODO: Initialize to an appropriate value
-            T y = default(T); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Equals(x, y);
-            Assert.AreEqual(expected, actual);
+            //UriEqualityComparer<T> target = new UriEqualityComparer<T>(); // TODO: Initialize to an appropriate value
+            //T x = default(T); // TODO: Initialize to an appropriate value
+            //T y = default(T); // TODO: Initialize to an appropriate value
+            //bool expected = false; // TODO: Initialize to an appropriate value
+            //bool actual;
+            //actual = target.Equals(x, y);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -111,12 +111,12 @@ namespace MongoDB.MSTest
         public void GetHashCodeTestHelper<T>()
             where T : IUriComparable
         {
-            UriEqualityComparer<T> target = new UriEqualityComparer<T>(); // TODO: Initialize to an appropriate value
-            T obj = default(T); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.GetHashCode(obj);
-            Assert.AreEqual(expected, actual);
+            //UriEqualityComparer<T> target = new UriEqualityComparer<T>(); // TODO: Initialize to an appropriate value
+            //T obj = default(T); // TODO: Initialize to an appropriate value
+            //int expected = 0; // TODO: Initialize to an appropriate value
+            //int actual;
+            //actual = target.GetHashCode(obj);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

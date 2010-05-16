@@ -9,7 +9,6 @@ using System.Collections.Generic;
 namespace MongoDB.MSTest
 {
 
-
     /// <summary>
     ///This is a test class for ContractDocumentTest and is intended
     ///to contain all ContractDocumentTest Unit Tests
@@ -17,7 +16,6 @@ namespace MongoDB.MSTest
     [TestClass()]
     public class ContractDocumentTest
     {
-
 
         private TestContext testContextInstance;
 

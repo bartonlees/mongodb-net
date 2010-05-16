@@ -64,6 +64,20 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="DBObjectArray"/> class.
         /// </summary>
         /// <param name="list">The list.</param>
+        public DBObjectArray(params DBObject[] list)
+        {
+            Condition.Requires(list, "list").IsNotNull();
+            _list = new List<object>(list.Length);
+            foreach (object o in list)
+            {
+                (_list as IList).Add(o);
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DBObjectArray"/> class.
+        /// </summary>
+        /// <param name="list">The list.</param>
         public DBObjectArray(IList list)
         {
             Condition.Requires(list, "list").IsNotNull();
@@ -89,22 +103,17 @@ namespace MongoDB.Driver
         /// <param name="map">The map.</param>
         public void PutAll(IDictionary<string, object> map)
         {
-            foreach (string key in map.Keys)
+            foreach (KeyValuePair<string,object> pair in map)
             {
-                _list[int.Parse(key)] = map[key];
+                this[pair.Key] = pair.Value;
             }
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [partial object].
+        /// Gets or sets the capacity.
         /// </summary>
-        /// <value><c>true</c> if [partial object]; otherwise, <c>false</c>.</value>
-        public bool PartialObject { get; set; }
-        /// <summary>
-        /// Gets or sets the ID.
-        /// </summary>
-        /// <value>The ID.</value>
-        public Oid ID { get; set; }
+        /// <value>The capacity.</value>
+        public int Capacity { get { return _list.Capacity; } set { _list.Capacity = value; } }
 
         /// <summary>
         /// Adds the specified key.
@@ -254,7 +263,7 @@ namespace MongoDB.Driver
         /// </returns>
         public bool Contains(KeyValuePair<string, object> item)
         {
-            return ContainsKey(item.Key);
+            return ContainsKey(item.Key) && this[item.Key].Equals(item.Value);
         }
 
         /// <summary>
@@ -290,7 +299,17 @@ namespace MongoDB.Driver
         /// </summary>
         /// <value></value>
         /// <returns>true if the <see cref="T:System.Collections.IList"/> is read-only; otherwise, false.</returns>
-        public bool IsReadOnly
+        bool ICollection<System.Collections.Generic.KeyValuePair<string, object>>.IsReadOnly
+        {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the <see cref="T:System.Collections.IList"/> is read-only.
+        /// </summary>
+        /// <value></value>
+        /// <returns>true if the <see cref="T:System.Collections.IList"/> is read-only; otherwise, false.</returns>
+        bool ICollection<object>.IsReadOnly
         {
             get { return false; }
         }
@@ -453,11 +472,11 @@ namespace MongoDB.Driver
         {
             get
             {
-                return _ilist[index];
+                return this[index];
             }
             set
             {
-                _ilist[index] = value;
+                this[index] = value;
             }
         }
         ICollection _icollection { get { return _list as ICollection; } }
@@ -479,16 +498,6 @@ namespace MongoDB.Driver
         object ICollection.SyncRoot
         {
             get { return _icollection.SyncRoot; }
-        }
-
-        /// <summary>
-        /// Gets or sets the state.
-        /// </summary>
-        /// <value>The state.</value>
-        public DocumentState State
-        {
-            get;
-            private set;
         }
     }
 }

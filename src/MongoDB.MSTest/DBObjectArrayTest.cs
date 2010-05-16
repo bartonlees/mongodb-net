@@ -93,9 +93,14 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectArrayConstructorTest()
         {
-            IList list = null; // TODO: Initialize to an appropriate value
-            DBObjectArray target = new DBObjectArray(list);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(new ArrayList(){ a, b, c});
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -104,9 +109,14 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectArrayConstructorTest1()
         {
-            IList<object> list = null; // TODO: Initialize to an appropriate value
-            DBObjectArray target = new DBObjectArray(list);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray((IList<object>)new List<object>() { a, b, c });
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -115,9 +125,14 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectArrayConstructorTest2()
         {
-            IDictionary<string, object> map = null; // TODO: Initialize to an appropriate value
-            DBObjectArray target = new DBObjectArray(map);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(new Dictionary<string,object>() {{"0", a},{"1", b},{"2", c}});
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -127,7 +142,7 @@ namespace MongoDB.MSTest
         public void DBObjectArrayConstructorTest3()
         {
             DBObjectArray target = new DBObjectArray();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            target.Count.Should().Be(0,"the default constructor defines no elements");
         }
 
         /// <summary>
@@ -136,9 +151,23 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectArrayConstructorTest4()
         {
-            int capacity = 0; // TODO: Initialize to an appropriate value
+            int capacity = 3;
             DBObjectArray target = new DBObjectArray(capacity);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            target.Capacity.Should().Be(3);
+            target.Count.Should().Be(0);
+        }
+
+        [TestMethod()]
+        public void DBObjectArrayConstructorTest5()
+        {
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -147,10 +176,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object> item = new KeyValuePair<string, object>(); // TODO: Initialize to an appropriate value
-            target.Add(item);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObjectArray target = new DBObjectArray();
+            DBObject a = new DBObject("add","me");
+            target.Add(new KeyValuePair<string, object>("0", a));
+            target.Count.Should().Be(1);
+            new Action(() => target.Add(new KeyValuePair<string, object>("a", a))).ShouldThrow<ArgumentException>("index/key must be numeric");
         }
 
         /// <summary>
@@ -159,11 +189,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddTest1()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            target.Add(key, value);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObjectArray target = new DBObjectArray();
+            DBObject a = new DBObject("add", "me");
+            target.Add("0", a);
+            target.Count.Should().Be(1);
+            new Action(() => target.Add("a", a)).ShouldThrow<ArgumentException>("index/key must be numeric");
         }
 
         /// <summary>
@@ -172,10 +202,23 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddTest2()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object item = null; // TODO: Initialize to an appropriate value
-            target.Add(item);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObjectArray target = new DBObjectArray();
+            DBObject a = new DBObject("add", "me");
+            target.Add(new KeyValuePair<string, object>("0", a));
+            new Action(() => target.Add(new KeyValuePair<string, object>("a", a))).ShouldThrow<Exception>();
+            target.Count.Should().Be(1);
+        }
+
+        /// <summary>
+        ///A test for System.Collections.IList.Add
+        ///</summary>
+        [TestMethod()]
+        public void AddTest3()
+        {
+            IList target = new DBObjectArray() as IList;
+            DBObject a = new DBObject("add", "me");
+            target.Add(a);
+            target.Count.Should().Be(1);
         }
 
         /// <summary>
@@ -184,9 +227,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ClearTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.Count.Should().Be(3);
             target.Clear();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            target.Count.Should().Be(0);
         }
 
         /// <summary>
@@ -195,13 +242,14 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ContainsTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object> item = new KeyValuePair<string, object>(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Contains(item);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.Contains(new KeyValuePair<string, object>("0",a)).Should().Be(true);
+            target.Contains(new KeyValuePair<string, object>("1", a)).Should().Be(false);
+            new Action(() => target.Contains(new KeyValuePair<string, object>("a", a))).ShouldThrow<Exception>();
+            target.Contains(new KeyValuePair<string, object>("30", a)).Should().Be(false);
         }
 
         /// <summary>
@@ -210,13 +258,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ContainsTest1()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object item = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Contains(item);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, c);
+            target.Contains(a).Should().Be(true);
+            target.Contains(b).Should().Be(false);
         }
 
         /// <summary>
@@ -225,13 +272,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ContainsKeyTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.ContainsKey(key);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObjectArray target = new DBObjectArray(a);
+            target.ContainsKey("0").Should().BeTrue();
+            target.ContainsKey("1").Should().BeFalse();
+            new Action(() => target.ContainsKey("a")).ShouldThrow<Exception>();
         }
 
         /// <summary>
@@ -240,11 +285,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CopyToTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object>[] array = null; // TODO: Initialize to an appropriate value
-            int arrayIndex = 0; // TODO: Initialize to an appropriate value
-            target.CopyTo(array, arrayIndex);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a,b,c);
+            KeyValuePair<string, object>[] array = new KeyValuePair<string,object>[4];
+            target.CopyTo(array, 1);
+            array[0].Value.Should().BeNull();
+            array[1].Value.Should().Be(a);
+            array[3].Value.Should().Be(c);
         }
 
         /// <summary>
@@ -253,11 +302,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CopyToTest1()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object[] array = null; // TODO: Initialize to an appropriate value
-            int arrayIndex = 0; // TODO: Initialize to an appropriate value
-            target.CopyTo(array, arrayIndex);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            object[] array = new object[4];
+            target.CopyTo(array, 1);
+            array[0].Should().BeNull();
+            array[1].Should().Be(a);
+            array[3].Should().Be(c);
         }
 
         /// <summary>
@@ -266,12 +319,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetEnumeratorTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            IEnumerator<KeyValuePair<string, object>> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerator<KeyValuePair<string, object>> actual;
-            actual = target.GetEnumerator();
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            //Use enumerator to fill list
+            List<KeyValuePair<string, object>> list = new List<KeyValuePair<string, object>>(target);
+            list[0].Value.Should().Be(a);
+            list[1].Value.Should().Be(b);
+            list[2].Value.Should().Be(c);
         }
 
         /// <summary>
@@ -280,13 +336,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void IndexOfTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object item = null; // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.IndexOf(item);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
         }
 
         /// <summary>
@@ -295,11 +351,17 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void InsertTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int index = 0; // TODO: Initialize to an appropriate value
-            object item = null; // TODO: Initialize to an appropriate value
-            target.Insert(index, item);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(c).Should().Be(1);
+            target.Insert(1, b);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -308,10 +370,18 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PutAllTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            IDictionary<string, object> map = null; // TODO: Initialize to an appropriate value
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray();
+            IDictionary<string, object> map = new Dictionary<string, object>() { { "0", a }, { "1", b }, { "2", c } };
             target.PutAll(map);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
+
+            new Action(() => target.PutAll(new Dictionary<string, object>() { { "a", a } })).ShouldThrow<Exception>("index/key must be an integer");
         }
 
         /// <summary>
@@ -320,13 +390,18 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void RemoveTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Remove(key);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
+            target.Remove(b);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(c).Should().Be(1);
+            target.Count.Should().Be(2);
         }
 
         /// <summary>
@@ -335,13 +410,18 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void RemoveTest1()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object item = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Remove(item);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
+            target.Remove("1");
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(c).Should().Be(1);
+            target.Count.Should().Be(2);
         }
 
         /// <summary>
@@ -350,13 +430,18 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void RemoveTest2()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            KeyValuePair<string, object> item = new KeyValuePair<string, object>(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Remove(item);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
+            target.Remove(new KeyValuePair<string, object>("1",b));
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(c).Should().Be(1);
+            target.Count.Should().Be(2);
         }
 
         /// <summary>
@@ -365,154 +450,124 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void RemoveAtTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int index = 0; // TODO: Initialize to an appropriate value
-            target.RemoveAt(index);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(1);
+            target.IndexOf(c).Should().Be(2);
+            target.Count.Should().Be(3);
+            target.RemoveAt(1);
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(c).Should().Be(1);
+            target.Count.Should().Be(2);
         }
 
         /// <summary>
         ///A test for System.Collections.Generic.IEnumerable<System.Object>.GetEnumerator
         ///</summary>
         [TestMethod()]
-
         public void GetEnumeratorTest1()
         {
-            //IEnumerable<T> target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            //IEnumerator<object> expected = null; // TODO: Initialize to an appropriate value
-            //IEnumerator<object> actual;
-            //actual = target.GetEnumerator();
-            //expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            //Use enumerator to fill list
+            List<object> list = new List<object>(target);
+            list[0].Should().Be(a);
+            list[1].Should().Be(b);
+            list[2].Should().Be(c);
         }
-
-        /// <summary>
-        ///A test for System.Collections.ICollection.CopyTo
-        ///</summary>
-        [TestMethod()]
-
-        public void CopyToTest2()
-        {
-            ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            Array array = null; // TODO: Initialize to an appropriate value
-            int index = 0; // TODO: Initialize to an appropriate value
-            target.CopyTo(array, index);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for System.Collections.IEnumerable.GetEnumerator
-        ///</summary>
-        [TestMethod()]
-
-        public void GetEnumeratorTest2()
-        {
-            IEnumerable target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            IEnumerator expected = null; // TODO: Initialize to an appropriate value
-            IEnumerator actual;
-            actual = target.GetEnumerator();
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for System.Collections.IList.Add
-        ///</summary>
-        [TestMethod()]
-
-        public void AddTest3()
-        {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.Add(value);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
+                
+        
 
         /// <summary>
         ///A test for System.Collections.IList.Clear
         ///</summary>
         [TestMethod()]
-
         public void ClearTest1()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a, b, c) as IList;
+            target.Count.Should().Be(3);
             target.Clear();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            target.Count.Should().Be(0);
         }
 
         /// <summary>
         ///A test for System.Collections.IList.Contains
         ///</summary>
         [TestMethod()]
-
         public void ContainsTest2()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.Contains(value);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a, c) as IList;
+            target.Contains(a).Should().BeTrue();
+            target.Contains(b).Should().BeFalse();
         }
 
         /// <summary>
         ///A test for System.Collections.IList.IndexOf
         ///</summary>
         [TestMethod()]
-
         public void IndexOfTest1()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.IndexOf(value);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a, c) as IList;
+            target.IndexOf(a).Should().Be(0);
+            target.IndexOf(b).Should().Be(-1);
         }
 
         /// <summary>
         ///A test for System.Collections.IList.Insert
         ///</summary>
         [TestMethod()]
-
         public void InsertTest1()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int index = 0; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            target.Insert(index, value);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a, c) as IList;
+            target.Insert(1, b);
+            target.IndexOf(b).Should().Be(1);
         }
 
         /// <summary>
         ///A test for System.Collections.IList.Remove
         ///</summary>
         [TestMethod()]
-
         public void RemoveTest3()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            target.Remove(value);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a, b, c) as IList;
+            target.Remove(b);
+            target.IndexOf(c).Should().Be(1);
+            target.Count.Should().Be(2);
         }
 
         /// <summary>
         ///A test for System.Collections.IList.RemoveAt
         ///</summary>
         [TestMethod()]
-
         public void RemoveAtTest1()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int index = 0; // TODO: Initialize to an appropriate value
-            target.RemoveAt(index);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a, b, c) as IList;
+            target.RemoveAt(1);
+            target.IndexOf(c).Should().Be(1);
+            target.Count.Should().Be(2);
         }
 
         /// <summary>
@@ -521,16 +576,16 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void TryGetValueTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            object valueExpected = null; // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.TryGetValue(key, out value);
-            Assert.AreEqual(valueExpected, value);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+
+            object result = null;
+            target.TryGetValue("0", out result).Should().BeTrue();
+            result.Should().Be(a);
+            target.TryGetValue("30", out result).Should().BeFalse();
+            target.TryGetValue("a", out result).Should().BeFalse();
         }
 
         /// <summary>
@@ -539,37 +594,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CountTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.Count;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for ID
-        ///</summary>
-        [TestMethod()]
-        public void IDTest()
-        {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            Oid expected = null; // TODO: Initialize to an appropriate value
-            Oid actual;
-            target.ID = expected;
-            actual = target.ID;
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for IsReadOnly
-        ///</summary>
-        [TestMethod()]
-        public void IsReadOnlyTest()
-        {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.IsReadOnly;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -615,67 +644,35 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void KeysTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            ICollection<string> actual;
-            actual = target.Keys;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a, b, c);
+            target.Keys.Should().Contain("0", "1", "2");
         }
 
-        /// <summary>
-        ///A test for PartialObject
-        ///</summary>
-        [TestMethod()]
-        public void PartialObjectTest()
-        {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
-            bool actual;
-            target.PartialObject = expected;
-            actual = target.PartialObject;
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for State
-        ///</summary>
-        [TestMethod()]
-
-        public void StateTest()
-        {
-            //DBObjectArray_Accessor target = new DBObjectArray_Accessor(); // TODO: Initialize to an appropriate value
-            //DocumentState expected = new DocumentState(); // TODO: Initialize to an appropriate value
-            //DocumentState actual;
-            //target.State = expected;
-            //actual = target.State;
-            //expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
 
         /// <summary>
         ///A test for System.Collections.ICollection.Count
         ///</summary>
         [TestMethod()]
-
         public void CountTest1()
         {
-            ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int actual;
-            actual = target.Count;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            ICollection target = new DBObjectArray(a,b,c) as ICollection;
+            target.Count.Should().Be(3);
         }
 
         /// <summary>
         ///A test for System.Collections.ICollection.IsSynchronized
         ///</summary>
         [TestMethod()]
-
         public void IsSynchronizedTest()
         {
-            ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.IsSynchronized;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ICollection target = new DBObjectArray() as ICollection;
+            target.IsSynchronized.Should().BeFalse();
         }
 
         /// <summary>
@@ -685,53 +682,45 @@ namespace MongoDB.MSTest
 
         public void SyncRootTest()
         {
-            ICollection target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            object actual;
-            actual = target.SyncRoot;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            ICollection target = new DBObjectArray() as ICollection;
+            target.SyncRoot.Should().NotBeNull();
         }
 
         /// <summary>
         ///A test for System.Collections.IList.IsFixedSize
         ///</summary>
         [TestMethod()]
-
         public void IsFixedSizeTest()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.IsFixedSize;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IList target = new DBObjectArray() as IList;
+            target.IsFixedSize.Should().BeFalse();
         }
 
         /// <summary>
         ///A test for System.Collections.IList.IsReadOnly
         ///</summary>
         [TestMethod()]
-
         public void IsReadOnlyTest1()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.IsReadOnly;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            IList target = new DBObjectArray() as IList;
+            target.IsReadOnly.Should().BeFalse();
         }
 
         /// <summary>
         ///A test for System.Collections.IList.Item
         ///</summary>
         [TestMethod()]
-
         public void ItemTest2()
         {
-            IList target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            int index = 0; // TODO: Initialize to an appropriate value
-            object expected = null; // TODO: Initialize to an appropriate value
-            object actual;
-            target[index] = expected;
-            actual = target[index];
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            IList target = new DBObjectArray(a) as IList;
+            target[2] = c;
+            target[1] = b;
+            target[0].Should().Be(a);
+            target[1].Should().Be(b);
+            target[2].Should().Be(c);
         }
 
         /// <summary>
@@ -740,10 +729,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ValuesTest()
         {
-            DBObjectArray target = new DBObjectArray(); // TODO: Initialize to an appropriate value
-            ICollection<object> actual;
-            actual = target.Values;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject a = new DBObject();
+            DBObject b = new DBObject("a", 7);
+            DBObject c = new DBObject("78", "car");
+            DBObjectArray target = new DBObjectArray(a,b,c);
+            target.Values.Should().ContainInOrder(new object[] {a, b, c});
         }
     }
 }

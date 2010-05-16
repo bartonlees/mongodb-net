@@ -77,7 +77,7 @@ namespace MongoDB.MSTest
             IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
             IDBResponse<TDoc> actual;
             actual = target.Call<TDoc>(msg);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -120,7 +120,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.TryAuthenticate(cmdCollection, username, usrPassHash);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

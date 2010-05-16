@@ -214,11 +214,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void CopyTest()
         {
-            IDBCursor target = CreateIDBCursor(); // TODO: Initialize to an appropriate value
-            IDBCursor expected = null; // TODO: Initialize to an appropriate value
-            IDBCursor actual;
-            actual = target.Copy();
-            Assert.AreEqual(expected, actual);
+            //IDBCursor target = CreateIDBCursor(); // TODO: Initialize to an appropriate value
+            //IDBCursor expected = null; // TODO: Initialize to an appropriate value
+            //IDBCursor actual;
+            //actual = target.Copy();
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -233,7 +233,7 @@ namespace MongoDB.MSTest
             Nullable<long> actual;
             target.CursorID = expected;
             actual = target.CursorID;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

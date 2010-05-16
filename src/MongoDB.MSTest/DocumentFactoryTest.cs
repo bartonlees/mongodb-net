@@ -71,12 +71,12 @@ namespace MongoDB.MSTest
         public void CreateDocumentTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            Oid id = null; // TODO: Initialize to an appropriate value
-            bool partial = false; // TODO: Initialize to an appropriate value
-            TDoc expected = null; // TODO: Initialize to an appropriate value
-            TDoc actual;
-            actual = DocumentFactory<TDoc>.CreateDocument(id, partial);
-            Assert.AreEqual(expected, actual);
+            //Oid id = null; // TODO: Initialize to an appropriate value
+            //bool partial = false; // TODO: Initialize to an appropriate value
+            //TDoc expected = null; // TODO: Initialize to an appropriate value
+            //TDoc actual;
+            //actual = DocumentFactory<TDoc>.CreateDocument(id, partial);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

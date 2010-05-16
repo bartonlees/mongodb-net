@@ -73,10 +73,10 @@ namespace MongoDB.MSTest
         public void QueryTest()
         {
             Expression<Func<DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
             DBQuery actual;
             actual = Lambda.Query(selector);
-            Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -86,11 +86,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void QueryTest1()
         {
-            Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
-            DBQuery actual;
-            actual = Lambda.Query(selector);
-            Assert.AreEqual(expected, actual);
+            //Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery actual;
+            //actual = Lambda.Query(selector);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -100,11 +100,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void QueryTest2()
         {
-            Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            DBQuery expected = null; // TODO: Initialize to an appropriate value
-            DBQuery actual;
-            actual = Lambda.Query(selector);
-            Assert.AreEqual(expected, actual);
+            //Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
+            //DBQuery expected = null; // TODO: Initialize to an appropriate value
+            //DBQuery actual;
+            //actual = Lambda.Query(selector);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

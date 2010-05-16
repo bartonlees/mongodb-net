@@ -172,7 +172,7 @@ namespace MongoDB.MSTest
             object expected = null; // TODO: Initialize to an appropriate value
             object actual;
             actual = IDatabaseExtensions.Evaluate(db, expression, args);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -186,7 +186,7 @@ namespace MongoDB.MSTest
             DBError expected = null; // TODO: Initialize to an appropriate value
             DBError actual;
             actual = IDatabaseExtensions.ForceError(db);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -196,12 +196,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCollectionTest()
         {
-            IDatabase db = null; // TODO: Initialize to an appropriate value
-            string collectionUri = string.Empty; // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            actual = IDatabaseExtensions.GetCollection(db, collectionUri);
-            Assert.AreEqual(expected, actual);
+            //IDatabase db = null; // TODO: Initialize to an appropriate value
+            //string collectionUri = string.Empty; // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //actual = IDatabaseExtensions.GetCollection(db, collectionUri);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -211,11 +211,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCollectionNamesTest()
         {
-            IDatabase db = null; // TODO: Initialize to an appropriate value
-            IEnumerable<Uri> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerable<Uri> actual;
-            actual = IDatabaseExtensions.GetCollectionNames(db);
-            Assert.AreEqual(expected, actual);
+            //IDatabase db = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<Uri> expected = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<Uri> actual;
+            //actual = IDatabaseExtensions.GetCollectionNames(db);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

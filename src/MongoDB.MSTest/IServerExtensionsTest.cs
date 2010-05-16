@@ -77,7 +77,7 @@ namespace MongoDB.MSTest
             IDatabase expected = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
             actual = IServerExtensions.GetDatabase(server, databaseUri);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

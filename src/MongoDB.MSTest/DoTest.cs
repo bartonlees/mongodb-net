@@ -72,12 +72,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddEachToSetTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            IList value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.AddEachToSet(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //IList value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.AddEachToSet(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -87,12 +87,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddToSetTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.AddToSet(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //object value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.AddToSet(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -102,12 +102,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void IncTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.Inc(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //object value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.Inc(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -117,12 +117,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PopTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            bool fromTop = false; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.Pop(fieldName, fromTop);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //bool fromTop = false; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.Pop(fieldName, fromTop);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -132,12 +132,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PullTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.Pull(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //object value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.Pull(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -147,12 +147,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PullAllTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            IList value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.PullAll(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //IList value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.PullAll(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -162,12 +162,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PushTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.Push(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //object value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.Push(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -177,12 +177,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PushAllTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            IList value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.PushAll(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //IList value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.PushAll(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -192,12 +192,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void SetTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.Set(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //object value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.Set(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -207,12 +207,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UnsetTest()
         {
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = Do.Unset(fieldName, value);
-            Assert.AreEqual(expected, actual);
+            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
+            //object value = null; // TODO: Initialize to an appropriate value
+            //DBModifier expected = null; // TODO: Initialize to an appropriate value
+            //DBModifier actual;
+            //actual = Do.Unset(fieldName, value);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

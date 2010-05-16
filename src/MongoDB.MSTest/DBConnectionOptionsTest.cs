@@ -74,7 +74,6 @@ namespace MongoDB.MSTest
         public void DBConnectionOptionsConstructorTest()
         {
             DBConnectionOptions target = new DBConnectionOptions();
-            Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         /// <summary>
@@ -83,9 +82,33 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ResetTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            target.Reset();
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBConnectionOptions def = new DBConnectionOptions();
+            DBConnectionOptions target = new DBConnectionOptions();
+            target.AutoConnectRetry = true;
+            target.ConnectionPoolSize++;
+            target.NoDelay = true;
+            target.FireAndForgetUpdate = true;
+            target.ReceiveBufferSize++;
+            target.RetryTime++;
+            target.SendBufferSize++;
+            //Verify our assumptions
+            target.AutoConnectRetry.Should().BeTrue();
+            target.FireAndForgetUpdate.Should().BeTrue();
+            def.ConnectionPoolSize.Should().NotBe(target.ConnectionPoolSize);
+            target.NoDelay.Should().BeTrue();
+            def.ReceiveBufferSize.Should().NotBe(target.ReceiveBufferSize);
+            def.RetryTime.Should().NotBe(target.ConnectionPoolSize);
+            def.SendBufferSize.Should().NotBe(target.ConnectionPoolSize);
+            //Reset
+            def.Reset();
+            //Verify the result
+            target.AutoConnectRetry.Should().BeFalse();
+            target.FireAndForgetUpdate.Should().BeFalse();
+            def.ConnectionPoolSize.Should().Be(target.ConnectionPoolSize);
+            target.NoDelay.Should().BeFalse();
+            def.ReceiveBufferSize.Should().Be(target.ReceiveBufferSize);
+            def.RetryTime.Should().Be(target.ConnectionPoolSize);
+            def.SendBufferSize.Should().Be(target.ConnectionPoolSize);
         }
 
         /// <summary>
@@ -94,13 +117,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ConnectionFactoryTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            Func<IPEndPoint, DBConnectionOptions, IDBConnection> expected = null; // TODO: Initialize to an appropriate value
-            Func<IPEndPoint, DBConnectionOptions, IDBConnection> actual;
-            target.ConnectionFactory = expected;
-            actual = target.ConnectionFactory;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBConnectionOptions target = new DBConnectionOptions();
+            target.ConnectionFactory = (ep, o) => null;
+            target.ConnectionFactory(null, null).Should().BeNull();
         }
 
         /// <summary>
@@ -109,13 +128,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ConnectionPoolSizeTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
+            DBConnectionOptions target = new DBConnectionOptions();
+            int expected = 234;
             int actual;
             target.ConnectionPoolSize = expected;
             actual = target.ConnectionPoolSize;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Should().Be(actual);
         }
 
         /// <summary>
@@ -124,13 +142,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void LingerStateTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            LingerOption expected = null; // TODO: Initialize to an appropriate value
+            DBConnectionOptions target = new DBConnectionOptions();
+            LingerOption expected = new LingerOption(true, 123);
             LingerOption actual;
             target.LingerState = expected;
             actual = target.LingerState;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Should().Be(actual);
         }
 
         /// <summary>
@@ -139,13 +156,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void NoDelayTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            bool expected = false; // TODO: Initialize to an appropriate value
+            DBConnectionOptions target = new DBConnectionOptions();
+            bool expected = true; 
             bool actual;
             target.NoDelay = expected;
             actual = target.NoDelay;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Should().Be(actual);
         }
 
         /// <summary>
@@ -154,13 +170,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ReceiveBufferSizeTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
+            DBConnectionOptions target = new DBConnectionOptions();
+            int expected = 71;
             int actual;
             target.ReceiveBufferSize = expected;
             actual = target.ReceiveBufferSize;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Should().Be(actual);
         }
 
         /// <summary>
@@ -169,13 +184,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void RetryTimeTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            long expected = 0; // TODO: Initialize to an appropriate value
+            DBConnectionOptions target = new DBConnectionOptions();
+            long expected = 80;
             long actual;
             target.RetryTime = expected;
             actual = target.RetryTime;
-            Assert.AreEqual(expected, actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            expected.Should().Be(actual);
         }
 
         /// <summary>
@@ -184,13 +198,27 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void SendBufferSizeTest()
         {
-            DBConnectionOptions target = new DBConnectionOptions(); // TODO: Initialize to an appropriate value
-            int expected = 0; // TODO: Initialize to an appropriate value
+            DBConnectionOptions target = new DBConnectionOptions();
+            int expected = 2344;
             int actual;
             target.SendBufferSize = expected;
             actual = target.SendBufferSize;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for DoNotGetLastError
+        ///</summary>
+        [TestMethod()]
+        public void FireAndForgetUpdateTest()
+        {
+            DBConnectionOptions target = new DBConnectionOptions();
+            bool expected = false; 
+            bool actual;
+            target.FireAndForgetUpdate = expected;
+            actual = target.FireAndForgetUpdate;
+            expected.Should().Be(actual);
         }
     }
 }

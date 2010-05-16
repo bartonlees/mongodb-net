@@ -200,7 +200,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.Contains(item);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -215,7 +215,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.Contains(item);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -230,7 +230,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.ContainsKey(key);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -270,7 +270,7 @@ namespace MongoDB.MSTest
             IEnumerator<KeyValuePair<string, object>> expected = null; // TODO: Initialize to an appropriate value
             IEnumerator<KeyValuePair<string, object>> actual;
             actual = target.GetEnumerator();
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -285,7 +285,7 @@ namespace MongoDB.MSTest
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             actual = target.IndexOf(item);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -325,7 +325,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.Remove(key);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -340,7 +340,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.Remove(item);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -355,7 +355,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.Remove(item);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -382,7 +382,7 @@ namespace MongoDB.MSTest
             //IEnumerator<object> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerator<object> actual;
             //actual = target.GetEnumerator();
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -411,7 +411,7 @@ namespace MongoDB.MSTest
             IEnumerator expected = null; // TODO: Initialize to an appropriate value
             IEnumerator actual;
             actual = target.GetEnumerator();
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -427,7 +427,7 @@ namespace MongoDB.MSTest
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             actual = target.Add(value);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -455,7 +455,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.Contains(value);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -471,7 +471,7 @@ namespace MongoDB.MSTest
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             actual = target.IndexOf(value);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -529,7 +529,7 @@ namespace MongoDB.MSTest
             bool actual;
             actual = target.TryGetValue(key, out value);
             Assert.AreEqual(valueExpected, value);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -556,7 +556,7 @@ namespace MongoDB.MSTest
             Oid actual;
             target.ID = expected;
             actual = target.ID;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -632,7 +632,7 @@ namespace MongoDB.MSTest
             bool actual;
             target.PartialObject = expected;
             actual = target.PartialObject;
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -648,7 +648,7 @@ namespace MongoDB.MSTest
             //DocumentState actual;
             //target.State = expected;
             //actual = target.State;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -730,7 +730,7 @@ namespace MongoDB.MSTest
             object actual;
             target[index] = expected;
             actual = target[index];
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

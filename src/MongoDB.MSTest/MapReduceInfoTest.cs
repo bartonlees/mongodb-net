@@ -90,7 +90,7 @@ namespace MongoDB.MSTest
             //IDocument actual;
             //target.Counts = expected;
             //actual = target.Counts;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -107,7 +107,7 @@ namespace MongoDB.MSTest
             //IDBCollection actual;
             //target.ResultingCollection = expected;
             //actual = target.ResultingCollection;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

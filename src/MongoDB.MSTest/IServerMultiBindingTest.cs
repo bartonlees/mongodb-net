@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
-
+using FluentAssertions;
 namespace MongoDB.MSTest
 {
     
@@ -83,7 +83,7 @@ namespace MongoDB.MSTest
             IDBMultiBinding expected = null; // TODO: Initialize to an appropriate value
             IDBMultiBinding actual;
             actual = target.GetDBMultiBinding(uri);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

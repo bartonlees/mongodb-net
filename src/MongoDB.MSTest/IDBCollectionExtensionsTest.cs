@@ -85,13 +85,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DistinctTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            string keyField = string.Empty; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            IList expected = null; // TODO: Initialize to an appropriate value
-            IList actual;
-            actual = IDBCollectionExtensions.Distinct(collection, keyField, selector);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //string keyField = string.Empty; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //IList expected = null; // TODO: Initialize to an appropriate value
+            //IList actual;
+            //actual = IDBCollectionExtensions.Distinct(collection, keyField, selector);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -153,7 +153,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.EnsureIndex(collection, keyFieldSet, force);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -181,7 +181,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.EnsureIndex(collection, indexKeysFieldSet, name);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -198,7 +198,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.EnsureIndex(collection, indexKeyFieldSet, indexUri, unique);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -208,21 +208,21 @@ namespace MongoDB.MSTest
         public void FindTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IEnumerable<TDoc> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerable<TDoc> actual;
-            actual = IDBCollectionExtensions.Find<TDoc>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<TDoc> expected = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<TDoc> actual;
+            //actual = IDBCollectionExtensions.Find<TDoc>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -239,21 +239,21 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FindTest1()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IEnumerable<IDocument> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerable<IDocument> actual;
-            actual = IDBCollectionExtensions.Find(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<IDocument> expected = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<IDocument> actual;
+            //actual = IDBCollectionExtensions.Find(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -263,16 +263,16 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FindByIDTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDocument expected = null; // TODO: Initialize to an appropriate value
-            IDocument actual;
-            actual = IDBCollectionExtensions.FindByID(collection, id, returnFields, explain, snapshot, options);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //object id = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDocument expected = null; // TODO: Initialize to an appropriate value
+            //IDocument actual;
+            //actual = IDBCollectionExtensions.FindByID(collection, id, returnFields, explain, snapshot, options);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -282,16 +282,16 @@ namespace MongoDB.MSTest
         public void FindByIDTest1Helper<TDoc>()
             where TDoc : class , IDocument
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            object id = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            TDoc expected = null; // TODO: Initialize to an appropriate value
-            TDoc actual;
-            actual = IDBCollectionExtensions.FindByID<TDoc>(collection, id, returnFields, explain, snapshot, options);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //object id = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //TDoc expected = null; // TODO: Initialize to an appropriate value
+            //TDoc actual;
+            //actual = IDBCollectionExtensions.FindByID<TDoc>(collection, id, returnFields, explain, snapshot, options);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -308,18 +308,18 @@ namespace MongoDB.MSTest
         public void FindOneTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            TDoc expected = null; // TODO: Initialize to an appropriate value
-            TDoc actual;
-            actual = IDBCollectionExtensions.FindOne<TDoc>(collection, selector, returnFields, numToSkip, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //TDoc expected = null; // TODO: Initialize to an appropriate value
+            //TDoc actual;
+            //actual = IDBCollectionExtensions.FindOne<TDoc>(collection, selector, returnFields, numToSkip, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -336,17 +336,17 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FindOneTest1()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IDocument expected = null; // TODO: Initialize to an appropriate value
-            IDocument actual;
-            actual = IDBCollectionExtensions.FindOne(collection, selector, returnFields, numToSkip, explain, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IDocument expected = null; // TODO: Initialize to an appropriate value
+            //IDocument actual;
+            //actual = IDBCollectionExtensions.FindOne(collection, selector, returnFields, numToSkip, explain, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -356,12 +356,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCollectionTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            string collectionName = string.Empty; // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            actual = IDBCollectionExtensions.GetCollection(collection, collectionName);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //string collectionName = string.Empty; // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //actual = IDBCollectionExtensions.GetCollection(collection, collectionName);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -388,21 +388,21 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCursorTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IDBCursor<Document> expected = null; // TODO: Initialize to an appropriate value
-            IDBCursor<Document> actual;
-            actual = IDBCollectionExtensions.GetCursor(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IDBCursor<Document> expected = null; // TODO: Initialize to an appropriate value
+            //IDBCursor<Document> actual;
+            //actual = IDBCollectionExtensions.GetCursor(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -412,21 +412,21 @@ namespace MongoDB.MSTest
         public void GetCursorTest1Helper<TDoc>()
             where TDoc : class , IDocument
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBQuery selector = null; // TODO: Initialize to an appropriate value
-            DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
-            DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
-            Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
-            bool explain = false; // TODO: Initialize to an appropriate value
-            bool snapshot = false; // TODO: Initialize to an appropriate value
-            CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
-            IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
-            IDBCursor<TDoc> expected = null; // TODO: Initialize to an appropriate value
-            IDBCursor<TDoc> actual;
-            actual = IDBCollectionExtensions.GetCursor<TDoc>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBQuery selector = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet returnFields = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet orderBy = null; // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToSkip = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> numberToReturn = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //Nullable<int> limit = new Nullable<int>(); // TODO: Initialize to an appropriate value
+            //bool explain = false; // TODO: Initialize to an appropriate value
+            //bool snapshot = false; // TODO: Initialize to an appropriate value
+            //CursorFlags options = new CursorFlags(); // TODO: Initialize to an appropriate value
+            //IDBIndex explicitIndexHint = null; // TODO: Initialize to an appropriate value
+            //IDBCursor<TDoc> expected = null; // TODO: Initialize to an appropriate value
+            //IDBCursor<TDoc> actual;
+            //actual = IDBCollectionExtensions.GetCursor<TDoc>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -448,7 +448,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.GetIndex(collection, indexUri);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -458,11 +458,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetIndexInfoTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            IEnumerable<IDBObject> expected = null; // TODO: Initialize to an appropriate value
-            IEnumerable<IDBObject> actual;
-            actual = IDBCollectionExtensions.GetIndexInfo(collection);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<IDBObject> expected = null; // TODO: Initialize to an appropriate value
+            //IEnumerable<IDBObject> actual;
+            //actual = IDBCollectionExtensions.GetIndexInfo(collection);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -472,15 +472,15 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GroupTest()
         {
-            IDBCollection collection = null; // TODO: Initialize to an appropriate value
-            DBFieldSet key = null; // TODO: Initialize to an appropriate value
-            DBQuery cond = null; // TODO: Initialize to an appropriate value
-            IDocument initial = null; // TODO: Initialize to an appropriate value
-            string reduce = string.Empty; // TODO: Initialize to an appropriate value
-            IDBObject expected = null; // TODO: Initialize to an appropriate value
-            IDBObject actual;
-            actual = IDBCollectionExtensions.Group(collection, key, cond, initial, reduce);
-            Assert.AreEqual(expected, actual);
+            //IDBCollection collection = null; // TODO: Initialize to an appropriate value
+            //DBFieldSet key = null; // TODO: Initialize to an appropriate value
+            //DBQuery cond = null; // TODO: Initialize to an appropriate value
+            //IDocument initial = null; // TODO: Initialize to an appropriate value
+            //string reduce = string.Empty; // TODO: Initialize to an appropriate value
+            //IDBObject expected = null; // TODO: Initialize to an appropriate value
+            //IDBObject actual;
+            //actual = IDBCollectionExtensions.Group(collection, key, cond, initial, reduce);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -522,7 +522,7 @@ namespace MongoDB.MSTest
             MapReduceInfo expected = null; // TODO: Initialize to an appropriate value
             MapReduceInfo actual;
             actual = IDBCollectionExtensions.MapReduce(collection, map, reduce, outputCollection, query);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -537,7 +537,7 @@ namespace MongoDB.MSTest
             MapReduceInfo expected = null; // TODO: Initialize to an appropriate value
             MapReduceInfo actual;
             actual = IDBCollectionExtensions.MapReduce(collection, command);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -588,7 +588,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBCollectionExtensions.TryInsert(collection, documents);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -604,7 +604,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBCollectionExtensions.TryInsert(collection, document, checkError);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -620,7 +620,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBCollectionExtensions.TrySave(collection, document, checkError);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

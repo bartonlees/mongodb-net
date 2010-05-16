@@ -128,12 +128,12 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void GetCollectionTest()
         {
-            IDatabase target = CreateIDatabase(); // TODO: Initialize to an appropriate value
-            Uri collectionUri = null; // TODO: Initialize to an appropriate value
-            IDBCollection expected = null; // TODO: Initialize to an appropriate value
-            IDBCollection actual;
-            actual = target.GetCollection(collectionUri);
-            Assert.AreEqual(expected, actual);
+            //IDatabase target = CreateIDatabase(); // TODO: Initialize to an appropriate value
+            //Uri collectionUri = null; // TODO: Initialize to an appropriate value
+            //IDBCollection expected = null; // TODO: Initialize to an appropriate value
+            //IDBCollection actual;
+            //actual = target.GetCollection(collectionUri);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -148,7 +148,7 @@ namespace MongoDB.MSTest
             IDatabase expected = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
             actual = target.GetSisterDatabase(name);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

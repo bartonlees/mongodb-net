@@ -172,7 +172,7 @@ namespace MongoDB.MSTest
             //TDoc expected = default(TDoc); // TODO: Initialize to an appropriate value
             //TDoc actual;
             //actual = target.CreateDocument<TDoc>(partial);
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -191,13 +191,13 @@ namespace MongoDB.MSTest
         public void ReadDocumentTestHelper<TDoc>()
             where TDoc : class , IDocument
         {
-            Stream stream = null; // TODO: Initialize to an appropriate value
-            WireProtocolReader target = new WireProtocolReader(stream); // TODO: Initialize to an appropriate value
-            bool partial = false; // TODO: Initialize to an appropriate value
-            TDoc expected = null; // TODO: Initialize to an appropriate value
-            TDoc actual;
-            actual = target.ReadDocument<TDoc>(partial);
-            Assert.AreEqual(expected, actual);
+            //Stream stream = null; // TODO: Initialize to an appropriate value
+            //WireProtocolReader target = new WireProtocolReader(stream); // TODO: Initialize to an appropriate value
+            //bool partial = false; // TODO: Initialize to an appropriate value
+            //TDoc expected = null; // TODO: Initialize to an appropriate value
+            //TDoc actual;
+            //actual = target.ReadDocument<TDoc>(partial);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -221,7 +221,7 @@ namespace MongoDB.MSTest
             //bool expected = false; // TODO: Initialize to an appropriate value
             //bool actual;
             //actual = target.ReadNextElement<TDoc>(o, partial);
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -245,7 +245,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.cstring();
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -261,7 +261,7 @@ namespace MongoDB.MSTest
             //object expected = null; // TODO: Initialize to an appropriate value
             //object actual;
             //actual = target.data_binary();
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -276,7 +276,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.data_string();
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

@@ -98,7 +98,7 @@ namespace MongoDB.MSTest
             //IDBCollection actual;
             //target.Collection = expected;
             //actual = target.Collection;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -115,7 +115,7 @@ namespace MongoDB.MSTest
             //bool actual;
             //target.Explain = expected;
             //actual = target.Explain;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -132,7 +132,7 @@ namespace MongoDB.MSTest
             //CursorFlags actual;
             //target.Flags = expected;
             //actual = target.Flags;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -149,7 +149,7 @@ namespace MongoDB.MSTest
             //IDBIndex actual;
             //target.Hint = expected;
             //actual = target.Hint;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -166,7 +166,7 @@ namespace MongoDB.MSTest
             //int actual;
             //target.NumberToReturn = expected;
             //actual = target.NumberToReturn;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -183,7 +183,7 @@ namespace MongoDB.MSTest
             //Nullable<int> actual;
             //target.NumberToSkip = expected;
             //actual = target.NumberToSkip;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -200,7 +200,7 @@ namespace MongoDB.MSTest
             //DBFieldSet actual;
             //target.OrderBy = expected;
             //actual = target.OrderBy;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -217,7 +217,7 @@ namespace MongoDB.MSTest
             //DBFieldSet actual;
             //target.ReturnFields = expected;
             //actual = target.ReturnFields;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -234,7 +234,7 @@ namespace MongoDB.MSTest
             //DBQuery actual;
             //target.Selector = expected;
             //actual = target.Selector;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -251,7 +251,7 @@ namespace MongoDB.MSTest
             //bool actual;
             //target.Snapshot = expected;
             //actual = target.Snapshot;
-            //Assert.AreEqual(expected, actual);
+            //expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

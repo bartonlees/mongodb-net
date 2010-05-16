@@ -164,7 +164,7 @@ namespace MongoDB.MSTest
             IDBResponse<TDoc> expected = null; // TODO: Initialize to an appropriate value
             IDBResponse<TDoc> actual;
             actual = target.Call<TDoc>(cmdCollection, msg);
-            Assert.AreEqual(expected, actual);
+            expected.Should().Be(actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

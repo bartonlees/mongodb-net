@@ -64,6 +64,10 @@ namespace MongoDB.MSTest
         //
         #endregion
 
+        private DBError GetInstance()
+        {
+            return new DBError(new DBObject() { { "errmsg", "ns not found" }, { "assertion", "my assertion" } });
+        }
 
         /// <summary>
         ///A test for DBError Constructor
@@ -71,9 +75,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBErrorConstructorTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            DBError target = new DBError(response);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBError target = GetInstance();
         }
 
         /// <summary>
@@ -82,11 +84,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ThrowTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            DBError target = new DBError(response); // TODO: Initialize to an appropriate value
-            string context = string.Empty; // TODO: Initialize to an appropriate value
-            target.Throw(context);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            DBError target = GetInstance();
+            string context = "MyContext"; 
+            new Action(() => target.Throw(context)).ShouldThrow<MongoException>();
         }
 
         /// <summary>
@@ -95,12 +95,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void ToCodeTest()
         {
-            string error = string.Empty; // TODO: Initialize to an appropriate value
-            DBError.Code expected = new DBError.Code(); // TODO: Initialize to an appropriate value
-            DBError.Code actual;
-            actual = DBError.ToCode(error);
-            expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBError.ToCode("E10003").Should().Be(DBError.Code.FailingUpdateOfCappedNS);
+            DBError.ToCode("E11000        ").Should().Be(DBError.Code.DuplicateKeyError);
+            DBError.ToCode("E11001 dsdfsd    fdf").Should().Be(DBError.Code.DuplicateKeyOnUpdate);
+            DBError.ToCode("E12000-fdfdfdfdfd").Should().Be(DBError.Code.IdxNoFails);
+            DBError.ToCode("E12001----------").Should().Be(DBError.Code.CannotSortMSSnapshot);
+            DBError.ToCode("E12010-3-3-3").Should().Be(DBError.Code.CannotIncAnIndexedField);
+            DBError.ToCode("E12011").Should().Be(DBError.Code.CannotSetAnIndexedField);
         }
 
         /// <summary>
@@ -109,11 +110,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AssertionTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            DBError target = new DBError(response); // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.Assertion;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBError target = GetInstance();
+            target.Assertion.Should().NotBeNull().And.NotBeEmpty();
         }
 
         /// <summary>
@@ -122,11 +120,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void MessageTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            DBError target = new DBError(response); // TODO: Initialize to an appropriate value
-            string actual;
-            actual = target.Message;
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBError target = GetInstance();
+            target.Message.Should().NotBeNull().And.NotBeEmpty();
         }
 
         /// <summary>
@@ -135,28 +130,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void NamespaceWasNotFoundTest()
         {
-            IDBObject response = null; // TODO: Initialize to an appropriate value
-            DBError target = new DBError(response); // TODO: Initialize to an appropriate value
-            bool actual;
-            actual = target.NamespaceWasNotFound;
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Response
-        ///</summary>
-        [TestMethod()]
-
-        public void ResponseTest()
-        {
-            //PrivateObject param0 = null; // TODO: Initialize to an appropriate value
-            //DBError_Accessor target = new DBError_Accessor(param0); // TODO: Initialize to an appropriate value
-            //IDBObject expected = null; // TODO: Initialize to an appropriate value
-            //IDBObject actual;
-            //target.Response = expected;
-            //actual = target.Response;
-            //expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBError target = GetInstance();
+            target.NamespaceWasNotFound.Should().BeTrue();
         }
     }
 }

@@ -84,31 +84,45 @@ namespace MongoDB.MSTest
         {
             DBConnectionOptions def = new DBConnectionOptions();
             DBConnectionOptions target = new DBConnectionOptions();
-            target.AutoConnectRetry = true;
+            target.AutoConnectRetry = !def.AutoConnectRetry;
+            target.ConnectionFactory = (a, b) => null;
             target.ConnectionPoolSize++;
-            target.NoDelay = true;
-            target.FireAndForgetUpdate = true;
+            target.FireAndForgetUpdate = !def.FireAndForgetUpdate;
+            target.LingerState = new LingerOption(true, 2);
+            target.NoDelay = !def.NoDelay;
             target.ReceiveBufferSize++;
+            target.ReceiveTimeout++;
             target.RetryTime++;
             target.SendBufferSize++;
+            target.SendTimeout++;
+            
             //Verify our assumptions
-            target.AutoConnectRetry.Should().BeTrue();
-            target.FireAndForgetUpdate.Should().BeTrue();
-            def.ConnectionPoolSize.Should().NotBe(target.ConnectionPoolSize);
-            target.NoDelay.Should().BeTrue();
-            def.ReceiveBufferSize.Should().NotBe(target.ReceiveBufferSize);
-            def.RetryTime.Should().NotBe(target.ConnectionPoolSize);
-            def.SendBufferSize.Should().NotBe(target.ConnectionPoolSize);
+            target.AutoConnectRetry.Should().Be(!def.AutoConnectRetry);
+            target.ConnectionFactory.Should().NotBe(def.ConnectionFactory);
+            target.ConnectionPoolSize.Should().NotBe(def.ConnectionPoolSize);
+            target.FireAndForgetUpdate.Should().Be(!def.FireAndForgetUpdate);
+            target.LingerState.Should().NotBe(def.LingerState);
+            target.NoDelay.Should().Be(!def.NoDelay);
+            target.ReceiveBufferSize.Should().NotBe(def.ReceiveBufferSize);
+            target.ReceiveTimeout.Should().NotBe(def.ReceiveTimeout);
+            target.RetryTime.Should().NotBe(def.RetryTime);
+            target.SendBufferSize.Should().NotBe(def.SendBufferSize);
+            target.SendTimeout.Should().NotBe(def.SendTimeout);
+
             //Reset
-            def.Reset();
+            target.Reset();
             //Verify the result
-            target.AutoConnectRetry.Should().BeFalse();
-            target.FireAndForgetUpdate.Should().BeFalse();
-            def.ConnectionPoolSize.Should().Be(target.ConnectionPoolSize);
-            target.NoDelay.Should().BeFalse();
-            def.ReceiveBufferSize.Should().Be(target.ReceiveBufferSize);
-            def.RetryTime.Should().Be(target.ConnectionPoolSize);
-            def.SendBufferSize.Should().Be(target.ConnectionPoolSize);
+            target.AutoConnectRetry.Should().Be(def.AutoConnectRetry, "AutoConnectRetry should have been reset");
+            target.ConnectionFactory.Should().Be(def.ConnectionFactory, "ConnectionFactory should have been reset");
+            target.ConnectionPoolSize.Should().Be(def.ConnectionPoolSize, "ConnectionPoolSize should have been reset");
+            target.FireAndForgetUpdate.Should().Be(def.FireAndForgetUpdate, "FireAndForgetUpdate should have been reset");
+            target.LingerState.Should().BeNull("LingerState should have been reset");
+            target.NoDelay.Should().Be(def.NoDelay, "NoDelay should have been reset");
+            target.ReceiveBufferSize.Should().Be(def.ReceiveBufferSize, "ReceiveBufferSize should have been reset");
+            target.ReceiveTimeout.Should().Be(def.ReceiveTimeout, "ReceiveTimeout should have been reset");
+            target.RetryTime.Should().Be(def.RetryTime, "RetryTime should have been reset");
+            target.SendBufferSize.Should().Be(def.SendBufferSize, "SendBufferSize should have been reset");
+            target.SendTimeout.Should().Be(def.SendTimeout, "SendTimeout should have been reset");
         }
 
         /// <summary>
@@ -204,7 +218,6 @@ namespace MongoDB.MSTest
             target.SendBufferSize = expected;
             actual = target.SendBufferSize;
             expected.Should().Be(actual);
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
         /// <summary>

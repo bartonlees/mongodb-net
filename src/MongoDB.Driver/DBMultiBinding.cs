@@ -2,6 +2,7 @@
 using MongoDB.Driver.Platform.Conditions;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace MongoDB.Driver
 {
@@ -13,22 +14,16 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="DBMultiBinding"/> class.
         /// </summary>
-        /// <param name="leftBinding">The left binding.</param>
-        /// <param name="rightBinding">The right binding.</param>
+        /// <param name="serverMultiBinding">The server multi binding.</param>
+        /// <param name="subBindings">The sub bindings.</param>
         /// <param name="readOnly">if set to <c>true</c> [read only].</param>
         public DBMultiBinding(IServerMultiBinding serverMultiBinding, IEnumerable<IDBBinding> subBindings, bool readOnly)
         {
             Condition.Requires(serverMultiBinding).IsNotNull();
-
             Condition.Requires(subBindings, "subBindings").IsNotNull();
-
-            List<IDBBinding> subBindingList = subBindings.ToList();
-            List<IDBBinding> uniqueBindings = subBindingList.Distinct(new UriEqualityComparer());
-
-            Condition.Requires(rightBinding, "rightBinding").IsNotNull().Evaluate(rightBinding.DatabaseName.Equals(leftBinding.DatabaseName), "In order to be paired, both DBBindings must include the same DatabaseName.");
+            _SubBindings = subBindings.Distinct(new UriEqualityComparer<IDBBinding>()).ToList();
+            Condition.Requires(_SubBindings, "SubBindings").IsLongerThan(1,"You must specify more than one unique database binding");
             ServerMultiBinding = serverMultiBinding;
-            LeftBinding = leftBinding;
-            RightBinding = rightBinding;
             ReadOnly = readOnly;
         }
 
@@ -54,15 +49,18 @@ namespace MongoDB.Driver
                 return;
 
             CycleSubBinding();// randomly choose a server to for ismaster query
-            IDBCollection collection = Server.Admin.CmdCollection;
+            IDBCollection collection = BoundDatabase.Server.Admin.CmdCollection;
             IDBObject res = collection.FindOne(DBQuery.IsMaster);
             if (1 == res.GetAsInt("ismaster"))
                 return; //Current binding is master
+            string hostAndPort = res.GetAsString("remote"); //of the form : "192.168.58.1:30001"
+            string[] parts = hostAndPort.Split(':');
+            IPAddress masterAddress = IPAddress.Parse(parts[0]);
 
-            IDBBinding other = LeftBinding.Address.Equals(_ActiveBinding.Address) ? RightBinding : LeftBinding;
-            string remote = res.GetAsString("remote");
-            if (!other.HostName.Equals(remote, StringComparison.CurrentCultureIgnoreCase))
-                throw new MongoException("Neither Binding in DBPairBinding is the Master.");
+            _ActiveBinding = SubBindings.FirstOrDefault(b => b.Address == masterAddress);
+            if (_ActiveBinding == null)
+                _ActiveBinding = SubBindings.First();
+
         }
 
         /// <summary>
@@ -72,14 +70,17 @@ namespace MongoDB.Driver
         /// </summary>
         public void CycleSubBinding()
         {
+            List<IDBBinding> availableBindings = null;
             if (_ActiveBinding == null)
             {
-                _ActiveBinding = new Random().Next(100) > 50 ? RightBinding : LeftBinding;
+                availableBindings = _SubBindings;
+                
             }
             else //Toggle
             {
-                _ActiveBinding = LeftBinding.Address.Equals(_ActiveBinding.Address) ? RightBinding : LeftBinding;
+                availableBindings = _SubBindings.Where(b => b.Uri != _ActiveBinding.Uri).ToList();
             }
+            _ActiveBinding = availableBindings[new Random().Next(availableBindings.Count)];
         }
 
         IDBBinding _ActiveBinding = null;
@@ -148,14 +149,9 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public IDBBinding GetSisterBinding(Uri name)
         {
-            DBMultiBinding sisterBinding = new DBMultiBinding(new DBBinding(LeftBinding.BoundDatabase.Binding, name), new DBBinding(RightBinding.BoundDatabase.Binding, name));
-            (sisterBinding as IInternalDBBinding).Initialize(Server);
+            IDBMultiBinding sisterBinding = ServerMultiBinding.GetDBMultiBinding(name);
+            sisterBinding.Bind(ServerMultiBinding.BoundServer.GetDatabase(sisterBinding));
             return sisterBinding;
-        }
-
-        public void Initialize(IServer server)
-        {
-            Server = server;
         }
 
         /// <summary>
@@ -167,18 +163,7 @@ namespace MongoDB.Driver
             get { return ActiveBinding.Uri; }
         }
 
-        /// <summary>
-        /// Gets or sets the left binding.
-        /// </summary>
-        /// <value>The left binding.</value>
-        public IDBBinding LeftBinding { get; private set; }
-        /// <summary>
-        /// Gets or sets the right binding.
-        /// </summary>
-        /// <value>The right binding.</value>
-        public IDBBinding RightBinding { get; private set; }
-
-
+        
         /// <summary>
         /// Says the specified CMD collection.
         /// </summary>
@@ -327,9 +312,11 @@ namespace MongoDB.Driver
             throw new NotImplementedException();
         }
 
-        public System.Collections.Generic.IEnumerable<IDBBinding> SubBindings
+
+        public List<IDBBinding> _SubBindings;
+        public IEnumerable<IDBBinding> SubBindings
         {
-            get { throw new NotImplementedException(); }
+            get { return _SubBindings; }
         }
 
         public void Bind(IDatabase database)

@@ -256,10 +256,10 @@ namespace MongoDB.MSTest
         ///A test for Server
         ///</summary>
         [TestMethod()]
-        public void ServerTest()
+        public void BoundDatabaseTest()
         {
             IDBBinding target = CreateIDBBinding(); // TODO: Initialize to an appropriate value
-            IServer actual;
+            IDatabase actual;
             actual = target.BoundDatabase;
             Assert.Inconclusive("Verify the correctness of this test method.");
         }

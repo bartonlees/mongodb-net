@@ -20,7 +20,7 @@ namespace MongoDB.Driver
             {
                 return binding.GetDBBinding(uri);
             }
-            return binding.GetDBBinding(new Uri(binding.ToUri(), uriString));
+            return binding.GetDBBinding(new Uri(binding.Uri, uriString));
         }
     }
 }

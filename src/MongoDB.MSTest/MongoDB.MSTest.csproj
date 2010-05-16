@@ -93,6 +93,7 @@
     <Compile Include="IDBIndexExtensionsTest.cs" />
     <Compile Include="IDBIndexTest.cs" />
     <Compile Include="IDBMessageTest.cs" />
+    <Compile Include="IDBMultiBindingTest.cs" />
     <Compile Include="IDBObjectCustomTest.cs" />
     <Compile Include="IDBObjectExtensionsTest.cs" />
     <Compile Include="IDBObjectTest.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="IServerBindingExtensionsTest.cs" />
     <Compile Include="IServerBindingTest.cs" />
     <Compile Include="IServerExtensionsTest.cs" />
+    <Compile Include="IServerMultiBindingTest.cs" />
     <Compile Include="IServerTest.cs" />
     <Compile Include="JsonIDBCollectionExtensionsTest.cs" />
     <Compile Include="LambdaTest.cs" />

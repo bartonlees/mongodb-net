@@ -130,8 +130,8 @@ namespace MongoDB.Driver
                 .IsNotNull();
             Condition.Requires(databaseUri, "name").IsNotNull();
             ReadOnly = readOnly;
-            Uri relative = databaseUri.IsAbsoluteUri ? serverBinding.ToUri().MakeRelativeUri(databaseUri) : databaseUri;
-            Uri = new Uri(serverBinding.ToUri(), relative);
+            Uri relative = databaseUri.IsAbsoluteUri ? serverBinding.Uri.MakeRelativeUri(databaseUri) : databaseUri;
+            Uri = new Uri(serverBinding.Uri, relative);
             Address = serverBinding.Address;
             ConnectionOptions = new DBConnectionOptions();
         }
@@ -463,9 +463,16 @@ namespace MongoDB.Driver
         }
 
 
-        public void Bind(IServer server)
+        public void Bind(IDatabase database)
         {
-            Server = server;
+            BoundDatabase = database;
+        }
+
+
+        public IDatabase BoundDatabase
+        {
+            get;
+            private set;
         }
     }
 }

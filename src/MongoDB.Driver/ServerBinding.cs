@@ -20,7 +20,7 @@ namespace MongoDB.Driver
     /// //Equivalent to "mongo://localhost:1910"
     /// </code>
     /// </example>
-    public class ServerBinding : IServerBinding
+    internal class ServerBinding : IServerBinding
     {
         /// <summary>
         /// Gets the end point represented by this binding.
@@ -106,28 +106,6 @@ namespace MongoDB.Driver
             }
         }
 
-
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServerBinding"/> class from a valid, absolute mongo URI string:
-        /// </summary>
-        /// <param name="address">The URL format.</param>
-        /// <param name="readOnly">if set to <c>true</c> this binding will be readonly.</param>
-        /// <example>
-        /// <code>
-        /// ServerBinding loopback = new ServerBinding("mongo://localhost");
-        /// ServerBinding ipv4loopback = new ServerBinding("mongo://127.0.0.1");
-        /// ServerBinding ipv6loopback = new ServerBinding("mongo://[::1]");
-        /// ServerBinding loopbackport = new ServerBinding("mongo://localhost:1910");
-        /// ServerBinding ipv4loopbackport = new ServerBinding("mongo://127.0.0.1:1910");
-        /// ServerBinding ipv6loopbackport = new ServerBinding("mongo://[::1]:1910");
-        /// </code>
-        /// </example>
-        public ServerBinding(string address, bool readOnly = false)
-            : this(new Uri(address, UriKind.Absolute), readOnly)
-        {
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ServerBinding"/> class.
         /// </summary>
@@ -159,24 +137,6 @@ namespace MongoDB.Driver
             {
                 _Addresses = Dns.GetHostAddresses(Uri.DnsSafeHost);
             }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServerBinding"/> class with the specified host and port
-        /// </summary>
-        /// <param name="host">The host.</param>
-        /// <param name="port">The port.</param>
-        /// <param name="readOnly">if set to <c>true</c> the binding is read only.</param>
-        /// <example caption="">
-        /// <code>
-        /// ServerBinding b = new ServerBinding("localhost", 1910);
-        /// //Result would be: "mongo://localhost:1910/db"
-        /// </code>
-        /// </example>
-        public ServerBinding(string host, int port, bool readOnly = false)
-            : this(port == ServerBinding.DefaultPort ? string.Format("mongo://{0}", host.Trim())
-                : string.Format("mongo://{0}:{1}", host.Trim(), port), readOnly)
-        {
         }
 
         /// <summary>
@@ -231,7 +191,7 @@ namespace MongoDB.Driver
 
         public void Bind(IServer server)
         {
-            Server = server;
+            BoundServer = server;
         }
     }
 }

@@ -17,20 +17,11 @@ namespace MongoDB.Driver
         /// Initializes a new instance of the <see cref="Server"/> class.
         /// </summary>
         /// <param name="binding">The binding.</param>
-        public Server(IServerBinding binding)
-            : this(binding, new DBConnectionOptions())
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Server"/> class.
-        /// </summary>
-        /// <param name="binding">The binding.</param>
         /// <param name="options">The options.</param>
         public Server(IServerBinding binding, DBConnectionOptions options)
         {
             Binding = binding;
-            Options = options;
+            Options = options ?? new DBConnectionOptions();
             Binding.Bind(this); //Initialize the binding
         }
 
@@ -41,24 +32,6 @@ namespace MongoDB.Driver
         public bool ReadOnly
         {
             get { return Binding.ReadOnly; }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Server"/> class.
-        /// </summary>
-        /// <param name="binding">The binding.</param>
-        public Server(Uri binding)
-            : this(new ServerBinding(binding))
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Server"/> class.
-        /// </summary>
-        /// <param name="binding">The binding.</param>
-        public Server(string binding)
-            : this(new ServerBinding(binding))
-        {
         }
 
         /// <summary>
@@ -145,7 +118,6 @@ namespace MongoDB.Driver
             }
         }
 
-
         /// <summary>
         /// Drops the database.
         /// </summary>
@@ -185,7 +157,7 @@ namespace MongoDB.Driver
         /// <value>The URI.</value>
         public Uri Uri
         {
-            get { return Binding.ToUri(); }
+            get { return Binding.Uri; }
         }
 
 

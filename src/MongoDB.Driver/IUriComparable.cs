@@ -10,23 +10,26 @@ namespace MongoDB.Driver
     /// </summary>
     public interface IUriComparable
     {
+        /// <summary>
+        /// Gets the URI for this instance.
+        /// </summary>
+        /// <value>The URI.</value>
         Uri Uri { get; }
     }
 
     /// <summary>
     /// An equality comparer that investigates the Uri associated with an object
     /// </summary>
-    public class UriEqualityComparer : IEqualityComparer<IUriComparable>
+    public class UriEqualityComparer<T> : IEqualityComparer<T> where T:IUriComparable
     {
-
-        public bool Equals(IUriComparable x, IUriComparable y)
+        public bool Equals(T x, T y)
         {
-            return x.ID == y.ID;
+            return x.Uri == y.Uri;
         }
 
-        public int GetHashCode(IUriComparable obj)
+        public int GetHashCode(T obj)
         {
-            return obj.ID.GetHashCode();
+            return obj.Uri.GetHashCode();
         }
     }
 }

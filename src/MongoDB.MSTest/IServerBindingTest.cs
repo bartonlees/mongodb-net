@@ -89,15 +89,15 @@ namespace MongoDB.MSTest
         }
 
         /// <summary>
-        ///A test for ToUri
+        ///A test for Uri
         ///</summary>
         [TestMethod()]
-        public void ToUriTest()
+        public void UriTest()
         {
             IServerBinding target = CreateIServerBinding(); // TODO: Initialize to an appropriate value
             Uri expected = null; // TODO: Initialize to an appropriate value
             Uri actual;
-            actual = target.ToUri();
+            actual = target.Uri;
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }

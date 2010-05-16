@@ -34,6 +34,8 @@ namespace MongoDB.Driver
             LingerState = new LingerOption(false, 0);
             ConnectionFactory = (ep, co) => new DBConnection(ep, co);
             NoDelay = true;
+            FireAndForgetUpdate = false;
+            LingerState = null;
         }
 
         /// <summary>

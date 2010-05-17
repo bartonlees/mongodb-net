@@ -57,5 +57,38 @@ namespace MongoDB.Driver
             /// </remarks>
             public const string SystemJs = "system.js";
         }
+
+        /// <summary>
+        /// Well-Known, Special field names
+        /// </summary>
+        public static class SpecialFieldNames
+        {
+            /// <summary>
+            /// The id of a referenced object
+            /// </summary>
+            public const string Id = "$id";
+
+            /// <summary>
+            /// A referenced collection's name
+            /// </summary>
+            public const string Ref = "$ref";
+
+            /// <summary>
+            /// Hints at what index to use for a query
+            /// </summary>
+            public const string Hint = "$hint";
+
+            /// <summary>
+            /// Requests a performance explanation for the query
+            /// </summary>
+            public const string Explain = "$explain";
+
+            /// <summary>
+            /// Requests that the operation occur against a snapshot of the data
+            /// </summary>
+            public const string Snapshot = "$snapshot";
+        }
+
+        
     }
 }

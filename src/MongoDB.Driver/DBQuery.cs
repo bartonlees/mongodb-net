@@ -12,6 +12,65 @@ namespace MongoDB.Driver
     public class DBQuery : DBObject
     {
         /// <summary>
+        /// Well-Known Query Operations
+        /// </summary>
+        public static class ConditionalOperation
+        {
+            /// <summary>
+            /// Not equals
+            /// </summary>
+            public const string Ne = "$ne";
+            /// <summary>
+            /// Greater than
+            /// </summary>
+            public const string Gt = "$gt";
+            /// <summary>
+            /// Less than
+            /// </summary>
+            public const string Lt = "$lt";
+            /// <summary>
+            /// Less than or equal to
+            /// </summary>
+            public const string Lte = "$lte";
+            /// <summary>
+            /// Greater than or equal to
+            /// </summary>
+            public const string Gte = "$gte";
+            /// <summary>
+            /// The $in operator is analogous to the SQL IN modifier, allowing you to specify an array of possible matches.
+            /// </summary>
+            public const string In = "$in";
+            /// <summary>
+            /// The $nin operator is similar to $in except that it selects objects for which the specified field does not have any value in the specified array.
+            /// </summary>
+            public const string Nin = "$nin";
+            /// <summary>
+            /// The $all operator is similar to $in, but instead of matching any value in the specified array all values in the array must be matched
+            /// </summary>
+            public const string All = "$all";
+            /// <summary>
+            /// The $size operator matches any array with the specified number of elements
+            /// </summary>
+            public const string Size = "$size";
+            /// <summary>
+            /// The $mod operator allows you to do fast modulo queries to replace a common case for where clauses.
+            /// </summary>
+            public const string Mod = "$mod";
+            /// <summary>
+            /// $mod divisor
+            /// </summary>
+            public const string Divisor = "divisor";
+            /// <summary>
+            /// The $mod operator allows you to do fast modulo queries to replace a common case for where clauses.
+            /// </summary>
+            public const string Remainder = "remainder";
+            /// <summary>
+            /// Check for existence (or lack thereof) of a field.
+            /// </summary>
+            public const string Exists = "$exists";
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DBQuery"/> class.
         /// </summary>
         public DBQuery()
@@ -67,7 +126,7 @@ namespace MongoDB.Driver
         /// <value>The query that matches all records in the collection.</value>
         public static DBQuery SelectAll { get { return _SelectAll; } }
 
-        static DBQuery _IsMaster = (DBQuery)new DBQuery().Append("ismaster", 1);
+        static DBQuery _IsMaster = new DBQuery("ismaster", 1);
         /// <summary>
         /// Gets the "is master?" query.
         /// </summary>

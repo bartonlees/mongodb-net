@@ -85,7 +85,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator !=(DBQueryParameter lhs, object rhs)
         {
-            lhs.AppendOperation("$ne", rhs);
+            lhs.AppendOperation(DBQuery.ConditionalOperation.Ne, rhs);
             return true;
         }
 
@@ -109,7 +109,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator !=(object lhs, DBQueryParameter rhs)
         {
-            rhs.AppendOperation("$ne", lhs);
+            rhs.AppendOperation(DBQuery.ConditionalOperation.Ne, lhs);
             return true; //to enforce full expression visitation
         }
 
@@ -121,7 +121,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator >(DBQueryParameter lhs, object rhs)
         {
-            lhs.AppendOperation("$gt", rhs);
+            lhs.AppendOperation(DBQuery.ConditionalOperation.Gt, rhs);
             return true; //to enforce full expression visitation
         }
 
@@ -133,7 +133,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator <(DBQueryParameter lhs, object rhs)
         {
-            lhs.AppendOperation("$lt", rhs);
+            lhs.AppendOperation(DBQuery.ConditionalOperation.Lt, rhs);
             return true; //to enforce full expression visitation
         }
 
@@ -145,7 +145,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator >(object lhs, DBQueryParameter rhs)
         {
-            rhs.AppendOperation("$lte", lhs);
+            rhs.AppendOperation(DBQuery.ConditionalOperation.Lte, lhs);
             return true; //to enforce full expression visitation
         }
 
@@ -157,7 +157,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator <(object lhs, DBQueryParameter rhs)
         {
-            rhs.AppendOperation("$gte", lhs);
+            rhs.AppendOperation(DBQuery.ConditionalOperation.Gte, lhs);
             return true; //to enforce full expression visitation
         }
 
@@ -170,7 +170,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator >=(DBQueryParameter lhs, object rhs)
         {
-            lhs.AppendOperation("$gte", rhs);
+            lhs.AppendOperation(DBQuery.ConditionalOperation.Gte, rhs);
             return true; //to enforce full expression visitation
         }
 
@@ -182,7 +182,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator <=(DBQueryParameter lhs, object rhs)
         {
-            lhs.AppendOperation("$lte", rhs);
+            lhs.AppendOperation(DBQuery.ConditionalOperation.Lte, rhs);
             return true; //to enforce full expression visitation
         }
 
@@ -194,7 +194,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator >=(object lhs, DBQueryParameter rhs)
         {
-            rhs.AppendOperation("$lt", lhs);
+            rhs.AppendOperation(DBQuery.ConditionalOperation.Lt, lhs);
             return true; //to enforce full expression visitation
         }
 
@@ -206,7 +206,7 @@ namespace MongoDB.Driver
         /// <returns>The result of the operator.</returns>
         public static bool operator <=(object lhs, DBQueryParameter rhs)
         {
-            rhs.AppendOperation("$gt", lhs);
+            rhs.AppendOperation(DBQuery.ConditionalOperation.Gt, lhs);
             return true; //to enforce full expression visitation
         }
 
@@ -217,7 +217,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool In(IList list)
         {
-            AppendOperation("$in", list);
+            AppendOperation(DBQuery.ConditionalOperation.In, list);
             return true; //to enforce full expression visitation
         }
 
@@ -228,7 +228,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool In(params object[] list)
         {
-            AppendOperation("$in", list);
+            AppendOperation(DBQuery.ConditionalOperation.In, list);
             return true; //to enforce full expression visitation
         }
 
@@ -239,7 +239,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Nin(params object[] list)
         {
-            AppendOperation("$nin", list);
+            AppendOperation(DBQuery.ConditionalOperation.Nin, list);
             return true; //to enforce full expression visitation
         }
 
@@ -250,7 +250,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Nin(IList list)
         {
-            AppendOperation("$nin", list);
+            AppendOperation(DBQuery.ConditionalOperation.Nin, list);
             return true; //to enforce full expression visitation
         }
 
@@ -261,7 +261,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool All(IList list)
         {
-            AppendOperation("$all", list);
+            AppendOperation(DBQuery.ConditionalOperation.All, list);
             return true; //to enforce full expression visitation
         }
 
@@ -272,7 +272,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Size(int size)
         {
-            AppendOperation("$size", size);
+            AppendOperation(DBQuery.ConditionalOperation.Size, size);
             return true; //to enforce full expression visitation
         }
 
@@ -283,7 +283,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Size(long size)
         {
-            AppendOperation("$size", size);
+            AppendOperation(DBQuery.ConditionalOperation.Size, size);
             return true; //to enforce full expression visitation
         }
 
@@ -295,9 +295,9 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Mod(int divisor, int remainder)
         {
-            Condition.Requires(divisor, "divisor").IsGreaterThan(0);
-            Condition.Requires(remainder, "remainder").IsGreaterOrEqual(0);
-            AppendOperation("$mod", new int[] { divisor, remainder });
+            Condition.Requires(divisor, DBQuery.ConditionalOperation.Divisor).IsGreaterThan(0);
+            Condition.Requires(remainder, DBQuery.ConditionalOperation.Remainder).IsGreaterOrEqual(0);
+            AppendOperation(DBQuery.ConditionalOperation.Mod, new int[] { divisor, remainder });
             return true; //to enforce full expression visitation
         }
 
@@ -309,9 +309,9 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Mod(long divisor, long remainder)
         {
-            Condition.Requires(divisor, "divisor").IsGreaterThan(0L);
-            Condition.Requires(remainder, "remainder").IsGreaterOrEqual(0L);
-            AppendOperation("$mod", new long[] { divisor, remainder });
+            Condition.Requires(divisor, DBQuery.ConditionalOperation.Divisor).IsGreaterThan(0L);
+            Condition.Requires(remainder, DBQuery.ConditionalOperation.Remainder).IsGreaterOrEqual(0L);
+            AppendOperation(DBQuery.ConditionalOperation.Mod, new long[] { divisor, remainder });
             return true; //to enforce full expression visitation
         }
 
@@ -321,7 +321,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Exists()
         {
-            AppendOperation("$exists", true);
+            AppendOperation(DBQuery.ConditionalOperation.Exists, true);
             return true; //to enforce full expression visitation
         }
 
@@ -331,7 +331,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public bool Nexists()
         {
-            AppendOperation("$exists", false);
+            AppendOperation(DBQuery.ConditionalOperation.Exists, false);
             return true; //to enforce full expression visitation
         }
 

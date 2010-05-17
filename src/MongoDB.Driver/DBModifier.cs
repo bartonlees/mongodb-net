@@ -11,6 +11,57 @@ namespace MongoDB.Driver
     public class DBModifier : DBObject
     {
         /// <summary>
+        /// Well-Known Modifying commands
+        /// </summary>
+        public static class ModifierOperation
+        {
+            /// <summary>
+            /// 
+            /// </summary>
+            public const string Add = "$add";
+            /// <summary>
+            /// increments <c>field</c> by the number <c>value</c> if <c>field</c> is present in the object, otherwise sets <c>field</c> to the number <c>value</c>.
+            /// </summary>
+            public const string Inc = "$inc";
+            /// <summary>
+            /// sets <c>field</c> to <c>value</c>. All datatypes are supported with $set.
+            /// </summary>
+            public const string Set = "$set";
+            /// <summary>
+            /// Deletes a given <c>field</c>. v1.3+
+            /// </summary>
+            public const string UnSet = "$unset";
+            /// <summary>
+            /// Appends value to <c>field</c>, if <c>field</c> is an existing array, otherwise sets <c>field</c> to the array [<c>value</c>] if <c>field</c> is not present. If <c>field</c> is present but is not an array, an error condition is raised.
+            /// </summary>
+            public const string Push = "$push";
+            /// <summary>
+            /// appends each value in value_array to field, if field is an existing array, otherwise sets field to the array value_array if field is not present. If field is present but is not an array, an error condition is raised.
+            /// </summary>
+            public const string PushAll = "$pushAll";
+            /// <summary>
+            /// Adds value to the array only if its not in the array already.
+            /// </summary>
+            public const string AddToSet = "$addToSet";
+            /// <summary>
+            /// Helper field for array operations
+            /// </summary>
+            public const string Each = "$each";
+            /// <summary>
+            /// removes the last/first element in an array. v1.1+
+            /// </summary>
+            public const string Pop = "$pop";
+            /// <summary>
+            /// removes all occurrences of value from field, if field is an array. If field is present but is not an array, an error condition is raised.
+            /// </summary>
+            public const string Pull = "$pull";
+            /// <summary>
+            /// removes all occurrences of each value in value_array from field, if field is an array. If field is present but is not an array, an error condition is raised.
+            /// </summary>
+            public const string PullAll = "$pullAll";
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DBModifier"/> class.
         /// </summary>
         public DBModifier()
@@ -46,11 +97,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Inc(string fieldName, object value)
         {
-            if (!ContainsKey("$inc"))
+            if (!ContainsKey(ModifierOperation.Inc))
             {
-                this["$inc"] = new DBObject();
+                this[ModifierOperation.Inc] = new DBObject();
             }
-            this.GetAsIDBObject("$inc")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.Inc)[fieldName] = value;
             return this;
         }
 
@@ -62,11 +113,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Set(string fieldName, object value)
         {
-            if (!ContainsKey("$set"))
+            if (!ContainsKey(ModifierOperation.Set))
             {
-                this["$set"] = new DBObject();
+                this[ModifierOperation.Set] = new DBObject();
             }
-            this.GetAsIDBObject("$set")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.Set)[fieldName] = value;
             return this;
         }
 
@@ -78,11 +129,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Unset(string fieldName, object value)
         {
-            if (!ContainsKey("$unset"))
+            if (!ContainsKey(ModifierOperation.UnSet))
             {
-                this["$unset"] = new DBObject();
+                this[ModifierOperation.UnSet] = new DBObject();
             }
-            this.GetAsIDBObject("$unset")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.UnSet)[fieldName] = value;
             return this;
         }
 
@@ -94,11 +145,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Push(string fieldName, object value)
         {
-            if (!ContainsKey("$push"))
+            if (!ContainsKey(ModifierOperation.Push))
             {
-                this["$push"] = new DBObject();
+                this[ModifierOperation.Push] = new DBObject();
             }
-            this.GetAsIDBObject("$push")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.Push)[fieldName] = value;
             return this;
         }
 
@@ -110,11 +161,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier PushAll(string fieldName, IList value)
         {
-            if (!ContainsKey("$pushAll"))
+            if (!ContainsKey(ModifierOperation.PushAll))
             {
-                this["$pushAll"] = new DBObject();
+                this[ModifierOperation.PushAll] = new DBObject();
             }
-            this.GetAsIDBObject("$pushAll")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.PushAll)[fieldName] = value;
             return this;
         }
 
@@ -126,11 +177,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier AddToSet(string fieldName, object value)
         {
-            if (!ContainsKey("$addToSet"))
+            if (!ContainsKey(ModifierOperation.AddToSet))
             {
-                this["$addToSet"] = new DBObject();
+                this[ModifierOperation.AddToSet] = new DBObject();
             }
-            this.GetAsIDBObject("$addToSet")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.AddToSet)[fieldName] = value;
             return this;
         }
 
@@ -142,7 +193,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier AddEachToSet(string fieldName, IList value)
         {
-            return AddToSet(fieldName, new DBObject("$each", value));
+            return AddToSet(fieldName, new DBObject(ModifierOperation.Each, value));
         }
 
         /// <summary>
@@ -153,11 +204,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Pop(string fieldName, bool fromTop = true)
         {
-            if (!ContainsKey("$pop"))
+            if (!ContainsKey(ModifierOperation.Pop))
             {
-                this["$pop"] = new DBObject();
+                this[ModifierOperation.Pop] = new DBObject();
             }
-            this.GetAsIDBObject("$pop")[fieldName] = fromTop ? 1 : -1;
+            this.GetAsIDBObject(ModifierOperation.Pop)[fieldName] = fromTop ? 1 : -1;
             return this;
         }
 
@@ -169,11 +220,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Pull(string fieldName, object value)
         {
-            if (!ContainsKey("$pull"))
+            if (!ContainsKey(ModifierOperation.Pull))
             {
-                this["$pull"] = new DBObject();
+                this[ModifierOperation.Pull] = new DBObject();
             }
-            this.GetAsIDBObject("$pull")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.Pull)[fieldName] = value;
             return this;
         }
 
@@ -185,11 +236,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier PullAll(string fieldName, IList value)
         {
-            if (!ContainsKey("$pullAll"))
+            if (!ContainsKey(ModifierOperation.PullAll))
             {
-                this["$pullAll"] = new DBObject();
+                this[ModifierOperation.PullAll] = new DBObject();
             }
-            this.GetAsIDBObject("$pullAll")[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.PullAll)[fieldName] = value;
             return this;
         }
     }

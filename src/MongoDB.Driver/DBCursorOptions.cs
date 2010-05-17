@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using MongoDB.Driver.Platform.Conditions;
 
 namespace MongoDB.Driver
@@ -28,7 +29,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// 
+    /// Represents the details of a query that results in a DBCursor
     /// </summary>
     public class DBCursorOptions
     {
@@ -80,16 +81,24 @@ namespace MongoDB.Driver
             if (limit.HasValue)
                 Limit = limit;
 
-
-            //            _addToQueryObject(foo, "query", Selector, true);
-            //            _addToQueryObject(foo, "orderby", OrderByFieldSet, false);
-            //            _addToQueryObject(foo, "$hint", _hint);
-            //            if (_explain)
-            //                foo["$explain"] = true;
-            //            if (_snapshot)
-            //                foo["$snapshot"] = true;
-
-
+            //If we have special query details
+            if (OrderBy != null && OrderBy.Keys.Any() ||
+                Hint != null ||
+                Explain)
+            {
+                //Push everything into a container
+                DBQuery query = Selector;
+                Selector = new DBQuery();
+                Selector["query"] = query;
+                if (OrderBy != null && OrderBy.Keys.Any())
+                    Selector["orderby"] = OrderBy;
+                if (Hint != null)
+                    Selector["$hint"] = Hint;
+                if (Explain)
+                    Selector["$explain"] = true;
+                if (Snapshot)
+                    Selector["$snapshot"] = true;
+            }
         }
 
         /// <summary>

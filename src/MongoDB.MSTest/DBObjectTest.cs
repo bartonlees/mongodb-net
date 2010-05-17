@@ -119,28 +119,8 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectConstructorTest()
         {
-            string key1 = string.Empty; // TODO: Initialize to an appropriate value
-            object value1 = null; // TODO: Initialize to an appropriate value
-            string key2 = string.Empty; // TODO: Initialize to an appropriate value
-            object value2 = null; // TODO: Initialize to an appropriate value
-            DBObject target = new DBObject(key1, value1, key2, value2);
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
-        /// <summary>
-        ///A test for DBObject Constructor
-        ///</summary>
-        [TestMethod()]
-        public void DBObjectConstructorTest1()
-        {
-            string key1 = string.Empty; // TODO: Initialize to an appropriate value
-            object value1 = null; // TODO: Initialize to an appropriate value
-            string key2 = string.Empty; // TODO: Initialize to an appropriate value
-            object value2 = null; // TODO: Initialize to an appropriate value
-            string key3 = string.Empty; // TODO: Initialize to an appropriate value
-            object value3 = null; // TODO: Initialize to an appropriate value
-            DBObject target = new DBObject(key1, value1, key2, value2, key3, value3);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBObject target = new DBObject("a", 1);
+            target["a"].Should().Be(1);
         }
 
         /// <summary>
@@ -149,20 +129,7 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void DBObjectConstructorTest2()
         {
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBObject target = new DBObject(key, value);
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
-        /// <summary>
-        ///A test for DBObject Constructor
-        ///</summary>
-        [TestMethod()]
-        public void DBObjectConstructorTest3()
-        {
-            DBObject target = new DBObject();
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBObject target = new DBObject();            
         }
 
         /// <summary>
@@ -188,14 +155,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AppendTest()
         {
-            //DBObject target = new DBObject(); // TODO: Initialize to an appropriate value
-            //string key = string.Empty; // TODO: Initialize to an appropriate value
-            //object val = null; // TODO: Initialize to an appropriate value
-            //DBObject expected = null; // TODO: Initialize to an appropriate value
-            //DBObject actual;
-            //actual = target.Append(key, val);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBObject target = new DBObject();
+            target.Count.Should().Be(0);
+            target.Append("a", 1);
+            target.Count.Should().Be(1);
+            target.Append("b", 2);
+            target.Count.Should().Be(2);
+            target["b"].Should().Be(2);
         }
 
         /// <summary>

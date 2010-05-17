@@ -110,7 +110,7 @@ namespace MongoDB.MSTest
             IDatabase expected = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
             actual = target.GetDatabase(name);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -125,7 +125,7 @@ namespace MongoDB.MSTest
             IDatabase expected = null; // TODO: Initialize to an appropriate value
             IDatabase actual;
             actual = target.GetDatabase(binding);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

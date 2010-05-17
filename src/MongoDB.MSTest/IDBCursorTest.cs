@@ -218,7 +218,7 @@ namespace MongoDB.MSTest
             //IDBCursor expected = null; // TODO: Initialize to an appropriate value
             //IDBCursor actual;
             //actual = target.Copy();
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -233,7 +233,7 @@ namespace MongoDB.MSTest
             Nullable<long> actual;
             target.CursorID = expected;
             actual = target.CursorID;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

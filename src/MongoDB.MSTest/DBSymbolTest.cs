@@ -89,7 +89,7 @@ namespace MongoDB.MSTest
             //string actual;
             //target.Symbol = expected;
             //actual = target.Symbol;
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

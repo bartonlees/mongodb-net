@@ -172,7 +172,7 @@ namespace MongoDB.MSTest
             object expected = null; // TODO: Initialize to an appropriate value
             object actual;
             actual = IDatabaseExtensions.Evaluate(db, expression, args);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -186,7 +186,7 @@ namespace MongoDB.MSTest
             DBError expected = null; // TODO: Initialize to an appropriate value
             DBError actual;
             actual = IDatabaseExtensions.ForceError(db);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -201,7 +201,7 @@ namespace MongoDB.MSTest
             //IDBCollection expected = null; // TODO: Initialize to an appropriate value
             //IDBCollection actual;
             //actual = IDatabaseExtensions.GetCollection(db, collectionUri);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -215,7 +215,7 @@ namespace MongoDB.MSTest
             //IEnumerable<Uri> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<Uri> actual;
             //actual = IDatabaseExtensions.GetCollectionNames(db);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

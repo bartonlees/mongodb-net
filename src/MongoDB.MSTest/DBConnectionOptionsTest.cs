@@ -147,7 +147,7 @@ namespace MongoDB.MSTest
             int actual;
             target.ConnectionPoolSize = expected;
             actual = target.ConnectionPoolSize;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace MongoDB.MSTest
             LingerOption actual;
             target.LingerState = expected;
             actual = target.LingerState;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace MongoDB.MSTest
             bool actual;
             target.NoDelay = expected;
             actual = target.NoDelay;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace MongoDB.MSTest
             int actual;
             target.ReceiveBufferSize = expected;
             actual = target.ReceiveBufferSize;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace MongoDB.MSTest
             long actual;
             target.RetryTime = expected;
             actual = target.RetryTime;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace MongoDB.MSTest
             int actual;
             target.SendBufferSize = expected;
             actual = target.SendBufferSize;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         /// <summary>
@@ -231,7 +231,7 @@ namespace MongoDB.MSTest
             bool actual;
             target.FireAndForgetUpdate = expected;
             actual = target.FireAndForgetUpdate;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
     }
 }

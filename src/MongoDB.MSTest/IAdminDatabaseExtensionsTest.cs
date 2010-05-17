@@ -100,7 +100,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = IAdminDatabaseExtensions.CopyDatabaseGetNonce(adminDatabase, fromDatabase);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -127,7 +127,7 @@ namespace MongoDB.MSTest
             //IDBCollection expected = null; // TODO: Initialize to an appropriate value
             //IDBCollection actual;
             //actual = IAdminDatabaseExtensions.GetCmdCollection(db);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

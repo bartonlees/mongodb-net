@@ -91,7 +91,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.GetOptions();
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -107,7 +107,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.Pattern;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

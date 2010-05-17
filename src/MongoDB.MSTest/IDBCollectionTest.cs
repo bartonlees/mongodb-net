@@ -330,11 +330,11 @@ namespace MongoDB.MSTest
             Assert.AreEqual(obj["test"], 2);
             Assert.AreEqual(obj.ContainsKey("z"), false);
 
-            obj = c.FindOne(Lambda.Query(test => test == 1));
+            obj = c.FindOne(Where.Field(test => test == 1));
             Assert.AreEqual(obj["test"], 1);
             Assert.AreEqual(obj["y"], 2);
 
-            obj = c.FindOne(Lambda.Query(test => test == 1), "y");
+            obj = c.FindOne(Where.Field(test => test == 1), "y");
             Assert.AreEqual(obj.ContainsKey("test"), false);
             Assert.AreEqual(obj["y"], 2);
         }
@@ -386,7 +386,7 @@ namespace MongoDB.MSTest
             IList l = c.Distinct("test");
             Assert.AreEqual(10, l.Count);
 
-            l = c.Distinct("test", Lambda.Query(_id => _id > 95));
+            l = c.Distinct("test", Where.Field(_id => _id > 95));
             Assert.AreEqual(4, l.Count);
 
         }

@@ -81,6 +81,7 @@
     <Compile Include="Command\ServerStatus.cs" />
     <Compile Include="Command\Admin\ShutDown.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Do.cs" />
     <Compile Include="IServerMultiBinding.cs" />
     <Compile Include="IDBMultiBinding.cs" />
     <Compile Include="IServerBindingExtensions.cs" />
@@ -101,7 +102,6 @@
     <Compile Include="IDBIndex.cs" />
     <Compile Include="IDocument.cs" />
     <Compile Include="IUriComparable.cs" />
-    <Compile Include="Lambda.cs" />
     <Compile Include="Properties\AssemblyInfo.vs.cs" />
     <Compile Include="ServerMultiBinding.cs" />
     <Compile Include="IServerBinding.cs" />
@@ -155,6 +155,7 @@
     <Compile Include="Platform\Util\Pool.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="UriExtensions.cs" />
+    <Compile Include="Where.cs" />
     <Compile Include="WireProtocolReader.cs" />
     <Compile Include="WireProtocolWriter.cs" />
     <Compile Include="WireProtocol.cs" />

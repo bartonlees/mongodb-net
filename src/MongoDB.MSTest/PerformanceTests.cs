@@ -124,7 +124,7 @@ namespace MongoDB.Driver.Test
             double start = (double)DateTime.Now.Ticks;
             for (int t = 0; t < perTrial; t++)
             {
-                IDBObject result = c.FindOne(Lambda.Query(test => test == val));
+                IDBObject result = c.FindOne(Where.Field(test => test == val));
             }
             double total = ((double)DateTime.Now.Ticks) - start;
             int opsPerSec = (int)(perTrial / (total / 1000.0));
@@ -139,7 +139,7 @@ namespace MongoDB.Driver.Test
             double start = (double)DateTime.Now.Ticks;
             for (int t = 0; t < perTrial; t++)
             {
-                using (IDBCursor cursor = c.GetCursor(Lambda.Query(test => test == i)))
+                using (IDBCursor cursor = c.GetCursor(Where.Field(test => test == i)))
                 {
                     foreach (IDBObject obj in cursor)
                     {
@@ -240,7 +240,7 @@ namespace MongoDB.Driver.Test
             double start = (double)DateTime.Now.Ticks;
             for (int i = 0; i < perTrial; i++)
             {
-                using (IDBCursor cursor = c.GetCursor(Lambda.Query(test => test > min && test < max)))
+                using (IDBCursor cursor = c.GetCursor(Where.Field(test => test > min && test < max)))
                 {
                     foreach (IDBObject dbo in cursor)
                     {

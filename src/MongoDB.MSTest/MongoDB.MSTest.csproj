@@ -108,7 +108,6 @@
     <Compile Include="IServerTest.cs" />
     <Compile Include="IUriComparableTest.cs" />
     <Compile Include="JsonIDBCollectionExtensionsTest.cs" />
-    <Compile Include="LambdaTest.cs" />
     <Compile Include="LastErrorTest.cs" />
     <Compile Include="MapReduceInfoTest.cs" />
     <Compile Include="MongoExceptionTest.cs" />

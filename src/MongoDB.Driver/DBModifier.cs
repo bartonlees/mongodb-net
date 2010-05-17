@@ -30,7 +30,7 @@ namespace MongoDB.Driver
             /// <summary>
             /// Deletes a given <c>field</c>. v1.3+
             /// </summary>
-            public const string UnSet = "$unset";
+            public const string Unset = "$unset";
             /// <summary>
             /// Appends value to <c>field</c>, if <c>field</c> is an existing array, otherwise sets <c>field</c> to the array [<c>value</c>] if <c>field</c> is not present. If <c>field</c> is present but is not an array, an error condition is raised.
             /// </summary>
@@ -129,11 +129,11 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public DBModifier Unset(string fieldName, object value)
         {
-            if (!ContainsKey(ModifierOperation.UnSet))
+            if (!ContainsKey(ModifierOperation.Unset))
             {
-                this[ModifierOperation.UnSet] = new DBObject();
+                this[ModifierOperation.Unset] = new DBObject();
             }
-            this.GetAsIDBObject(ModifierOperation.UnSet)[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.Unset)[fieldName] = value;
             return this;
         }
 

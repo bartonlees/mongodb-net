@@ -169,7 +169,6 @@
     <Compile Include="IDBObject.cs" />
     <Compile Include="DBConnection.cs" />
     <Compile Include="DBRef.cs" />
-    <Compile Include="DBRegex.cs" />
     <Compile Include="DBSymbol.cs" />
     <Compile Include="DBTimestamp.cs" />
     <Compile Include="DBUndefined.cs" />

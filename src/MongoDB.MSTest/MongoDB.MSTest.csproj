@@ -73,7 +73,6 @@
     <Compile Include="DBQueryParameterTest.cs" />
     <Compile Include="DBQueryTest.cs" />
     <Compile Include="DBRefTest.cs" />
-    <Compile Include="DBRegexTest.cs" />
     <Compile Include="DBSymbolTest.cs" />
     <Compile Include="DBTimestampTest.cs" />
     <Compile Include="DBUndefinedTest.cs" />

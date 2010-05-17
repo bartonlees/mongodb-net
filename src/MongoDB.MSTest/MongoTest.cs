@@ -134,9 +134,9 @@ namespace MongoDB.MSTest
             IServer ipv4loopbackport = Mongo.GetServer("mongo://127.0.0.1:1910");
             IServer ipv6loopbackport = Mongo.GetServer("mongo://[::1]:1910");
 
-            loopbackport.Should().Be(loopback, "port number differs");
-            ipv4loopbackport.Should().Be(ipv4loopback, "port number differs");
-            ipv6loopbackport.Should().Be(ipv6loopback, "port number differs");
+            loopbackport.Should().NotBe(loopback, "port number differs");
+            ipv4loopbackport.Should().NotBe(ipv4loopback, "port number differs");
+            ipv6loopbackport.Should().NotBe(ipv6loopback, "port number differs");
 
             IServer host_port_dbname = Mongo.GetServer("localhost", 1910);
 

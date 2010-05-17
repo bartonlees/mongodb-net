@@ -42,37 +42,6 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Convenience constructor.
-        /// Initializes a new instance of the <see cref="DBObject"/> class.
-        /// </summary>
-        /// <param name="key1">The key1.</param>
-        /// <param name="value1">The value1.</param>
-        /// <param name="key2">The key2.</param>
-        /// <param name="value2">The value2.</param>
-        public DBObject(string key1, object value1, string key2, object value2)
-        {
-            Add(key1, value1);
-            Add(key2, value2);
-        }
-
-        /// <summary>
-        /// Convenience constructor.
-        /// Initializes a new instance of the <see cref="DBObject"/> class.
-        /// </summary>
-        /// <param name="key1">The key1.</param>
-        /// <param name="value1">The value1.</param>
-        /// <param name="key2">The key2.</param>
-        /// <param name="value2">The value2.</param>
-        /// <param name="key3">The key3.</param>
-        /// <param name="value3">The value3.</param>
-        public DBObject(string key1, object value1, string key2, object value2, string key3, object value3)
-        {
-            Add(key1, value1);
-            Add(key2, value2);
-            Add(key3, value3);
-        }
-
-        /// <summary>
         /// Copies JSON pairs from the specified dbObject to this one
         /// </summary>
         /// <param name="dbObject">The DBObject.</param>

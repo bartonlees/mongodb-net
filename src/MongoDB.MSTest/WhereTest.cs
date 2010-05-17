@@ -76,7 +76,7 @@ namespace MongoDB.MSTest
             //DBQuery expected = null; // TODO: Initialize to an appropriate value
             //DBQuery actual;
             //actual = Where.Field(selector);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -90,7 +90,7 @@ namespace MongoDB.MSTest
             //DBQuery expected = null; // TODO: Initialize to an appropriate value
             //DBQuery actual;
             //actual = Where.Fields(selector);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -104,7 +104,7 @@ namespace MongoDB.MSTest
             //DBQuery expected = null; // TODO: Initialize to an appropriate value
             //DBQuery actual;
             //actual = Where.Fields(selector);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

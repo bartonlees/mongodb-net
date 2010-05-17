@@ -76,7 +76,7 @@ namespace MongoDB.MSTest
             //TDoc expected = null; // TODO: Initialize to an appropriate value
             //TDoc actual;
             //actual = DocumentFactory<TDoc>.CreateDocument(id, partial);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

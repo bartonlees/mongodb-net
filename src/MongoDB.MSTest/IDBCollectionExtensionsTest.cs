@@ -91,7 +91,7 @@ namespace MongoDB.MSTest
             //IList expected = null; // TODO: Initialize to an appropriate value
             //IList actual;
             //actual = IDBCollectionExtensions.Distinct(collection, keyField, selector);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -153,7 +153,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.EnsureIndex(collection, keyFieldSet, force);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -181,7 +181,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.EnsureIndex(collection, indexKeysFieldSet, name);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -198,7 +198,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.EnsureIndex(collection, indexKeyFieldSet, indexUri, unique);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -222,7 +222,7 @@ namespace MongoDB.MSTest
             //IEnumerable<TDoc> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<TDoc> actual;
             //actual = IDBCollectionExtensions.Find<TDoc>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -253,7 +253,7 @@ namespace MongoDB.MSTest
             //IEnumerable<IDocument> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<IDocument> actual;
             //actual = IDBCollectionExtensions.Find(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -272,7 +272,7 @@ namespace MongoDB.MSTest
             //IDocument expected = null; // TODO: Initialize to an appropriate value
             //IDocument actual;
             //actual = IDBCollectionExtensions.FindByID(collection, id, returnFields, explain, snapshot, options);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -291,7 +291,7 @@ namespace MongoDB.MSTest
             //TDoc expected = null; // TODO: Initialize to an appropriate value
             //TDoc actual;
             //actual = IDBCollectionExtensions.FindByID<TDoc>(collection, id, returnFields, explain, snapshot, options);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -319,7 +319,7 @@ namespace MongoDB.MSTest
             //TDoc expected = null; // TODO: Initialize to an appropriate value
             //TDoc actual;
             //actual = IDBCollectionExtensions.FindOne<TDoc>(collection, selector, returnFields, numToSkip, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -346,7 +346,7 @@ namespace MongoDB.MSTest
             //IDocument expected = null; // TODO: Initialize to an appropriate value
             //IDocument actual;
             //actual = IDBCollectionExtensions.FindOne(collection, selector, returnFields, numToSkip, explain, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -361,7 +361,7 @@ namespace MongoDB.MSTest
             //IDBCollection expected = null; // TODO: Initialize to an appropriate value
             //IDBCollection actual;
             //actual = IDBCollectionExtensions.GetCollection(collection, collectionName);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -402,7 +402,7 @@ namespace MongoDB.MSTest
             //IDBCursor<Document> expected = null; // TODO: Initialize to an appropriate value
             //IDBCursor<Document> actual;
             //actual = IDBCollectionExtensions.GetCursor(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -426,7 +426,7 @@ namespace MongoDB.MSTest
             //IDBCursor<TDoc> expected = null; // TODO: Initialize to an appropriate value
             //IDBCursor<TDoc> actual;
             //actual = IDBCollectionExtensions.GetCursor<TDoc>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -448,7 +448,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = IDBCollectionExtensions.GetIndex(collection, indexUri);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -462,7 +462,7 @@ namespace MongoDB.MSTest
             //IEnumerable<IDBObject> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<IDBObject> actual;
             //actual = IDBCollectionExtensions.GetIndexInfo(collection);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -480,7 +480,7 @@ namespace MongoDB.MSTest
             //IDBObject expected = null; // TODO: Initialize to an appropriate value
             //IDBObject actual;
             //actual = IDBCollectionExtensions.Group(collection, key, cond, initial, reduce);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -522,7 +522,7 @@ namespace MongoDB.MSTest
             MapReduceInfo expected = null; // TODO: Initialize to an appropriate value
             MapReduceInfo actual;
             actual = IDBCollectionExtensions.MapReduce(collection, map, reduce, outputCollection, query);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -537,7 +537,7 @@ namespace MongoDB.MSTest
             MapReduceInfo expected = null; // TODO: Initialize to an appropriate value
             MapReduceInfo actual;
             actual = IDBCollectionExtensions.MapReduce(collection, command);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -588,7 +588,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBCollectionExtensions.TryInsert(collection, documents);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -604,7 +604,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBCollectionExtensions.TryInsert(collection, document, checkError);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -620,7 +620,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBCollectionExtensions.TrySave(collection, document, checkError);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

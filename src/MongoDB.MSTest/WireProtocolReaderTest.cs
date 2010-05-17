@@ -172,7 +172,7 @@ namespace MongoDB.MSTest
             //TDoc expected = default(TDoc); // TODO: Initialize to an appropriate value
             //TDoc actual;
             //actual = target.CreateDocument<TDoc>(partial);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -197,7 +197,7 @@ namespace MongoDB.MSTest
             //TDoc expected = null; // TODO: Initialize to an appropriate value
             //TDoc actual;
             //actual = target.ReadDocument<TDoc>(partial);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -221,7 +221,7 @@ namespace MongoDB.MSTest
             //bool expected = false; // TODO: Initialize to an appropriate value
             //bool actual;
             //actual = target.ReadNextElement<TDoc>(o, partial);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -245,7 +245,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.cstring();
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -261,7 +261,7 @@ namespace MongoDB.MSTest
             //object expected = null; // TODO: Initialize to an appropriate value
             //object actual;
             //actual = target.data_binary();
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -276,7 +276,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = target.data_string();
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

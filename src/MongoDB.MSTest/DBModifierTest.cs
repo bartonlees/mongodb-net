@@ -112,7 +112,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             DBModifier actual;
             actual = target.AddEachToSet(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -128,7 +128,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             DBModifier actual;
             actual = target.AddToSet(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -144,7 +144,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             DBModifier actual;
             actual = target.Inc(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -160,7 +160,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.Pop(fieldName, fromTop);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -176,7 +176,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.Pull(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -192,7 +192,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.PullAll(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -208,7 +208,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.Push(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -224,7 +224,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.PushAll(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -240,7 +240,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.Set(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -256,7 +256,7 @@ namespace MongoDB.MSTest
             //DBModifier expected = null; // TODO: Initialize to an appropriate value
             //DBModifier actual;
             //actual = target.Unset(fieldName, value);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

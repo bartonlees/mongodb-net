@@ -107,7 +107,7 @@ namespace MongoDB.MSTest
             int actual;
             target.RequestID = expected;
             actual = target.RequestID;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

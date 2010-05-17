@@ -77,7 +77,7 @@ namespace MongoDB.MSTest
             T expected = null; // TODO: Initialize to an appropriate value
             T actual;
             actual = IDBObjectExtensions.GetAs<T>(o, name, defaultValue);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -98,7 +98,7 @@ namespace MongoDB.MSTest
             T expected = null; // TODO: Initialize to an appropriate value
             T actual;
             actual = IDBObjectExtensions.GetAs<T>(o, name);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -119,7 +119,7 @@ namespace MongoDB.MSTest
             //IDBObject expected = null; // TODO: Initialize to an appropriate value
             //IDBObject actual;
             //actual = IDBObjectExtensions.GetAsIDBObject(o, name);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -135,7 +135,7 @@ namespace MongoDB.MSTest
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             actual = IDBObjectExtensions.GetAsInt(o, name, def);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -150,7 +150,7 @@ namespace MongoDB.MSTest
             int expected = 0; // TODO: Initialize to an appropriate value
             int actual;
             actual = IDBObjectExtensions.GetAsInt(o, name);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -165,7 +165,7 @@ namespace MongoDB.MSTest
             long expected = 0; // TODO: Initialize to an appropriate value
             long actual;
             actual = IDBObjectExtensions.GetAsLong(o, name);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -181,7 +181,7 @@ namespace MongoDB.MSTest
             long expected = 0; // TODO: Initialize to an appropriate value
             long actual;
             actual = IDBObjectExtensions.GetAsLong(o, name, defaultValue);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -196,7 +196,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = IDBObjectExtensions.GetAsString(o, name);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -212,7 +212,7 @@ namespace MongoDB.MSTest
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
             actual = IDBObjectExtensions.GetAsString(o, name, defaultValue);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -226,7 +226,7 @@ namespace MongoDB.MSTest
             object expected = null; // TODO: Initialize to an appropriate value
             object actual;
             actual = IDBObjectExtensions.GetID(o);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -240,7 +240,7 @@ namespace MongoDB.MSTest
             Oid expected = null; // TODO: Initialize to an appropriate value
             Oid actual;
             actual = IDBObjectExtensions.GetOid(o);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -254,7 +254,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBObjectExtensions.HasID(o);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -268,7 +268,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBObjectExtensions.HasOid(o);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -282,7 +282,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = IDBObjectExtensions.IsNumber(value);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -296,7 +296,7 @@ namespace MongoDB.MSTest
             Oid expected = null; // TODO: Initialize to an appropriate value
             Oid actual;
             actual = IDBObjectExtensions.RequireOid(o);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -325,7 +325,7 @@ namespace MongoDB.MSTest
             bool actual;
             actual = IDBObjectExtensions.WasError(o, out error);
             Assert.AreEqual(errorExpected, error);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

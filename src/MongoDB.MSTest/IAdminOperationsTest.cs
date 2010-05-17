@@ -99,7 +99,7 @@ namespace MongoDB.MSTest
             DiagnosticLoggingLevel actual;
             target.DiagnosticLoggingLevel = expected;
             actual = target.DiagnosticLoggingLevel;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -114,7 +114,7 @@ namespace MongoDB.MSTest
             bool actual;
             target.OpLogging = expected;
             actual = target.OpLogging;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -129,7 +129,7 @@ namespace MongoDB.MSTest
             int actual;
             target.QueryTraceLevel = expected;
             actual = target.QueryTraceLevel;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }

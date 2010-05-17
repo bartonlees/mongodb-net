@@ -710,7 +710,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = target.EnsureIDIndex();
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -727,7 +727,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = target.EnsureIndex(indexKeyFieldSet, name, unique);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -742,7 +742,7 @@ namespace MongoDB.MSTest
             IDBIndex expected = null; // TODO: Initialize to an appropriate value
             IDBIndex actual;
             actual = target.GetIndex(indexUri);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -757,7 +757,7 @@ namespace MongoDB.MSTest
             //IEnumerable<TDoc> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<TDoc> actual;
             //actual = target.GetMore<TDoc>(cursor);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -792,7 +792,7 @@ namespace MongoDB.MSTest
             //IEnumerable<TDoc> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<TDoc> actual;
             //actual = target.Query<TDoc>(cursor);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -828,7 +828,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.TryInsert(documents, checkError);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -844,7 +844,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.TryRemove(document, checkError);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -864,7 +864,7 @@ namespace MongoDB.MSTest
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
             actual = target.TryUpdate(selector, document, modifier, upsert, multi, checkError);
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -920,7 +920,7 @@ namespace MongoDB.MSTest
             //IEnumerable<DBFieldSet> actual;
             //target.IndexHintFieldSets = expected;
             //actual = target.IndexHintFieldSets;
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

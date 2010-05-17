@@ -134,7 +134,7 @@ namespace MongoDB.MSTest
             Oid actual;
             target.ID = expected;
             actual = target.ID;
-            expected.Should().Be(actual);
+            actual.Should().Be(expected);
         }
 
         [TestMethod()]

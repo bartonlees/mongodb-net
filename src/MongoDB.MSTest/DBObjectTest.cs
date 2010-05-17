@@ -194,7 +194,7 @@ namespace MongoDB.MSTest
             //DBObject expected = null; // TODO: Initialize to an appropriate value
             //DBObject actual;
             //actual = target.Append(key, val);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

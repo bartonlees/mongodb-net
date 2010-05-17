@@ -82,7 +82,7 @@ namespace MongoDB.MSTest
             //ContractDocument<T> expected = null; // TODO: Initialize to an appropriate value
             //ContractDocument<T> actual;
             //actual = JsonIDBCollectionExtensions.FindContractDocumentByID<T>(collection, id, returnFields, explain, snapshot, options);
-            ////expected.Should().Be(actual);
+            ////actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -112,7 +112,7 @@ namespace MongoDB.MSTest
             //IEnumerable<ContractDocument<T>> expected = null; // TODO: Initialize to an appropriate value
             //IEnumerable<ContractDocument<T>> actual;
             //actual = JsonIDBCollectionExtensions.FindContractDocuments<T>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -138,7 +138,7 @@ namespace MongoDB.MSTest
             //ContractDocument<T> expected = null; // TODO: Initialize to an appropriate value
             //ContractDocument<T> actual;
             //actual = JsonIDBCollectionExtensions.FindOneContractDocument<T>(collection, selector, returnFields, numToSkip, explain, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -168,7 +168,7 @@ namespace MongoDB.MSTest
             //IDBCursor<ContractDocument<T>> expected = null; // TODO: Initialize to an appropriate value
             //IDBCursor<ContractDocument<T>> actual;
             //actual = JsonIDBCollectionExtensions.GetContractDocumentCursor<T>(collection, selector, returnFields, orderBy, numberToSkip, numberToReturn, limit, explain, snapshot, options, explicitIndexHint);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

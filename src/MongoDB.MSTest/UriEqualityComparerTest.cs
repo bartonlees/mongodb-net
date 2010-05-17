@@ -94,7 +94,7 @@ namespace MongoDB.MSTest
             //bool expected = false; // TODO: Initialize to an appropriate value
             //bool actual;
             //actual = target.Equals(x, y);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
@@ -116,7 +116,7 @@ namespace MongoDB.MSTest
             //int expected = 0; // TODO: Initialize to an appropriate value
             //int actual;
             //actual = target.GetHashCode(obj);
-            //expected.Should().Be(actual);
+            //actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 

@@ -97,15 +97,15 @@ namespace MongoDB.MSTest
         }
 
         /// <summary>
-        ///A test for AddEachToSet
-        ///</summary>
+        /// A test for AddEachToSet
+        /// </summary>
         [TestMethod()]
         public void AddEachToSetTest()
         {
             DBModifier target = new DBModifier();
             ArrayList list = new ArrayList() {"a", "b", "c" };
             target.AddEachToSet("fieldName", list);
-            target["fieldName"].Should().Be(list);
+            target.GetAsIDBObject(DBModifier.ModifierOperation.AddToSet).GetAsIDBObject("fieldName")[DBModifier.ModifierOperation.Each].Should().Be(list);
         }
 
         /// <summary>
@@ -114,14 +114,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddToSetTest()
         {
-            DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = target.AddToSet(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.AddToSet("fieldName", "a");
+            target.GetAsIDBObject(DBModifier.ModifierOperation.AddToSet)["fieldName"].Should().Be("a");
         }
 
         /// <summary>
@@ -130,14 +125,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void IncTest()
         {
-            DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = target.Inc(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.Inc("fieldName", 2);
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Inc)["fieldName"].Should().Be(2);
         }
 
         /// <summary>
@@ -146,14 +136,13 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PopTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //bool fromTop = false; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.Pop(fieldName, fromTop);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.Pop("fieldName", false);
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Pop)["fieldName"].Should().Be(-1);
+
+            target = new DBModifier();
+            target.Pop("fieldName", true);
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Pop)["fieldName"].Should().Be(1);
         }
 
         /// <summary>
@@ -162,14 +151,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PullTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //object value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.Pull(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.Pull("fieldName", "a");
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Pull)["fieldName"].Should().Be("a");
         }
 
         /// <summary>
@@ -178,14 +162,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PullAllTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //IList value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.PullAll(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            ArrayList list = new ArrayList() { "a", "b", "c" };
+            target.PullAll("fieldName", list);
+            target.GetAsIDBObject(DBModifier.ModifierOperation.PullAll)["fieldName"].Should().Be(list);
         }
 
         /// <summary>
@@ -194,14 +174,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PushTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //object value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.Push(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.Push("fieldName", "a");
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Push)["fieldName"].Should().Be("a");
         }
 
         /// <summary>
@@ -210,14 +185,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void PushAllTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //IList value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.PushAll(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            ArrayList list = new ArrayList() { "a", "b", "c" };
+            target.PushAll("fieldName", list);
+            target.GetAsIDBObject(DBModifier.ModifierOperation.PushAll)["fieldName"].Should().Be(list);
         }
 
         /// <summary>
@@ -226,14 +197,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void SetTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //object value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.Set(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.Set("fieldName", "a");
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Set)["fieldName"].Should().Be("a");
         }
 
         /// <summary>
@@ -242,14 +208,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void UnsetTest()
         {
-            //DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            //string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            //object value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            //DBModifier actual;
-            //actual = target.Unset(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            target.Unset("fieldName", "a");
+            target.GetAsIDBObject(DBModifier.ModifierOperation.Unset)["fieldName"].Should().Be("a");
         }
     }
 }

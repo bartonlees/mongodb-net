@@ -93,7 +93,7 @@ namespace MongoDB.Driver
                 if (OrderBy != null && OrderBy.Keys.Any())
                     Selector["orderby"] = OrderBy;
                 if (Hint != null)
-                    Selector["$hint"] = Hint;
+                    Selector["$hint"] = Hint.Name;
                 if (Explain)
                     Selector["$explain"] = true;
                 if (Snapshot)

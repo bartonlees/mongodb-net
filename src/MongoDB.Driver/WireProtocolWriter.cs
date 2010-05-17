@@ -2,6 +2,7 @@
 #pragma warning disable 0618
 #pragma warning disable 0612
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -147,8 +148,6 @@ namespace MongoDB.Driver
                 element_boolean(name, (bool)val);
             else if (val is Regex)
                 element_regex(name, (Regex)val);
-            else if (val is DBRegex)
-                element_regex(name, (DBRegex)val);
             else if (val is IDictionary)
                 element_object(name, (IDictionary)val);
             else if (val is byte[])
@@ -161,6 +160,8 @@ namespace MongoDB.Driver
                 element_object(name, (DBRef)val);
             else if (val is DBSymbol)
                 element_symbol(name, (DBSymbol)val);
+            else if (val is DBCode)
+                element_code(name, (DBCode)val);
             else if (val is DBUndefined)
                 element_undefined(name);
             else if (val is DBTimestamp)
@@ -175,7 +176,11 @@ namespace MongoDB.Driver
             element_type(TypeByte.CODE);
             WriteNullTerminated(name);
             WriteLengthPrefixedNullTerminated(code);
-            return;
+        }
+
+        void element_code(string name, DBCode code)
+        {
+            element_code(name, code.Code);
         }
 
         void element_object(string name, IDictionary dictionary)
@@ -343,40 +348,26 @@ namespace MongoDB.Driver
             RewindAndWriteSize(sizePos);
         }
 
-        void element_regex(string name, DBRegex regex)
+        void element_regex(string name, Regex p)
         {
             element_type(TypeByte.REGEX);
             element_name(name);
-            WriteNullTerminated(regex.Pattern);
+            WriteNullTerminated(p.ToString());
 
-            string options = regex.GetOptions();
+            //FROM bsonspec.org:
+            //Regular expression - The first cstring is the regex pattern, the second is the regex
+            //options string. Options are identified by characters, which must be stored in alphabetical 
+            //order. Valid options are 'i' for case insensitive matching, 'm' for multiline matching,
+            //'x' for verbose mode, 'l' to make \w, \W, etc. locale dependent, 's' for dotall mode 
+            //('.' matches everything), and 'u' to make \w, \W, etc. match unicode.
 
-            Dictionary<char, char> sm = new Dictionary<char, char>();
-
-            for (int i = 0; i < options.Length; i++)
-            {
-                sm[options[i]] = options[i];
-            }
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (char c in sm.Keys)
-            {
-                sb.Append(c);
-            }
-
-            WriteNullTerminated(sb.ToString());
-        }
-
-        void element_regex(string name, Regex p)
-        {
-            //TODO: handle Regex
-            //int start = BaseStream.Position;
-            //_put( REGEX , name );
-            //_put( p.ToString() );
-            throw new NotImplementedException();
-            //_put( patternFlags( p.Options) );
-            //return BaseStream.Position - start;
+            List<char> optionCodes = new List<char>();
+            if ((p.Options & RegexOptions.IgnoreCase) != RegexOptions.None)
+                optionCodes.Add('i');
+            if ((p.Options & RegexOptions.Multiline) != RegexOptions.None)
+                optionCodes.Add('m');
+            
+            WriteNullTerminated(new string(optionCodes.ToArray()));
         }
 
         /// <summary>

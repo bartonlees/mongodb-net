@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Linq.Expressions;
 using FluentAssertions;
+using System.Text.RegularExpressions;
 
 namespace MongoDB.MSTest
 {
@@ -72,12 +73,9 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FieldTest()
         {
-            //Expression<Func<DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            //DBQuery expected = null; // TODO: Initialize to an appropriate value
-            //DBQuery actual;
-            //actual = Where.Field(selector);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBQuery query = Where.Field(test => test.Matches(new Regex("^a$")));
+            query.ContainsKey("test").Should().BeTrue("the query should have generated a 'test' key");
+            query["test"].ToString().Should().Be(new Regex("^a$").ToString());
         }
 
         /// <summary>
@@ -86,12 +84,11 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FieldsTest()
         {
-            //Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            //DBQuery expected = null; // TODO: Initialize to an appropriate value
-            //DBQuery actual;
-            //actual = Where.Fields(selector);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBQuery query = Where.Fields((a, b) => a == 1 && b == 2);
+            query.ContainsKey("a").Should().BeTrue("the query should have generated an 'a' key");
+            query.ContainsKey("b").Should().BeTrue("the query should have generated a 'b' key");
+            query["a"].Should().Be(1);
+            query["b"].Should().Be(2);
         }
 
         /// <summary>
@@ -100,12 +97,56 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void FieldsTest1()
         {
-            //Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector = null; // TODO: Initialize to an appropriate value
-            //DBQuery expected = null; // TODO: Initialize to an appropriate value
-            //DBQuery actual;
-            //actual = Where.Fields(selector);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBQuery query = Where.Fields((a, b, c) => a == 1 && b == 2 && c == 3);
+            query.ContainsKey("a").Should().BeTrue("the query should have generated an 'a' key");
+            query.ContainsKey("b").Should().BeTrue("the query should have generated a 'b' key");
+            query.ContainsKey("c").Should().BeTrue("the query should have generated a 'b' key");
+            query["a"].Should().Be(1);
+            query["b"].Should().Be(2);
+            query["c"].Should().Be(3);
         }
+
+        [TestMethod]
+        public void LambdaTwoFieldsEqualMirror()
+        {
+            DBQuery query = Where.Fields((a, b) => b == 1 && a == 2);
+            query.ContainsKey("a").Should().BeTrue("the query should have generated an 'a' key");
+            query.ContainsKey("b").Should().BeTrue("the query should have generated a 'b' key");
+            query["b"].Should().Be(1);
+            query["a"].Should().Be(2);
+        }
+
+        [TestMethod]
+        public void LambdaTwoFieldsExplicitNaming()
+        {
+            DBQuery query = Where.Fields((a, b) => b["c"] == 1 && a["d"] == 2);
+            query.ContainsKey("c").Should().BeTrue("the query should have generated an 'c' key");
+            query.ContainsKey("d").Should().BeTrue("the query should have generated a 'd' key");
+            query["c"].Should().Be(1);
+            query["d"].Should().Be(2);
+        }
+
+        [TestMethod]
+        public void LambdaGtAndLt()
+        {
+            DBQuery query = Where.Field(test => test > 1 && test < 7);
+            query.ContainsKey("test").Should().BeTrue("the query should have generated an 'test' key");
+            IDBObject nested = query.GetAsIDBObject("test");
+            nested["$lt"].Should().Be(7);
+            nested["$gt"].Should().Be(1);
+        }
+
+        [TestMethod]
+        public void LambdaDuplicateExplicitNames()
+        {
+            new Action(() => Where.Fields((a, b, c) => a["b"] > 1 && b < 7 && c == 4)).ShouldThrow<Exception>("two identical field names are not allowed");
+        }
+
+        //TODO:Enable logical contradiction testing
+        //[TestMethod]
+        //public void LambdaInvalidExpressions()
+        //{
+        //    () => Where.Field(a => a == 3 || a != 3), Throws.Exception, "Or is not allowed");
+        //}
     }
 }

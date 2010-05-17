@@ -70,6 +70,7 @@
     <Compile Include="DBObjectArrayTest.cs" />
     <Compile Include="DBObjectTest.cs" />
     <Compile Include="DBObjectWrapperTest.cs" />
+    <Compile Include="DBQueryParameterTest.cs" />
     <Compile Include="DBQueryTest.cs" />
     <Compile Include="DBRefTest.cs" />
     <Compile Include="DBRegexTest.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="WhereTest.cs" />
     <Compile Include="WireProtocolReaderTest.cs" />
     <Compile Include="WireProtocolWriterTest.cs" />
+    <Shadow Include="Test References\MongoDB.Driver.accessor" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MongoDB.Driver\MongoDB.Driver.csproj">

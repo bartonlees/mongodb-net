@@ -15,7 +15,6 @@ namespace MongoDB.MSTest
     public class DBObjectWrapperTest
     {
 
-
         private TestContext testContextInstance;
 
         /// <summary>

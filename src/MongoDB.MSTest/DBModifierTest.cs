@@ -68,15 +68,13 @@ namespace MongoDB.MSTest
 
 
         /// <summary>
-        ///A test for DBModifier Constructor
-        ///</summary>
+        /// A test for DBModifier Constructor
+        /// </summary>
         [TestMethod()]
         public void DBModifierConstructorTest()
         {
-            string key = string.Empty; // TODO: Initialize to an appropriate value
-            object value = null; // TODO: Initialize to an appropriate value
-            DBModifier target = new DBModifier(key, value);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            DBModifier target = new DBModifier("a", 1);
+            target["a"].Should().Be(1);
         }
 
         /// <summary>
@@ -84,10 +82,9 @@ namespace MongoDB.MSTest
         ///</summary>
         [TestMethod()]
         public void DBModifierConstructorTest1()
-        {
-            IDictionary<string, object> obj = null; // TODO: Initialize to an appropriate value
-            DBModifier target = new DBModifier(obj);
-            Assert.Inconclusive("TODO: Implement code to verify target");
+        {            
+            DBModifier target = new DBModifier(new Dictionary<string, object>() {{"a",1},{"b",2},{"c",3}});
+            target.Keys.Count.Should().Be(3);
         }
 
         /// <summary>
@@ -97,7 +94,6 @@ namespace MongoDB.MSTest
         public void DBModifierConstructorTest2()
         {
             DBModifier target = new DBModifier();
-            Assert.Inconclusive("TODO: Implement code to verify target");
         }
 
         /// <summary>
@@ -106,14 +102,10 @@ namespace MongoDB.MSTest
         [TestMethod()]
         public void AddEachToSetTest()
         {
-            DBModifier target = new DBModifier(); // TODO: Initialize to an appropriate value
-            string fieldName = string.Empty; // TODO: Initialize to an appropriate value
-            IList value = null; // TODO: Initialize to an appropriate value
-            //DBModifier expected = null; // TODO: Initialize to an appropriate value
-            DBModifier actual;
-            actual = target.AddEachToSet(fieldName, value);
-            //actual.Should().Be(expected);
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            DBModifier target = new DBModifier();
+            ArrayList list = new ArrayList() {"a", "b", "c" };
+            target.AddEachToSet("fieldName", list);
+            target["fieldName"].Should().Be(list);
         }
 
         /// <summary>

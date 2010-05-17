@@ -42,6 +42,7 @@ namespace MongoDB.Driver.Message
             writer.Write(Options.NumberToSkip.HasValue ? Options.NumberToSkip.Value : 0);
             writer.Write(Options.NumberToReturn);
             writer.Write(Options.Selector);
+
             if (Options.ReturnFields != null)
                 writer.Write(Options.ReturnFields);
         }

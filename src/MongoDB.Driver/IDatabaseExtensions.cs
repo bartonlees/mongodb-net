@@ -86,7 +86,7 @@ namespace MongoDB.Driver
         /// <returns></returns>
         public static IDBCollection GetCmdCollection(this IAdminOperations db)
         {
-            return db.GetCollection("$cmd");
+            return db.GetCollection(Constants.CollectionNames.Cmd);
         }
     }
 

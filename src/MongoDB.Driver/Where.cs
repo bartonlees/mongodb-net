@@ -1,42 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Linq.Expressions;
 
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Lambda based query support helper
+    /// The static root for DBQuery generation
     /// </summary>
-    public static class Lambda
+    public static class Where
     {
         /// <summary>
-        /// Queries the specified selector.
+        /// Builds a DBQuery from the supplied lambda expression (three separate parameters)
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <returns></returns>
-        public static DBQuery Query(Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector)
+        public static DBQuery Fields(Expression<Func<DBQueryParameter, DBQueryParameter, DBQueryParameter, bool>> selector)
         {
             return selector.ToDBQuery();
         }
 
         /// <summary>
-        /// Queries the specified selector.
+        /// Builds a DBQuery from the supplied lambda expression (two separate parameters)
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <returns></returns>
-        public static DBQuery Query(Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector)
+        public static DBQuery Fields(Expression<Func<DBQueryParameter, DBQueryParameter, bool>> selector)
         {
             return selector.ToDBQuery();
         }
 
         /// <summary>
-        /// Queries the specified selector.
+        /// Builds a DBQuery from the supplied lambda expression (one parameter)
         /// </summary>
         /// <param name="selector">The selector.</param>
         /// <returns></returns>
-        public static DBQuery Query(Expression<Func<DBQueryParameter, bool>> selector)
+        public static DBQuery Field(Expression<Func<DBQueryParameter, bool>> selector)
         {
             return selector.ToDBQuery();
         }
-
     }
 }

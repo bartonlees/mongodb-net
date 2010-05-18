@@ -8,23 +8,24 @@ namespace MongoDB.Driver
     public enum BinaryType : byte
     {
         /// <summary>
-        /// 
+        /// Indicates that a Function is encoded in the binary data
         /// </summary>
         Function = 0x01,
         /// <summary>
-        /// 
+        /// Indicates that standard binary data is encoded
         /// </summary>
+        /// <remarks>This is the most commonly used binary subtype. The structure of the binary data (the byte* array in the binary non-terminal) must be an int32 followed by a (byte*). The int32 is the number of bytes in the repetition.</remarks>
         Binary = 0x02,
         /// <summary>
-        /// 
+        /// Indicates that a Universal Unique IDentifier is encoded in the binary data
         /// </summary>
         UUID = 0x03,
         /// <summary>
-        /// 
+        /// Indicates that an MD5 Hashs is encoded in the binary data
         /// </summary>
         MD5 = 0x05,
         /// <summary>
-        /// 
+        /// Indicates that a User-Define format is used to encode the binary data
         /// </summary>
         UserDefined = 0x80
     }

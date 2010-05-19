@@ -172,6 +172,27 @@
     <Compile Include="DBSymbol.cs" />
     <Compile Include="DBTimestamp.cs" />
     <Compile Include="DBUndefined.cs" />
+    <Content Include="MongoDB.Driver.Command.Admin.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MongoDB.Driver.Platform.IO.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MongoDB.Driver.Platform.Util.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MongoDB.Driver.Command.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MongoDB.Driver.Platform.Conditions.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MongoDB.Driver.Platform.Conversion.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="MongoDB.Driver.assembly">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="GridFS\GridFS.cs" />
     <None Include="GridFS\GridFSDBFile.cs" />
     <None Include="GridFS\GridFSFile.cs" />
@@ -203,6 +224,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <Content Include="MongoDB.Driver.namespace">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

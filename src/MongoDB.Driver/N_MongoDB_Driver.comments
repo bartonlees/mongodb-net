@@ -1,0 +1,22 @@
+﻿<summary>Core types for connecting to a remote MongoDB Server</summary>
+<remarks>
+  This namespace defines proxy objects and helper classes to allow a remote connection to a [http://www.mongodb.or MongoDB Server].
+  In general, you will want to make use of the <see cref="MongoDB.Driver.Mongo"/> class to bind to
+  a server and get <see cref="MongoDB.Driver.IServer"/>, <see cref="MongoDB.Driver.IDatabase"/>, and
+  <see cref="MongoDB.Driver.IDBCollection"/> proxies. These directly correlate with server-side representations
+  of MongoDB objects, and by using local properties and methods, you can interact with the server.
+  <example>
+    Inserting a new document into a collection
+    <code>
+IDBCollection coll = Mongo.GetDatabase("http://localhost/db").GetCollection("test");
+coll.Insert(new Document() { {"a", 1}, {"b", 2}});
+    </code>
+  </example>
+  <example>
+    Querying for documents that match certain criteria
+    <code>
+      IDBCollection coll = Mongo.GetDatabase("http://localhost/db").GetCollection("test");
+      coll.FindOne(Where.Field(a => a == 1)); //Find all documents in the collection whose "a" field is 1
+    </code>
+  </example>
+</remarks>

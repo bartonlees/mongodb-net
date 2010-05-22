@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// This interface represents the core operations and data of a MongoDB collection
+    /// Represents a remote MongoDB collection
     /// </summary>
     public interface IDBCollection : IEnumerable<IDocument>, IUriComparable
     {

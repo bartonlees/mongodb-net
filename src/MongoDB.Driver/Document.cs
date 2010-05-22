@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// A standard, dynamically structured data unit that can be stored to and retrieved from MongoDB
+    /// The public, default implementation of <see cref="IDocument"/>be stored to and retrieved from MongoDB
     /// </summary>
     public class Document : DBObject, IDocument
     {

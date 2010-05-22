@@ -81,7 +81,7 @@ namespace MongoDB.Driver.Platform.Conditions
     /// public class Person { }
     /// public class PersonCollection
     /// {
-    /// public PersonCollection(int capicity)
+    /// public PersonCollection(int capacity)
     /// {
     /// this.Capacity = capicity;
     /// }

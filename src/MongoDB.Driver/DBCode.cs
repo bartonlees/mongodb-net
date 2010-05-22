@@ -2,7 +2,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents a piece of JavaScript code
+    /// Represents a unit of JavaScript code
     /// </summary>
     public class DBCode
     {

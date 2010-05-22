@@ -12,7 +12,7 @@ namespace MongoDB.Driver
 {
 
     /// <summary>
-    /// A globally unique identifier for objects.
+    /// A globally unique identifier for <see cref="IDBObject"/> and <see cref="IDocument"/>.
     /// Consists of 12 bytes
     /// </summary>
     [Serializable]
@@ -429,7 +429,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// 
+        /// A helper class that generates new <see cref="Oid"/> instances
         /// </summary>
         public class Generator
         {

@@ -2,10 +2,13 @@
 
 namespace MongoDB.Driver.Command.Admin
 {
+    /// <summary>
+    /// Extension methods for <see cref="IAdminOperations"/>
+    /// </summary>
     internal static partial class AdminCommandExtensions
     {
         /// <summary>
-        /// Buildinfoes the specified db.
+        /// Retrieves the <see cref="MongoDB.Driver.BuildInfo"/> for the specified <see cref="IAdminOperations"/> instance.
         /// </summary>
         /// <param name="db">The db.</param>
         /// <returns></returns>
@@ -22,7 +25,7 @@ namespace MongoDB.Driver.Command.Admin
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// 
+    /// Information about the current build of the bound MongoDB server
     /// </summary>
     public class BuildInfo : DBObjectWrapper
     {
@@ -37,22 +40,22 @@ namespace MongoDB.Driver
         {
         }
         /// <summary>
-        /// Gets the version.
+        /// Gets the version of MongoDB.
         /// </summary>
         /// <value>The version.</value>
         public string Version { get { return Object.GetAsString("version", string.Empty); } }
         /// <summary>
-        /// Gets the git version.
+        /// Gets the release git version of the binary running on the server.
         /// </summary>
         /// <value>The git version.</value>
         public string GitVersion { get { return Object.GetAsString("gitVersion", string.Empty); } }
         /// <summary>
-        /// Gets the sys info.
+        /// Gets information about the system running the server
         /// </summary>
         /// <value>The sys info.</value>
         public string SysInfo { get { return Object.GetAsString("sysInfo", string.Empty); } }
         /// <summary>
-        /// Gets the bits.
+        /// Gets the number of bits (32/64).
         /// </summary>
         /// <value>The bits.</value>
         public int Bits { get { return Object.GetAsInt("bits", 0); } }

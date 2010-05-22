@@ -7,7 +7,7 @@ namespace MongoDB.Driver
 {
 
     /// <summary>
-    /// 
+    /// Options for setting up and maintaining database connections
     /// </summary>
     public class DBConnectionOptions
     {

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// An interface that represents the binding of a client to server data source(s)
+    /// Represents a logical database connection that may connect to multiple physical databases
     /// </summary>
     public interface IDBMultiBinding : IDBBinding
     {

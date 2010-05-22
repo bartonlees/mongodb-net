@@ -5,8 +5,11 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Forceerrors the specified db.
+        /// Forces an error simulation
         /// </summary>
+        /// <remarks>
+        /// This method is used to test driver error handling routines
+        /// </remarks>
         /// <param name="db">The db.</param>
         /// <returns></returns>
         public static DBError forceerror(this IDatabase db)

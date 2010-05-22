@@ -2,11 +2,12 @@
 namespace MongoDB.Driver.Command
 {
 
-    /// <summary>
-    /// Repairs/compacts this database.
-    /// </summary>
+    
     internal static partial class CommandExtensions
     {
+        // <summary>
+        // Repairs/compacts this database.
+        // </summary>
         //IDatabase
         //{repairDatabase : 1, preserveClonedFilesOnFailure : boolean, backupOriginalFiles : boolean}
 

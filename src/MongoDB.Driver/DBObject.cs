@@ -3,15 +3,49 @@
 using System.Collections.Generic;
 namespace MongoDB.Driver
 {
-
     /// <summary>
-    /// A simple implementation of <code>IDBObject</code>.
-    /// An <code>IDBObject</code> can be created as follows, using this class:
-    /// <blockquote><pre>
-    /// IDBObject obj = new BasicDBObject();
-    /// obj["foo"] = "bar";
-    /// </pre></blockquote>
+    /// The primary, public implementation of <see cref="IDBObject"/>
     /// </summary>
+    /// <remarks>
+    /// It is used for JSON literal objects and mocking up documents for transmission to the server.
+    /// 
+    /// There are several ways to construct `DBObject` instances:
+    /// {{{
+    /// //Simple constructor, explicit adds
+    /// IDBObject o1 = new DBObject();
+    /// o1.Add("key", "value");
+    /// o1.Add("key2", 0);
+    /// o1.Add("key3", true);
+    /// 
+    /// //Convenience constructor
+    /// IDBObject o2 = new DBObject("key", "value");
+    /// 
+    /// //Convenience constructor 2
+    /// IDBObject o3 = new DBObject("key", "value", "key2", 0);
+    /// }}}
+    /// You can also make use of [http://msdn.microsoft.com/en-us/library/bb531208.aspx Collection initialization] thanks to our `IDictionary&lt;string, object&gt;` based implementation:
+    /// 
+    /// {{{
+    /// //Simple Collection initialization
+    /// IDBObject o4 = new DBObject 
+    /// {
+    ///    {"key", "value"},
+    ///    {"key2", 0},
+    ///    {"key3", true}
+    /// }
+    /// 
+    /// //Nested object
+    /// IDBObject o4 = new DBObject 
+    /// {
+    ///    {"key", new DBObject{
+    ///      {"key2", 0},
+    ///      {"key3", true}}
+    ///    }
+    /// }
+    /// 
+    /// }}}
+    /// 
+    /// </remarks>
     public class DBObject : Dictionary<string, object>, IDBObject
     {
         /// <summary>

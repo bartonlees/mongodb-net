@@ -6,7 +6,7 @@ using System.Security;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// An interface that represents the binding of a client to server data source(s)
+    /// Represents a logical connection to a database
     /// </summary>
     public interface IDBBinding : IUriComparable
     {

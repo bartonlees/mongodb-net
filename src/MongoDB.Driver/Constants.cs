@@ -7,19 +7,19 @@ namespace MongoDB.Driver
     public static class Constants
     {
         /// <summary>
-        /// 
+        /// The maximum allowable object size
         /// </summary>
         public const int MAX_OBJECT_SIZE = 1024 * 1024 * 4;
         /// <summary>
-        /// 
+        /// The maximum connections allowed per host
         /// </summary>
         public const int CONNECTIONS_PER_HOST = 10;
         /// <summary>
-        /// 
+        /// A hack to handle a special case (do we still need this?)
         /// </summary>
         public const string NO_REF_HACK = "_____nodbref_____";
         /// <summary>
-        /// 
+        /// The Global Flag
         /// </summary>
         public const int GLOBAL_FLAG = 256;
 

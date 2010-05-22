@@ -2,16 +2,15 @@
 
 namespace MongoDB.Driver.Command
 {
-    /// <summary>
-    /// Returns the last error that occurred since start of database or a call to ResetError
-    /// Care must be taken to ensure that calls to getPreviousError go to the same connection as that
-    /// of the previous operation. See com.mongodb.Mongo.requestStart for more information.
-    /// </summary>
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Getpreverrors the specified db.
+        /// Returns the last error that occurred since start of database or a call to ResetError
         /// </summary>
+        /// <remarks>
+        /// Care must be taken to ensure that calls to getPreviousError go to the same connection as that
+        /// of the previous operation.
+        /// </remarks>
         /// <param name="db">The db.</param>
         /// <returns></returns>
         public static PrevError getpreverror(this IDatabase db)
@@ -24,7 +23,7 @@ namespace MongoDB.Driver.Command
     }
 
     /// <summary>
-    /// 
+    /// The result of a preverror command
     /// </summary>
     public class PrevError : DBObjectWrapper
     {

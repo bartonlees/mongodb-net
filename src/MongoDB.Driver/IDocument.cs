@@ -5,60 +5,49 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents the state of an IDocument type
+    /// Represents the life cycle state of an <see cref="IDocument"/>
     /// </summary>
     [Flags]
     public enum DocumentState
     {
         /// <summary>
-        /// 
+        /// The document state is undefined
         /// </summary>
         None = 0,
-        // Summary:
-        //     The row has been created but is not part of any System.Data.DataRowCollection.
-        //     A System.Data.DataRow is in this state immediately after it has been created
-        //     and before it is added to a collection, or if it has been removed from a
-        //     collection.
+        
         /// <summary>
-        /// 
+        /// The row has been created but is not part of a collection.
         /// </summary>
+        /// <remarks>
+        /// An <see cref="IDocument"/> is in this state immediately after it has been created
+        ///     and before it is added to a collection, or if it has been removed from a
+        ///     collection.
+        /// </remarks>
         Detached = 1,
-        //
-        // Summary:
-        //     The row has not changed since System.Data.DataRow.AcceptChanges() was last
-        //     called.
+
         /// <summary>
-        /// 
+        /// This <see cref="IDocument"/> has not changed since it was last retrieved from or saved to its collection
         /// </summary>
         Unchanged = 2,
-        //
-        // Summary:
-        //     The row has been added to a System.Data.DataRowCollection, and System.Data.DataRow.AcceptChanges()
-        //     has not been called.
+        
         /// <summary>
-        /// 
+        /// This <see cref="IDocument"/> has been added but not yet pushed to a remote collection
         /// </summary>
         Added = 4,
-        //
-        // Summary:
-        //     The row was deleted using the System.Data.DataRow.Delete() method of the
-        //     System.Data.DataRow.
+        
         /// <summary>
-        /// 
+        /// This <see cref="IDocument"/> has been deleted from its collection and marked deleted locally
         /// </summary>
         Deleted = 8,
-        //
-        // Summary:
-        //     The row has been modified and System.Data.DataRow.AcceptChanges() has not
-        //     been called.
+        
         /// <summary>
-        /// 
+        /// This attached <see cref="IDocument"/> has been modified and not yet updated back to the database
         /// </summary>
         Modified = 16,
     }
 
     /// <summary>
-    /// 
+    /// Represents a full document that can be sent to or retrieved from a collection on the server
     /// </summary>
     public interface IDocument : IDBObject
     {
@@ -85,7 +74,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// 
+    /// Extension methods for <see cref="IDocument"/>
     /// </summary>
     public static class IDocumentExtensions
     {

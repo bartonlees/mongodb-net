@@ -3,7 +3,7 @@ using System;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Extension methods for the <see cref="IServerBinding"/> interface
+    /// Extension methods for <see cref="IServerBinding"/>
     /// </summary>
     public static class IServerBindingExtensions
     {

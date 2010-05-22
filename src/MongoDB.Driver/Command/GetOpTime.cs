@@ -5,7 +5,7 @@ namespace MongoDB.Driver.Command
     {
 
         /// <summary>
-        /// Getoptimes the specified db.
+        /// Retrieves the elapsed time of the last operation on the server
         /// </summary>
         /// <param name="db">The db.</param>
         /// <returns></returns>
@@ -20,7 +20,7 @@ namespace MongoDB.Driver.Command
     }
 
     /// <summary>
-    /// 
+    /// A strongly typed wrapper of the result of the getoptime message
     /// </summary>
     public class OpTime : DBObjectWrapper
     {

@@ -2,7 +2,6 @@
 
 namespace MongoDB.Driver
 {
-
     /// <summary>
     /// Details of a MapReduce operation
     /// </summary>

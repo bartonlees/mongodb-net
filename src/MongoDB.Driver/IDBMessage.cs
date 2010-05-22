@@ -7,7 +7,7 @@ using MongoDB.Driver.Message;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Creates a message to send to the database.
+    /// Represents a message sent to or received from the server
     /// </summary>
     public interface IDBMessage
     {
@@ -41,7 +41,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// An <see cref="IDBMessage"/> sent from client to server
+    /// Represents an <see cref="IDBMessage"/> sent from client to server
     /// </summary>
     public interface IDBRequest : IDBMessage
     {
@@ -58,7 +58,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// An <see cref="IDBMessage"/> sent from server to client
+    /// Represents an <see cref="IDBMessage"/> sent from server to client
     /// </summary>
     public interface IDBResponse : IDBMessage
     {
@@ -75,7 +75,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// 
+    /// Represents a generic <see cref="IDBResponse"/>
     /// </summary>
     /// <typeparam name="TDoc">The type of the doc.</typeparam>
     public interface IDBResponse<TDoc> : IDBResponse where TDoc : class, IDocument
@@ -88,7 +88,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// Type of message
+    /// Specifies <see cref="IDBMessage"/> operation codes
     /// </summary>
     public enum Operation
     {

@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Extension methods for the IServer interface
+    /// Extension methods for <see cref="IServer"/>
     /// </summary>
     public static class IServerExtensions
     {

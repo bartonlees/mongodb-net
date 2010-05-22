@@ -7,7 +7,7 @@ using System.Security;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// This interface represents the core operations and data of a MongoDB database
+    /// Represents the core operations and data of a MongoDB database
     /// </summary>
     public interface IDatabase : IUriComparable
     {
@@ -106,7 +106,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// Extended interface for administrative operations
+    /// Represents an <see cref="IDatabase"/> that supports administrative operations
     /// </summary>
     public interface IAdminOperations : IDatabase
     {

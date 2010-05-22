@@ -3,9 +3,8 @@
 using System;
 namespace MongoDB.Driver
 {
-
     /// <summary>
-    /// An internal MongoDB.Net Exception
+    /// An MongoDB.Net Exception
     /// </summary>
     public class MongoException : Exception
     {

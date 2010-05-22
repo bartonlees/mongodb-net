@@ -8,7 +8,7 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// A convenience DBObject to hold sets of field names for queries in the correct format
+    /// A convenience <see cref="IDBObject"/> to hold sets of field names for queries in the correct format
     /// </summary>
     public class DBFieldSet : DBObject
     {

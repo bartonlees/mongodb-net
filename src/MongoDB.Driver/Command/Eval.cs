@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Evals the specified db.
+        /// Evaluates the specified expression (and optional parameters).
         /// </summary>
         /// <param name="db">The db.</param>
         /// <param name="code">The code.</param>

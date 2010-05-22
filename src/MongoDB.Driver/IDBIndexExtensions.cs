@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Extension method implementations for convenience overrides and common collection operations
+    /// Extension methods for <see cref="IDBIndex"/>
     /// </summary>
     public static class IDBIndexExtensions
     {

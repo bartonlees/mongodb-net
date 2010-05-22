@@ -5,8 +5,10 @@ namespace MongoDB.Driver
 {
     /// <summary>
     /// Used for internal increment values.
-    /// For storing normal dates in MongoDB, you should use System.DateTime
     /// </summary>
+    /// <remarks>
+    /// For storing normal dates in MongoDB, you should use System.DateTime
+    /// </remarks>
     public class DBTimestamp
     {
         /// <summary>

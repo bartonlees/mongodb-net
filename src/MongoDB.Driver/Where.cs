@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// The static root for DBQuery generation
+    /// The static root for <see cref="DBQuery"/> generation
     /// </summary>
     public static class Where
     {

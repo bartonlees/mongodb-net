@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Extension methods for the IDBBinding interface
+    /// Extension methods for <see cref="IDBBinding"/>
     /// </summary>
     public static class IDBBindingExtensions
     {

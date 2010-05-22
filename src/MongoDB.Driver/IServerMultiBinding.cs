@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents connection details for a logical server (could be a pool of servers in reality)
+    /// Represents a logical server connection that may, in fact, consist of multiple physical servers
     /// </summary>
     public interface IServerMultiBinding : IServerBinding
     {

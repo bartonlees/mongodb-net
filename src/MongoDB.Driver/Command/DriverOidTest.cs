@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Drivers the OID test.
+        /// Performs an ObjectId test for the driver
         /// </summary>
         /// <param name="db">The db.</param>
         /// <param name="id">The id.</param>

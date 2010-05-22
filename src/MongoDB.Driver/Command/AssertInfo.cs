@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Assertinfoes the specified db.
+        /// Retrieves assert information from the server
         /// </summary>
         /// <param name="db">The db.</param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace MongoDB.Driver.Command
     }
 
     /// <summary>
-    /// 
+    /// The results of an assertinfo query
     /// </summary>
     public class AssertInfo : DBObjectWrapper
     {

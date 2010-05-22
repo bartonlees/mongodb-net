@@ -12,9 +12,9 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// 
+    /// Extension Methods for <see cref="IAdminOperations"/>
     /// </summary>
-    public static class IAdminDatabaseExtensions
+    public static class IAdminOperationExtensions
     {
         /// <summary>
         /// Closes all databases.
@@ -91,7 +91,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// 
+    /// Extension methods for <see cref="IDatabase"/>
     /// </summary>
     public static class IDatabaseExtensions
     {

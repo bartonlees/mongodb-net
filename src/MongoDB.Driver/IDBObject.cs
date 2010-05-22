@@ -6,7 +6,7 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// A unit of savable data
+    /// Represents a unit of send/receive-able data
     /// </summary>
     public interface IDBObject : IDictionary<string, object> //IComparable, IComparable<DBObject>, IEquatable<DBObject>
     {
@@ -18,7 +18,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// An object that defines its own custom serialization to/from the wire protocol
+    /// Represents an <see cref="IDBObject"/> that defines its own custom serialization to/from the wire protocol
     /// </summary>
     public interface IDBObjectCustom : IDBObject
     {
@@ -35,7 +35,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// 
+    /// Extension methods for <see cref="IDBObject"/>
     /// </summary>
     public static class IDBObjectExtensions
     {

@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command.Admin
     internal static partial class AdminCommandExtensions
     {
         /// <summary>
-        /// Replacepeers the specified db.
+        /// Replaces the peer
         /// </summary>
         /// <param name="db">The db.</param>
         /// <returns></returns>

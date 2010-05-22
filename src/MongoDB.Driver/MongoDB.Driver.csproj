@@ -172,26 +172,27 @@
     <Compile Include="DBSymbol.cs" />
     <Compile Include="DBTimestamp.cs" />
     <Compile Include="DBUndefined.cs" />
-    <Content Include="MongoDB.Driver.Command.Admin.namespace">
+    <None Include="N_MongoDB_Driver_Command_Admin.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MongoDB.Driver.Platform.IO.namespace">
+    </None>
+    <None Include="N_MongoDB_Driver_Platform_IO.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MongoDB.Driver.Platform.Util.namespace">
+    </None>
+    <None Include="N_MongoDB_Driver_Platform_Util.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MongoDB.Driver.Command.namespace">
+    </None>
+    <None Include="N_MongoDB_Driver_Command.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MongoDB.Driver.Platform.Conditions.namespace">
+    </None>
+    <None Include="N_MongoDB_Driver_Platform_Conditions.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MongoDB.Driver.Platform.Conversion.namespace">
+    </None>
+    <None Include="N_MongoDB_Driver_Platform_Conversion.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="MongoDB.Driver.assembly">
+    </None>
+    <None Include="MongoDB_Driver.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </None>
     <None Include="GridFS\GridFS.cs" />
     <None Include="GridFS\GridFSDBFile.cs" />
@@ -224,9 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="MongoDB.Driver.namespace">
+    <None Include="N_MongoDB_Driver.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

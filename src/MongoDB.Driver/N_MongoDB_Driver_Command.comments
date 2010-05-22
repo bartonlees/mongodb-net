@@ -1,0 +1,2 @@
+﻿<summary>Strongly-typed MongoDB command classes</summary>
+<remarks>These commands won't normally be used directly. Instead, use their equivalent on <see cref="IDBCollection"/> or <see cref="IAdminOperations" /></remarks>

@@ -207,7 +207,7 @@ namespace MongoDB.MSTest
         public void VersionTest()
         {
             Version actual;
-            actual = Mongo.Version;
+            actual = Mongo.DriverVersion;
             actual.Should().NotBeNull();
         }
     }

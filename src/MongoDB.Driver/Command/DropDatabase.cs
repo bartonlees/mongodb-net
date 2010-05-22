@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Drops the database.
+        /// Drops the specified database.
         /// </summary>
         /// <param name="db">The db.</param>
         /// <param name="dbName">Name of the db.</param>

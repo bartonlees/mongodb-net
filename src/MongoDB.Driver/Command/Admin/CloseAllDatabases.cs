@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command.Admin
     internal static partial class AdminCommandExtensions
     {
         /// <summary>
-        /// closesAllDatabases
+        /// Closes all databases associated with the specified admin instance
         /// </summary>
         /// <param name="db">The db.</param>
         public static void closeAllDatabases(this IAdminOperations db)

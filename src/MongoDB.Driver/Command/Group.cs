@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Groups the specified db.
+        /// Groups data on the server
         /// </summary>
         /// <param name="db">The db.</param>
         /// <param name="collection">The collection.</param>

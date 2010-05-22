@@ -5,9 +5,8 @@ using System.Security;
 
 namespace MongoDB.Driver
 {
-
     /// <summary>
-    /// A database port that you can connect to
+    /// Represents a direct, physical database connection
     /// </summary>
     public interface IDBConnection : IDisposable
     {

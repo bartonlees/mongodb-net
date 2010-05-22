@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command.Admin
     internal static partial class AdminCommandExtensions
     {
         /// <summary>
-        /// Diags the logging.
+        /// Gets/Sets the diagnostic logging level
         /// </summary>
         /// <param name="db">The db.</param>
         /// <param name="logLevel">The log level.</param>
@@ -21,12 +21,12 @@ namespace MongoDB.Driver.Command.Admin
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// 
+    /// The diagnostic logging level of the server
     /// </summary>
     public enum DiagnosticLoggingLevel
     {
         /// <summary>
-        /// 
+        /// Unknown
         /// </summary>
         Unknown = -1,
 
@@ -36,17 +36,20 @@ namespace MongoDB.Driver
         Off = 0,
 
         /// <summary>
-        /// 
+        /// Write operations should be/are logged
         /// </summary>
         LogWriteOperations = 1,
 
         /// <summary>
-        /// if you log reads, it will record the findOnes above and if you replay them, that will have an effect!
+        /// Read operations should be/are logged
         /// </summary>
+        /// <remarks>
+        /// if you log reads, it will record the findOnes above and if you replay them, that will have an effect!
+        /// </remarks>
         LogReadOperations = 2,
 
         /// <summary>
-        /// 
+        /// All operations should be/are logged
         /// </summary>
         LogAllOperations = 3
     }

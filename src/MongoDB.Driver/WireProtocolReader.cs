@@ -10,7 +10,7 @@ using MongoDB.Driver.Platform.IO;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Reads messages and data from the wire protocol
+    /// Deserializes messages from the MongoDB wire protocol
     /// </summary>
     public class WireProtocolReader : EndianBinaryReader
     {
@@ -22,9 +22,6 @@ namespace MongoDB.Driver
             : base(EndianBitConverter.Little, stream)
         {
         }
-
-
-
 
         TDoc CreateDocument<TDoc>(bool partial) where TDoc : class, IDocument
         {

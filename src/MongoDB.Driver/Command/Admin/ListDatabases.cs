@@ -22,7 +22,7 @@ namespace MongoDB.Driver.Command.Admin
 
 
     /// <summary>
-    /// 
+    /// A list of databases available on the server
     /// </summary>
     public class DatabaseList : DBObjectWrapper
     {

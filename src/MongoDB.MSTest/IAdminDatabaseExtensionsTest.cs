@@ -72,7 +72,7 @@ namespace MongoDB.MSTest
         public void CloseAllDatabasesTest()
         {
             IAdminOperations adminDatabase = null; // TODO: Initialize to an appropriate value
-            IAdminDatabaseExtensions.CloseAllDatabases(adminDatabase);
+            IAdminOperationExtensions.CloseAllDatabases(adminDatabase);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -85,7 +85,7 @@ namespace MongoDB.MSTest
             IAdminOperations adminDatabase = null; // TODO: Initialize to an appropriate value
             IDatabase fromDatabase = null; // TODO: Initialize to an appropriate value
             IDatabase toDatabase = null; // TODO: Initialize to an appropriate value
-            IAdminDatabaseExtensions.CopyDatabase(adminDatabase, fromDatabase, toDatabase);
+            IAdminOperationExtensions.CopyDatabase(adminDatabase, fromDatabase, toDatabase);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -99,7 +99,7 @@ namespace MongoDB.MSTest
             IDatabase fromDatabase = null; // TODO: Initialize to an appropriate value
             string expected = string.Empty; // TODO: Initialize to an appropriate value
             string actual;
-            actual = IAdminDatabaseExtensions.CopyDatabaseGetNonce(adminDatabase, fromDatabase);
+            actual = IAdminOperationExtensions.CopyDatabaseGetNonce(adminDatabase, fromDatabase);
             actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
@@ -113,7 +113,7 @@ namespace MongoDB.MSTest
             IAdminOperations adminDatabase = null; // TODO: Initialize to an appropriate value
             bool asynchronous = false; // TODO: Initialize to an appropriate value
             bool shouldLock = false; // TODO: Initialize to an appropriate value
-            IAdminDatabaseExtensions.FSync(adminDatabase, asynchronous, shouldLock);
+            IAdminOperationExtensions.FSync(adminDatabase, asynchronous, shouldLock);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -138,7 +138,7 @@ namespace MongoDB.MSTest
         public void ReplacePeerTest()
         {
             IAdminOperations adminDatabase = null; // TODO: Initialize to an appropriate value
-            IAdminDatabaseExtensions.ReplacePeer(adminDatabase);
+            IAdminOperationExtensions.ReplacePeer(adminDatabase);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
@@ -149,7 +149,7 @@ namespace MongoDB.MSTest
         public void ShutdownTest()
         {
             IAdminOperations adminDatabase = null; // TODO: Initialize to an appropriate value
-            IAdminDatabaseExtensions.Shutdown(adminDatabase);
+            IAdminOperationExtensions.Shutdown(adminDatabase);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
     }

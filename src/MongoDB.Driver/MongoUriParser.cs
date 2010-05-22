@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Helper class to parse specialized mongo URIs
+    /// Helper class to parse specialized MongoDB <see cref="Uri"/> strings
     /// </summary>
     public class MongoUriParser : GenericUriParser
     {

@@ -6,7 +6,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Nonces the specified db.
+        /// Gets a nonce for subsequent communication
         /// </summary>
         /// <param name="db">The db.</param>
         /// <returns></returns>
@@ -18,7 +18,7 @@ namespace MongoDB.Driver.Command
         }
 
         /// <summary>
-        /// Nonces the specified connection.
+        /// Gets a nonce for subsequent communication
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <param name="cmdCollection">The CMD collection.</param>

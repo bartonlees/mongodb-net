@@ -6,10 +6,13 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// A database connection with internal pooling.
-    /// The following are equivalent, and all connect to the
-    /// local database running on the default port:
+    /// The root API object for the MongoDB driver
     /// </summary>
+    /// <remarks>
+    /// This object allows for
+    /// <example>
+    /// </example>
+    /// </remarks>
     public static class Mongo
     {
         /// <summary>
@@ -313,10 +316,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets the version.
+        /// Gets the MongoDB.NET driver version.
         /// </summary>
         /// <value>The version.</value>
-        public static Version Version
+        public static Version DriverVersion
         {
             get
             {

@@ -6,7 +6,7 @@ using System.Text;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents and object whose uniqueness can be determined by a Uri parameter
+    /// Represents an object whose uniqueness can be determined by a Uri parameter
     /// </summary>
     public interface IUriComparable
     {

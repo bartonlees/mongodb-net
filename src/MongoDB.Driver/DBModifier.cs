@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// A DBObject that is optimized for modification clauses on DB updates
+    /// A <see cref="IDBObject"/> that is optimized for modification clauses on DB updates
     /// </summary>
     public class DBModifier : DBObject
     {
@@ -16,7 +16,7 @@ namespace MongoDB.Driver
         public static class ModifierOperation
         {
             /// <summary>
-            /// 
+            /// ???
             /// </summary>
             public const string Add = "$add";
             /// <summary>

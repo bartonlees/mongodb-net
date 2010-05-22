@@ -2,27 +2,18 @@
 
 namespace MongoDB.Driver.Command
 {
-    /**
-         *  Gets the the error (if there is one) from the previous operation.  The result of
-         *  this command will look like
-         *
-         *  <pre>
-         * { "err" :  errorMessage  , "ok" : 1.0 , "_ns" : "$cmd"}
-         * </pre>
-         *
-         * The value for errorMessage will be null if no error occurred, or a description otherwise.
-         *
-         * Care must be taken to ensure that calls to getLastError go to the same connection as that
-         * of the previous operation. See com.mongodb.Mongo.requestStart for more information.
-         *
-         *  @return DBObject with error and status information
-         */
-
+    /// <summary>
+    /// Extension methods to perform server-side operations
+    /// </summary>
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Getlasterrors the specified db.
+        /// Gets the the error (if there is one) from the previous operation.
         /// </summary>
+        /// <remarks>
+        /// Care must be taken to ensure that calls to getLastError go to the same connection as that
+        /// of the previous operation. See [MessageTransactions message transactions]
+        /// </remarks>
         /// <param name="db">The db.</param>
         /// <returns></returns>
         public static LastError getlasterror(this IDatabase db)
@@ -39,7 +30,7 @@ namespace MongoDB.Driver.Command
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Convenience wrapper for the result of the GetLastError command
+    /// The result of the GetLastError command
     /// </summary>
     public class LastError : DBObjectWrapper
     {
@@ -62,6 +53,9 @@ namespace MongoDB.Driver
         /// <summary>
         /// Gets the error message.
         /// </summary>
+        /// <remarks>
+        /// Will be null if no error occurred, or a description otherwise
+        /// </remarks>
         /// <value>The error message.</value>
         public string ErrorMessage { get { return Object.GetAsString("err"); } }
         /// <summary>

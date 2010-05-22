@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents an index on an collection
+    /// Represents an index on an <see cref="IDBCollection"/>
     /// </summary>
     public interface IDBIndex : IUriComparable
     {

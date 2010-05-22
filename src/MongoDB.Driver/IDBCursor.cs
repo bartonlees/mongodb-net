@@ -33,7 +33,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// Represents a strongly typed, unfinished query result from the server
     /// </summary>
-    /// <typeparam name="TDoc">The type of the doc.</typeparam>
+    /// <typeparam name="TDoc">The type of the <see cref="IDocument"/> to return.</typeparam>
     public interface IDBCursor<TDoc> : IDBCursor where TDoc : class, IDocument
     {
         /// <summary>

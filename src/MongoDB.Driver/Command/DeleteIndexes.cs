@@ -7,8 +7,9 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Deletes the indexes.
+        /// Deletes the specified indexes.
         /// </summary>
+        /// <remarks>Specifying "*" will delete all indexes on the specified collection.</remarks>
         /// <param name="db">The db.</param>
         /// <param name="collection">The collection.</param>
         /// <param name="indexName">Name of the index.</param>

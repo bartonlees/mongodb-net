@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// A DBObject that is optimized for query (selector) clauses on DB operations
+    /// An implementation of <see cref="IDBObject"/> that is optimized for query (selector) clauses on DB operations
     /// </summary>
     public class DBQuery : DBObject
     {

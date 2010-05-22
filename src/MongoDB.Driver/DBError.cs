@@ -9,40 +9,40 @@ namespace MongoDB.Driver
     public class DBError
     {
         /// <summary>
-        /// 
+        /// Well-known error codes
         /// </summary>
         public enum Code
         {
             /// <summary>
-            /// 
+            /// No Error
             /// </summary>
             NoError = 0,
             /// <summary>
-            /// 
+            /// Failing update of capped Namespace
             /// </summary>
             FailingUpdateOfCappedNS = 10003,
             /// <summary>
-            /// 
+            /// Duplicate key error
             /// </summary>
             DuplicateKeyError = 11000,
             /// <summary>
-            /// 
+            /// Duplicate key on update
             /// </summary>
             DuplicateKeyOnUpdate = 11001,
             /// <summary>
-            /// 
+            /// Index number fails
             /// </summary>
             IdxNoFails = 12000,
             /// <summary>
-            /// 
+            /// Cannot sort MS snapshot
             /// </summary>
             CannotSortMSSnapshot = 12001,
             /// <summary>
-            /// 
+            /// Cannot increment an indexed field
             /// </summary>
             CannotIncAnIndexedField = 12010,
             /// <summary>
-            /// 
+            /// Cannot set and indexed field
             /// </summary>
             CannotSetAnIndexedField = 12011
         }

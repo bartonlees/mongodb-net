@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command
     internal static partial class CommandExtensions
     {
         /// <summary>
-        /// Reseterrors the specified db.
+        /// Resets the error memory of the specified db.
         /// </summary>
         /// <param name="db">The db.</param>
         public static void reseterror(this IDatabase db)

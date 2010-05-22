@@ -15,7 +15,7 @@ namespace MongoDB.Driver
 {
 
     /// <summary>
-    /// Serializes a <code>DBObject</code> into a string that can be sent to the database.
+    /// Serializes messages via the MongoDB wire protocol
     /// </summary>
     public class WireProtocolWriter : EndianBinaryWriter
     {

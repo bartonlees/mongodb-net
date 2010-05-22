@@ -7,7 +7,7 @@ namespace MongoDB.Driver.Command.Admin
     internal static partial class AdminCommandExtensions
     {
         /// <summary>
-        /// Ops the logging.
+        /// Toggles operation logging on or off
         /// </summary>
         /// <param name="db">The db.</param>
         /// <param name="useOpLogging">if set to <c>true</c> [use op logging].</param>

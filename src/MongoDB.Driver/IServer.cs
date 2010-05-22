@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// The interface that represents a remote MongoDB server
+    /// Represents a remote MongoDB server
     /// </summary>
     public interface IServer : IUriComparable
     {

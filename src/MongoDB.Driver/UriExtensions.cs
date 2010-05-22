@@ -4,7 +4,7 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Extension functions for the Uri type
+    /// Extension functions for <see cref="Uri"/>
     /// </summary>
     public static class UriExtensions
     {

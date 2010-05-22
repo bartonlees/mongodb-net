@@ -7,28 +7,23 @@ using MongoDB.Driver.Platform.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Utility class to allow array <code>DBObject</code>s to be created. (Completely re-written for C#)
-    /// <p>
-    /// 		<blockquote><pre>
-    /// DBObject obj = new BasicDBList();
+    /// Utility class to support an array of <see cref="IDBObject"/> instances
+    /// </summary>
+    /// <example>
+    /// <code><![CDATA[ 
+    /// DBObjectArray obj = new DBObjectArray();
     /// obj["0"] = value1;
     /// obj["4"] = value2;
     /// obj[2] = value3;
-    /// </pre></blockquote>
-    /// This simulates the array [ value1, null, value3, null, value2 ] by creating the
-    /// <code>DBObject</code>
-    /// 		<code>{ "0" : value1, "1" : null, "2" : value3, "3" : null, "4" : value2 }</code>.
-    /// </p>
-    /// 	<p>
-    /// BasicDBList only supports numeric keys.  Passing strings that cannot be converted to ints will cause an
-    /// ArgumentException.
-    /// <blockquote><pre>
+    /// ]]></code>
+    /// </example>
+    /// <example>
+    /// <code><![CDATA[ 
     /// BasicDBList list = new BasicDBList();
     /// list["1"] ="bar"; // ok
     /// list["1E1"] ="bar"; // throws exception
-    /// </pre></blockquote>
-    /// 	</p>
-    /// </summary>
+    /// ]]></code>
+    /// </example>    
     public class DBObjectArray : IList, IList<object>, IDBObject
     {
         List<object> _list = null;

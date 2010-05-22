@@ -99,7 +99,7 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// 
+    /// Helper methods for communication via the MongoDB Wire Protocol
     /// </summary>
     public static class WireProtocol
     {

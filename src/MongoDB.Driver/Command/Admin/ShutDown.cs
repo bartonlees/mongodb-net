@@ -4,7 +4,7 @@ namespace MongoDB.Driver.Command.Admin
     internal static partial class AdminCommandExtensions
     {
         /// <summary>
-        /// Shutdowns the specified db.
+        /// Shuts down the specified db.
         /// </summary>
         /// <param name="db">The db.</param>
         public static void shutdown(this IAdminOperations db)

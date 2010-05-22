@@ -3,7 +3,7 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Base class for strongly typed wrappers of IDBObjects
+    /// Base class for strongly typed wrappers of <see cref="IDBObject"/>
     /// </summary>
     public class DBObjectWrapper
     {

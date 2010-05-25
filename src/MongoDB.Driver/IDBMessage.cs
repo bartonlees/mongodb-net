@@ -137,7 +137,7 @@ namespace MongoDB.Driver
         /// </summary>
         /// <param name="message">The message.</param>
         /// <returns></returns>
-        public static int GetBodyLength(this IDBMessage message)
+        internal static int GetBodyLength(this IDBMessage message)
         {
             if (message == null)
                 throw new ArgumentException("message object was null", "this");
@@ -149,7 +149,7 @@ namespace MongoDB.Driver
         /// </summary>
         /// <param name="response">The error message as a string or null if there is no error.</param>
         /// <returns></returns>
-        public static string GetError(this IDBResponse response)
+        internal static string GetError(this IDBResponse response)
         {
             if (response == null)
                 throw new ArgumentException("response object was null", "this");

@@ -2,7 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>

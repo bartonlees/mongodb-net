@@ -1,5 +1,5 @@
 ﻿using System;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {
@@ -9,11 +9,11 @@ namespace MongoDB.Driver
     public static class UriExtensions
     {
         /// <summary>
-        /// 
+        /// The standard mongodb URI prefix
         /// </summary>
         public const string UriPrefixMongo = "mongo://";
         /// <summary>
-        /// 
+        /// The standard mongodb scheme
         /// </summary>
         public const string UriSchemeMongo = "mongo";
 

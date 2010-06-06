@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using MongoDB.Driver.Command;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 namespace MongoDB.Driver
 {
     /// <summary>

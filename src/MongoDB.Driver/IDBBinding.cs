@@ -8,6 +8,31 @@ namespace MongoDB.Driver
     /// <summary>
     /// Represents a logical connection to a database
     /// </summary>
+    /// Some construction options:
+    /// <example caption="Basic">
+    /// <code>
+    /// DBBinding basic = new DBBinding("mongo://localhost/db");
+    /// </code>
+    /// </example>
+    /// <example caption="From Template Binding">
+    /// <code>
+    /// DBBinding template = new DBBinding("mongo://localhost/db");
+    /// DBBinding templated = new DBBinding(template, "db2");
+    /// //Equivalent to "mongo://localhost/db2"
+    /// </code>
+    /// </example>
+    /// <example caption="Hostname and DB Name">
+    /// <code>
+    /// DBBinding withnames = new DBBinding("localhost", "db");
+    /// //Equivalent to "mongo://localhost/db"
+    /// </code>
+    /// </example>
+    /// <example caption="With Port">
+    /// <code>
+    /// DBBinding withport = new DBBinding("localhost", 1910, "db");
+    /// //Equivalent to "mongo://localhost:1910/db"
+    /// </code>
+    /// </example>
     public interface IDBBinding : IUriComparable
     {
         /// <summary>

@@ -6,8 +6,8 @@ using System.Data;
 using System.Security;
 using MongoDB.Driver.Command;
 using MongoDB.Driver.Command.Admin;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Platform.Util;
+using MongoDB.Driver.Conditions;
+
 namespace MongoDB.Driver
 {
 
@@ -129,7 +129,7 @@ namespace MongoDB.Driver
             IDocument o = c.FindOne(new DBQuery("user", username));
             if (o == null)
                 o = new Document("user", username);
-            o["pwd"] = Util._hash(username, passwd);
+            o["pwd"] = Extensions._hash(username, passwd);
             c.Save(o);
         }
 

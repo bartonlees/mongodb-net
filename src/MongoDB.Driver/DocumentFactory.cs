@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.Reflection;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {

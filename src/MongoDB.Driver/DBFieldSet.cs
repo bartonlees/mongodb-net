@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {

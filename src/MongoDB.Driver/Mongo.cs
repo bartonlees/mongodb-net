@@ -1,7 +1,7 @@
 //COPYRIGHT
 using System;
 using System.Reflection;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {
@@ -228,8 +228,8 @@ namespace MongoDB.Driver
         /// <param name="options">The options.</param>
         /// <param name="readOnly">if set to <c>true</c> the binding is read only.</param>
         /// <returns></returns>
-        /// <example caption="">
-        /// 	<code>
+        /// <example>
+        /// <code>
         /// IDatabase db = Mongo.GetDatabase("localhost", 1910, "test");
         /// //Result would be equivalent to: "mongo://localhost:1910/test"
         /// </code>
@@ -270,8 +270,7 @@ namespace MongoDB.Driver
         /// This function will construct a new proxy object on every call.
         /// The <c>serverUri</c> should be of the form: <c>"mongo://host:port"</c>
         /// <returns>The server proxy instance</returns>
-        /// <example>
-        /// serverUriString examples:
+        /// <example caption="Uri examples">
         /// <code>
         /// IServer loopback = Mongo.GetServer("mongo://localhost");
         /// IServer ipv4loopback = Mongo.GetServer("mongo://127.0.0.1");
@@ -297,7 +296,7 @@ namespace MongoDB.Driver
         /// <param name="options">The options.</param>
         /// <param name="readOnly">if set to <c>true</c> the binding is read only.</param>
         /// <returns></returns>
-        /// <example caption="">
+        /// <example>
         /// <code>
         /// IServer server = Mongo.GetServer("localhost", 1910);
         /// //Result would be: "mongo://localhost:1910"

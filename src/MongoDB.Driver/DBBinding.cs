@@ -7,35 +7,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Security;
 using System.Transactions;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Platform.Util;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {
     /// <summary>
     /// A Simple database binding.
     /// </summary>
-    /// Some construction options:
-    /// <example>
-    /// //BASIC
-    /// DBBinding basic = new DBBinding("mongo://localhost/db");
-    /// </example>
-    /// <example>
-    /// //FROM TEMPLATE BINDING
-    /// DBBinding template = new DBBinding("mongo://localhost/db");
-    /// DBBinding templated = new DBBinding(template, "db2");
-    /// //Equivalent to "mongo://localhost/db2"
-    /// </example>
-    /// <example>
-    /// //HOSTNAME AND DB NAME
-    /// DBBinding withnames = new DBBinding("localhost", "db");
-    /// //Equivalent to "mongo://localhost/db"
-    /// </example>
-    /// <example>
-    /// //WITH PORT
-    /// DBBinding withport = new DBBinding("localhost", 1910, "db");
-    /// //Equivalent to "mongo://localhost:1910/db"
-    /// </example>
     internal class DBBinding : IDBBinding
     {
         /// <summary>

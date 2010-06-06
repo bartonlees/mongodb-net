@@ -125,34 +125,33 @@
     <Compile Include="Message\Reply.cs" />
     <Compile Include="Message\Update.cs" />
     <Compile Include="MongoUriParser.cs" />
-    <Compile Include="Platform\Conditions\CollectionHelpers.cs" />
-    <Compile Include="Platform\Conditions\Condition.cs" />
-    <Compile Include="Platform\Conditions\ConditionValidator.cs" />
-    <Compile Include="Platform\Conditions\ConstraintViolationType.enum.cs" />
-    <Compile Include="Platform\Conditions\DefaultComparer.cs" />
-    <Compile Include="Platform\Conditions\EnsuresValidator.cs" />
-    <Compile Include="Platform\Conditions\PostconditionException.cs" />
-    <Compile Include="Platform\Conditions\RequiresValidator.cs" />
-    <Compile Include="Platform\Conditions\SR.cs" />
-    <Compile Include="Platform\Conditions\StringificationExtensions.cs" />
-    <Compile Include="Platform\Conditions\Throw.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Collection.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Boolean.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Byte.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.DateTime.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Decimal.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Double.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.IComparable.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Int16.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Int32.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Int64.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Compare.Single.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Evaluation.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Null.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.String.cs" />
-    <Compile Include="Platform\Conditions\ValidatorExtensions.Type.cs" />
-    <Compile Include="Platform\Util\Pool.cs" />
+    <Compile Include="Conditions\CollectionHelpers.cs" />
+    <Compile Include="Conditions\Condition.cs" />
+    <Compile Include="Conditions\ConditionValidator.cs" />
+    <Compile Include="Conditions\ConstraintViolationType.enum.cs" />
+    <Compile Include="Conditions\DefaultComparer.cs" />
+    <Compile Include="Conditions\EnsuresValidator.cs" />
+    <Compile Include="Conditions\PostconditionException.cs" />
+    <Compile Include="Conditions\RequiresValidator.cs" />
+    <Compile Include="Conditions\SR.cs" />
+    <Compile Include="Conditions\StringificationExtensions.cs" />
+    <Compile Include="Conditions\Throw.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Collection.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Boolean.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Byte.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.DateTime.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Decimal.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Double.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.IComparable.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Int16.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Int32.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Int64.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Compare.Single.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Evaluation.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Null.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.String.cs" />
+    <Compile Include="Conditions\ValidatorExtensions.Type.cs" />
     <Compile Include="Server.cs" />
     <Compile Include="UriExtensions.cs" />
     <Compile Include="Where.cs" />
@@ -175,19 +174,16 @@
     <None Include="N_MongoDB_Driver_Command_Admin.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="N_MongoDB_Driver_Platform_IO.comments">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="N_MongoDB_Driver_Platform_Util.comments">
+    <None Include="N_MongoDB_Driver_IO.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="N_MongoDB_Driver_Command.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="N_MongoDB_Driver_Platform_Conditions.comments">
+    <None Include="N_MongoDB_Driver_Conditions.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="N_MongoDB_Driver_Platform_Conversion.comments">
+    <None Include="N_MongoDB_Driver_Conversion.comments">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="MongoDB_Driver.comments">
@@ -200,21 +196,21 @@
     <None Include="GridFS\GridFSInputFile.cs" />
     <Compile Include="DBFieldSet.cs" />
     <Compile Include="MapReduceInfo.cs" />
-    <Compile Include="Platform\Conversion\BigEndianBitConverter.cs" />
-    <Compile Include="Platform\Conversion\EndianBitConverter.cs" />
-    <Compile Include="Platform\Conversion\Endianness.cs" />
-    <Compile Include="Platform\Conversion\LittleEndianBitConverter.cs" />
-    <Compile Include="Platform\IO\EndianBinaryReader.cs" />
-    <Compile Include="Platform\IO\EndianBinaryWriter.cs" />
-    <Compile Include="Platform\IO\NonClosingStreamWrapper.cs" />
-    <Compile Include="Platform\IO\ReverseLineReader.cs" />
+    <Compile Include="Conversion\BigEndianBitConverter.cs" />
+    <Compile Include="Conversion\EndianBitConverter.cs" />
+    <Compile Include="Conversion\Endianness.cs" />
+    <Compile Include="Conversion\LittleEndianBitConverter.cs" />
+    <Compile Include="IO\EndianBinaryReader.cs" />
+    <Compile Include="IO\EndianBinaryWriter.cs" />
+    <Compile Include="IO\NonClosingStreamWrapper.cs" />
+    <Compile Include="IO\ReverseLineReader.cs" />
     <Compile Include="Mongo.cs" />
     <Compile Include="MongoException.cs" />
     <Compile Include="DBConnectionOptions.cs" />
     <Compile Include="Oid.cs" />
-    <Compile Include="Platform\IO\LineReader.cs" />
-    <Compile Include="Platform\IO\StreamUtil.cs" />
-    <Compile Include="Platform\Util\Util.cs" />
+    <Compile Include="IO\LineReader.cs" />
+    <Compile Include="IO\StreamUtil.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -234,13 +230,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Platform\Conditions\ExceptionMessages.resx" />
+    <EmbeddedResource Include="Conditions\ExceptionMessages.resx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="License.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

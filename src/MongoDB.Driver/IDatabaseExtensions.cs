@@ -7,7 +7,7 @@ using System.IO;
 using System.Security;
 using MongoDB.Driver.Command;
 using MongoDB.Driver.Command.Admin;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {

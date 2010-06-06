@@ -6,7 +6,6 @@ using FluentAssertions;
 using System.Collections;
 using System.Linq;
 using System.Data;
-using MongoDB.Driver.Platform.Util;
 using System.Text.RegularExpressions;
 namespace MongoDB.MSTest
 {
@@ -555,7 +554,7 @@ namespace MongoDB.MSTest
         [TestMethod]
         public void Authenticate()
         {
-            "26e3d12bd197368526409177b3e8aab6".Should().Be(Util._hash("test", new char[] { 'j' }));
+            "26e3d12bd197368526409177b3e8aab6".Should().Be(Extensions._hash("test", new char[] { 'j' }));
 
 
             IDatabase database = Mongo.DefaultDatabase;

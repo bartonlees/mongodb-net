@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {

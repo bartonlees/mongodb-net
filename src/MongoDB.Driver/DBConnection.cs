@@ -9,9 +9,8 @@ using System.Runtime.CompilerServices;
 using System.Security;
 using System.Threading;
 using MongoDB.Driver.Command;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Platform.IO;
-using MongoDB.Driver.Platform.Util;
+using MongoDB.Driver.Conditions;
+using MongoDB.Driver.IO;
 namespace MongoDB.Driver
 {
 

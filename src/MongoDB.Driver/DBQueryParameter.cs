@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
-using MongoDB.Driver.Platform.Conditions;
+using MongoDB.Driver.Conditions;
 
 namespace MongoDB.Driver
 {

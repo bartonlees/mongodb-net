@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
-using MongoDB.Driver.Platform.Conditions;
-using MongoDB.Driver.Platform.Conversion;
-using MongoDB.Driver.Platform.IO;
+using MongoDB.Driver.Conditions;
+using MongoDB.Driver.Conversion;
+using MongoDB.Driver.IO;
 namespace MongoDB.Driver
 {
 

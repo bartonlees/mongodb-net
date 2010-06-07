@@ -1,2 +1,16 @@
 ﻿<summary>Core driver types for connecting to a MongoDB Server</summary>
-<remarks></remarks>
+<remarks>
+This is the primary assembly needed for using the MongoDB.NET driver. This assembly is not yet set up for being put in the GAC, and so will need to be placed in the same directory of the executing assembly.
+<example caption="Importing MongoDB.Driver">
+At the top of your .cs file:
+<code>
+//Other using statements here
+using MongoDB.Driver;
+</code>
+And then make use of the<see cref="T:MongoDB.Driver.Mongo"/>class to get a collection proxy:
+<code>
+IDBCollection coll = Mongo.GetCollection("mongo://localhost/database/myCollection");
+</code>
+</example>
+Most of the standard types needed for interaction will live in the<see cref="N:MongoDB.Driver"/>namespace.
+</remarks>

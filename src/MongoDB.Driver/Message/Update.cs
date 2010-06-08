@@ -73,21 +73,21 @@ namespace MongoDB.Driver.Message
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// 
+    /// Flags specifying how to apply updates
     /// </summary>
     [Flags]
     public enum UpdateOption
     {
         /// <summary>
-        /// 
+        /// No operation specified
         /// </summary>
         None = 0x00,
         /// <summary>
-        /// 
+        /// Update if existing otherwise insert
         /// </summary>
         Upsert = 0x01,
         /// <summary>
-        /// 
+        /// Update all matches. (By default, only first match would be updated)
         /// </summary>
         MultiUpdate = 0x02
     }

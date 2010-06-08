@@ -29,23 +29,23 @@ namespace MongoDB.Driver
     }
 
     /// <summary>
-    /// Represents the details of a query that results in a DBCursor
+    /// Represents the details of a query that results in a <see cref="MongoDB.Driver.IDBCursor"/>
     /// </summary>
     public class DBCursorOptions
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DBCursorOptions"/> class.
         /// </summary>
-        /// <param name="collection">The collection.</param>
-        /// <param name="selector">The selector.</param>
-        /// <param name="returnFields">The return fields.</param>
-        /// <param name="orderBy">The order by.</param>
-        /// <param name="numberToSkip">The number to skip.</param>
-        /// <param name="numberToReturn">The number to return.</param>
-        /// <param name="limit">The limit.</param>
-        /// <param name="explain">if set to <c>true</c> [explain].</param>
-        /// <param name="snapshot">if set to <c>true</c> [snapshot].</param>
-        /// <param name="flags">The flag options.</param>
+        /// <param name="collection">The collection to query against.</param>
+        /// <param name="selector">The selector query.</param>
+        /// <param name="returnFields">The fields to be returned.</param>
+        /// <param name="orderBy">The field or fields to order the results by.</param>
+        /// <param name="numberToSkip">The number of results to skip.</param>
+        /// <param name="numberToReturn">The number to return in a given batch.</param>
+        /// <param name="limit">If specified, only this many results are returned.</param>
+        /// <param name="explain">if set to <c>true</c> a query explanation will be included.</param>
+        /// <param name="snapshot">if set to <c>true</c> then execute against a data snapshot.</param>
+        /// <param name="flags">The option flags.</param>
         /// <param name="explicitIndexHint">The explicit index hint.</param>
         public DBCursorOptions(IDBCollection collection,
             DBQuery selector = null,
@@ -102,12 +102,12 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets or sets the number of documents to return. If set to 0, then the default number is used. If set to a negative number n, exactly |n| documents will be returned. If set to a positive number p, then p or fewer documents will be returned (depending on the number available). If there are more than p available, only p will be sent in the first batch, and a cursor will be left open. Otherwise the cursor will be closed after sending all documents.
+        /// Gets the number of documents to return. If 0, then the default number is used. If set to a negative number n, exactly |n| documents will be returned. If set to a positive number p, then p or fewer documents will be returned (depending on the number available). If there are more than p available, only p will be sent in the first batch, and a cursor will be left open. Otherwise the cursor will be closed after sending all documents.
         /// </summary>
         /// <value>number of documents to return in the first OP_REPLY.</value>
         public int NumberToReturn { get; private set; }
         /// <summary>
-        /// Gets or sets the limit.
+        /// Gets the limit. If non-null, will be the maximum number of results to return.
         /// </summary>
         /// <value>The limit.</value>
         public int? Limit
@@ -124,48 +124,57 @@ namespace MongoDB.Driver
                     NumberToReturn = 0;
             }
         }
+
         /// <summary>
-        /// Gets or sets the number to skip.
+        /// Gets the number to skip.
         /// </summary>
         /// <value>number of documents to skip when returning results.</value>
         public int? NumberToSkip { get; private set; }
+
         /// <summary>
         /// Gets or sets the hint.
         /// </summary>
         /// <value>The hint.</value>
         public IDBIndex Hint { get; private set; }
+
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="DBCursorOptions"/> is explain.
+        /// Gets whether or not the query will be explained
         /// </summary>
         /// <value><c>true</c> if explain; otherwise, <c>false</c>.</value>
         public bool Explain { get; private set; }
+
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="DBCursorOptions"/> is snapshot.
+        /// Gets whether or not the query should be against a snapshot of the database
         /// </summary>
         /// <value><c>true</c> if snapshot; otherwise, <c>false</c>.</value>
         public bool Snapshot { get; private set; }
+
         /// <summary>
-        /// Gets or sets the flags.
+        /// Gets the cursor's flags.
         /// </summary>
         /// <value>The flags.</value>
         public CursorFlags Flags { get; private set; }
+
         /// <summary>
-        /// Gets or sets the return fields.
+        /// Gets the fields to be returned by the query
         /// </summary>
         /// <value>The return fields.</value>
         public DBFieldSet ReturnFields { get; private set; }
+
         /// <summary>
-        /// Gets or sets the order by.
+        /// Gets the field or fields that the results are ordered by
         /// </summary>
         /// <value>The order by.</value>
         public DBFieldSet OrderBy { get; private set; }
+
         /// <summary>
-        /// Gets or sets the collection.
+        /// Gets the collection that is to be queried
         /// </summary>
         /// <value>The collection.</value>
         public IDBCollection Collection { get; private set; }
+
         /// <summary>
-        /// Gets or sets the selector.
+        /// Gets the selection query
         /// </summary>
         /// <value>The selector.</value>
         public DBQuery Selector { get; private set; }

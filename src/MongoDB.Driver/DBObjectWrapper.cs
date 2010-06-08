@@ -8,7 +8,7 @@ namespace MongoDB.Driver
     public class DBObjectWrapper
     {
         /// <summary>
-        /// Gets or sets the object.
+        /// Gets the wrapped object.
         /// </summary>
         /// <value>The object.</value>
         protected IDBObject Object { get; private set; }

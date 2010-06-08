@@ -50,7 +50,7 @@ namespace MongoDB.Driver
         /// Shuffles the specified elements.
         /// </summary>
         /// <param name="elements">The elements.</param>
-        public static void Shuffle(IList elements)
+        public static void Shuffle(this IList elements)
         {
             Random rng = new Random();
             int n = elements.Count;

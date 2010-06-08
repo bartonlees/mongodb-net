@@ -66,7 +66,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Calls the specified MSG.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="msg">The MSG.</param>
         /// <returns></returns>
         public IDBResponse<TDoc> Call<TDoc>(IDBRequest msg) where TDoc : class, IDocument

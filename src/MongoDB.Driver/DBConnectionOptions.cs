@@ -7,7 +7,7 @@ namespace MongoDB.Driver
 {
 
     /// <summary>
-    /// Options for setting up and maintaining database connections
+    /// Options for setting up and maintaining logical database connections
     /// </summary>
     public class DBConnectionOptions
     {
@@ -20,7 +20,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Resets this instance.
+        /// Resets all options to their default values
         /// </summary>
         public void Reset()
         {
@@ -39,21 +39,21 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets or sets the amount of time a TcpClient will wait for a send operation to complete successfully.
+        /// Gets or sets the amount of time a<see cref="System.Net.Sockets.TcpClient"/>will wait for a send operation to complete successfully.
         /// </summary>
         /// <remarks>Value is in milliseconds. 0 is default and infinite.</remarks>
         /// <value>The send timeout.</value>
         public int SendTimeout { get; set; }
 
         /// <summary>
-        /// Gets or sets the amount of time a TcpClient will wait to receive data once a read operation is initiated.
+        /// Gets or sets the amount of time a<see cref="System.Net.Sockets.TcpClient"/>will wait to receive data once a read operation is initiated.
         /// </summary>
         /// <remarks>The send time-out value, in milliseconds. The default is 0.</remarks>
         /// <value>The receive timeout.</value>
         public int ReceiveTimeout { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to automatically retry on a connect.
+        /// Gets or sets a value indicating whether to automatically retry on a failed connection attempt.
         /// </summary>
         /// <value><c>true</c> automatically retry otherwise, <c>false</c>.</value>
         public bool AutoConnectRetry { get; set; }

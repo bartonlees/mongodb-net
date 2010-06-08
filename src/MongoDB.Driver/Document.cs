@@ -3,15 +3,18 @@
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// The public, default implementation of <see cref="IDocument"/>be stored to and retrieved from MongoDB
+    /// The public, default implementation of <see cref="T:MongoDB.Driver.IDocument"/>be stored to and retrieved from a server
     /// </summary>
     public class Document : DBObject, IDocument
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Document"/> class.
         /// </summary>
-        /// <param name="id">The id.</param>
-        /// <param name="partial">if set to <c>true</c> [partial].</param>
+        /// <remarks>
+        /// For testing/internal use only...by specifying the Oid and partial flag, you are simulating the arrival of the document from a server
+        /// </remarks>
+        /// <param name="id">an explicitly set ID.</param>
+        /// <param name="partial">if set to <c>true</c> the document represents a subset of all available fields.</param>
         public Document(Oid id, bool partial)
         {
             ID = id;
@@ -20,8 +23,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Document"/> class. For testing only...by specifying the Oid, you are simulating the arrival of the document from a server
+        /// Initializes a new instance of the <see cref="Document"/> class. 
         /// </summary>
+        /// <remarks>
+        /// For testing/internal use only...by specifying the Oid, you are simulating the arrival of the document from a server
+        /// </remarks>
         /// <param name="id">The id.</param>
         public Document(Oid id)
             : this(id, false)
@@ -31,6 +37,9 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="DBObject"/> class.
         /// </summary>
+        /// <remarks>
+        /// This is the recommended constructor for new documents. The <see cref="State"/> will be set to <c>DocumentState.Detached</c>.
+        /// </remarks>
         public Document()
         {
             ID = Oid.NewOid();
@@ -107,7 +116,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets or sets the state.
+        /// Gets the document's state.
         /// </summary>
         /// <value>The state.</value>
         public DocumentState State
@@ -118,7 +127,7 @@ namespace MongoDB.Driver
 
         IDBCollection _Collection = null;
         /// <summary>
-        /// Gets or sets the collection.
+        /// Gets or sets the collection this document is associated with
         /// </summary>
         /// <value>The collection.</value>
         public IDBCollection Collection

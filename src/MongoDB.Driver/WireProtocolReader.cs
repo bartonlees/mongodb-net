@@ -33,7 +33,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Reads the document.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="partial">if set to <c>true</c> [partial].</param>
         /// <returns></returns>
         public TDoc ReadDocument<TDoc>(bool partial = false) where TDoc : class, IDocument

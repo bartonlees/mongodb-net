@@ -104,7 +104,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Uses OP_QUERY message to retrieve the first batch of documents in a query
         /// </summary>
-        /// <typeparam name="TDoc">The type of the document proxy</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="cursor">The cursor.</param>
         /// <returns>The documents of this batch</returns>
         public IEnumerable<TDoc> Query<TDoc>(IDBCursor<TDoc> cursor) where TDoc : class, IDocument
@@ -132,7 +132,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Uses OP_GETMORE to retrieve more documents for the specified cursor
         /// </summary>
-        /// <typeparam name="TDoc">The type of the document proxy.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="cursor">The cursor.</param>
         /// <returns>All documents returned in the message</returns>
         public IEnumerable<TDoc> GetMore<TDoc>(IDBCursor<TDoc> cursor) where TDoc : class, IDocument

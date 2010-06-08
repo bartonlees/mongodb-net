@@ -20,7 +20,7 @@ namespace MongoDB.Driver
         /// <param name="indexKeyFieldSet">The index key field set.</param>
         /// <param name="indexUri">The index URI.</param>
         /// <param name="unique">if set to <c>true</c> the index will be unique.</param>
-        /// <returns></returns>
+        /// <returns>the index that was found or created</returns>
         public static IDBIndex EnsureIndex(this IDBCollection collection, DBFieldSet indexKeyFieldSet, string indexUri, bool unique)
         {
             return collection.EnsureIndex(indexKeyFieldSet, new Uri(indexUri, UriKind.RelativeOrAbsolute), unique);
@@ -31,14 +31,14 @@ namespace MongoDB.Driver
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="indexUri">The index URI.</param>
-        /// <returns></returns>
+        /// <returns>the index</returns>
         public static IDBIndex GetIndex(this IDBCollection collection, string indexUri)
         {
             return collection.GetIndex(new Uri(indexUri, UriKind.RelativeOrAbsolute));
         }
 
         /// <summary>
-        /// Saves a document to the database.
+        /// Saves a document to the collection.
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="document">The document to save.</param>
@@ -49,36 +49,34 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Saves a document to the database.
+        /// Saves multiple documents to the collection.
         /// </summary>
         /// <param name="collection">The collection.</param>
-        /// <param name="documents">The documents.</param>
+        /// <param name="documents">The documents to save.</param>
         public static void Insert(this IDBCollection collection, params IDocument[] documents)
         {
             Condition.Requires(collection, "this").IsNotNull();
             collection.Insert(documents as IEnumerable<IDocument>);
         }
 
-
         /// <summary>
-        /// Saves a document to the database.
+        /// Attempts to insert a new document into the collection
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="document">The document to save.</param>
-        /// <param name="checkError">if set to <c>true</c> [check error].</param>
-        /// <returns></returns>
-        public static bool TryInsert(this IDBCollection collection, IDocument document, bool checkError = false)
+        /// <returns><c>true</c> if there was no error; <c>false</c> otherwise.</returns>
+        public static bool TryInsert(this IDBCollection collection, IDocument document)
         {
             Condition.Requires(collection, "this").IsNotNull();
-            return collection.TryInsert(new IDocument[] { document }, checkError: false);
+            return collection.TryInsert(new IDocument[] { document });
         }
 
         /// <summary>
-        /// Saves a document to the database.
+        /// Attempts to insert multiple documents into the collection
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="documents">The documents.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if there was no error; <c>false</c> otherwise.</returns>
         public static bool TryInsert(this IDBCollection collection, params IDocument[] documents)
         {
             Condition.Requires(collection, "this").IsNotNull();
@@ -86,13 +84,16 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Retrieve a sub collection using shorthand notation. The following are equivalent:
+        /// Retrieves a sub collection.
+        /// </summary>
+        /// <remarks>
+        /// The string uses a dotted notation notation. The following are equivalent:
         /// <code>
         /// DBCollection users = mongo.getCollection( "wiki" ).GetCollection( "users" );
         /// //and
         /// DBCollection users2 = mongo.getCollection( "wiki.users" );
         /// </code>
-        /// </summary>
+        /// </remarks>
         /// <param name="collection">The collection.</param>
         /// <param name="collectionName">the name of the sub-collection to find</param>
         /// <returns>the sub collection</returns>
@@ -141,8 +142,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Gets a cursor for any available IDocument Implementation (Document, RawDocument, etc.)
         /// </summary>
-        /// <typeparam name="TDoc">The type of the document.</typeparam>
-        /// <param name="collection">The collection.</param>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="selector">The selector query document used to search.</param>
         /// <param name="returnFields">A document that specifies what subset of fields of matching objects to return. (sending null will retrieve all fields)</param>
         /// <param name="orderBy">The "order by" field set.</param>
@@ -153,7 +153,7 @@ namespace MongoDB.Driver
         /// <param name="snapshot">if set to <c>true</c> [snapshot].</param>
         /// <param name="options">The options.</param>
         /// <param name="explicitIndexHint">The explicit index hint.</param>
-        /// <returns>the matching objects</returns>
+        /// <returns>the matching documents</returns>
         public static IDBCursor<TDoc> GetCursor<TDoc>(
             this IDBCollection collection,
             DBQuery selector = null,
@@ -227,12 +227,10 @@ namespace MongoDB.Driver
             );
         }
 
-
         /// <summary>
         /// Finds one or more objects.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc.</typeparam>
-        /// <param name="collection">The collection.</param>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="selector">The selector query document used to search.</param>
         /// <param name="returnFields">A document that specifies what subset of fields of matching objects to return. (sending null will retrieve all fields)</param>
         /// <param name="orderBy">The order by field set.</param>
@@ -282,7 +280,6 @@ namespace MongoDB.Driver
         /// <summary>
         /// Finds the specified collection.
         /// </summary>
-        /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector.</param>
         /// <param name="returnFields">The desired field set.</param>
         /// <param name="orderBy">The order by field set.</param>
@@ -323,10 +320,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Finds an object by its id.
-        /// This compares the passed in value to the _id field of the document
+        /// Finds a document by its ID.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc type.</typeparam>
+        /// <remarks>This compares the passed in value to the _id field of the document</remarks>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="id">The id.</param>
         /// <param name="returnFields">Which fields to return or <c>null</c> for all.</param>
@@ -389,7 +386,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Returns a single object from this collection matching the query.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query.</param>
         /// <param name="returnFields">The desired field set or <c>null</c> for all fields.</param>
@@ -426,7 +423,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Returns a single object from this collection matching the query.
+        /// Returns the first document from this collection that matches the query
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="selector">The selector query.</param>
@@ -487,9 +484,8 @@ namespace MongoDB.Driver
         /// </summary>
         /// <param name="collection">The collection.</param>
         /// <param name="document">The target document.</param>
-        /// <param name="checkError">if set to <c>true</c> [check error].</param>
         /// <returns></returns>
-        public static bool TrySave(this IDBCollection collection, IDocument document, bool checkError = false)
+        public static bool TrySave(this IDBCollection collection, IDocument document)
         {
             if (document == null ||
                 collection == null ||
@@ -502,7 +498,7 @@ namespace MongoDB.Driver
 
             if ((document.State & DocumentState.Detached) != DocumentState.None)
             {
-                return collection.TryInsert(document, checkError: checkError);
+                return collection.TryInsert(document);
             }
             else
             {

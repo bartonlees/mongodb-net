@@ -41,11 +41,11 @@ namespace MongoDB.Driver
         public DBQueryParameter this[string name] { get { return SetFieldName(name); } }
 
         /// <summary>
-        /// Implements the operator ==.
+        /// Expresses an equality test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the operands are equal.</returns>
         public static bool operator ==(DBQueryParameter lhs, object rhs)
         {
             lhs.AppendOperation(null, rhs);
@@ -78,11 +78,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator !=.
+        /// Expresses an inequality test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the operands are not equal.</returns>
         public static bool operator !=(DBQueryParameter lhs, object rhs)
         {
             lhs.AppendOperation(DBQuery.ConditionalOperation.Ne, rhs);
@@ -90,11 +90,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator ==.
+        /// Expresses an equality test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the operands are equal.</returns>
         public static bool operator ==(object lhs, DBQueryParameter rhs)
         {
             rhs.AppendOperation(null, lhs);
@@ -102,11 +102,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator !=.
+        /// Expresses an inequality test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the operands are not equal.</returns>
         public static bool operator !=(object lhs, DBQueryParameter rhs)
         {
             rhs.AppendOperation(DBQuery.ConditionalOperation.Ne, lhs);
@@ -114,11 +114,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &gt;.
+        /// Expresses an value comparison (greater than) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is greater than the rhs</returns>
         public static bool operator >(DBQueryParameter lhs, object rhs)
         {
             lhs.AppendOperation(DBQuery.ConditionalOperation.Gt, rhs);
@@ -126,11 +126,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &lt;.
+        /// Expresses an value comparison (less than) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is less than the rhs.</returns>
         public static bool operator <(DBQueryParameter lhs, object rhs)
         {
             lhs.AppendOperation(DBQuery.ConditionalOperation.Lt, rhs);
@@ -138,11 +138,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &gt;.
+        /// Expresses an value comparison (greater than) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is greater than the rhs</returns>
         public static bool operator >(object lhs, DBQueryParameter rhs)
         {
             rhs.AppendOperation(DBQuery.ConditionalOperation.Lte, lhs);
@@ -150,11 +150,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &lt;.
+        /// Expresses an value comparison (less than) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is less than the rhs</returns>
         public static bool operator <(object lhs, DBQueryParameter rhs)
         {
             rhs.AppendOperation(DBQuery.ConditionalOperation.Gte, lhs);
@@ -163,11 +163,11 @@ namespace MongoDB.Driver
 
 
         /// <summary>
-        /// Implements the operator &gt;=.
+        /// Expresses an value comparison (greater than or equal) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is greater than or equal to the rhs</returns>
         public static bool operator >=(DBQueryParameter lhs, object rhs)
         {
             lhs.AppendOperation(DBQuery.ConditionalOperation.Gte, rhs);
@@ -175,11 +175,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &lt;=.
+        /// Expresses an value comparison (less than or equal) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is less than or equal to the rhs</returns>
         public static bool operator <=(DBQueryParameter lhs, object rhs)
         {
             lhs.AppendOperation(DBQuery.ConditionalOperation.Lte, rhs);
@@ -187,11 +187,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &gt;=.
+        /// Expresses an value comparison (greater than or equal) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is greater than or equal to the rhs</returns>
         public static bool operator >=(object lhs, DBQueryParameter rhs)
         {
             rhs.AppendOperation(DBQuery.ConditionalOperation.Lt, lhs);
@@ -199,11 +199,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Implements the operator &lt;=.
+        /// Expresses an value comparison (less than or equal) test between a Query parameter and some other value
         /// </summary>
-        /// <param name="lhs">The LHS.</param>
-        /// <param name="rhs">The RHS.</param>
-        /// <returns>The result of the operator.</returns>
+        /// <param name="lhs">The left hand side operand.</param>
+        /// <param name="rhs">The right hand side operand.</param>
+        /// <returns><c>true</c> if the lhs is less than or equal to the rhs</returns>
         public static bool operator <=(object lhs, DBQueryParameter rhs)
         {
             rhs.AppendOperation(DBQuery.ConditionalOperation.Gt, lhs);
@@ -211,10 +211,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Ins the specified list.
+        /// Builds an expression that tests if this parameter is a member of the specified list
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if this is a member; <c>false</c> otherwise.</returns>
         public bool In(IList list)
         {
             AppendOperation(DBQuery.ConditionalOperation.In, list);
@@ -222,10 +222,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Ins the specified list.
+        /// Builds an expression that tests if this parameter is a member of the specified list
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if this is a member; <c>false</c> otherwise.</returns>
         public bool In(params object[] list)
         {
             AppendOperation(DBQuery.ConditionalOperation.In, list);
@@ -233,10 +233,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Nins the specified list.
+        /// Builds an expression that tests if this parameter is not a member of the specified list
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if this is not a member; <c>false</c> otherwise.</returns>
         public bool Nin(params object[] list)
         {
             AppendOperation(DBQuery.ConditionalOperation.Nin, list);
@@ -244,10 +244,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Nins the specified list.
+        /// Builds an expression that tests if this parameter is not a member of the specified list
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if this is not a member; <c>false</c> otherwise.</returns>
         public bool Nin(IList list)
         {
             AppendOperation(DBQuery.ConditionalOperation.Nin, list);
@@ -255,10 +255,10 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Alls the specified list.
+        /// Builds an expression that tests if this parameter contains all the members of the specified list
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <returns></returns>
+        /// <returns><c>true</c> if this contains all members; <c>false</c> otherwise.</returns>
         public bool All(IList list)
         {
             AppendOperation(DBQuery.ConditionalOperation.All, list);
@@ -266,7 +266,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Sizes the specified size.
+        /// Builds an expression that tests whether or not this field has the specified size
         /// </summary>
         /// <param name="size">The size.</param>
         /// <returns></returns>
@@ -277,7 +277,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Sizes the specified size.
+        /// Builds an expression that tests whether or not this field has the specified size
         /// </summary>
         /// <param name="size">The size.</param>
         /// <returns></returns>
@@ -288,7 +288,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Mods the specified divisor.
+        /// Builds an expression that test whether or not this field, when divided by the divisor, has the specified remainder
         /// </summary>
         /// <param name="divisor">The divisor.</param>
         /// <param name="remainder">The remainder.</param>
@@ -302,7 +302,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Mods the specified divisor.
+        /// Builds an expression that test whether or not this field, when divided by the divisor, has the specified remainder
         /// </summary>
         /// <param name="divisor">The divisor.</param>
         /// <param name="remainder">The remainder.</param>
@@ -316,7 +316,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Existses this instance.
+        /// Builds an expression that tests if this parameter exists in the document
         /// </summary>
         /// <returns></returns>
         public bool Exists()
@@ -326,7 +326,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Nexistses this instance.
+        /// Builds an expression that tests if this parameter does not exist in the document
         /// </summary>
         /// <returns></returns>
         public bool Nexists()
@@ -373,6 +373,7 @@ namespace MongoDB.Driver
     internal static class LambdaExpressionExtensions
     {
         //Func<DBQueryField, DBQueryField, DBQueryField, bool>
+
         /// <summary>
         /// Toes the DB query.
         /// </summary>

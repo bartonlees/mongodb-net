@@ -70,7 +70,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets or sets the actual response document.
+        /// Gets the actual response document.
         /// </summary>
         /// <value>The response.</value>
         public IDBObject Response { get; private set; }
@@ -85,12 +85,13 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets the message.
+        /// Gets the error message.
         /// </summary>
         /// <value>The message.</value>
         public string Message { get { return Response.GetAsString("errmsg"); } }
+
         /// <summary>
-        /// Gets the assertion.
+        /// Gets the error's assertion.
         /// </summary>
         /// <value>The assertion.</value>
         public string Assertion { get { return Response.GetAsString("assertion"); } }
@@ -98,17 +99,17 @@ namespace MongoDB.Driver
         static string[] _nsMissingErrors = { "ns not found", "ns does not exist", "ns missing" };
 
         /// <summary>
-        /// Gets a value indicating whether [namespace was not found].
+        /// Gets a value indicating whether this error represents a condition in which a namespace was not found.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if [namespace was not found]; otherwise, <c>false</c>.
+        /// 	<c>true</c> if the namespace was not found; otherwise, <c>false</c>.
         /// </value>
         public bool NamespaceWasNotFound { get { return _nsMissingErrors.Contains(Response.GetAsString("errmsg")); } }
 
         /// <summary>
-        /// Throws the specified context.
+        /// Throws the error details as an exception.
         /// </summary>
-        /// <param name="context">The context.</param>
+        /// <param name="context">The context of the exception.</param>
         public void Throw(string context)
         {
             throw new MongoException(string.Format("{0} : {1}", context, Message));

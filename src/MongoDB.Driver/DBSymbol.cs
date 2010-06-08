@@ -16,10 +16,10 @@ namespace MongoDB.Driver
         /// <summary>
         /// Initializes a new instance of the <see cref="DBSymbol"/> class.
         /// </summary>
-        /// <param name="s">The s.</param>
-        public DBSymbol(string s)
+        /// <param name="symbol">The symbol.</param>
+        public DBSymbol(string symbol)
         {
-            Symbol = s;
+            Symbol = symbol;
         }
     }
 }

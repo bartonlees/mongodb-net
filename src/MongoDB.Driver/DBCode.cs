@@ -7,18 +7,20 @@ namespace MongoDB.Driver
     public class DBCode
     {
         /// <summary>
-        /// Gets or sets the code.
+        /// Gets the code as a string of source.
         /// </summary>
         /// <value>The code.</value>
         public string Code { get; private set; }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="DBCode"/> class.
         /// </summary>
-        /// <param name="code">The code.</param>
+        /// <param name="code">A string of source code.</param>
         public DBCode(string code)
         {
             Code = code;
         }
+
         /// <summary>
         /// Returns a <see cref="System.String"/> that represents this instance.
         /// </summary>

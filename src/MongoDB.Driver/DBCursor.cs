@@ -7,7 +7,7 @@ namespace MongoDB.Driver
 {
 
     /// <summary>
-    /// 
+    /// A cursor from a document query
     /// </summary>
     internal class DBCursor<TDoc> : IDBCursor<TDoc> where TDoc : class, IDocument
     {

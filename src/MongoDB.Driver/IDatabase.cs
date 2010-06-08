@@ -7,8 +7,13 @@ using System.Security;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents the core operations and data of a MongoDB database
+    /// A proxy representation of a remote MongoDB database
     /// </summary>
+    /// <remarks>
+    /// This interface represents a database object hosted on a remote <see cref="T:MongoDB.Driver.IServer"/>. 
+    /// Methods and properties on the interface will perform actions on the remote 
+    /// database and retrieve information about the <see cref="T:MongoDB.Driver.IDBCollection"/> instances it contains.
+    /// </remarks>
     public interface IDatabase : IUriComparable
     {
         /// <summary>

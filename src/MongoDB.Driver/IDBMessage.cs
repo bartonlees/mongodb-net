@@ -77,7 +77,7 @@ namespace MongoDB.Driver
     /// <summary>
     /// Represents a generic <see cref="IDBResponse"/>
     /// </summary>
-    /// <typeparam name="TDoc">The type of the doc.</typeparam>
+    /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
     public interface IDBResponse<TDoc> : IDBResponse where TDoc : class, IDocument
     {
         /// <summary>

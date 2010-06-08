@@ -60,7 +60,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Calls the specified CMD collection.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="cmdCollection">The CMD collection.</param>
         /// <param name="msg">The MSG.</param>
         /// <returns></returns>

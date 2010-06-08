@@ -603,7 +603,7 @@ namespace MongoDB.MSTest
             bool checkError = false; // TODO: Initialize to an appropriate value
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
-            actual = IDBCollectionExtensions.TryInsert(collection, document, checkError);
+            actual = IDBCollectionExtensions.TryInsert(collection, document);
             actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
@@ -619,7 +619,7 @@ namespace MongoDB.MSTest
             bool checkError = false; // TODO: Initialize to an appropriate value
             bool expected = false; // TODO: Initialize to an appropriate value
             bool actual;
-            actual = IDBCollectionExtensions.TrySave(collection, document, checkError);
+            actual = IDBCollectionExtensions.TrySave(collection, document);
             actual.Should().Be(expected);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }

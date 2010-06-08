@@ -5,8 +5,34 @@ using System.Collections.Generic;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Represents a remote MongoDB collection
+    /// A proxy representation of a remote MongoDB collection
     /// </summary>
+    /// <remarks>
+    /// An <c>IDBCollection</c> is a member of an <see cref="T:MongoDB.Driver.IDatabase"/> and contains
+    /// <see cref="T:MongoDB.Driver.IDBIndex"/> instances and houses a collection of<see cref="T:MongoDB.Driver.IDocument"/>
+    /// instances that can be saved and loaded.
+    /// <example caption="Attaching to a remote collection">
+    /// <code>
+    /// IDatabase database = ...
+    /// 
+    /// //GetCollection creates the named collection if it does not already exist
+    /// IDBCollection col1 = database.GetCollection("collectionName");
+    /// 
+    /// //Shorthand for GetCollection using array index syntax
+    /// IDBCollection col2 = database["collectionName"];
+    /// 
+    /// //Explicitly create a collection
+    /// IDBCollection col3 = database.CreateCollection("collectionName");
+    /// </code>
+    /// </example>
+    /// <example caption="[http://www.mongodb.org/display/DOCS/Capped+Collections capped collections]">
+    /// //Create a capped collection that will not exceed 100 bytes
+    /// IDBCollection col4 = database.CreateCollection("collectionName", capped:true, size:100);
+    /// 
+    /// //Create a capped collection that will not exceed 100 bytes, and will contain no more than 5 documents
+    /// IDBCollection col5 = database.CreateCollection("collectionName", capped:true, size:100, max:5);
+    /// </example>
+    /// </remarks>
     public interface IDBCollection : IEnumerable<IDocument>, IUriComparable
     {
         /// <summary>
@@ -89,7 +115,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Uses OP_QUERY message to retrieve the first batch of documents in a query
         /// </summary>
-        /// <typeparam name="TDoc">The type of the document proxy</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="cursor">The cursor.</param>
         /// <returns>The documents of this batch</returns>
         IEnumerable<TDoc> Query<TDoc>(IDBCursor<TDoc> cursor) where TDoc : class, IDocument;
@@ -97,7 +123,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Uses OP_GETMORE to retrieve more documents for the specified cursor
         /// </summary>
-        /// <typeparam name="TDoc">The type of the document proxy.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="cursor">The cursor.</param>
         /// <returns>The documents of this batch</returns>
         IEnumerable<TDoc> GetMore<TDoc>(IDBCursor<TDoc> cursor) where TDoc : class, IDocument;

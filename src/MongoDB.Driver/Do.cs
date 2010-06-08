@@ -7,12 +7,12 @@ using System.Collections;
 namespace MongoDB.Driver
 {
     /// <summary>
-    /// Fluent root for modifier expressions
+    /// Fluent root for <see cref="T:MongoDB.Driver.IDocument"/> modifier expressions
     /// </summary>
     public static class Do
     {
         /// <summary>
-        /// Incs the specified field name.
+        /// Requests that the field be incremented by the specified value
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -23,7 +23,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Sets the specified field name.
+        /// Requests that the field be set the the specified value
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -34,7 +34,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Unsets the specified field name.
+        /// Requests that the field be unset
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -45,7 +45,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pushes the specified field name.
+        /// Requests that the value be pushed onto the field's stack
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -56,7 +56,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pushes all.
+        /// Requests that all the values be pushed on to the field's stack
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -67,7 +67,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Adds to set.
+        /// Requests that the value be added to the field's set
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -78,7 +78,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Adds the each to set.
+        /// Requests that each value in a list be added to the field's set
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -89,7 +89,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pops the specified field name.
+        /// Requests that a value be popped from the field's stack
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fromTop">if set to <c>true</c> [from top].</param>
@@ -100,7 +100,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pulls the specified field name.
+        /// Requests that a value be pulled from the field's list
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
@@ -111,7 +111,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pulls all.
+        /// Requests that all values in a list be pulled from the field's list
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>

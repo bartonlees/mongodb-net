@@ -204,7 +204,7 @@ namespace MongoDB.MSTest
                 {"state", "wa"}
             };
 
-            c.TrySave(newDocument, true);
+            c.TrySave(newDocument);
             newDocument.ID.Should().NotBeNull();
             newDocument.ID.Should().NotBe(Oid.Empty);
 

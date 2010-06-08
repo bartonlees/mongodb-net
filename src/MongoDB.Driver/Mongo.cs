@@ -9,9 +9,7 @@ namespace MongoDB.Driver
     /// The root API object for the MongoDB driver
     /// </summary>
     /// <remarks>
-    /// This object allows for
-    /// <example>
-    /// </example>
+    /// This object allows for the attachment of <see cref="T:MongoDB.Driver.IServer"/> instances, <see cref="T:MongoDB.Driver.IDatabase"/> instances, and <see cref="T:MongoDB.Driver.IDBCollection"/> instances.
     /// </remarks>
     public static class Mongo
     {

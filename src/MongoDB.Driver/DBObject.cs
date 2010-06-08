@@ -7,34 +7,32 @@ namespace MongoDB.Driver
     /// The primary, public implementation of <see cref="IDBObject"/>
     /// </summary>
     /// <remarks>
-    /// It is used for JSON literal objects and mocking up documents for transmission to the server.
-    /// 
-    /// There are several ways to construct `DBObject` instances:
-    /// {{{
-    /// //Simple constructor, explicit adds
+    /// DBObjects are dynamic blocks of data for use in server transmissions.
+    /// <example caption="Simple constructor, explicit adds">
+    /// <code>
     /// IDBObject o1 = new DBObject();
     /// o1.Add("key", "value");
     /// o1.Add("key2", 0);
     /// o1.Add("key3", true);
-    /// 
-    /// //Convenience constructor
+    /// </code>
+    /// </example>
+    /// <example caption="Convenience constructor">
+    /// <code>
     /// IDBObject o2 = new DBObject("key", "value");
-    /// 
-    /// //Convenience constructor 2
-    /// IDBObject o3 = new DBObject("key", "value", "key2", 0);
-    /// }}}
-    /// You can also make use of [http://msdn.microsoft.com/en-us/library/bb531208.aspx Collection initialization] thanks to our `IDictionary&lt;string, object&gt;` based implementation:
-    /// 
-    /// {{{
-    /// //Simple Collection initialization
-    /// IDBObject o4 = new DBObject 
+    /// </code>
+    /// </example>
+    /// <example caption="[http://msdn.microsoft.com/en-us/library/bb531208.aspx Collection initialization]">
+    /// <code>
+    /// IDBObject o3 = new DBObject() 
     /// {
     ///    {"key", "value"},
     ///    {"key2", 0},
     ///    {"key3", true}
     /// }
-    /// 
-    /// //Nested object
+    /// </code>
+    /// </example>
+    /// <example caption="Nested object">
+    /// <code>
     /// IDBObject o4 = new DBObject 
     /// {
     ///    {"key", new DBObject{
@@ -42,9 +40,8 @@ namespace MongoDB.Driver
     ///      {"key3", true}}
     ///    }
     /// }
-    /// 
-    /// }}}
-    /// 
+    /// </code>
+    /// </example>
     /// </remarks>
     public class DBObject : Dictionary<string, object>, IDBObject
     {
@@ -56,7 +53,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DBObject"/> class from an existing DBObject.
+        /// Initializes a new instance of the <see cref="DBObject"/> class from an existing DBObject or compatible dictionary.
         /// </summary>
         /// <param name="obj">The db object</param>
         public DBObject(IDictionary<string, object> obj)
@@ -76,7 +73,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Copies JSON pairs from the specified dbObject to this one
+        /// Copies pairs from the specified dbObject to this one
         /// </summary>
         /// <param name="dbObject">The DBObject.</param>
         public void PutAll(IDictionary<string, object> dbObject)
@@ -87,11 +84,11 @@ namespace MongoDB.Driver
             }
         }
 
-
         /// <summary>
-        /// Appends the specified key/value pair in a manner that allows chaining of commands.
+        /// Appends the specified pair in a manner that allows chaining of commands.</summary>
+        /// <example caption="Chaining append operations">
         /// <code>new BasicDBObject().append("test", 0).append("t2", 1);</code>
-        /// </summary>
+        /// </example>
         /// <param name="key">The key.</param>
         /// <param name="val">The val.</param>
         /// <returns></returns>

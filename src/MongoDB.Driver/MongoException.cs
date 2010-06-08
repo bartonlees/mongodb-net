@@ -36,7 +36,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// 
+        /// An exceptional state that came from an <see cref="T:MongoDB.Driver.IDBResponse"/>
         /// </summary>
         public sealed class Response : MongoException
         {
@@ -53,7 +53,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// 
+        /// An exception while authenticating with MongoDB
         /// </summary>
         public sealed class Authentication : MongoException
         {
@@ -65,7 +65,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// 
+        /// An exception based on the last error received from the server
         /// </summary>
         public sealed class LastError : MongoException
         {
@@ -82,7 +82,7 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// 
+        /// A network level exception
         /// </summary>
         public sealed class Network : MongoException
         {
@@ -99,21 +99,6 @@ namespace MongoDB.Driver
             }
 
             internal System.IO.IOException _ioe;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public sealed class DuplicateKey : MongoException
-        {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DuplicateKey"/> class.
-            /// </summary>
-            /// <param name="msg">The MSG.</param>
-            public DuplicateKey(string msg)
-                : base(msg)
-            {
-            }
         }
     }
 }

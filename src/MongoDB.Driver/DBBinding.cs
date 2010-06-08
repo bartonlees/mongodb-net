@@ -368,7 +368,7 @@ namespace MongoDB.Driver
         /// <summary>
         /// Calls the specified CMD collection.
         /// </summary>
-        /// <typeparam name="TDoc">The type of the doc.</typeparam>
+        /// <typeparam name="TDoc">A type that implements <see cref="T:MongoDB.Driver.IDocument"/>.</typeparam>
         /// <param name="cmdCollection">The CMD collection.</param>
         /// <param name="request">The request.</param>
         /// <returns></returns>
@@ -441,12 +441,20 @@ namespace MongoDB.Driver
         }
 
 
+        /// <summary>
+        /// Binds the specified database proxy object to this binding's details.
+        /// </summary>
+        /// <param name="database">The database.</param>
         public void Bind(IDatabase database)
         {
             BoundDatabase = database;
         }
 
 
+        /// <summary>
+        /// Gets the bound Database.
+        /// </summary>
+        /// <value>The server.</value>
         public IDatabase BoundDatabase
         {
             get;

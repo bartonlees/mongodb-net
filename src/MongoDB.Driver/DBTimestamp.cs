@@ -57,9 +57,9 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Gets or sets the inc.
+        /// Gets or sets the increment.
         /// </summary>
-        /// <value>The inc.</value>
+        /// <value>The increment.</value>
         public int Inc { get; private set; }
         DateTime? _time;
     }

@@ -90,11 +90,11 @@ namespace MongoDB.Driver
 
 
         /// <summary>
-        /// Incs the specified field name.
+        /// Increments the specified field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <param name="value">The value to increment by.</param>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier Inc(string fieldName, object value)
         {
             if (!ContainsKey(ModifierOperation.Inc))
@@ -106,11 +106,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Sets the specified field name.
+        /// Sets the specified field to the specified value
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier Set(string fieldName, object value)
         {
             if (!ContainsKey(ModifierOperation.Set))
@@ -122,11 +122,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Unsets the specified field name.
+        /// Unsets the specified field
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier Unset(string fieldName, object value)
         {
             if (!ContainsKey(ModifierOperation.Unset))
@@ -138,11 +138,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pushes the specified field name.
+        /// Pushes the specified value into the named array field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier Push(string fieldName, object value)
         {
             if (!ContainsKey(ModifierOperation.Push))
@@ -154,27 +154,27 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pushes all.
+        /// Pushes all the values in the list into the named array field
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public DBModifier PushAll(string fieldName, IList value)
+        /// <param name="list">The list of values.</param>
+        /// <returns>The DBModifier that is being built</returns>
+        public DBModifier PushAll(string fieldName, IList list)
         {
             if (!ContainsKey(ModifierOperation.PushAll))
             {
                 this[ModifierOperation.PushAll] = new DBObject();
             }
-            this.GetAsIDBObject(ModifierOperation.PushAll)[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.PushAll)[fieldName] = list;
             return this;
         }
 
         /// <summary>
-        /// Adds to set.
+        /// Adds the value to the named set field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier AddToSet(string fieldName, object value)
         {
             if (!ContainsKey(ModifierOperation.AddToSet))
@@ -186,22 +186,22 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Adds the each to set.
+        /// Adds each of the values to the set field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public DBModifier AddEachToSet(string fieldName, IList value)
+        /// <param name="list">The list of values.</param>
+        /// <returns>The DBModifier that is being built</returns>
+        public DBModifier AddEachToSet(string fieldName, IList list)
         {
-            return AddToSet(fieldName, new DBObject(ModifierOperation.Each, value));
+            return AddToSet(fieldName, new DBObject(ModifierOperation.Each, list));
         }
 
         /// <summary>
-        /// Pops the specified field name.
+        /// Pops the top/bottom value from the specified array field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="fromTop">if set to <c>true</c> [from top].</param>
-        /// <returns></returns>
+        /// <param name="fromTop">if set to <c>true</c> then the value is popped from the top.</param>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier Pop(string fieldName, bool fromTop = true)
         {
             if (!ContainsKey(ModifierOperation.Pop))
@@ -213,11 +213,11 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pulls the specified field name.
+        /// Pulls the specified value from the field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="value">The value.</param>
-        /// <returns></returns>
+        /// <returns>The DBModifier that is being built</returns>
         public DBModifier Pull(string fieldName, object value)
         {
             if (!ContainsKey(ModifierOperation.Pull))
@@ -229,18 +229,18 @@ namespace MongoDB.Driver
         }
 
         /// <summary>
-        /// Pulls all.
+        /// Pulls all the specified values from the field.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="value">The value.</param>
+        /// <param name="list">The list of values.</param>
         /// <returns></returns>
-        public DBModifier PullAll(string fieldName, IList value)
+        public DBModifier PullAll(string fieldName, IList list)
         {
             if (!ContainsKey(ModifierOperation.PullAll))
             {
                 this[ModifierOperation.PullAll] = new DBObject();
             }
-            this.GetAsIDBObject(ModifierOperation.PullAll)[fieldName] = value;
+            this.GetAsIDBObject(ModifierOperation.PullAll)[fieldName] = list;
             return this;
         }
     }

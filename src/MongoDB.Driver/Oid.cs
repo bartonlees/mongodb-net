@@ -13,8 +13,10 @@ namespace MongoDB.Driver
 
     /// <summary>
     /// A globally unique identifier for <see cref="IDBObject"/> and <see cref="IDocument"/>.
-    /// Consists of 12 bytes
     /// </summary>
+    /// <remarks>
+    /// Consists of 12 bytes
+    /// </remarks>
     [Serializable]
     public class Oid : IFormattable, IComparable, IComparable<Oid>, IEquatable<Oid>, ISerializable
     {

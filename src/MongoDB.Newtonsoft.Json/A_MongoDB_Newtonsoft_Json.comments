@@ -1,0 +1,40 @@
+﻿<summary>Adaptor types for working with Newtonsoft JSON Serialization</summary>
+<remarks>
+The Newtonsoft Json library provides excellent support for serialization of object data to Json and Bson. This assembly allows the result of a Newtonsoft Json to be used directly as a Document in <see cref="A:MongoDB.Driver"/>
+<example caption="Serializing with Newtonsoft">
+First, decorate your data type with any appropriate serialization details:
+<code>
+public class TestContractObject
+{
+  public TestContractObject()
+  {
+    Data = 321;
+    Caption = "Amble";
+    ID = Oid.Empty;
+  }
+  public int Data { get; set; }
+  public string Caption { get; set; }
+  private float _secret { get; set; }
+  [JsonProperty(PropertyName = "_id")]
+  public Oid ID { get; set; }
+}
+</code>
+And then save and retrieve the<see cref="T:MongoDB.Newtonsoft.Json.ContractDocument`1"/>class:
+<code>
+<![CDATA[
+TestContractObject newObj = new TestContractObject();
+newObj.ID = new Oid(new byte[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 });
+newObj.Caption = "good";
+newObj.Data = 345;
+ContractDocument<TestContractObject> newDoc = new ContractDocument<TestContractObject>(newObj);
+IDBCollection coll = Mongo.DefaultDatabase.GetCollection("TestContractObject");
+coll.Save(newDoc);
+ContractDocument<TestContractObject> existingDoc = coll.FindContractDocumentByID<TestContractObject>(newDoc.ID);
+TestContractObject existingObj = existingDoc.Instance;
+//existingObj.ID.Should().Be(newObj.ID);
+//existingObj.Data.Should().Be(newObj.Data);
+//existingObj.Caption.Should().Be(newObj.Caption);
+]]>
+</code>
+</example>
+</remarks>

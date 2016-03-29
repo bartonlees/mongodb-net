@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <UsingTask AssemblyFile="..\..\ghost-tasks\dev\src\ghost.tasks\bin\debug\Ghost.Tasks.dll" TaskName="WikiDoc"/>
+  <PropertyGroup>
+    <SrcRepo>..\dev\</SrcRepo>
+	<InputXmlFile>$(SrcRepo)src\MongoDB.Driver/bin/release/MongoDB.Driver.xml</InputXmlFile>
+	<InputAssemblyFile>$(SrcRepo)src\MongoDB.Driver/bin/release/MongoDB.Driver.dll</InputAssemblyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <WikiDocFiles Include="WikiDoc_*"/>
+	<WikiDocTypeFiles Include="*.type"/>
+  </ItemGroup>
+
+  <Target Name="InputXml" Outputs="$(InputAssemblyFile)">
+	<MSBuild Projects="$(SrcRepo)src\Driver.sln" Properties="Configuration=Release" />
+  </Target>
+  
+  <Target Name="Build" DependsOnTargets="InputXml" Outputs="@(WikiDocFiles)">
+    <WikiDoc InputAssembly="$(InputAssemblyFile)" OutputFolder="." />   
+  </Target>
+</Project>
